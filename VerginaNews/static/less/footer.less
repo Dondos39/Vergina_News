@@ -1,0 +1,181 @@
+/* Background colors
+------------------------------------ */
+#footer {
+	background: @footer-bg;
+	padding: 100px 0;
+	@media screen and (max-width:768px) {
+		padding: 40px 0;
+	}
+	color: @footer-color;
+	font-weight: 500;
+	.logo {
+		max-height: 34px;
+	}
+	&.footer-mini {
+		padding: 60px 0;
+		.logo {
+			float: left;
+			margin-right: 40px;
+		}
+		.border-line {
+			border-width: 1px;
+		}
+		.sub-footer {
+			ul li {
+				&:before {
+					display: none;
+				}
+				padding-left: 5px;
+			}
+			.copyright-text i {
+				font-size: 16px;
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.border-line, .border-line-1 {
+		border-color: @sub-footer-color;
+	}
+	.widget-title {
+		color: #fff;
+		margin: 0;
+		margin-bottom: 30px;
+	}
+
+
+	&.light {
+		background: #fcfcfc;
+		color: rgba(0,0,0,.8);
+		a {
+			color: rgba(0,0,0,.8);
+			&:hover {
+				color: rgba(0,0,0,1);
+			}
+		}
+		.widget-title {
+			color: rgba(0,0,0,.9);
+			font-weight: 700;
+			margin-bottom: 20px;
+		}
+		.border-line, .border-line-1 {
+			border-color: rgba(0,0,0,.3);
+		}
+		.sub-footer {
+			color: rgba(0,0,0,.35);
+			a {
+				color: rgba(0,0,0,.35);
+				&:hover {
+					color: rgba(0,0,0,.55);
+				}
+			}
+		}
+	}
+
+}
+
+.footer-row {
+	margin-top: 30px;
+	margin-bottom: 50px;
+	@media screen and (max-width:768px) {
+		margin-bottom: 20px;
+		div[class*=col-], .widget {
+			margin-bottom: 30px;
+		}
+		div:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.sub-footer {
+	color: @sub-footer-color;
+
+	a {
+		color: @sub-footer-color;
+		&:hover {
+			color: lighten(@sub-footer-color, 10%);
+		}
+	}
+
+	p, ul {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	ul {
+		li {
+			position: relative;
+			&+li {
+				margin-left: 5px;
+				padding-left: 10px;
+				&:before {
+					content: "|";
+					position: absolute;
+					left: -5px;
+					top:0;
+				}
+			}
+		}
+	}
+
+	.copyright-text {
+		i {
+			font-size: 24px;
+			line-height: 0;
+			margin-right: 10px;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		text-align: center;
+		
+		ul li + li {
+			margin: 0;
+			padding: 0 5px;
+			&:before {
+				display: none;
+
+			}
+		}
+		.copyright-text {
+			margin: 20px 0 0;
+			line-height: 1.5;
+		}
+		
+	}
+}
+
+
+
+
+.footer-instagram{
+
+	.row{
+		margin: 0px;
+
+		& > div{
+			padding: 0px;
+		}
+	}
+
+	h4{
+		font-size: 24px;
+		font-family: @font-title;
+		font-weight: normal;
+		letter-spacing: 0px;
+		text-transform: uppercase;
+		border-bottom: 1px solid rgba(0,0,0,0.4);
+		display: inline-block;
+		padding-bottom: 15px;
+	}
+
+	img{
+		width: 100%;
+	}
+}

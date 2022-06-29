@@ -1,0 +1,242 @@
+.travel-item{
+	background-color: #fff;
+
+	.entry-img{
+		margin: 0px;
+		position: relative;
+
+		.entry-link{
+			display: block;
+			position: relative;
+			overflow: hidden;
+
+			img{
+				width: 100%;
+				height: auto;
+				-webkit-transition: all 0.45s ease;
+			       -moz-transition: all 0.45s ease;
+			            transition: all 0.45s ease;
+			}
+
+			&:hover{
+				img{
+					-webkit-transform: scale(1.1);
+					   -moz-transform: scale(1.1);
+							transform: scale(1.1);
+				}
+			}
+		}
+
+	}
+
+	.entry-info{
+		padding: 35px;
+
+		h3{
+			line-height: 1.2em;
+			font-size: 15px;
+			font-family: @font-title;
+			font-weight: normal;
+			color: @color-title;
+			text-transform: uppercase;
+			margin: 0px;
+			position: relative;
+			padding-right: 60px;
+
+			.price{
+				display: inline-block;
+				color: #f62332;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+			}
+		}
+
+		.info{
+			font-family: @font-text;
+			font-size: 13px;
+			line-height: 1.8em;
+			color: fade(@color-text, 80%);
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.readmore{
+			text-align: center;
+
+			a.button{
+				font-size: 12px;
+				padding: 3px 20px;
+			}
+		}
+	}
+}
+
+
+.travel-item-boxed{
+	position: relative;
+	overflow: hidden;
+
+	a.entry-link{
+		display: block;
+		position: relative;
+		cursor: ew-resize;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center top;
+		-webkit-transform: scale(1);
+		   -moz-transform: scale(1);
+				transform: scale(1);
+
+		.transition();
+		-webkit-transition-duration: 0.35s;
+		   -moz-transition-duration: 0.35s;
+				transition-duration: 0.35s;
+
+		&::before{
+			content: '';
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			height: 100px;
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.74+100 */
+			background: -moz-linear-gradient(top,  rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#bd000000',GradientType=0 ); /* IE6-9 */
+		}
+
+		&::after{
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+			height: 50%;
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.74+100 */
+			background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.74) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.74) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.74) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#bd000000',GradientType=0 ); /* IE6-9 */
+		}
+	}
+
+	.img-spacer{
+		width: 100%;
+	}
+
+	.price{
+		font-family: @font-title;
+		font-weight: bold;
+		color: #fff;
+		top: 50px;
+		left: 60px;
+		position: absolute;
+	}
+
+	.entry-info{
+		position: absolute;
+		left: 60px;
+		right: 60px;
+		bottom: 50px;
+
+		&::before{
+			content: '';
+			width: 19px;
+			height: 27px;
+			position: absolute;
+			top: 0px;
+			left: -27px;
+			background-image: url(images/pin-bg.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center top;
+		}
+
+		h3{
+			font-size: 24px;
+			font-weight: bold;
+			font-family: @font-title;
+			margin: 0px;
+
+			a{
+				color: #fff;
+			}
+		}
+
+		.desc{
+			font-size: 14px;
+			line-height: 1.4;
+			font-family: @font-title;
+			font-weight: normal;
+			color: #d2d2d2;
+			margin-top: 5px;
+		}
+	}
+
+
+	&:hover{
+
+		a.entry-link{
+			-webkit-transform: scale(1.1);
+			   -moz-transform: scale(1.1);
+					transform: scale(1.1);
+		}
+	}
+}
+
+
+.carousel-travel{
+	position: relative;
+	visibility: hidden;
+	opacity: 0;
+	.transition();
+
+	&.loaded{
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.swiper-button-prev,
+	.swiper-button-next{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		border: 1px solid @brand-color;
+		text-align: center;
+		line-height: 50px;
+
+		&::before{
+			font-family: Fontawesome;
+			font-size: 25px;
+			color: @brand-color;
+		}
+	}
+
+	.swiper-button-prev{
+		background: none;
+		left: -70px;
+
+		&::before{
+			content: '';
+		}
+	}
+
+	.swiper-button-next{
+		background: none;
+		right: -70px;
+
+		&::before{
+			content: '';
+		}
+	}
+
+
+	.swiper-slide:nth-child(2n){
+		.travel-item-boxed .entry-info::before{
+			background-image: url(images/pin-red.png);
+		}
+	}
+}

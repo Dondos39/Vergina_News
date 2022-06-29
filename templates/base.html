@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>Vergina News</title>
+    <meta name="keywords" content="HTML5,CSS3,HTML,Template,Themeton" >
+    <meta name="description" content="Tana - Blog, News and Magazine HTML Template">
+    <meta name="author" content="Themeton">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}"/>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/bootstrap/css/bootstrap-theme.min.css'%}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+  
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}">
+ 
+
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/animate.css' %}">
+    <!-- <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  /> -->
+
+    <!-- Swiper -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/swiper/css/swiper.min.css' %}">
+ 
+
+    <!-- Magnific-popup -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/magnific-popup/magnific-popup.css' %}">
+
+    <!-- Base MasterSlider style sheet -->
+    <link rel="stylesheet" href="{% static 'vendors/masterslider/style/masterslider.css' %}" />
+    
+    <!-- Master Slider Skin -->
+    <link href="{% static 'vendors/masterslider/skins/default/style.css' %}" rel='stylesheet' type='text/css'>
+    
+        
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body class="entertainment-content">
+
+
+    <!-- navbar -->
+    {% include 'includes/navbar.html' %}
+        
+    
+    {% block content %}
+        <!-- content -->
+    {% endblock %}
+
+<!-- footer -->]
+{% include 'includes/footer.html' %}

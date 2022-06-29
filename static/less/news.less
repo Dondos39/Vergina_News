@@ -1,0 +1,54 @@
+#header{
+
+	&.header-news{
+
+
+		nav.main-nav{
+
+			& > ul{
+				
+			}
+
+			.right-content{
+				
+			}
+		}
+
+		// responsive for medium and small devices
+		@media screen and (max-width: 1199px){
+
+			nav.main-nav{
+				
+				& > ul{
+					position: relative;
+					white-space: nowrap;
+					overflow-x: auto;
+					overflow-y: hidden;
+
+					&::-webkit-scrollbar{ display: none; }
+
+					& > li{
+
+						ul{
+							display: none;
+						}
+					}
+				}
+			}
+		}
+
+		@media screen and (max-width: 720px){
+
+			.panel-header{
+
+				.header-wrapper{
+
+					.right-content{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
+}

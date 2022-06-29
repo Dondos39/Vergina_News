@@ -1,0 +1,409 @@
+/* Widget
+============================================== */
+
+.widget {
+
+    &+.widget {
+        margin-top: 40px;
+    }
+
+    .widget-title {
+        text-transform: uppercase;
+    }
+
+    ul {
+        padding: 0;
+        li {
+            list-style-type: none;
+            line-height: 2.5em;
+            a {
+                color: @footer-color;
+                &:hover {
+                    text-decoration: none;
+                    color: lighten(@footer-color, 20%);
+                }
+            }
+        }
+    }
+
+    &.widget_recent_posts {
+        ul li {
+            padding-left: 20px;
+            line-height: 1.4em;
+            margin: 15px 0;
+            position: relative;
+            &:before {
+                content: '';
+                display: block;
+                border: 1px solid @color-1;
+                position: absolute;
+                left: 0;
+                border-radius: 50%;
+                width: 8px;
+                height: 8px;
+                top: 5px;
+            }
+        }
+    }
+    .social-links{
+        display: block;
+
+        a{
+            display: inline-block;
+            color: @footer-color;
+            font-size: 16px;
+            margin-right: 15px;
+
+            .transition();
+
+            &:hover{
+                color: lighten(@footer-color, 20%);
+            }
+        }
+    }
+
+}
+
+/* Sidebar
+============================================== */
+.sidebar{
+    padding-left: 35px;
+    &.pull-left {
+        padding-left: 15px;
+        padding-right: 35px;
+    }
+    .widget-title {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-family: @font-title;
+        font-weight: bold;
+        color: @color-title;
+        margin: 0px;
+        margin-bottom: 30px;
+
+        span{
+            display: inline-block;
+            border-bottom: 2px solid fade(@color-title, 20%);
+            padding-bottom: 15px;
+        }
+        &.color-1 { span { border-color: @color-1; } }
+        &.color-2 { span { border-color: @color-2; } }
+        &.color-3 { span { border-color: @color-3; } }
+    }
+    ul {
+        li {
+            line-height: 2.5em;
+            font-size: 14px;
+            font-family: @font-title;
+            font-weight: normal;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid fade(@color-title, 10%);
+            a {
+                color: @color-title;
+                &:hover {
+                    text-decoration: none;
+                    color: lighten(@color-title, 20%);
+                }
+            }
+        }
+    }
+}
+.pull-right+.sidebar {
+    padding-left: 15px;
+    padding-right: 35px;
+}
+
+.widget{
+
+    &+.widget {
+        margin-top: 40px;
+    }
+
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+
+    select{
+        width: 100%;
+    }
+
+    ul {
+        padding: 0;
+
+        li {
+            list-style-type: none;
+
+            a {
+                line-height: 1.2em;
+            }
+
+            ul{
+                margin-left: 20px;
+            }
+            p {
+                line-height: 1.2em;
+                font-family: @font-second; 
+            }
+
+        }
+    }
+
+    &.no-border {
+        ul li {
+            margin-bottom: 30px;
+            border: none;
+        }
+    }
+
+    &.categories {
+        ul li {
+            span {
+                float: right;
+            }
+        }
+    }
+
+    &.recent-posts {
+        ul li {
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid fade(@color-title, 10%);
+            span {
+                font-size: 12px;
+                font-family: @font-second;
+            }
+        }
+    }
+
+    .widget-tags {
+        a {
+            background-color: rgba(0,0,0,.07);
+            padding: 5px 10px;
+            margin-bottom: 5px;
+            font-family: @font-title;
+            color: #000;
+            display: inline-block;
+            text-transform: lowercase;
+            text-decoration: none;
+            .transition();
+            &:hover {
+                background-color: rgba(0,0,0,.1);
+            }
+        }
+    }
+
+
+    .rssSummary{
+        font-size: 14px;
+        font-weight: normal;
+        font-family: @font-second;
+        color: fade(@color-title, 70%);
+        line-height: 1.8em;
+    }
+
+    #wp-calendar,
+    table{
+        width: 100%;
+    }
+
+
+    .search_form{
+        position: relative;
+        border: 1px solid fade(@color-title, 30%);
+        display: block;
+        padding-left: 20px;
+        padding-right: 50px;
+
+        input{
+            display: block;
+            border: 0px;
+            height: 42px;
+            line-height: 42px;
+            width: 100%;
+            font-family: @font-text;
+            font-size: 10px;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: transparent;
+        }
+
+        button{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            border-radius: 0px;
+            background-color: #e6e6e6;
+            height: 42px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 0px;
+            line-height: 42px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            color: fade(@color-title, 50%);
+            border-left: 1px solid rgba(0, 0, 0, 0.3)
+        }
+    }
+
+
+    .tagcloud{
+
+        a{
+            color: @color-title;
+        }
+    }
+
+    ul li:last-child { border: none; }
+
+}
+
+
+.subscribe-form{
+    position: relative;
+    border-radius: 0px;
+
+    input{
+        width: 100%;
+        max-width: 280px;
+        height: 42px;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-style: italic;
+        background: #2a2a2a;
+        border: none;
+        padding-left: 20px;
+        letter-spacing: 1px;
+    }
+
+    button{
+        height: 42px;
+        width: 44px;
+        color: #fff;
+        background: #666666;
+        font-size: 18px;
+        border:none;
+        border-radius: 0;
+        padding: 0;
+
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &.envelope{
+
+        input{
+            font-family: @font-text;
+            font-style: italic;
+            background-color: lighten(@footer-bg, 2%);
+        }
+
+        button{
+            background-color: lighten(@footer-bg, 0.1%);
+            color: #fff;
+        }
+    }
+}
+.light {
+    .widget-title {
+        color: #333333;
+    }
+
+    .subscribe-form {
+        input {
+            background: transparent;
+            border: 1px solid #a2a2a2;
+        }
+        button {
+            color: #a2a2a2;
+            background-color: #e6e6e6;
+            border: 1px solid #a2a2a2;
+        }
+    }
+}
+
+
+/* Footer
+============================================== */
+
+#footer{
+    .search_form{
+        background: #2a2a2a;
+    }
+    &:not(.light) {
+        .meta span {
+            color: @footer-color; 
+        }
+        .recent-posts {
+            li {
+                border-color: rgba(255,255,255,0.1);
+            }
+        }
+        .widget-tags a, .ads-placeholder {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+    }
+    &.light {
+        .search_form {
+            background: #fff;
+        }
+    }
+
+    .widget {
+        &.widget_contact {
+            background: url(images/map.png) no-repeat center right;
+            background-size: contain;
+            a, strong {
+                color: lighten(@footer-color, 3%);
+            }
+        }
+        &.categories {
+            ul li {
+                border-bottom: 1px solid fade(@footer-color, 10%);
+            }
+        }
+    }
+
+    &.footer-entertainment {
+        .widget ul li {
+            line-height: 1.4em;
+            margin: 15px 0;
+        }
+        .widget .social-links a{
+            color: #fff;
+            &:hover {
+                color: @color-1;
+            }
+        }
+        .subscribe {
+            label {
+                display: inline-block;
+            }
+        }
+        .subscribe-form {
+            display: inline-block;
+            width: 300px;
+            max-width: 100%;
+        }
+        .subscribe-form button {
+            display: inline-block;
+            background-color: @color-1;
+            color: #fff;
+        }
+        &.light {
+            .widget .social-links a{
+                color: rgba(0, 0, 0, 0.35);
+                &:hover {
+                    color: @color-1;
+                }
+            }
+            .subscribe-form button {
+                background-color: #fec21f;
+            }
+        }
+    }
+}

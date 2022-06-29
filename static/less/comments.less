@@ -1,0 +1,161 @@
+#comments{
+	margin-top: 50px;
+	margin-bottom: 80px;
+
+	.comments-wrapper{
+
+		.comments-title{
+			font-family: @font-title;
+			font-weight: bold;
+			font-size: 30px;
+			letter-spacing: 1.5px;
+			line-height: 1em;
+			text-transform: uppercase;
+			margin-bottom: 20px;
+		}
+
+		ol.comment-list{
+			margin: 0;
+			padding: 0 0 0 60px;
+			list-style-type: none;
+			margin-bottom: 30px;
+
+			li{
+				overflow: hidden;
+				display: block;
+
+				article{
+					overflow: hidden;
+					display: block;
+					width: 100%;
+					padding-bottom: 30px;
+
+					.avatar{
+						width: 64px;
+						height: 64px;
+						float: left;
+					}
+
+					.comment-body{
+						margin-left: 85px;
+
+						.meta-data{
+							overflow: hidden;
+							position: relative;
+							line-height: 1;
+							margin-bottom: 10px;
+
+							.comment-author{
+								font-size: 16px;
+								font-family: @font-title;
+								color: @color-title;
+								position: relative;
+							}
+
+							.comment-date{
+								font-size: 13px;
+								color: @color-title;
+								display: inline-block;
+							}
+
+							.comment-reply{
+								margin-left: 20px;
+
+								a{
+									font-size: 13px;
+									font-weight: 700;
+									line-height: 10px;
+									display: inline-block;
+									letter-spacing: 0.4px;
+									color: @brand-color;
+									.transition();
+
+									&::before{
+										content: '';
+										font-family: Fontawesome;
+										position: relative;
+										margin-right: 3px;
+									}
+
+								}
+							}
+						}
+
+						.comment-content{
+							font-size: 14px;
+							line-height: 20px;
+							margin-bottom: 8px;
+							color: fade(@color-text, 80%);
+							font-family: @font-second;
+						}
+
+					}
+				}
+
+				li {
+					.avatar {
+						width: 48px;
+						height: 48px;
+					}
+					.comment-body {
+						margin-left: 69px;
+					}
+				}
+				ul, ol{
+					padding-left: 85px;
+				}
+			}
+		}
+	}
+
+}
+
+
+#respond{
+
+	.comment-reply-title{
+		font-family: @font-title;
+		font-weight: bold;
+		font-size: 30px;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		letter-spacing: 0px;
+		margin-bottom: 40px;
+	}
+
+	input, textarea{
+		width: 100%;
+		border: 1px solid rgba(0,0,0,.3);
+		letter-spacing: 1px;
+		border-radius: 0px;
+		padding: 15px 20px;
+		margin-bottom: 25px;
+	}
+	textarea {
+		height: 200px;
+	}
+	.form-submit{
+
+		& > span{
+			display: block;
+			font-size: 12px;
+			margin-bottom: 20px;
+		}
+
+		input[type="submit"]{
+			width: 280px;
+			border: 1px solid rgba(0,0,0,0);
+			background-color: rgba(0,0,0,.3);
+			font-weight: 500;
+			color: #fff;
+			letter-spacing: 1px;
+			border-radius: 0px;
+
+			&:hover{
+				background-color: transparent;
+				color: rgba(0,0,0,.5);
+				border-color: rgba(0,0,0,.3);
+			}
+		}
+	}	
+}
