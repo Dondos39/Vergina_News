@@ -2,10 +2,6 @@ from django.db import models
 from django.utils.text import slugify
 
 # Create your models here.
-class CategoriesManager(models.Manager):
-    def get_subcategories(self):
-        return self.values_list('id', 'subcategory').distinct()
-
 class Category(models.Model):
     name = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
@@ -19,6 +15,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_subcategories(self):
+        return self.subcategory_set.all()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
