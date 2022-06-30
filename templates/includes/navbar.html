@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    
+
                     <div class="header-wrapper">
 
                         <div class="site-branding">
@@ -21,8 +21,6 @@
                         </div>
 
                         <div class="right-content">
-                            
-
                                 <div class="follow-links">
                                     <span class="visible-lg-*">Follow Us:</span>
                                     <a class="visible-lg-*" href="javascript:;"><i class="fa fa-facebook"></i></a>
@@ -30,9 +28,9 @@
                                     <a class="visible-lg-*" href="javascript:;"><i class="fa fa-youtube"></i></a>
                                     <a class="visible-lg-*" href="javascript:;"><i class="fa fa-google-plus"></i></a>
                                     <a class="hidden-lg" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a>
-                                    
+
                                 </div>
-                            
+
                         </div>
 
                     </div>
@@ -41,7 +39,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="panel-menu">
         <div class="container">
             <div class="row">
@@ -244,7 +242,7 @@
                             </form>
                         </div>
 
-                        
+
                         <div class="right-content news-search-menu">
                             <a href="javascript:;" class="search-handler" id="search_handler">
                                 <svg class="icon-search" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 14 14" xml:space="preserve">
@@ -264,7 +262,7 @@
                                 </svg>
                             </a>
                         </div>
-                    </nav>                       
+                    </nav>
                  </div>
             </div>
         </div>
@@ -281,9 +279,9 @@
                             <a href="javascript:;" class="ticker-arrow-next"><img src="images/arrow-lr-right.png" alt="arrow"></a>
                         </span>
                         <span class="entry-ticker">
-                            <span>A not-so random weekly walk through hot topics in markets, finance and economics.</span>
-                            <span>Drive cost effective strategic theme areas rather than clicks and mortar applications.</span>
-                            <span>First and next generation services size business data backend metrics for change after.</span>
+                          {% for important in important_list %}
+                            <span>{{ important.title }}.</span>
+                          {% endfor %}
                         </span>
                     </div>
                 </div>
@@ -291,7 +289,7 @@
                     <div class="tt-el-info text-right">
                         <h4>29</h4>
                         <p>APR, Wednesday</p>
-                    </div>                            
+                    </div>
                     <div class="tt-el-info text-right">
                         <h4>32˚C</h4>
                         <p>Current location</p>
@@ -305,7 +303,7 @@
         <div class="pm-overlay"></div>
         <div class="pm-container">
             <div class="pm-wrap">
-                
+
                 <a href="javascript:;" class="close-menu"></a>
 
                 <div class="pm-socials" style="  font-size: 16px; padding-left: 30px; margin-bottom: 30px; letter-spacing: 5px;">
@@ -319,15 +317,13 @@
 
                 <nav class="big-menu">
                     <ul>
-                        {% for category in links %}
+                        {% for category in categories_list %}
                         <li><a href="news.html">{{ category.name }}</a></li>
                         <nav class="small-menu">
                             <ul>
-                                <li><a href="news2.html">News</a></li>
-                                <li><a href="entertainment.html">Careers</a></li>
-                                <li><a href="blog.html">Linkedin</a></li>
-                                <li><a href="single.html">Dribbble</a></li>
-                                <li><a href="single-news.html">Twitter</a></li>
+                              {% for subcategory in category.get_subcategories %}
+                                <li><a href="news2.html">{{ subcategory.name }}</a></li>
+                              {% endfor %}
                             </ul>
                         {% endfor %}
                         </nav>

@@ -15,13 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-import articles 
+import articles.views
 from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # re_path(r'^getSubcategory/$', articles.views.get_subcategory),
-    path('', views.home,name='home')
-    
-
+    re_path(r'^getSubcategory/$', articles.views.get_subcategory),
+    path('', views.HomepageViews.as_view(), name='home')
 ]
