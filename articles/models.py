@@ -39,6 +39,9 @@ class ArticleManager(models.Manager):
     def get_important(self):
         return self.filter(no_important__in=['1', '2', '3', '4', '5']).values_list('id', 'no_important', 'title')
 
+    def get_latest(self):
+        return self.order_by('-date_added', 'time_added')[:5][::-1]
+
 class Article(models.Model):
     ##  Attributes ##
     author = models.ManyToManyField(authors.models.Author)
@@ -57,7 +60,7 @@ class Article(models.Model):
     category = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)
     sub_category = models.ForeignKey(categories.models.SubCategory, on_delete=models.CASCADE, null=True)
     tags = models.ManyToManyField(tags.models.Tags, blank=True)
-    
+
     tracker = FieldTracker()
     objects = ArticleManager()
 
@@ -74,3 +77,6 @@ class Article(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_authors(self):
+        return self.author.all().values_list('first_name', flat=True)
