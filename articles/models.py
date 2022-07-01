@@ -37,10 +37,13 @@ HOMEPAGE_N = [
 
 class ArticleManager(models.Manager):
     def get_important(self):
-        return self.filter(no_important__in=['1', '2', '3', '4', '5']).values_list('id', 'no_important', 'title')
+        return self.filter(no_important__in=['1', '2', '3', '4', '5'])
 
     def get_latest(self):
         return self.order_by('-date_added', 'time_added')[:10][::-1]
+
+    def get_frontnews(self):
+        return self.filter(no_homepage__in=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
 
 class Article(models.Model):
     ##  Attributes ##

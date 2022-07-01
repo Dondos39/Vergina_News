@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^getSubcategory/$', articles.views.get_subcategory),
-    path('', views.HomepageViews.as_view(), name='home')
+    path('', views.HomepageViews.as_view(), name='home'),
+    re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<post_id>\d+)/$', articles.views.ArticleView.as_view(), name='article_view')
 ]
