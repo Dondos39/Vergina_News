@@ -27,7 +27,4 @@ class ArticleView(DetailView):
             "post_id": detail.id,
             "category": detail.category.name,
             }
-            print('--------------')
-            print(context)
-            print('--------------')
             return render(request, "article.html", context=context)

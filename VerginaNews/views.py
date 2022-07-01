@@ -13,7 +13,11 @@ class HomepageViews(ListView):
         context = super(HomepageViews, self).get_context_data(**kwargs)
         context.update({
             'categories_list': categories.models.Category.objects.all(),
-            'important_list': articles.models.Article.objects.get_important().values_list('title', flat=True),
-            'roaming_news_list': articles.models.Article.objects.get_latest()
+            'important_list': articles.models.Article.objects.get_important().values_list('id', 'no_important', 'title'),
+            'roaming_news_list': articles.models.Article.objects.get_latest(),
+            'frontnews_list': articles.models.Article.objects.get_frontnews().values_list('title', 'text'),
         })
+        print("----------------")
+        print(context['frontnews_list'])
+        print("----------------")
         return context
