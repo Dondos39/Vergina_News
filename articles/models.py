@@ -40,7 +40,7 @@ class ArticleManager(models.Manager):
         return self.filter(no_important__in=['1', '2', '3', '4', '5']).values_list('id', 'no_important', 'title')
 
     def get_latest(self):
-        return self.order_by('-date_added', 'time_added')[:5][::-1]
+        return self.order_by('-date_added', 'time_added')[:10][::-1]
 
 class Article(models.Model):
     ##  Attributes ##
