@@ -17,20 +17,20 @@
   <!-- Section 5 -->
 
   <div class="row">
-                        
+
     <div class="col-md-12">
 
         <h2 class="block-title mt8" data-title="Vergina News">
-        Front page 
+        Front page
         <a href="single.html" class="category-more text-right">Continue to the category <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
         </h2>
 
     </div>
 </div>
 
-    
+
     <div class="row">
-        
+
         <div class="col-sm-3 category-block en-block">
             <div class="sidebar boxed p3">
             <h4 class="font40" style="text-align: center;"><a href="#">Ρoή Ειδήσεων</a></h4>
@@ -39,9 +39,9 @@
                 <div class="tab-title clearfix">
                     <a href="#" class="active">Ειδήσεις</a>
                     <a href="#">Δημοφιλή</a>
-                    
+
                 </div>
-                
+
                 <div class="tab-panel">
                     <div class="tab-content active">
                         {% for latest in roaming_news_list %}
@@ -49,7 +49,7 @@
                             <a href="single.html">
                                 <div class="image" data-src="images/entertainment/post-11.jpg">
                                     <img src="{{ latest.article_pic }}" alt="Proportion"/>
-                                    <a href="blog.html" class="label">{{ latest.sub_category }}</a>								
+                                    <a href="blog.html" class="label">{{ latest.sub_category }}</a>
                                 </div>
                             </a>
                             <div class="meta inline-meta mb0">
@@ -58,7 +58,7 @@
                                 {% endfor %}
                                 <span class="date">{{ latest.time_added }}</span>
                             </div>
-                            <h4 class="font18"><a href="#">{{ latest.title }}</a></h4>
+                            <h4 class="font18" method="post"><a href="{% url 'article_view' post_id=latest.id %}">{{ latest.title }}</a></h4>
                         </div>
                         {% endfor %}
                          <!-- end .post -->
@@ -66,25 +66,25 @@
                         <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
 
                     <!-- /.tab-panel -->
-                            
+
                     <div class="tab-content">
 
-    
+
                     </div>
                     <!-- /.tab-panel -->
-                            
+
                             <div class="tab-content">
 
                         <!-- /.row -->
-    
+
                     </div>
                     <!-- /.tab-panel -->
-                            
+
                             </div>
                 <!-- /.tab-panel -->
             </div>
                     <!-- /.simple-tab-space -->
-                
+
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6">
-    
+
                                     <div class="widget">
                                         <h5 class="widget-title"><span>Tag Cloud:</span></h5>
                                         <div class="widget-tags">
@@ -109,13 +109,13 @@
                                             <a href="javascript:;">Sports</a>
                                         </div>
                                     </div>
-                                
+
                             </div>
                             <div class="col-sm-6">
                                 <div class="tt-el-info">
                                     <h4>29</h4>
                                     <p>APR, Wednesday</p>
-                                </div>                            
+                                </div>
                                 <div class="tt-el-info">
                                     <h4>32˚C</h4>
                                     <p>Current location</p>
@@ -127,7 +127,7 @@
 
                 <div class="post color-2">
                     <a href="single.html">
-                        <div class="image" data-src="images/entertainment/post-01.jpg">								
+                        <div class="image" data-src="images/entertainment/post-01.jpg">
                             <img src="images/5x3.png" alt="Proportion"/>
                             <a href="blog.html" class="label">LATEST</a>
                         </div>
@@ -155,7 +155,7 @@
                     <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second one is X-Men: First Class (2011) where a bullet deflected by Magneto causes McAvoy (Xavier) to lose his ability to walk. Finally, in this movie.</p>
                     <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
                 </div>
-                
+
             </div>
             <!-- end .category-block -->
 
@@ -167,17 +167,17 @@
             <div class="border-line mb5"></div>
 
             <div class="row category-block en-block">
-            
+
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>								
+                                <a href="blog.html" class="label">LATEST</a>
                             </div>
                         </a>
-                    
+
                         <div class="meta inline-meta small-meta">
                             <span class="author">Dave Clark</span>
                             <span class="date">2h</span>
@@ -186,7 +186,7 @@
                         <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second one is X-Men: First Class (2011) where a bullet deflected by Magneto causes McAvoy (Xavier) to lose his ability to walk. Finally, in this movie, a curving bullet is used as a plot element in the assassination of the U.S president and is the reason why Magneto is in jail, necessitating a rescue from McAvoy (Xavier). The second one is X-Men: First Class (2011) where a bullet deflected by Magneto causes McAvoy.</p>
                         <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
                     </div>
-                    
+
                     <div class="post first hover-dark color-2">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-10.jpg">
@@ -199,7 +199,7 @@
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>								
+                                <a href="blog.html" class="label">LATEST</a>
                             </div>
                         </a>
                         <div class="meta inline-meta small-meta">
@@ -212,15 +212,15 @@
                     </div>
                 </div>
                 <!-- /.col -->
-                
+
                 <div class="col-md-6">
-                    
+
                     <div class="post hover-light color-2">
 
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>								
+                                <a href="blog.html" class="label">LATEST</a>
                             </div>
                         </a>
                         <div class="meta inline-meta small-meta">
@@ -236,7 +236,7 @@
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>								
+                                <a href="blog.html" class="label">LATEST</a>
                             </div>
                         </a>
                         <div class="meta inline-meta small-meta">
@@ -253,7 +253,7 @@
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>								
+                                <a href="blog.html" class="label">LATEST</a>
                             </div>
                         </a>
                         <div class="meta inline-meta small-meta">
@@ -264,7 +264,7 @@
                         <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of who use curving bullets as technique.</p>
                         <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
                     </div>
-            
+
                 </div>
             </div>
             <!-- /.col -->
@@ -284,14 +284,14 @@
 									<div class="category-block articles">
 
 									<div class="post first color-1 hover-light">
-											
+
 											<div class="image" data-src="images/news/rightnow-03.jpg">
 												<a href="single.html">
 													<img src="images/5x3.png" alt="Proportion"/>
 												</a>
 												<a href="blog.html" class="label">Changes</a>
 											</div>
-											
+
 											<div class="meta">
 												<span class="author">Dave Clark</span>
 												<span class="date">2h</span>
@@ -299,10 +299,10 @@
 											<h4><a href="#">Three more officers were wounded in the attack left</a></h4>
 											<p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
 										</div>
-										
+
 																			</div>
 								</div>
-						
+
 
 								<div class="col-md-6">
 									<div class="category-block articles">
@@ -317,7 +317,7 @@
 												<span class="date">2h</span>
 											</div>
 										</div>
-										
+
 																				<div class="post hover-light">
 											<a href="javascript:;">
 												<div class="image image-thumb" data-src="images/news/category-04.jpg"></div>
@@ -329,7 +329,7 @@
 												<span class="date">2h</span>
 											</div>
 										</div>
-										
+
 																				<div class="post hover-light">
 											<a href="javascript:;">
 												<div class="image image-thumb" data-src="images/news/category-05.jpg"></div>
@@ -341,7 +341,7 @@
 												<span class="date">2h</span>
 											</div>
 										</div>
-										
+
 								    </div>
 								</div>
 
@@ -356,7 +356,7 @@
                 </div>
             </div>
 
-							
+
         </div>
         <!-- /.row -->
 

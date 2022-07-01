@@ -16,8 +16,4 @@ class HomepageViews(ListView):
             'important_list': articles.models.Article.objects.get_important().values_list('title', flat=True),
             'roaming_news_list': articles.models.Article.objects.get_latest()
         })
-
-        print('-------------------------------')
-        print(context['roaming_news_list'])
-        print('-------------------------------')
         return context
