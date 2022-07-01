@@ -49,189 +49,18 @@
                             <li class="current-menu-item">
                                 <a href="index.html">Home</a>
                             </li>
+                            {% for category in categories_list %}
                             <li class="menu-item-has-children">
-                                <a href="news2.html">News</a>
+                                <a href="news2.html">{{ category.name }}</a>
                                 <ul>
-                                    <li><a href="news2.html">News 2</a></li>
-                                    <li><a href="news3.html">News 3</a></li>
-                                    <li><a href="news4.html">News 4</a></li>
-                                    <li><a href="news5.html">News 5</a></li>
-                                    <li><a href="news6.html">News 6</a></li>
-                                    <li><a href="news7.html">News 7</a></li>
-                                    <li><a href="news8.html">News 8</a></li>
-                                    <li><a href="news9.html">News 9</a></li>
-                                    <li><a href="news10.html">News 10</a></li>
+                                    
+                                    {% for subcategory in category.get_subcategories %}
+                                    <li><a href="news2.html">{{ subcategory.name }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </li>
-                            <li><a href="entertainment.html">U.S.</a></li>
-                            <li><a href="blog.html">Fashion</a></li>
-                            <li class="menu-item-has-children menu-item-mega">
-                                <a href="entertainment.html">Entertainment</a>
-                                <ul>
-                                    <li>
-                                        <div class="mega-menu-lists">
-                                            <a href="single-news.html">Autos</a>
-                                            <a href="single-news.html">Future</a>
-                                            <a href="single-news.html">TV</a>
-                                            <a href="single-news.html">Radio</a>
-                                            <a href="single-news.html">CBBC</a>
-                                            <a href="single-news.html">CBeebies</a>
-                                            <a href="single-news.html">Local</a>
-                                        </div>
-                                        <div class="mega-menu-panel">
-                                            <div class="row">
-
-                                                <div class="col-sm-4 col-md-3 mega-menu-column">
-                                                    <div class="post ps-medium">
-                                                        <div class="meta">
-                                                            <span class="author">Dave Clarke</span>
-                                                            <span class="date">2h</span>
-                                                        </div>
-                                                        <h4><a href="single.html">North Carolina Voter ID Law Is Upheld</a></h4>
-                                                        <p>France: Prostitution legal, paying for sex illegal. Modi makes his mark</p>
-                                                    </div>
-                                                    <div class="post ps-medium">
-                                                        <div class="meta">
-                                                            <span class="author">Dave Clarke</span>
-                                                            <span class="date">2h</span>
-                                                        </div>
-                                                        <h4><a href="single.html">North Carolina Voter ID Law Is Upheld</a></h4>
-                                                        <p>Oprah Winfrey continues Real Estate shopping spree Mansion Global</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-4 col-md-6 mega-menu-column">
-                                                    <div class="post ps-large">
-                                                        <div class="image video-frame" data-src="images/news/video-04.jpg">
-                                                            <img src="images/5x3.png" alt="Proportion">
-                                                            <a class="video-player" href="https://player.vimeo.com/video/164110862"></a>
-                                                        </div>
-                                                        <div class="meta">
-                                                            <span class="author">Dave Clark</span>
-                                                            <span class="date">2h</span>
-                                                        </div>
-                                                        <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                        <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-4 col-md-3 mega-menu-column">
-                                                    <h4 class="mega-title">Radio</h4>
-
-                                                    <div class="post ps-small">
-                                                        <p><a href="#">Michael Phelps: 'I don't know if I'm an alcoholic,' says 18-time gold...</a></p>
-                                                    </div>
-                                                    <div class="post ps-small">
-                                                        <p><a href="#">What A Million Dollars Can Buy You Around the World</a></p>
-                                                    </div>
-                                                    <div class="post ps-small">
-                                                        <p><a href="#">Jennifer Aniston named 'World's Most Beautiful Woman'</a></p>
-                                                    </div>
-                                                    <div class="post ps-small">
-                                                        <p><a href="#">Russia’s submarine program: How big?</a></p>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children menu-item-mega mm-medium">
-                                <a href="news.html">Science</a>
-                                <ul>
-                                    <li>
-                                        <div class="mega-menu-lists">
-                                            <a href="single.html">Autos</a>
-                                            <a href="single.html">Future</a>
-                                            <a href="single.html">TV</a>
-                                            <a href="single.html">Radio</a>
-                                            <a href="single.html">CBBC</a>
-                                            <a href="single.html">CBeebies</a>
-                                            <a href="single.html">Local</a>
-                                        </div>
-                                        <div class="mega-menu-panel">
-                                            <div class="row">
-
-                                                <div class="col-sm-6 col-md-3 mega-menu-column">
-                                                    <div class="post ps-medium">
-                                                        <div class="meta">
-                                                            <span class="author">Dave Clarke</span>
-                                                            <span class="date">2h</span>
-                                                        </div>
-                                                        <h4><a href="single.html">Dollars Drops to 11-Month Low as asian stocks</a></h4>
-                                                        <p>France: Prostitution legal, paying for sex illegal. Modi makes his mark</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-md-3 mega-menu-column">
-                                                    <div class="post ps-medium">
-                                                        <div class="meta">
-                                                            <span class="author">Dave Clarke</span>
-                                                            <span class="date">2h</span>
-                                                        </div>
-                                                        <h4><a href="single.html">Billionaire icahn exits apple stake after 3 years</a></h4>
-                                                        <p>France: Prostitution legal, paying for sex illegal. Modi makes his mark</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-md-3 mega-menu-column">
-                                                    <div class="post ps-medium">
-                                                        <div class="meta">
-                                                            <span class="author">Dave Clarke</span>
-                                                            <span class="date">2h</span>
-                                                        </div>
-                                                        <h4><a href="single.html">Social media, theme parks and kung fu panda</a></h4>
-                                                        <p>France: Prostitution legal, paying for sex illegal. Modi makes his mark</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-md-3 mega-menu-column">
-                                                    <div class="post ps-large">
-                                                        <div class="image video-frame" data-src="images/news/video-04.jpg">
-                                                            <img src="images/5x3.png" alt="Proportion">
-                                                            <a class="video-player video-player-small" href="https://player.vimeo.com/video/164110862"></a>
-                                                        </div>
-                                                        <h4><a href="#">North Carolina Voter ID Law Is</a></h4>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="news.html">Culture</a></li>
-                            <li><a href="entertainment.html">Health</a></li>
-                            <li><a href="blog.html">Travel</a></li>
-                            <li class="menu-item-has-children"><a href="news2.html">Politics</a>
-                                <ul>
-                                    <li><a href="news2.html">Autos</a></li>
-                                    <li class="menu-item-has-children"><a href="news2.html">Future</a>
-                                        <ul>
-                                            <li><a href="news2.html">Autos</a></li>
-                                            <li><a href="news2.html">Future</a></li>
-                                            <li><a href="news2.html">TV</a></li>
-                                            <li><a href="news2.html">Radio</a></li>
-                                            <li><a href="news2.html">CBBC</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="news2.html">TV</a>
-                                        <ul>
-                                            <li><a href="news2.html">Autos</a></li>
-                                            <li><a href="news2.html">Future</a></li>
-                                            <li><a href="news2.html">TV</a></li>
-                                            <li><a href="news2.html">Radio</a></li>
-                                            <li><a href="news2.html">CBBC</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="news2.html">Radio</a></li>
-                                    <li><a href="news2.html">CBBC</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="single.html">Lifestyle</a></li>
-                            <li><a href="single-news.html">World</a></li>
-                            <li><a href="fitness.html">Sports</a></li>
+                            {% endfor %}
+                           
                         </ul>
 
 
@@ -275,8 +104,8 @@
                     <div class="tt-el-ticker">
                         <strong>Last Rumor: </strong>
                         <span class="entry-arrows">
-                            <a href="javascript:;" class="ticker-arrow-prev"><img src="images/arrow-lr-left.png" alt="arrow"></a>
-                            <a href="javascript:;" class="ticker-arrow-next"><img src="images/arrow-lr-right.png" alt="arrow"></a>
+                            <a href="javascript:;" class="ticker-arrow-prev"><img src="{% static 'images/arrow-lr-left.png' %}" alt="arrow"></a>
+                            <a href="javascript:;" class="ticker-arrow-next"><img src="{% static 'images/arrow-lr-right.png' %}" alt="arrow"></a>
                         </span>
                         <span class="entry-ticker">
                           {% for important in important_list %}
