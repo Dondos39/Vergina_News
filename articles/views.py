@@ -21,10 +21,13 @@ class ArticleView(DetailView):
         model = articles.models.Article
         def get(self, request, *args, **kwargs):
             post_id = self.kwargs.get('post_id')
+
             detail = articles.models.Article.objects.get(id=post_id)
-            print(detail)
             context = {
-            "detail": detail
+            "post_id": detail.id,
+            "category": detail.category.name,
             }
+            print('--------------')
             print(context)
+            print('--------------')
             return render(request, "article.html", context=context)

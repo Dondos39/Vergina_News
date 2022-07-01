@@ -58,7 +58,7 @@
                                 {% endfor %}
                                 <span class="date">{{ latest.time_added }}</span>
                             </div>
-                            <h4 class="font18" method="post"><a href="{% url 'article_view' post_id=latest.id %}">{{ latest.title }}</a></h4>
+                            <h4 class="font18" method="post"><a href="{% url 'article_view' category=latest.category.name sub_category=latest.sub_category.name post_id=latest.id %}">{{ latest.title }}</a></h4>
                         </div>
                         {% endfor %}
                          <!-- end .post -->
