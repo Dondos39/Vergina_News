@@ -25,7 +25,7 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
     def get_articles(self):
-        return articles.models.Article.objects.all().filter(category__name=self.name).values('id', 'title', 'text', 'sub_category__name')
+        return articles.models.Article.objects.all().filter(category__name=self.name).values('id', 'title', 'text', 'sub_category__name', 'date_added' , 'time_added' , 'author')[:6]
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

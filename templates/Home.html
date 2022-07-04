@@ -190,7 +190,7 @@
                                 {% endfor %}
                                 <span class="date">{{ latest.time_added }}</span>
                             </div>
-                            <h4 class="font18" method="post"><a href="{% url 'article_view' category=latest.category.name sub_category=latest.sub_category.name post_id=latest.id %}">{{ latest.title }}</a></h4>
+                            <h4 class="font18" method="post"><a href="#">{{ latest.title }}</a></h4>
                         </div>
                         {% endfor %}
                          <!-- end .post -->
@@ -1083,15 +1083,16 @@
 </div>
 <!-- end .row -->
 <!-- New Section -->
+{% for category in categories_list %}
 <div class="content-area pvt0 entertainment-layout">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="block-title mt8" data-title="Fantasy">
-            Topics
+          <h2 class="block-title mt8" data-title="{{ category.name }}">
+            {{ category.name }}
             <a href="single.html" class="category-more text-right"
               >Continue to the category
-              <img src="images/arrow-right.png" alt="Arrow"
+              <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
             /></a>
           </h2>
 
@@ -1100,6 +1101,8 @@
           >
             <div class="swiper-container carousel-container">
               <div class="row">
+                {% for articles in category.get_articles %}
+                {% if forloop.counter < 3 %}
                 <div class="col-md-6">
                   <div class="post first hover-dark">
                     <a href="single.html">
@@ -1108,7 +1111,7 @@
                         data-src="images/entertainment/post-14.jpg"
                       >
                         <img src="images/5x3.png" alt="Proportion" />
-                        <a href="blog.html" class="label bgred">Latest</a>
+                        <a href="blog.html" class="label bgred">{{ articles.sub_category__name }}</a>
                       </div>
                     </a>
                   </div>
@@ -1118,45 +1121,11 @@
                       <div class="post hover-light">
                         <h4>
                           <a href="#"
-                            >Fantastic is the Beasts and Where to Find</a
+                            >{{ articles.title }}</a
                           >
                         </h4>
                         <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted
-                          (2008), where McAvowalk. This is James McAvoy's
-                          third film, where curving bullets play
-                        </p>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-                  <div class="post first hover-dark">
-                    <a href="single.html">
-                      <div
-                        class="image"
-                        data-src="images/entertainment/post-14.jpg"
-                      >
-                        <img src="images/5x3.png" alt="Proportion" />
-                        <a href="blog.html" class="label bgred">Latest</a>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="post hover-light">
-                        <h4>
-                          <a href="#"
-                            >Fantastic is the Beasts and Where to Find</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted
-                          (2008), where McAvowalk. This is James McAvoy's
-                          third film, where curving bullets play
+                            {{articles.text | safe }}
                         </p>
                       </div>
                     </div>
@@ -1165,125 +1134,42 @@
                   <!-- /.row -->
                 </div>
                 <!-- /.col -->
+                {% endif %}
+                {% endfor %}
+              </div>
+              <div class="row">
+                {% for articles in category.get_articles %}
+                {% if forloop.counter > 2 %}
+                <div class="col-md-3">
+                  <div class="post hover-light">
+                    <div
+                      class="image"
+                      data-src="images/entertainment/post-11.jpg"
+                    >
+                      <img src="images/5x3.png" alt="Proportion" />
+                      <a href="blog.html" class="label">{{ articles.sub_category__name }}</a>
+                    </div>
+                    <div class="meta inline-meta small-meta">
 
-                <div class="col-md-3">
-                  <div class="post hover-light">
-                    <div
-                      class="image"
-                      data-src="images/entertainment/post-11.jpg"
-                    >
-                      <img src="images/5x3.png" alt="Proportion" />
-                      <a href="blog.html" class="label">LATEST</a>
-                    </div>
-                    <div class="meta inline-meta small-meta">
-                      <div
-                        class="image image-small"
-                        data-src="images/user-01.png"
-                      ></div>
-                      <span class="author">Dave Clark</span>
-                      <span class="date">2h</span>
+                      <span class="author">{{ articles.author }}</span>
+                      <span class="date">{{ articles.date_added }}</span>
+                      <span class="date">{{ articles.time_added }}</span>
                     </div>
                     <div class="border-bottom2 mb2 color-1"></div>
                     <h4 class="font18">
                       <a href="#"
-                        >The exit will be a humble and start swift fall from
-                        power for a man</a
+                        >{{ articles.title }}</a
                       >
                     </h4>
                     <p>
-                      This is James McAvoy's third film, where curving bullets
-                      play a crucial role.
-                    </p>
-                  </div>
-                  <div class="post hover-light">
-                    <div
-                      class="image"
-                      data-src="images/entertainment/post-11.jpg"
-                    >
-                      <img src="images/5x3.png" alt="Proportion" />
-                      <a href="blog.html" class="label">LATEST</a>
-                    </div>
-                    <div class="meta inline-meta small-meta">
-                      <div
-                        class="image image-small"
-                        data-src="images/user-01.png"
-                      ></div>
-                      <span class="author">Dave Clark</span>
-                      <span class="date">2h</span>
-                    </div>
-                    <div class="border-bottom2 mb2 color-1"></div>
-                    <h4 class="font18">
-                      <a href="#"
-                        >The exit will be a humble and start swift fall from
-                        power for a man</a
-                      >
-                    </h4>
-                    <p>
-                      This is James McAvoy's third film, where curving bullets
-                      play a crucial role.
+                        {{articles.text | safe }}
                     </p>
                   </div>
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3">
-                  <div class="post hover-light">
-                    <div
-                      class="image"
-                      data-src="images/entertainment/post-11.jpg"
-                    >
-                      <img src="images/5x3.png" alt="Proportion" />
-                      <a href="blog.html" class="label">LATEST</a>
-                    </div>
-                    <div class="meta inline-meta small-meta">
-                      <div
-                        class="image image-small"
-                        data-src="images/user-01.png"
-                      ></div>
-                      <span class="author">Dave Clark</span>
-                      <span class="date">2h</span>
-                    </div>
-                    <div class="border-bottom2 mb2 color-1"></div>
-                    <h4 class="font18">
-                      <a href="#"
-                        >The exit will be a humble and start swift fall from
-                        power for a man</a
-                      >
-                    </h4>
-                    <p>
-                      This is James McAvoy's third film, where curving bullets
-                      play a crucial role.
-                    </p>
-                  </div>
-                  <div class="post hover-light">
-                    <div
-                      class="image"
-                      data-src="images/entertainment/post-11.jpg"
-                    >
-                      <img src="images/5x3.png" alt="Proportion" />
-                      <a href="blog.html" class="label">LATEST</a>
-                    </div>
-                    <div class="meta inline-meta small-meta">
-                      <div
-                        class="image image-small"
-                        data-src="images/user-01.png"
-                      ></div>
-                      <span class="author">Dave Clark</span>
-                      <span class="date">2h</span>
-                    </div>
-                    <div class="border-bottom2 mb2 color-1"></div>
-                    <h4 class="font18">
-                      <a href="#"
-                        >The exit will be a humble and start swift fall from
-                        power for a man</a
-                      >
-                    </h4>
-                    <p>
-                      This is James McAvoy's third film, where curving bullets
-                      play a crucial role.
-                    </p>
-                  </div>
-                </div>
-                <!-- /.col -->
+                {% endif %}
+                {% endfor %}
+              
               </div>
               <!-- /.row -->
 
@@ -1299,6 +1185,7 @@
     </div>
     <!-- end .container -->
   </div>
+  {% endfor %}
 </div>
 
 		</div>
