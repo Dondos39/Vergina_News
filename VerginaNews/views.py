@@ -15,7 +15,7 @@ class HomepageViews(ListView):
             'categories_list': categories.models.Category.objects.all(),
             'important_list': articles.models.Article.objects.get_important().values_list('id', 'no_important', 'title'),
             'roaming_news_list': articles.models.Article.objects.get_latest(),
-            'frontnews_list': articles.models.Article.objects.get_frontnews().values_list('title', 'text'),
+            'frontnews_list': articles.models.Article.objects.get_frontnews().values_list( 'no_homepage','title', 'text'),
         })
         print("----------------")
         print(context['frontnews_list'])

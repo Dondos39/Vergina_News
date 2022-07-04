@@ -179,14 +179,9 @@
                         {% for latest in roaming_news_list %}
                         <div class="post first hover-dark color-2">
                             <a href="single.html">
-                                <div class="image" data-src="images/entertainment/post-11.jpg">
-<<<<<<< HEAD
-                                    <img src="{{ latest.article_pic.url }}" alt="Proportion"/>
-                                    <a href="blog.html" class="label">{{ latest.sub_category }}</a>								
-=======
+                                <div class="image" data-src="images/entertainment/post-11.jpg">							
                                     <img src="{{ latest.article_pic }}" alt="Proportion"/>
                                     <a href="blog.html" class="label">{{ latest.sub_category }}</a>
->>>>>>> 1c2da0c2ed3407ec38e4d251cffe84c1dd55e0c7
                                 </div>
                             </a>
                             <div class="meta inline-meta mb0">
@@ -226,9 +221,9 @@
             </div>
         </div>
         <!-- end .col-md-4 -->
-
+        
         <div class="col-sm-9">
-            {% for frontnew in frontnews_list %}
+           
             <div class="boxed wide-space">
             <div class="category-block en-block">
 
@@ -262,7 +257,9 @@
                         </div>
                     </div>
                 </div>
-                {% if loop.index == 1 %}
+                {% for frontnew in frontnews_list %}
+              
+          
                 <div class="post color-2">
                     <a href="single.html">
                         <div class="image" data-src="images/entertainment/post-01.jpg">
@@ -277,7 +274,7 @@
                             </div>
                         </a>
                         <span class="author">Dave Clark</span>
-                        <span class="date">2h</span>
+                        <span class="date">{{ frontnew.date_added.0 }}</span>
 
                         <div class="social-links pull-right">
                             <span>Share: </span>
@@ -288,11 +285,13 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <h4 class="font28"><a href="#">Fantastic Beasts and Where to Find Them. 7 Things We Learned from us.</a></h4>
+                    <h4 class="font28"><a href="#">{{ frontnew.title }}</a></h4>
                     <div class="border-line"></div>
-                    <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second one is X-Men: First Class (2011) where a bullet deflected by Magneto causes McAvoy (Xavier) to lose his ability to walk. Finally, in this movie.</p>
+                    <p>{{ frontnew.text }}</p>
                     <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
                 </div>
+             
+                {% endfor %}             
 
             </div>
             <!-- end .category-block -->
@@ -497,7 +496,7 @@
 
         </div>
         <!-- /.row -->
-
+        
 
     </div>
     <!-- end .col-md-8 -->
