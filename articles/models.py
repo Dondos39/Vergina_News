@@ -48,7 +48,7 @@ class ArticleManager(models.Manager):
 class Article(models.Model):
     ##  Attributes ##
     author = models.ManyToManyField(authors.models.Author)
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=64, unique=True)
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
