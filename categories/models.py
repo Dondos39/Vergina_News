@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+import articles.models
 
 # Create your models here.
 class Category(models.Model):
@@ -22,6 +23,9 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
+
+    def get_articles(self):
+        return articles.models.Article.objects.all().filter(category__name=self.name).values('id', 'title', 'text', 'sub_category__name')
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

@@ -26,5 +26,6 @@ class ArticleView(DetailView):
             context = {
             "post_id": detail.id,
             "category": detail.category.name,
+            "sub_category": detail.subcategory.slug,
             }
             return render(request, "article.html", context=context)
