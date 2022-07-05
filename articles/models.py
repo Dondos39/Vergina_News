@@ -42,7 +42,7 @@ class ArticleManager(models.Manager):
         return self.filter(no_important__in=['1', '2', '3', '4', '5'])
 
     def get_latest(self):
-        return self.order_by('-date_added', 'time_added')[:10][::-1]
+        return self.order_by('updated_at')[:10][::-1]
 
     def get_frontnews(self):
         return self.filter(no_homepage__in=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
