@@ -177,6 +177,7 @@
                 <div class="tab-panel">
                     <div class="tab-content active">
                         {% for latest in roaming_news_list %}
+                        
                         <div class="post first hover-dark color-2">
                             <a href="single.html">
                                 <div class="image" data-src="images/entertainment/post-11.jpg">
@@ -259,13 +260,13 @@
                     </div>
                 </div>
                 {% for frontnew in frontnews_list %}
-
+                {% if forloop.counter < 2 %}
 
                 <div class="post color-2">
                     <a href="single.html">
                         <div class="image" data-src="images/entertainment/post-01.jpg">
                             <img src="images/5x3.png" alt="Proportion"/>
-                            <a href="blog.html" class="label">LATEST</a>
+                            <a href="blog.html" class="label">{{ frontnew.sub_category }}</a>
                         </div>
                     </a>
                     <div class="meta font18 inline-meta">
@@ -288,10 +289,10 @@
                     <div class="clearfix"></div>
                     <h4 class="font28"><a href="#">{{ frontnew.title }}</a></h4>
                     <div class="border-line"></div>
-                    <p>{{ frontnew.text }}</p>
-                    <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
+                    <p>{{ frontnew.text | safe }}</p>
+                    <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                 </div>
-
+                {% endif %}
                 {% endfor %}
 
             </div>
@@ -305,26 +306,34 @@
             <div class="border-line mb5"></div>
 
             <div class="row category-block en-block">
-
+                {% for frontnew in frontnews_list %}
+                {% if forloop.counter > 2 and forloop.counter < 6 %}
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>
+                                <a href="blog.html" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
 
                         <div class="meta inline-meta small-meta">
                             <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
+                            <span class="date">{{ frontnew.date_added.0 }}</span>
                         </div>
-                        <h4 class="font18"><a href="#">The primary key overs itself in a futile theme</a></h4>
-                        <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second one is X-Men: First Class (2011) where a bullet deflected by Magneto causes McAvoy (Xavier) to lose his ability to walk. Finally, in this movie, a curving bullet is used as a plot element in the assassination of the U.S president and is the reason why Magneto is in jail, necessitating a rescue from McAvoy (Xavier). The second one is X-Men: First Class (2011) where a bullet deflected by Magneto causes McAvoy.</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
+                        <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
+                        <p>{{ frontnew.text | safe }}</p>
+                        <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
+                    
+                </div>
+                {% endif%}
+                {% endfor %}
+                <!-- /.col -->
+
+                <div class="col-md-6">
                     <div class="post first hover-dark color-2">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-10.jpg">
@@ -332,59 +341,12 @@
                             </div>
                         </a>
                     </div>
-                    <div class="post hover-light color-2">
-
-                        <a href="single.html">
-                            <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>
-                            </div>
-                        </a>
-                        <div class="meta inline-meta small-meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                        </div>
-                        <h4 class="font18"><a href="#">Three more officers were surprice from Today</a></h4>
-                        <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of who use curving bullets as technique.</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
-                    </div>
                 </div>
-                <!-- /.col -->
 
+                {% for frontnew in frontnews_list %}
+                {% if forloop.counter > 6 and forloop.counter < 9 %}
                 <div class="col-md-6">
 
-                    <div class="post hover-light color-2">
-
-                        <a href="single.html">
-                            <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>
-                            </div>
-                        </a>
-                        <div class="meta inline-meta small-meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                        </div>
-                        <h4 class="font18"><a href="#">Three more officers were surprice from Today</a></h4>
-                        <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of who use curving bullets as technique.</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
-                    </div>
-
-                    <div class="post hover-light color-3">
-                        <a href="single.html">
-                            <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="images/5x3.png" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>
-                            </div>
-                        </a>
-                        <div class="meta inline-meta small-meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                        </div>
-                        <h4 class="font18"><a href="#">Carolina Voter ID Law Is Upheld by Federl Judge</a></h4>
-                        <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of who use curving bullets as technique.</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
-                    </div>
 
                     <div class="post hover-light color-2">
 
@@ -404,6 +366,8 @@
                     </div>
 
                 </div>
+                {% endif%}
+                {% endfor %}
             </div>
             <!-- /.col -->
             <div class="row">
@@ -713,7 +677,8 @@
                                     <a href="single.html">
                                         <img src="images/blog/portfolio-01.jpg" alt="portfolio image">
                                     </a>
-                                    <span class='fs-label'>Hottest</span>						        		<div class="entry-title">
+                                    <span class='fs-label'>Hottest</span>						        		
+                                    <div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
                                         <p class="read-more">
                                             <a href="single.html">read the article</a>
@@ -1115,7 +1080,7 @@
                         <a href="blog.html" class="label bgred">{{ articles.sub_category__name }}</a>
                       </div>
                       <div class="meta inline-meta small-meta">
-                        <span class="author">{{ articles.author }}</span>
+                        <span class="author">{{ authors }}</span>
                         <span class="date">{{ articles.date_added }}</span>
                         <span class="date">{{ articles.time_added }}</span>
                       </div>
