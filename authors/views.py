@@ -5,7 +5,7 @@ from .models import Author
 # Create your views here.
 class AuthorView(DetailView):
         context_object_name = 'author'
-        template_name = 'categories.html'
+        template_name = 'author.html'
         model = Author
 
         def get(self, request, *args, **kwargs):
