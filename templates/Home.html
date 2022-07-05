@@ -275,7 +275,9 @@
                                 <img src="images/1x1.png" alt="Proportion"/>
                             </div>
                         </a>
-                        <span class="author">Dave Clark</span>
+                        {% for author in frontnew.get_authors %}
+                        <span class="author">{{ author }}</span>
+                        {% endfor %}
                         <span class="date">{{ frontnew.date_added.0 }}</span>
 
                         <div class="social-links pull-right">
@@ -307,7 +309,7 @@
 
             <div class="row category-block en-block">
                 {% for frontnew in frontnews_list %}
-                {% if forloop.counter > 2 and forloop.counter < 6 %}
+                {% if forloop.counter > 1 and forloop.counter < 5 %}
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
@@ -319,8 +321,10 @@
                         </a>
 
                         <div class="meta inline-meta small-meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">{{ frontnew.date_added.0 }}</span>
+                            {% for author in frontnew.get_authors %}
+                            <span class="author">{{ author }}</span>
+                            {% endfor %}
+                            <span class="date">{{ frontnew.date_added }}</span>
                         </div>
                         <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe }}</p>
@@ -344,7 +348,7 @@
                 </div>
 
                 {% for frontnew in frontnews_list %}
-                {% if forloop.counter > 6 and forloop.counter < 9 %}
+                {% if forloop.counter > 4 and forloop.counter < 7 %}
                 <div class="col-md-6">
 
 
@@ -357,12 +361,14 @@
                             </div>
                         </a>
                         <div class="meta inline-meta small-meta">
-                            <span class="author">Dave Clark</span>
+                            {% for author in frontnew.get_authors %}
+                            <span class="author">{{ author }}</span>
+                            {% endfor %}
                             <span class="date">2h</span>
                         </div>
-                        <h4 class="font18"><a href="#">Three more officers were surprice from Today</a></h4>
-                        <p>This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of who use curving bullets as technique.</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right-red.png" alt="Arrow"></a>
+                        <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
+                        <p>{{ frontnew.title }}</p>
+                        <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
                 </div>
@@ -381,7 +387,8 @@
             <h3 class="title-middle title-border"></h3>
 
 							<div class="row">
-
+                                {% for frontnew in frontnews_list %}
+                                {% if forloop.counter > 6 and forloop.counter < 8 %}
 								<div class="col-md-6">
 									<div class="category-block articles">
 
@@ -395,58 +402,45 @@
 											</div>
 
 											<div class="meta">
-												<span class="author">Dave Clark</span>
+                                                {% for author in frontnew.get_authors %}
+                                                <span class="author">{{ author }}</span>
+                                                {% endfor %}
 												<span class="date">2h</span>
 											</div>
-											<h4><a href="#">Three more officers were wounded in the attack left</a></h4>
-											<p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
+											<h4><a href="#">{{ frontnew.title }}</a></h4>
+											<p>{{ frontnew.title }}</p>
 										</div>
 
-																			</div>
+									</div>
+                               
 								</div>
+                                {% endif%}
+                                {% endfor %}
 
-
+                                {% for frontnew in frontnews_list %}
+                                {% if forloop.counter > 7 %}
 								<div class="col-md-6">
+
 									<div class="category-block articles">
-																									<div class="post hover-light">
+									    <div class="post hover-light">
 											<a href="javascript:;">
 												<div class="image image-thumb" data-src="images/news/category-03.jpg"></div>
 											</a>
-											<h4><a href="#">Times on the Air Fresh More</a></h4>
-											<p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
+											<h4><a href="#">{{ frontnew.title }}</a></h4>
+											<p>{{ frontnew.title }}</p>
 											<div class="meta">
-												<span class="author">Dave Clark</span>
-												<span class="date">2h</span>
-											</div>
-										</div>
-
-																				<div class="post hover-light">
-											<a href="javascript:;">
-												<div class="image image-thumb" data-src="images/news/category-04.jpg"></div>
-											</a>
-											<h4><a href="#">Three more officers were wounded in the attack left</a></h4>
-											<p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-											<div class="meta">
-												<span class="author">Dave Clark</span>
-												<span class="date">2h</span>
-											</div>
-										</div>
-
-																				<div class="post hover-light">
-											<a href="javascript:;">
-												<div class="image image-thumb" data-src="images/news/category-05.jpg"></div>
-											</a>
-											<h4><a href="#">Create Fairy Houses on a NJ</a></h4>
-											<p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-											<div class="meta">
-												<span class="author">Dave Clark</span>
+                                                {% for author in frontnew.get_authors %}
+                                                <span class="author">{{ author }}</span>
+                                                {% endfor %}
 												<span class="date">2h</span>
 											</div>
 										</div>
 
 								    </div>
-								</div>
 
+								</div>
+                                {% endif%}
+                                {% endfor %}
 
 							</div>
                                         <!-- /.col -->
@@ -967,20 +961,21 @@
         <div class="boxed wide-space en-block">
 
 			<div class="row">
-								<div class="col-sm-4">
+                {% for author in authors_list %}
+				<div class="col-sm-4">
 
 					<div class="post quote color-1">
 
 						<div class="meta bullet-style">
-							<span class="author">Dave Clark</span>
-							<span class="date">2h</span>
+							<span class="author">{{ author.first_name}}</span>
+                            <span class="author">{{ author.last_name}}</span>
 						</div>
-						<blockquote>Rapidiously user centric eccentric customer service after Scale intuitive.</blockquote>
+						<blockquote>{{ author.short_bio }}</blockquote>
 						<div class="author clearfix">
 							<a href="single.html">
 								<img class="image image-thumb border-radius" src="images/user-01.png" alt="Image">
 							</a>
-							<a href="blog.html" class="label">Mentor</a>
+							<a href="blog.html" class="label">{{ author.job_title }}</a>
 						</div>
 						<!-- /.meta -->
 
@@ -989,52 +984,7 @@
 					</div>
 
 				</div>
-				<!-- /.col -->
-								<div class="col-sm-4">
-
-					<div class="post quote color-2">
-
-						<div class="meta bullet-style">
-							<span class="author">Dave Clark</span>
-							<span class="date">2h</span>
-						</div>
-						<blockquote>The exit will be a humble and start swift fall from power for a man.</blockquote>
-						<div class="author clearfix">
-							<a href="single.html">
-								<img class="image image-thumb border-radius" src="images/user-02.png" alt="Image">
-							</a>
-							<a href="blog.html" class="label">Director</a>
-						</div>
-						<!-- /.meta -->
-
-						<a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right.png" alt="Arrow"></a>
-
-					</div>
-
-				</div>
-				<!-- /.col -->
-								<div class="col-sm-4">
-
-					<div class="post quote color-3">
-
-						<div class="meta bullet-style">
-							<span class="author">Dave Clark</span>
-							<span class="date">2h</span>
-						</div>
-						<blockquote>For citizens appear to have chosen law the man power itself makes ease.</blockquote>
-						<div class="author clearfix">
-							<a href="single.html">
-								<img class="image image-thumb border-radius" src="images/user-03.png" alt="Image">
-							</a>
-							<a href="blog.html" class="label">Writer</a>
-						</div>
-						<!-- /.meta -->
-
-						<a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right.png" alt="Arrow"></a>
-
-					</div>
-
-				</div>
+                {% endfor %}
 				<!-- /.col -->
 
 			</div>
