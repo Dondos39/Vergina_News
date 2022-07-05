@@ -186,7 +186,7 @@
                             </a>
                             <div class="meta inline-meta mb0">
                                 {% for author in latest.get_authors %}
-                                <span class="author">{{ author }}</span>
+                                <span class="author"><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
                                 {% endfor %}
                                 <span class="date">{{ latest.time_added }}</span>
                             </div>
@@ -235,6 +235,7 @@
                                     <div class="widget">
                                         <h5 class="widget-title"><span>Tag Cloud:</span></h5>
                                         <div class="widget-tags">
+
                                             <a href="javascript:;">Politics</a>
                                             <a href="javascript:;">Opition</a>
                                             <a href="javascript:;">Healt</a>
