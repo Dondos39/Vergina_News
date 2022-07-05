@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from .models import Article
 from categories.models import SubCategory
 import articles.models
@@ -25,7 +24,7 @@ class ArticleView(DetailView):
             detail = articles.models.Article.objects.get(id=post_id)
             context = {
             "post_id": detail.id,
-            "category": detail.category.name,
-            "sub_category": detail.subcategory.slug,
+            "category": detail.category.slug,
+            "sub_category": detail.sub_category.slug,
             }
             return render(request, "article.html", context=context)
