@@ -187,11 +187,11 @@
                             </a>
                             <div class="meta inline-meta mb0">
                                 {% for author in latest.get_authors %}
-                                <span class="author"><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
+                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                 {% endfor %}
-                                <span class="date">{{ latest.time_added }}</span>
+                                <span class="date">{{ latest.updated_at }}</span>
                             </div>
-                            <h4 class="font18" method="post"><a href="#">{{ latest.title }}</a></h4>
+                            <h4 class="font18" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                         </div>
                         {% endfor %}
                          <!-- end .post -->

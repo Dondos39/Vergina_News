@@ -26,10 +26,14 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
     def get_articles(self):
+<<<<<<< HEAD
 
         return articles.models.Article.objects.all().filter(category__name=self.name).values('id', 'title', 'text', 'sub_category__name', 'date_added', 'time_added' ).order_by('-date_added')[:6][::1]
 
 
+=======
+        return articles.models.Article.objects.all().filter(category__name=self.name).values('id', 'title', 'text', 'sub_category__name', 'date_added', 'time_added').order_by('updated_at')[:6][::-1]
+>>>>>>> 0a0c6fa8c61cb0726b76602adce8befc4f6e1916
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
