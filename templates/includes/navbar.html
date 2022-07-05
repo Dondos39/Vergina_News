@@ -49,9 +49,10 @@
                             <li class="current-menu-item">
                                 <a href="index.html">Home</a>
                             </li>
-                            {% for category in categories_list %}
+                            {% for category in links %}
                             <li class="menu-item-has-children">
                                 <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
+                                {% endfor %}
                                 <ul>
 
                                     {% for subcategory in category.get_subcategories %}
@@ -59,7 +60,7 @@
                                     {% endfor %}
                                 </ul>
                             </li>
-                            {% endfor %}
+                           
 
                         </ul>
 
