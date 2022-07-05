@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 import articles.views
+import categories.views
+import authors.views
 from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^getSubcategory/$', articles.views.get_subcategory),
     path('', views.HomepageViews.as_view(), name='home'),
-    re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<post_id>\d+)/$', articles.views.ArticleView.as_view(), name='article_view')
+    re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<post_id>\d+)/$', articles.views.ArticleView.as_view(), name='article_view'),
+    re_path('(?P<category>[\w\-]+)/$', categories.views.CategoryView.as_view(), name='category_view'),
+    re_path('(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view')
 ]

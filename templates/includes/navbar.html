@@ -51,16 +51,16 @@
                             </li>
                             {% for category in categories_list %}
                             <li class="menu-item-has-children">
-                                <a href="news2.html">{{ category.name }}</a>
+                                <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
                                 <ul>
-                                    
+
                                     {% for subcategory in category.get_subcategories %}
                                     <li><a href="news2.html">{{ subcategory.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
                             {% endfor %}
-                           
+
                         </ul>
 
 
