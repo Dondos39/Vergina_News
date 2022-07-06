@@ -21,5 +21,4 @@ class HomepageViews(ListView):
             'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
 
         })
-        print(context['frontnews_list'])
         return context
