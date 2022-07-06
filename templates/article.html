@@ -14,7 +14,7 @@
 
 <div class="container">
     <div class="row">
-        
+
         <div class="col-sm-9 with-sidebar">
 
             <h2 class="block-title mv5" data-title="Finance">
@@ -30,19 +30,19 @@
                     </div>
                 </div>
 
-                <h2 class="post-title">8 Years of Lessons Temper Prime Minister's noir ign Policy is our about time.</h2>
-
-
+                <h2 class="post-title">{{ title }}</h2>
 
                 <div class="row">
 
                     <div class="col-md-2 entry-details">
 
-                        <div class="entry-date">Feb 14, 2016</div>
+                        <div class="entry-date">{{ updated_at }}</div>
                         <div class="entry-author">
                             by
                             <h5>
-                                <a href="javascript:;">Dave Clarke</a><br>
+                              {% for author in authors %}
+                                <a href="javascript:;">{{ author }}</a><br>
+                              {% endfor  %}
                             </h5>
                             <span>24 likes, 6 comment</span>
                         </div>
@@ -66,7 +66,7 @@
 
                         <blockquote>
                             <cite>- Hugh Laurie</cite>
-                            <p>The concept you have about me won’t change who i am, but it can change my concept about you.</p> 
+                            <p>The concept you have about me won’t change who i am, but it can change my concept about you.</p>
                         </blockquote>
 
                         <p>Democratic hopeful Hillary Clinton came out in favor of changes to the Federal Reserve that would reduce the number of bankers in key central bank positions on Thursday, marking a major coup for national progressive groups championing reform.</p>
@@ -197,7 +197,7 @@
                     </div>
 
                 </div>
-                                    
+
 
             </div>
             <!-- end of masterslider -->
@@ -219,7 +219,7 @@
                     <!-- end .entry-details -->
 
                 </div>
-                
+
             </article>
 
 
@@ -254,7 +254,7 @@
                     </a>
                 </div>
                 <!-- end .widget -->
-                
+
 
                 <div class="widget">
                     <form class="search_form">
@@ -376,7 +376,7 @@
                         </div>
                             <div class="row">
                                 <div class="col-md-9">
-                                    
+
                 <div id="comments" class="comments-area">
                     <div class="comments-wrapper">
                         <div class="border-line mv5"></div>
@@ -384,6 +384,7 @@
                             Leave your comment
                         </h2>
                         <ol class="comment-list">
+                          {% for comment in comments %}
                             <li>
                                 <article>
                                     <div class="comment-avatar">
@@ -392,57 +393,10 @@
 
                                     <div class="comment-body">
                                         <div class="meta-data">
-                                            <a href="#" class="comment-author">Jade Stephen</a>
+                                            <a href="#" class="comment-author">{{ comment.name }}</a>
                                         </div>
                                         <div class="comment-content">
-                                            We finally got a piece of the pie all of them had hair of gold like their mother the youngest one in curls I have always wanted to have a neighbor just like you have always wanted to live.
-                                        </div>
-                                        <div class="meta-data">
-                                            <span class="comment-date">15 Feb, 2016 - 10:00 am</span>
-                                            <span class="comment-reply">
-                                                <a class="comment-reply-link" href="#">Reply</a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <ol>
-                                    <li>
-                                        <article>
-                                            <div class="comment-avatar">
-                                                <img alt="Image" src="images/comment.png" class="avatar">
-                                            </div>
-
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <a href="#" class="comment-author">Jade Stephen</a>
-                                                </div>
-                                                <div class="comment-content">
-                                                    We finally got a piece of the pie all of them had hair of gold like their mother the youngest one in curls I have always wanted to have a neighbor just like.
-                                                </div>
-                                                <div class="meta-data">
-                                                    <span class="comment-date">15 Feb, 2016 - 10:00 am</span>
-                                                    <span class="comment-reply">
-                                                        <a class="comment-reply-link" href="#">Reply</a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="comment-avatar">
-                                        <img alt="Image" src="images/comment.png" class="avatar">
-                                    </div>
-
-                                    <div class="comment-body">
-                                        <div class="meta-data">
-                                            <a href="#" class="comment-author">Jade Stephen</a>
-                                        </div>
-                                        <div class="comment-content">
-                                            We finally got a piece of the pie all of them had hair of gold like their mother the youngest one in curls I have always wanted to have a neighbor just like you have always wanted to live.
+                                            {{ comment.text }}
                                         </div>
                                         <div class="meta-data">
                                             <span class="comment-date">15 Feb, 2016 - 10:00 am</span>
@@ -453,34 +407,38 @@
                                     </div>
                                 </article>
                             </li>
+                            {% endfor %}
                         </ol>
                     </div>
-
                     <div id="respond" class="comment-respond">
                         <h3 id="reply-title" class="comment-reply-title">Leave a comment</h3>
                         <form method="post" id="commentform" class="comment-form" novalidate="">
                             <div class="row">
                                 <p class="comment-form-author col-sm-6">
-                                    <input id="author" name="author" type="text" value="" size="30" placeholder="Your Name *">
+                                    <input id="{{ author.id }}" name="author" type="text" value="" size="30" placeholder="Your Name *">
                                 </p>
                                 <p class="comment-form-email col-sm-6">
-                                    <input id="email" name="email" type="email" value="" size="30" placeholder="Your E-mail *">
+                                    <input id="1" name="email" type="email" value="" size="30" placeholder="Your E-mail *">
                                 </p>
                             </div>
                             <p class="comment-form-comment">
                                 <textarea id="comment" name="comment" placeholder="Comments"></textarea>
                             </p>
                             <p class="form-submit">
+                                {% csrf_token %}
+                                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                                <input type="hidden" name="Article ID" value="{{ id }}">
                                 <span>The required fields have * symbols</span>
                                 <input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
-                            </p>                    
+
+                            </p>
                         </form>
                     </div>
 
-                </div>                                       
+                </div>
              </div>
                             </div>
-                            
+
                             <div class="related-news">
 
                                 <div class="border-line mv5"></div>
@@ -489,7 +447,7 @@
                                 </h2>
 
                                 <div class="row">
-                                    
+
                                     <div class="col-md-4">
 
                                         <div class="category-block articles">
@@ -501,7 +459,7 @@
                                                 <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
                                                 <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
                                             </div>
-                                            
+
                                             <div class="post first">
                                                 <div class="meta">
                                                     <span class="author">John Dolce</span>
@@ -513,7 +471,7 @@
 
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-4">
 
                                         <div class="category-block articles">
@@ -525,7 +483,7 @@
                                                 <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
                                                 <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
                                             </div>
-                                            
+
                                             <div class="post first">
                                                 <div class="meta">
                                                     <span class="author">Stefanno Clark</span>
@@ -537,8 +495,8 @@
 
                                         </div>
                                     </div>
-                         
-                                
+
+
                                     <div class="col-md-4">
 
                                         <div class="category-block articles">
@@ -550,7 +508,7 @@
                                                 <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
                                                 <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
                                             </div>
-                                            
+
                                             <div class="post first">
                                                 <div class="meta">
                                                     <span class="author">Dave Clark</span>

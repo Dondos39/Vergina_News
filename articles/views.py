@@ -4,7 +4,8 @@ from categories.models import SubCategory
 import articles.models
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
-from queue import Queue
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 import json
 
 # Create your views here.
@@ -15,16 +16,36 @@ def get_subcategory(request):
     return HttpResponse(json.dumps(result), content_type="application/json")
 
 class ArticleView(DetailView):
-        context_object_name = 'article'
+        context_object_name = 'articles'
         template_name = 'article.html'
         model = articles.models.Article
+        
         def get(self, request, *args, **kwargs):
             post_id = self.kwargs.get('post_id')
 
             detail = articles.models.Article.objects.get(id=post_id)
             context = {
-            "post_id": detail.id,
-            "category": detail.category.slug,
+            "id": detail.id,
+            "title": detail.title,
+            "authors": detail.get_authors(),
+            "updated_at":detail.updated_at,
+            "comments": detail.get_comments(),
             "sub_category": detail.sub_category.slug,
             }
             return render(request, "article.html", context=context)
+
+        def post(self, request, *args, **kwargs):
+            id = request.POST.get('Article ID')
+            article = articles.models.Article.objects.get(id=id)
+            comment = {
+            "author": request.POST.get('author'),
+            "email": request.POST.get('email'),
+            "text": request.POST.get('comment')
+            }
+
+            context = {
+            'post_id': article.id,
+            'category': article.category,
+            'sub_category': article.sub_category
+            }
+            return HttpResponseRedirect(self.request.path_info)
