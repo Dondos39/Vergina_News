@@ -7,6 +7,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=64)
     email = models.EmailField()
     text = models.CharField(max_length=512)
+    verified = models.BooleanField(default=False)
 
     updated_at = models.DateTimeField(auto_now=True, null=True)
 

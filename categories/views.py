@@ -15,9 +15,11 @@ class CategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category')
-        detail = Article.objects.all().filter(category__name=category)
+        articles = Article.objects.all().filter(category__name=category)
         context = {
-                "detail": detail,
+                "category":self.kwargs.get('category'),
+                "sub_category":self.kwargs.get('sub_category'),
+                "articles": articles,
         }
         return render(request, "category.html", context=context)
 
@@ -34,5 +36,3 @@ class SubCategoryView(DetailView):
                 "detail": detail,
         }
         return render(request, "category.html", context=context)
-
-

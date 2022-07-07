@@ -32,12 +32,12 @@ class ArticleView(DetailView):
             "comments": detail.get_comments(),
             "category": detail.category.name,
             "sub_category": detail.sub_category.name,
+            "related_articles": articles.models.Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id)
             }
             return render(request, "article.html", context=context)
 
         def post(self, request, *args, **kwargs):
             id = request.POST.get('Article ID')
-            print(id)
             article = articles.models.Article.objects.get(id=id)
             comment = {
             "author": request.POST.get('author'),

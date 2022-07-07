@@ -385,7 +385,9 @@
                         </h2>
                         <ol class="comment-list">
                           {% for comment in comments %}
+                          {% if comment.verified %}
                             <li>
+
                                 <article>
                                     <div class="comment-avatar">
                                         <img alt="Image" src="images/comment.png" class="avatar">
@@ -407,6 +409,7 @@
                                     </div>
                                 </article>
                             </li>
+                            {% endif %}
                             {% endfor %}
                         </ol>
                     </div>
@@ -445,82 +448,37 @@
                                 <h2 class="block-title mv8" data-title="Related">
                                     You may like
                                 </h2>
-
                                 <div class="row">
-
+                                  {% for article in related_articles %}
                                     <div class="col-md-4">
-
                                         <div class="category-block articles">
+                                          {% if forloop.counter is even and forloop.counter < 7 %}
                                             <div class="post first">
                                                 <div class="meta">
-                                                    <span class="author">Dave Clark</span>
-                                                    <span class="date">2h</span>
+                                                  {% for author in article.get_authors %}
+                                                    <span class="author">{{ author }}</span>
+                                                  {% endfor %}
+                                                    <span class="date">{{ article.updated_at }}</span>
                                                 </div>
-                                                <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
+                                                <h4><a href="#">{{ article.title }}</a></h4>
+                                                <p>{{ article.text | safe | slice:":50"}}...</p>
                                             </div>
 
+                                            {% elif forloop.counter < 7 %}
                                             <div class="post first">
                                                 <div class="meta">
-                                                    <span class="author">John Dolce</span>
-                                                    <span class="date">7h</span>
+                                                  {% for author in article.get_authors %}
+                                                    <span class="author">{{ author }}</span>
+                                                  {% endfor %}
+                                                    <span class="date">{{ article.updated_at }}</span>
                                                 </div>
-                                                <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
+                                                <h4><a href="#">{{ article.title }}</a></h4>
+                                                <p>{{ article.text | safe | slice:":50"}}...</p>
                                             </div>
-
+                                            {% endif %}
                                         </div>
                                     </div>
-
-                                    <div class="col-md-4">
-
-                                        <div class="category-block articles">
-                                            <div class="post first">
-                                                <div class="meta">
-                                                    <span class="author">Maria Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-                                            </div>
-
-                                            <div class="post first">
-                                                <div class="meta">
-                                                    <span class="author">Stefanno Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-4">
-
-                                        <div class="category-block articles">
-                                            <div class="post first">
-                                                <div class="meta">
-                                                    <span class="author">Satafina Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-                                            </div>
-
-                                            <div class="post first">
-                                                <div class="meta">
-                                                    <span class="author">Dave Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4><a href="#">North Carolina Voter ID Law Is Upheld by Federal Judge</a></h4>
-                                                <p>North Carolina Voter ID Law Is Upheld by Federal Judge...</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
+                                    {% endfor %}
                                 </div>
                                 <!-- end row -->
 
