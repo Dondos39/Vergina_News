@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
+import articles
+
+from articles.models import Article
 from .models import Category , SubCategory
-from .models import articles 
 from django.views.generic.list import ListView
+
 
 # Create your views here.
 class CategoryView(DetailView):
@@ -12,8 +15,7 @@ class CategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category')
-
-        detail = Category.objects.all().filter(name=category)
+        detail = Article.objects.all().filter(category__name=category)
         context = {
                 "detail": detail,
         }
@@ -26,8 +28,8 @@ class SubCategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         sub_category = self.kwargs.get('sub_category')
-
-        detail = SubCategory.objects.all().filter(name=sub_category)
+        print(sub_category)
+        detail = Article.objects.all().filter(sub_category__slug = sub_category)
         context = {
                 "detail": detail,
         }
