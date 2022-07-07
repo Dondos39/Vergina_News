@@ -182,7 +182,7 @@
                             <a href="single.html">
                                 <div class="image" data-src="images/entertainment/post-11.jpg">
                                     <img src="{{ latest.article_pic }}" alt="Proportion"/>
-                                    <a href="blog.html" class="label">{{ latest.sub_category }}</a>
+                                    <a href="{% url 'subcategory_view' category=latest.category.slug sub_category=latest.sub_category.slug %}" class="label">{{ latest.sub_category }}</a>
                                 </div>
                             </a>
                             <div class="meta inline-meta mb0">

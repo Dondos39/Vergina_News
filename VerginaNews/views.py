@@ -15,6 +15,7 @@ class HomepageViews(ListView):
         context = super(HomepageViews, self).get_context_data(**kwargs)
         context.update({
             'categories_list': categories.models.Category.objects.all(),
+            'articles_list': articles.models.Article.objects.all(),
             'authors_list': authors.models.Author.objects.all(),
             'important_list': articles.models.Article.objects.get_important().values('id', 'no_important', 'title'),
             'roaming_news_list': articles.models.Article.objects.get_latest(),
@@ -22,3 +23,4 @@ class HomepageViews(ListView):
 
         })
         return context
+

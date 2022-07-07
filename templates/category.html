@@ -7,161 +7,43 @@
             <div class="col-sm-9 sticky-column fs-content">
 
                 <div class="theiaStickySidebar">
-
+				
+					
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="Politics">Everyday</h4>
+                            <h4 data-title="All">All</h4>
 
                         </div>
+						
+						
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
+                           
+                                {% for articles in articles_list %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
 											<a href="single.html" class="fs-entry-image">
 												<img src="images/blog/post-01.jpg" alt="portfolio image">
 											</a>
 											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
+												<span><a href="single.html">{{ articles.sub_category__name }}</a></span>
+												<span><a href="single.html">{{ articles.date_added }} {{ articles.time_added }} </a></span>
+												<span><a href="single.html">{{ authors }}</a></span>
 											</div>
 											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
+												<a href="single.html">{{ articles.title }}</a>
 											</h3>
 											<p class="read-more">
 												<a href="single.html">read the article</a>
 											</p>
 										</div>
 									</div>
-																		<div class="col-sm-6 masonry-item fashion world">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-02.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
-																		<div class="col-sm-6 masonry-item world">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-03.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
-																		<div class="col-sm-6 masonry-item style">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-04.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
-																		<div class="col-sm-6 masonry-item photo fashion">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-05.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
-																		<div class="col-sm-6 masonry-item world">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-06.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
-																		<div class="col-sm-6 masonry-item vogue">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-07.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
-																		<div class="col-sm-6 masonry-item style">
-										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-08.jpg" alt="portfolio image">
-											</a>
-											<div class="fs-entry-meta">
-												<span><a href="single.html">Celebrity</a></span>
-												<span><a href="single.html">May 18, 2016</a></span>
-												<span><a href="single.html">Junior Santos</a></span>
-											</div>
-											<h3>
-												<a href="single.html">You Have To See This Badass Prom Dress Inspired By Beyonce's Met Gala Gown</a>
-											</h3>
-											<p class="read-more">
-												<a href="single.html">read the article</a>
-											</p>
-										</div>
-									</div>
+									{% endfor %}
+                                  
 									</div>
 							<!-- /.fs-grid-viewport -->
                         </div>
+                 
                     </div>
 
                 </div>

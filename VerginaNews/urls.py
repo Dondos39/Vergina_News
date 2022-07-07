@@ -26,5 +26,6 @@ urlpatterns = [
     path('', views.HomepageViews.as_view(), name='home'),
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<post_id>\d+)/$', articles.views.ArticleView.as_view(), name='article_view'),
     re_path('(?P<category>[\w\-]+)/$', categories.views.CategoryView.as_view(), name='category_view'),
+    re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),
     re_path('/(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view')
 ]
