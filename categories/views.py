@@ -18,7 +18,7 @@ class CategoryView(DetailView):
         articles = Article.objects.all().filter(category__name=category)
         context = {
                 "category":articles.values_list('category__name', flat=True).first(),
-                "articles": articles,
+                "articles": articles.order_by("-updated_at"),
         }
         return render(request, "category.html", context=context)
 
@@ -34,6 +34,6 @@ class SubCategoryView(DetailView):
         context = {
                 "category":articles.values_list('category__name', flat=True).first(),
                 "sub_category":articles.values_list('sub_category__name', flat=True).first(),
-                "articles": articles,
+                "articles": articles.order_by("-updated_at"),
         }
         return render(request, "sub_category.html", context=context)
