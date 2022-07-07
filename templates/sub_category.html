@@ -8,7 +8,7 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="{{ category }}">All</h4>
+                            <h4 data-title="{{ category }}">{{ sub_category }}</h4>
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
@@ -19,7 +19,7 @@
 												<img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
 											</a>
 											<div class="fs-entry-meta">
-												<span><a href="{% url 'subcategory_view' category=article.category.slug sub_category=article.sub_category.slug %}">{{ article.sub_category.name }}</a></span>
+												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
 												<span><a>{{ article.updated_at }} </a></span>
                         {% for author in article.get_authors %}
 												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
@@ -160,6 +160,13 @@
                     </div>
                 </div>
                 <!-- end .widget -->
+
+
+
+
+
+
+
             </div>
         </div>
         <ul class="pagination">
