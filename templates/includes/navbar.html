@@ -10,7 +10,7 @@
 
                         <div class="site-branding">
                             <!-- image logo -->
-                            <a href="index.html" rel="home" class="custom-logo-link">
+                            <a href="{% url 'home' %}" rel="home" class="custom-logo-link">
                                 <img src="images/logo.svg" alt="logo image">
                             </a>
                             <!-- text logo -->
@@ -47,7 +47,7 @@
                     <nav class="main-nav">
                         <ul>
                             <li class="current-menu-item">
-                                <a href="index.html">Home</a>
+                                <a href="{% url 'home' %}">Home</a>
                             </li>
                             {% for category in links %}
                             <li class="menu-item-has-children">
@@ -61,6 +61,7 @@
                                 </ul>
                             </li>
                             {% endfor %}
+
 
                         </ul>
 
