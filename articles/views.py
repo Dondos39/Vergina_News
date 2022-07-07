@@ -32,6 +32,7 @@ class ArticleView(DetailView):
             "comments": detail.get_comments(),
             "category": detail.category.name,
             "sub_category": detail.sub_category.name,
+            "related_articles": articles.models.Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id)
             }
             return render(request, "article.html", context=context)
 
