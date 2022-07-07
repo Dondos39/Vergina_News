@@ -52,7 +52,7 @@
                             {% for category in links %}
                             <li class="menu-item-has-children">
                                 <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
-                               
+
                                 <ul>
 
                                     {% for subcategory in category.get_subcategories %}

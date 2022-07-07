@@ -27,5 +27,4 @@ class Author(models.Model):
         return self.first_name
 
     def get_job_title(self):
-        print(self.job_title)
-        return self.job_title
+        return dict(JOB_CHOICES)[self.job_title]

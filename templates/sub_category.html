@@ -8,23 +8,22 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="{{ category }}">All</h4>
+                            <h4 data-title="{{ category }}">{{ sub_category }}</h4>
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
-                                 {% for article in articles %}
+              {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
 											<a class="fs-entry-image">
 												<img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
 											</a>
 											<div class="fs-entry-meta">
-												<span><a href="{% url 'subcategory_view' category=article.category.slug sub_category=article.sub_category.slug %}">{{ article.sub_category.name }}</a></span>
+												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
 												<span><a>{{ article.updated_at }} </a></span>
-                                              {% for author in article.get_authors %}
+                        {% for author in article.get_authors %}
 												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
-                                             {% endfor %}
-
+                        {% endfor %}
 											</div>
 											<h3>
 												<a>{{ article.title }}</a>
@@ -44,29 +43,30 @@
 
                 </div>
                 <!-- //theiaStickySidebar -->
-                        <nav class="mt-4" aria-label="Page navigation sample">
-            {% if articles.has_other_pages %}
-          <ul class="pagination">
-              {% if articles.has_previous %}
-            <li class="page-item "><a class="page-link" href="?page={{articles.previous_page_number}}">Previous</a></li>
-            {% else %}
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-            {% endif %}
-            {% for i in articles.paginator.page_range %}
-                {% if articles.number == i %}
-            <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
-                {% else %}
-                <li class="page-item "><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if articles.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{articles.next_page_number}}">Next</a></li>
-            {% else %}
-            <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-            {% endif %}
-          </ul>
-          {% endif %}
-        </nav>
+                <nav class="mt-4" aria-label="Page navigation sample">
+                    {% if articles.has_other_pages %}
+                  <ul class="pagination">
+                      {% if articles.has_previous %}
+                    <li class="page-item "><a class="page-link" href="?page={{articles.previous_page_number}}">Previous</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    {% endif %}
+                    {% for i in articles.paginator.page_range %}
+                        {% if articles.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                        {% else %}
+                        <li class="page-item "><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if articles.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{articles.next_page_number}}">Next</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                    {% endif %}
+                  </ul>
+                  {% endif %}
+                </nav>
+
             </div>
             <div class="col-sm-3 sidebar mt2">
 
@@ -183,11 +183,15 @@
                     </div>
                 </div>
                 <!-- end .widget -->
+
+
+
+
+
+
+
             </div>
         </div>
-<<<<<<< HEAD
-
-=======
         <ul class="pagination">
 
             <li class="page-item "><a class="page-link text-dark" href="#">Previous</a></li>
@@ -204,7 +208,6 @@
           </ul>
 
         </nav>
->>>>>>> badae480942f85271e6dab76eaf0c7cd700c3be4
     </div>
 </div>
 
