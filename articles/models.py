@@ -39,7 +39,7 @@ HOMEPAGE_N = [
 
 class ArticleManager(models.Manager):
     def get_important(self):
-        return self.filter(no_important__in=['1', '2', '3', '4', '5'])
+        return self.filter(no_important__in=['1', '2', '3', '4', '5']).order_by('no_important')
 
     def get_latest(self):
         return self.order_by('-updated_at')[:10][::1]

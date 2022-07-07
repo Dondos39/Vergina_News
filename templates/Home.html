@@ -7,129 +7,64 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-
                         <div class="gallery-slider movie-slider">
                             <!-- masterslider -->
                             <div class="master-slider ms-skin-default ms-skin-dark no-tint" id="masterslider4">
-                                 <div class="ms-slide color-1">
+                                {% for important in important_list %}
+                                   <div class="ms-slide color-2">
                                     <div class="slide-pattern"></div>
-                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms1.jpg' %}" alt="Image"/>
-
-                                    <div class="ms-layer color-5" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">Latest</span></div>
+                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
+    
+                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category__name }}</span></div>						    	
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-
+                                        
                                         <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <h3>Warcraft The Movie: Guardian</h3>
+                                            <h3>{{ important.title }}</h3>
                                             <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
+                                                {% for author in important.get_authors %}
+                                                <span class="author">{{ author }}</span>
+                                                {% endfor %}
+                                                <span class="date">{{ important.updated_at }}</span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second</div>
+                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">{{ important.text | safe }}</div>
                                     </div>
-
+    
                                     <div class="ms-thumb">
-                                        <div class="image color-1" data-src="{% static 'images/music/ms1-thumb.jpg' %}"></div>
+                                        <div class="image color-1" data-src="{% static 'images/music/ms2-thumb.jpg' %}"></div>
                                     </div>
-
+    
                                 </div>
-                                <div class="ms-slide color-2">
+                                {% endfor %}
+                                  <!-- <div class="ms-slide color-3">
                                     <div class="slide-pattern"></div>
-                                    <img src="vendors/masterslider/style/blank.gif" data-src="images/music/ms2.jpg" alt="Image"/>
-
-                                                                    <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">Top 10</span></div>
+                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms3.jpg' %}" alt="Image"/>
+    
+                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ latest.sub_category }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-
+                                        
                                         <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <h3>Warcraft The Movie: Guardian</h3>
+                                            <h3>{{ latest.title }}</h3>
                                             <div class="meta">
                                                 <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
+                                                <span class="date">{{ latest.updated_at }}</span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second</div>
+                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">{{ frontnew.text | safe }}</div>
                                     </div>
-
+    
                                     <div class="ms-thumb">
-                                        <div class="image color-1" data-src="images/music/ms2-thumb.jpg"></div>
+                                        <div class="image color-1" data-src="{% static 'images/music/ms3-thumb.jpg' %}"></div>
                                     </div>
+    
+                                </div> -->
 
-                                </div>
-                                                            <div class="ms-slide color-3">
-                                    <div class="slide-pattern"></div>
-                                    <img src="vendors/masterslider/style/blank.gif" data-src="images/music/ms3.jpg" alt="Image"/>
-
-                                                                                                    <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">Trending</span></div>
-                                    <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-
-                                        <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <h3>Warcraft The Movie: Guardian</h3>
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second</div>
-                                    </div>
-
-                                    <div class="ms-thumb">
-                                        <div class="image color-1" data-src="images/music/ms3-thumb.jpg"></div>
-                                    </div>
-
-                                </div>
-                                                            <div class="ms-slide color-1">
-                                    <div class="slide-pattern"></div>
-                                    <img src="vendors/masterslider/style/blank.gif" data-src="images/music/ms4.jpg" alt="Image"/>
-
-                                    <div class="ms-layer color-5" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">Latest</span></div>
-                                    <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-
-                                        <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <h3>Warcraft The Movie: Guardian</h3>
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second</div>
-                                    </div>
-
-                                    <div class="ms-thumb">
-                                        <div class="image color-1" data-src="images/music/ms4-thumb.jpg"></div>
-                                    </div>
-
-                                </div>
-                                                            <div class="ms-slide color-2">
-                                    <div class="slide-pattern"></div>
-                                    <img src="vendors/masterslider/style/blank.gif" data-src="images/music/ms5.jpg" alt="Image"/>
-
-                                                                    <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">Top 10</span></div>
-                                    <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-
-                                        <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <h3>Warcraft The Movie: Guardian</h3>
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">This is James McAvoy's third film, where curving bullets play a crucial role. The first one is Wanted (2008), where McAvoy is part of an elite group of assassins who use curving bullets as their primary technique. The second</div>
-                                    </div>
-
-                                    <div class="ms-thumb">
-                                        <div class="image color-1" data-src="images/music/ms5-thumb.jpg"></div>
-                                    </div>
-
-                                </div>
-
+                                
                             </div><!-- end of masterslider -->
                         </div><!-- end of gallery-slider -->
-
+    
                     </div>
                 </div>
             </div>
@@ -189,6 +124,7 @@
                                 {% for author in latest.get_authors %}
                                 <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                 {% endfor %}
+                                <br>
                                 <span class="date">{{ latest.updated_at }}</span>
                             </div>
                             <h4 class="font18" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
@@ -493,7 +429,7 @@
 
                                     <div class="ms-slide">
                                         <div class="slide-pattern tint"></div>
-                                        <img src="vendors/masterslider/style/blank.gif" data-src="images/news/news-01.jpg" alt="Image"/>
+                                        <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/news/news-01.jpg' %}" alt="Image"/>
                                         <div class="ms-thumb post">
                                             <div class="thumb-meta">
                                                 <div class="meta">

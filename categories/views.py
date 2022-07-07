@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 import articles
-
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from articles.models import Article
 from .models import Category , SubCategory
 from django.views.generic.list import ListView
@@ -15,9 +15,14 @@ class CategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category')
-        detail = Article.objects.all().filter(category__name=category)
+        detail = Article.objects.all().filter(category__name=category).order_by('-updated_at')
+        paginator = Paginator(detail, 8)
+        page = request.GET.get('page')
+        page_articles = paginator.get_page(page)
+        article_count = detail.count()
         context = {
-                "detail": detail,
+                "detail": page_articles ,
+                'article_count' : article_count, 
         }
         return render(request, "category.html", context=context)
 

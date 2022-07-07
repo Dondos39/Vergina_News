@@ -2680,7 +2680,7 @@ h4.block-title .category-more.text-right {
 }
 
 .movie-slider .ms-nav-prev:after {
-  content: "PREVIOUS MOVIE";
+  content: "PREVIOUS";
   font-size: 14px;
   color: #fff;
   display: block;
@@ -2696,7 +2696,7 @@ h4.block-title .category-more.text-right {
 }
 
 .movie-slider .ms-nav-next:after {
-  content: "NEXT MOVIE";
+  content: "NEXT";
   font-size: 14px;
   color: #fff;
   display: block;
