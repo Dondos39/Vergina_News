@@ -20,6 +20,5 @@ class HomepageViews(ListView):
             'important_list': articles.models.Article.objects.get_important().values('id', 'no_important', 'title'),
             'roaming_news_list': articles.models.Article.objects.get_latest(),
             'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
-
         })
         return context

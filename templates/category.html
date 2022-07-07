@@ -5,45 +5,40 @@
     <div class="container">
         <div class="row ">
             <div class="col-sm-9 sticky-column fs-content">
-
                 <div class="theiaStickySidebar">
-				
-					
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="All">All</h4>
-
+                            <h4 data-title="{{ category }}">All</h4>
                         </div>
-						
-						
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
-                           
-                                {% for articles in detail %}
+              {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
-											<a href="single.html" class="fs-entry-image">
-												<img src="images/blog/post-01.jpg" alt="portfolio image">
+											<a class="fs-entry-image">
+												<img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
 											</a>
 											<div class="fs-entry-meta">
-												<span><a href="single.html">{{ articles.sub_category__name }}</a></span>
-												<span><a href="single.html">{{ articles.date_added }} {{ articles.time_added }} </a></span>
-												<span><a href="single.html">{{ authors }}</a></span>
+												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
+												<span><a>{{ article.updated_at }} </a></span>
+                        {% for author in article.get_authors %}
+												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
+                        {% endfor %}
 											</div>
 											<h3>
-												<a href="single.html">{{ articles.title }}</a>
+												<a>{{ article.title }}</a>
 											</h3>
 											<p class="read-more">
-												<a href="single.html">read the article</a>
+												<a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug post_id=article.id %}">read the article</a>
 											</p>
 										</div>
 									</div>
 									{% endfor %}
-                                  
+
 									</div>
 							<!-- /.fs-grid-viewport -->
                         </div>
-                 
+
                     </div>
 
                 </div>
@@ -76,7 +71,7 @@
                     </a>
                 </div>
                 <!-- end .widget -->
-                
+
 
                 <div class="widget">
                     <form class="search_form">
@@ -175,20 +170,20 @@
             </div>
         </div>
         <ul class="pagination">
-          
-            <li class="page-item "><a class="page-link text-dark" href="#">Previous</a></li>
-           
 
-      
+            <li class="page-item "><a class="page-link text-dark" href="#">Previous</a></li>
+
+
+
             <li class="page-item  active"><a class="page-link text-dark" href="#">1</a></li>
-             
+
                 <li class="page-item "><a class="page-link text-dark" href="#">2</a></li>
 
- 
+
             <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
- 
+
           </ul>
-     
+
         </nav>
     </div>
 </div>

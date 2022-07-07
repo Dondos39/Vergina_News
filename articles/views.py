@@ -38,7 +38,6 @@ class ArticleView(DetailView):
 
         def post(self, request, *args, **kwargs):
             id = request.POST.get('Article ID')
-            print(id)
             article = articles.models.Article.objects.get(id=id)
             comment = {
             "author": request.POST.get('author'),
