@@ -17,7 +17,7 @@ class Author(models.Model):
     prof_pic = models.ImageField(upload_to='profile_pics', blank=True)
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)
-    job_title = models.CharField(max_length=1, choices=JOB_CHOICES)
+    job_title = models.CharField(max_length=10, choices=JOB_CHOICES)
 
     @property
     def author_id(self):
@@ -25,3 +25,7 @@ class Author(models.Model):
 
     def __str__(self):
         return self.first_name
+
+    def get_job_title(self):
+        print(self.job_title)
+        return self.job_title

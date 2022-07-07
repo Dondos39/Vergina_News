@@ -177,11 +177,11 @@
                 <div class="tab-panel">
                     <div class="tab-content active">
                         {% for latest in roaming_news_list %}
-                        
+
                         <div class="post first hover-dark color-2">
                             <a href="single.html">
                                 <div class="image" data-src="images/entertainment/post-11.jpg">
-                                    <img src="{{ latest.article_pic }}" alt="Proportion"/>
+                                    <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                     <a href="{% url 'subcategory_view' category=latest.category.slug sub_category=latest.sub_category.slug %}" class="label">{{ latest.sub_category }}</a>
                                 </div>
                             </a>
@@ -265,14 +265,14 @@
                 <div class="post color-2">
                     <a href="single.html">
                         <div class="image" data-src="images/entertainment/post-01.jpg">
-                            <img src="images/5x3.png" alt="Proportion"/>
+                            <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                             <a href="blog.html" class="label">{{ frontnew.sub_category }}</a>
                         </div>
                     </a>
                     <div class="meta font18 inline-meta">
                         <a href="single.html">
                             <div class="image image-small" data-src="images/user-02.png">
-                                <img src="images/1x1.png" alt="Proportion"/>
+                                <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                             </div>
                         </a>
                         {% for author in frontnew.get_authors %}
@@ -315,7 +315,7 @@
                     <div class="post hover-dark color-1">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="images/5x3.png" alt="Proportion"/>
+                                <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="blog.html" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
@@ -331,7 +331,7 @@
                         <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
-                    
+
                 </div>
                 {% endif%}
                 {% endfor %}
@@ -356,7 +356,7 @@
 
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="images/5x3.png" alt="Proportion"/>
+                                <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="blog.html" class="label">LATEST</a>
                             </div>
                         </a>
@@ -396,7 +396,7 @@
 
 											<div class="image" data-src="images/news/rightnow-03.jpg">
 												<a href="single.html">
-													<img src="images/5x3.png" alt="Proportion"/>
+													<img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
 												</a>
 												<a href="blog.html" class="label">Changes</a>
 											</div>
@@ -412,19 +412,19 @@
 										</div>
 
 									</div>
-                               
+
 								</div>
                                 {% endif%}
                                 {% endfor %}
 
-                                {% for frontnew in frontnews_list %}
-                                {% if forloop.counter > 7 %}
-								<div class="col-md-6">
 
+								<div class="col-md-6">
+                  {% for frontnew in frontnews_list %}
+                  {% if forloop.counter > 7 %}
 									<div class="category-block articles">
 									    <div class="post hover-light">
 											<a href="javascript:;">
-												<div class="image image-thumb" data-src="images/news/category-03.jpg"></div>
+												<div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
 											</a>
 											<h4><a href="#">{{ frontnew.title }}</a></h4>
 											<p>{{ frontnew.title }}</p>
@@ -437,17 +437,17 @@
 										</div>
 
 								    </div>
-
+                    {% endif%}
+                    {% endfor %}
 								</div>
-                                {% endif%}
-                                {% endfor %}
+
 
 							</div>
                                         <!-- /.col -->
             <div class="row">
                 <div class="col-sm-12 mv3 mvt0">
                     <a href="entertainment.html">
-                        <img src="images/pages/banner-1.jpg" alt="banner" class="full-size">
+                        <img src="" alt="banner" class="full-size">
                     </a>
                 </div>
             </div>
@@ -671,7 +671,7 @@
                                     <a href="single.html">
                                         <img src="images/blog/portfolio-01.jpg" alt="portfolio image">
                                     </a>
-                                    <span class='fs-label'>Hottest</span>						        		
+                                    <span class='fs-label'>Hottest</span>
                                     <div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
                                         <p class="read-more">
@@ -973,9 +973,9 @@
 						<blockquote>{{ author.short_bio }}</blockquote>
 						<div class="author clearfix">
 							<a href="single.html">
-								<img class="image image-thumb border-radius" src="images/user-01.png" alt="Image">
+								<img class="image image-thumb border-radius" src="https://source.unsplash.com/user/c_v_r" alt="Image">
 							</a>
-							<a href="blog.html" class="label">{{ author.job_title }}</a>
+							<a href="blog.html" class="label">{{ author.get_job_title }}</a>
 						</div>
 						<!-- /.meta -->
 
@@ -1026,7 +1026,7 @@
                         class="image"
                         data-src="images/entertainment/post-14.jpg"
                       >
-                        <img src="images/5x3.png" alt="Proportion" />
+                        <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
                         <a href="blog.html" class="label bgred">{{ articles.sub_category__name }}</a>
                       </div>
                       <div class="meta inline-meta small-meta">
@@ -1067,7 +1067,7 @@
                       class="image"
                       data-src="images/entertainment/post-11.jpg"
                     >
-                      <img src="images/5x3.png" alt="Proportion" />
+                      <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
                       <a href="blog.html" class="label">{{ articles.sub_category__name }}</a>
                     </div>
                     <div class="meta inline-meta small-meta">

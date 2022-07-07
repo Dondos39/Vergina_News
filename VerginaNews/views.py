@@ -23,4 +23,3 @@ class HomepageViews(ListView):
 
         })
         return context
-
