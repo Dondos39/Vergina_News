@@ -255,12 +255,12 @@
                     <a href="single.html">
                         <div class="image" data-src="images/entertainment/post-01.jpg">
                             <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
-                            <a href="blog.html" class="label">{{ frontnew.sub_category }}</a>
+                            <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                         </div>
                     </a>
                     <div class="meta font18 inline-meta">
                         {% for author in frontnew.get_authors %}
-                        <span class="author">{{ author }}</span>
+                        <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
                         <span class="date">{{ frontnew.updated_at }}</span>
 
@@ -300,15 +300,14 @@
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
-                                <a href="blog.html" class="label">{{ frontnew.sub_category }}</a>
+                                <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
-
                         <div class="meta inline-meta small-meta">
                             {% for author in frontnew.get_authors %}
-                            <span class="author">{{ author }}</span>
+                            <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.date_added }}</span>
+                            <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
                         <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -341,14 +340,14 @@
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
-                                <a href="blog.html" class="label">LATEST</a>
+                                <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
                         <div class="meta inline-meta small-meta">
                             {% for author in frontnew.get_authors %}
-                            <span class="author">{{ author }}</span>
+                            <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">2h</span>
+                            <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
                         <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe | slice:":600"  }}...</p>
@@ -382,14 +381,14 @@
 												<a href="single.html">
 													<img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
 												</a>
-												<a href="blog.html" class="label">Changes</a>
+												<a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
 											</div>
 
 											<div class="meta">
                                                 {% for author in frontnew.get_authors %}
-                                                <span class="author">{{ author }}</span>
+                                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                                 {% endfor %}
-												<span class="date">2h</span>
+												<span class="date">{{ frontnew.updated_at }}</span>
 											</div>
 											<h4><a href="#">{{ frontnew.title }}</a></h4>
 											<p>{{ frontnew.text | safe | slice:":800" }}...</p>
@@ -414,9 +413,9 @@
 											<p>{{ frontnew.text | safe | slice:":100" }}...</p>
 											<div class="meta">
                                                 {% for author in frontnew.get_authors %}
-                                                <span class="author">{{ author }}</span>
+                                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                                 {% endfor %}
-												<span class="date">2h</span>
+												<span class="date">{{ frontnew.date_added }}</span>
 											</div>
 										</div>
 
@@ -1011,12 +1010,13 @@
                         data-src="images/entertainment/post-14.jpg"
                       >
                         <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
-                        <a href="blog.html" class="label bgred">{{ articles.sub_category__name }}</a>
+                        <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
                       <div class="meta inline-meta small-meta">
-                        <span class="author">{{ authors }}</span>
-                        <span class="date">{{ articles.date_added }}</span>
-                        <span class="date">{{ articles.time_added }}</span>
+                        {% for author in articles.get_authors %}
+                        <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                        {% endfor %}
+                        <span class="date">{{ articles.updated_at }}</span>
                       </div>
                     </a>
                   </div>
@@ -1052,12 +1052,13 @@
                       data-src="images/entertainment/post-11.jpg"
                     >
                       <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
-                      <a href="blog.html" class="label">{{ articles.sub_category__name }}</a>
+                      <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
                     <div class="meta inline-meta small-meta">
-                      <span class="author">{{ articles.author }}</span>
-                      <span class="date">{{ articles.date_added }}</span>
-                      <span class="date">{{ articles.time_added }}</span>
+                      {% for author in articles.get_authors %}
+                      <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                      {% endfor %}
+                      <span class="date">{{ articles.updated_at }}</span>
                     </div>
                     <div class="border-bottom2 mb2 color-1"></div>
                     <h4 class="font18">

@@ -17,22 +17,23 @@ class CategoryView(DetailView):
         category = self.kwargs.get('category')
         articles = Article.objects.all().filter(category__name=category)
         context = {
-                "category":self.kwargs.get('category'),
-                "sub_category":self.kwargs.get('sub_category'),
+                "category":articles.values_list('category__name', flat=True).first(),
                 "articles": articles,
         }
         return render(request, "category.html", context=context)
 
 class SubCategoryView(DetailView):
     context_object_name = 'sub_category'
-    template_name = 'categories.html'
+    template_name = 'sub_category.html'
     model = SubCategory
 
     def get(self, request, *args, **kwargs):
         sub_category = self.kwargs.get('sub_category')
-        print(sub_category)
-        detail = Article.objects.all().filter(sub_category__slug = sub_category)
+
+        articles = Article.objects.all().filter(sub_category__slug = sub_category)
         context = {
-                "detail": detail,
+                "category":articles.values_list('category__name', flat=True).first(),
+                "sub_category":articles.values_list('sub_category__name', flat=True).first(),
+                "articles": articles,
         }
-        return render(request, "category.html", context=context)
+        return render(request, "sub_category.html", context=context)
