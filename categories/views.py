@@ -16,7 +16,7 @@ class CategoryView(DetailView):
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category')
         articles = Article.objects.all().filter(category__name=category).order_by('-updated_at')
-        paginator = Paginator(articles, 8)
+        paginator = Paginator(articles, 6)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)
         article_count = articles.count()
@@ -36,7 +36,7 @@ class SubCategoryView(DetailView):
         sub_category = self.kwargs.get('sub_category')
 
         articles = Article.objects.all().filter(sub_category__slug = sub_category).order_by('-updated_at')
-        paginator = Paginator(articles, 8)
+        paginator = Paginator(articles, 6)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)
         article_count = articles.count()
