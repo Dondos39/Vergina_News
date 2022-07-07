@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from .models import Category , SubCategory
+from .models import articles 
+from django.views.generic.list import ListView
 
 # Create your views here.
 class CategoryView(DetailView):
@@ -30,3 +32,5 @@ class SubCategoryView(DetailView):
                 "detail": detail,
         }
         return render(request, "category.html", context=context)
+
+
