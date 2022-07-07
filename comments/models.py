@@ -8,5 +8,7 @@ class Comment(models.Model):
     email = models.EmailField()
     text = models.CharField(max_length=512)
 
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+
     def __str__(self):
         return self.name

@@ -17,8 +17,8 @@
 
         <div class="col-sm-9 with-sidebar">
 
-            <h2 class="block-title mv5" data-title="Finance">
-                Articles
+            <h2 class="block-title mv5" data-title="{{ category }}">
+                {{ sub_category }}
             </h2>
 
             <article class="blog-item blog-single">
@@ -399,7 +399,7 @@
                                             {{ comment.text }}
                                         </div>
                                         <div class="meta-data">
-                                            <span class="comment-date">15 Feb, 2016 - 10:00 am</span>
+                                            <span class="comment-date">{{ comment.updated_at }}</span>
                                             <span class="comment-reply">
                                                 <a class="comment-reply-link" href="#">Reply</a>
                                             </span>

@@ -19,7 +19,7 @@ class ArticleView(DetailView):
         context_object_name = 'articles'
         template_name = 'article.html'
         model = articles.models.Article
-        
+
         def get(self, request, *args, **kwargs):
             post_id = self.kwargs.get('post_id')
 
@@ -30,12 +30,14 @@ class ArticleView(DetailView):
             "authors": detail.get_authors(),
             "updated_at":detail.updated_at,
             "comments": detail.get_comments(),
-            "sub_category": detail.sub_category.slug,
+            "category": detail.category.name,
+            "sub_category": detail.sub_category.name,
             }
             return render(request, "article.html", context=context)
 
         def post(self, request, *args, **kwargs):
             id = request.POST.get('Article ID')
+            print(id)
             article = articles.models.Article.objects.get(id=id)
             comment = {
             "author": request.POST.get('author'),
@@ -43,6 +45,7 @@ class ArticleView(DetailView):
             "text": request.POST.get('comment')
             }
 
+            article.add_comment(comment)
             context = {
             'post_id': article.id,
             'category': article.category,
