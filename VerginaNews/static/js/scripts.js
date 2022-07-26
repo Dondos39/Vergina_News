@@ -199,6 +199,7 @@
 			}
 
 			slider.setup(_id , {
+				autoplay: true,
 				width:1170,
 				height:sliderHeight,
 				space:0,

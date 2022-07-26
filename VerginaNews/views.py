@@ -4,7 +4,9 @@ from django.views.generic.list import ListView
 import categories.models
 import articles.models
 import authors.models
-
+import urllib.request
+import json
+# import requests
 
 class HomepageViews(ListView):
     #context_object_name = 'categories'
@@ -22,3 +24,8 @@ class HomepageViews(ListView):
             'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
         })
         return context
+
+# def weather(request):
+#     if request.method == 'POST':
+#         city = request.POST['city']
+

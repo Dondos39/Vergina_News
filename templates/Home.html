@@ -34,32 +34,10 @@
                                     <div class="ms-thumb">
                                         <div class="image color-1" data-src="{% static 'images/music/ms2-thumb.jpg' %}"></div>
                                     </div>
-    
+   
                                 </div>
+
                                 {% endfor %}
-                                  <!-- <div class="ms-slide color-3">
-                                    <div class="slide-pattern"></div>
-                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms3.jpg' %}" alt="Image"/>
-    
-                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ latest.sub_category }}</span></div>
-                                    <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-                                        
-                                        <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <h3>{{ latest.title }}</h3>
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">{{ latest.updated_at }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="excerpt border-top animate-element" data-anim="fadeInUp">{{ frontnew.text | safe }}</div>
-                                    </div>
-    
-                                    <div class="ms-thumb">
-                                        <div class="image color-1" data-src="{% static 'images/music/ms3-thumb.jpg' %}"></div>
-                                    </div>
-    
-                                </div> -->
 
                                 
                             </div><!-- end of masterslider -->
@@ -112,7 +90,7 @@
                 <div class="tab-panel">
                     <div class="tab-content active">
                         {% for latest in roaming_news_list %}
-                        <div class="post first hover-dark color-2">
+                        <!-- <div class="post first hover-dark color-2">
                             <a href="single.html">
                                 <div class="image" data-src="images/entertainment/post-11.jpg">
                                     <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
@@ -120,13 +98,24 @@
                                 </div>
                             </a>
                             <div class="meta inline-meta mb0">
-                                {% for author in latest.get_authors %}
-                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
-                                {% endfor %}
-                                <br>
+
                                 <span class="date">{{ latest.updated_at }}</span>
                             </div>
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
+                        </div> -->
+                        
+                        <div class="post hover-light">
+                            <a href="javascript:;">
+                                <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                            </a>
+                            <h4><a href="#">{{ latest.title }}</a></h4>
+                            <p>{{ latest.text | safe | slice:":100" }}...</p>
+                            <div class="meta">
+                                <!-- {% for author in latest.get_authors %}
+                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                                {% endfor %} -->
+                                <span class="date">{{ latest.date_added }}</span>
+                            </div>
                         </div>
                         {% endfor %}
                          <!-- end .post -->
@@ -381,131 +370,7 @@
 </div><!-- /.row -->
 
             <!-- New section -->
-            <div class="row">
 
-	            <div class="col-md-12">
-
-		            <h2 class="block-title mt8" data-title="popular">
-                        Δημοφιλή στο Internet
-			        <a href="single.html" class="category-more text-right">Continue to the category <img src="images/arrow-right.png" alt="Arrow"></a>
-		            </h2>
-
-                </div>
-            </div>
-            <!-- End of header -->
-
-            <div class="content-area pvt0">
-                <div class="container">
-
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <!-- Slider -->
-                            <div class="news-slider news-slider-hover mv5 mvt0">
-
-                                <!-- masterslider -->
-                                <div class="master-slider ms-skin-default" id="masterslider1">
-
-
-                                    <div class="ms-slide">
-                                        <div class="slide-pattern tint"></div>
-                                        <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/news/news-01.jpg' %}" alt="Image"/>
-                                        <div class="ms-thumb post">
-                                            <div class="thumb-meta">
-                                                <div class="meta">
-                                                    <span class="author">Dave Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4>North Carolina Voter ID Law Is Upheld by</h4>
-                                            </div>
-                                        </div>
-
-                                        <div class="ms-layer box" data-effect="bottom(45)" data-duration="300" data-ease="easeInOut">
-
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
-                                            </div>
-                                            <h4>8 Years of Lessons Temper Prime Minister's Foreign Policy</h4>
-                                            <p>Energistically synergize cross-platform resources through long-term high-impact customer service.</p>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="ms-slide">
-                                        <div class="slide-pattern tint"></div>
-                                        <img src="vendors/masterslider/style/blank.gif" data-src="images/news/news-02.jpg" alt="Image"/>
-                                        <div class="ms-thumb post">
-                                            <div class="thumb-meta">
-                                                <div class="meta">
-                                                    <span class="author">Dave Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4>North Carolina Voter ID Law Is Upheld by</h4>
-                                            </div>
-                                        </div>
-
-                                        <div class="ms-layer box" data-effect="bottom(45)" data-duration="300" data-ease="easeInOut">
-
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
-                                            </div>
-                                            <h4>8 Years of Lessons Temper Prime Minister's Foreign Policy</h4>
-                                            <p>Energistically synergize cross-platform resources through long-term high-impact customer service.</p>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="ms-slide">
-                                        <div class="slide-pattern tint"></div>
-                                        <img src="vendors/masterslider/style/blank.gif" data-src="images/news/news-03.jpg" alt="Image"/>
-                                        <div class="ms-thumb post">
-                                            <div class="thumb-meta">
-                                                <div class="meta">
-                                                    <span class="author">Dave Clark</span>
-                                                    <span class="date">2h</span>
-                                                </div>
-                                                <h4>North Carolina Voter ID Law Is Upheld by</h4>
-                                            </div>
-                                        </div>
-
-                                        <div class="ms-layer box" data-effect="bottom(45)" data-duration="300" data-ease="easeInOut">
-
-                                            <div class="meta">
-                                                <span class="author">Dave Clark</span>
-                                                <span class="date">2h</span>
-                                            </div>
-                                            <h4>8 Years of Lessons Temper Prime Minister's Foreign Policy</h4>
-                                            <p>Energistically synergize cross-platform resources through long-term high-impact customer service.</p>
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                </div>
-                                <!-- end of masterslider -->
-
-                            </div>
-                            <!-- end of slider -->
-
-                        </div>
-                        <!-- end col-md-12 -->
-
-                    </div>
-                    <!-- End of row -->
-                </div>
-                <!-- End of container -->
-            </div>
-            <!-- End of container aeria -->
 
             <!-- Ne setion -->
             <div class="section-full pv9 pvb0">
@@ -514,7 +379,7 @@
                         <div class="col-sm-12">
 
                             <div class="fs-blog-carousel" data-col="4" data-row="1" data-responsive="3,2,1">
-                                <h3 class="fs-title text-center">Trending on the news</h3>
+                                <h3 class="fs-title text-center">Δημοφιλή στο Internet</h3>
                                 <div class="fs-pager">
                                     <span>
                                         <a href="single.html" class="fs-arrow-prev swiper-prev"><img src="images/arrow-prev.png" alt="preview"></a>
@@ -527,7 +392,7 @@
                                                                         <div class="swiper-slide">
                                             <div class="fs-blog-item">
                                                 <a href="single.html">
-                                                    <img src="images/blog/blog-01.jpg" alt="portfolio image">
+                                                    <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                                 </a>
                                                 <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
                                             </div>
@@ -535,7 +400,7 @@
                                                                         <div class="swiper-slide">
                                             <div class="fs-blog-item">
                                                 <a href="single.html">
-                                                    <img src="images/blog/blog-02.jpg" alt="portfolio image">
+                                                    <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                                 </a>
                                                 <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
                                             </div>
@@ -543,7 +408,7 @@
                                                                         <div class="swiper-slide">
                                             <div class="fs-blog-item">
                                                 <a href="single.html">
-                                                    <img src="images/blog/blog-03.jpg" alt="portfolio image">
+                                                    <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                                 </a>
                                                 <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
                                             </div>
@@ -551,7 +416,7 @@
                                                                         <div class="swiper-slide">
                                             <div class="fs-blog-item">
                                                 <a href="single.html">
-                                                    <img src="images/blog/blog-04.jpg" alt="portfolio image">
+                                                    <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                                 </a>
                                                 <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
                                             </div>
@@ -574,12 +439,12 @@
             <div class="col-sm-12">
 
                 <div class="fs-blog-carousel" data-col="4" data-row="2" data-responsive="3,2,1">
-                    <h3 class="fs-title text-center">Out Portfolio</h3>
+                    <h3 class="fs-title text-center">Word News</h3>
                     <div class="fs-pager">
                         <span>
-                            <a href="single.html" class="fs-arrow-prev swiper-prev"><img src="images/arrow-prev.png" alt="preview"></a>
+                            <a href="single.html" class="fs-arrow-prev swiper-prev"><img src="{% static 'images/arrow-prev.png' %}" alt="preview"></a>
                             <i class="fs-current-index">1</i> of <i class="fs-current-total">1</i>
-                            <a href="single.html" class="fs-arrow-next swiper-next"><img src="images/arrow-next.png" alt="preview"></a>
+                            <a href="single.html" class="fs-arrow-next swiper-next"><img src="{% static 'images/arrow-next.png' %}" alt="preview"></a>
                         </span>
                     </div>
                     <div class="swiper-container">
@@ -587,7 +452,7 @@
                              <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-01.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Hottest</span>
                                     <div class="entry-title">
@@ -601,7 +466,20 @@
                                                             <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-02.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
+                                    </a>
+                                         <div class="entry-title">
+                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
+                                        <p class="read-more">
+                                            <a href="single.html">read the article</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                                   <div class="swiper-slide">
+                                <div class="fs-blog-item boxed-title">
+                                    <a href="single.html">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                                                             <div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
@@ -614,20 +492,7 @@
                                                             <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-03.jpg" alt="portfolio image">
-                                    </a>
-                                                                            <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                                            <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="images/blog/portfolio-04.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Trending</span>						        		<div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
@@ -640,7 +505,7 @@
                                                             <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-05.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                                                             <div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
@@ -653,7 +518,7 @@
                                  <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-06.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                                                             <div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
@@ -666,7 +531,7 @@
                                   <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-07.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Hottest</span>						        		<div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
@@ -679,7 +544,7 @@
                                                             <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="images/blog/portfolio-08.jpg" alt="portfolio image">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                                                             <div class="entry-title">
                                         <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>

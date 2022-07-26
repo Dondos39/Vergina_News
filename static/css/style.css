@@ -6585,6 +6585,12 @@ blockquote:before {
     padding-right: 45px;
   }
 }
+.page-item.active .page-link{
+  z-index: 3;
+  color: #fff;
+  background-color: grey;
+  border-color: #007bff;
+}
 
 #footer {
   /* Personal Blog footer */
