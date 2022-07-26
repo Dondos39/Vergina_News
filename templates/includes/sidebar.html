@@ -1,0 +1,90 @@
+{% load static %}
+
+
+            <div class="col-sm-3 sidebar mt2">
+
+
+                <div class="widget">
+                    <h5 class="widget-title"><span>Tag Cloud</span></h5>
+                    <div class="widget-tags">
+                        <a href="javascript:;">Politics</a>
+                        <a href="javascript:;">Opition</a>
+                        <a href="javascript:;">Healt</a>
+                        <a href="javascript:;">Travel</a>
+                        <a href="javascript:;">Sports</a>
+                        <a href="javascript:;">Breaking</a>
+                        <a href="javascript:;">Population</a>
+                    </div>
+                </div>
+                <!-- end .widget -->
+
+
+
+
+                <div class="widget">
+                    <a href="entertainment.html">
+                        <img src="{% static 'images/pages/banner-v-en.jpg' %}" alt="banner">
+                    </a>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget">
+                    <form class="search_form">
+                        <input type="text" name="2" placeholder="Search...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget categories">
+                    <h5 class="widget-title"><span>Categories</span></h5>
+                    <ul>
+                        {% for category in links %}
+                        <li>
+                            <a href="javascript:;">{{ category.name }}</a>
+                            <span>4</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget recent-posts">
+                    <h5 class="widget-title"><span>Popular Posts</span></h5>
+                    <ul>
+                        {% for latest in roamingnews %}
+                        {% if forloop.counter < 5 %}
+                         <li class="post hover-light">
+                            <a href="javascript:;">
+                                <div class="image image-thumb" data-src="images/news/category-01.jpg"></div>
+                            </a>
+                            <h4><a href="#">{{ latest.title }}</a></h4>
+                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
+                            <div class="meta">
+                                <span class="author">Dave Clark</span>
+                                <span class="date">2h</span>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                       
+                         </ul>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget light">
+                    <div class="subscribe-form">
+                        <form>
+                            <input type="text" placeholder="ENTER YOUR EMAIL">
+                            <button type="submit"><i class="fa fa-envelope-o"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end .widget -->
+            </div>
+
+

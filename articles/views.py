@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
+# import requests
 
 # Create your views here.
 def get_subcategory(request):
@@ -14,6 +15,11 @@ def get_subcategory(request):
     result = list(SubCategory.objects.filter(
     category_id=int(id)).values('id', 'name'))
     return HttpResponse(json.dumps(result), content_type="application/json")
+
+# def newshome(request):
+#     news_api_request = requests.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=d9051363b5064c83a6c6983704369199")
+#     api = json.load(news_api_request)
+#     return render (request, 'Home.html', {'api':api})
 
 class ArticleView(DetailView):
         context_object_name = 'articles'
@@ -52,3 +58,20 @@ class ArticleView(DetailView):
             'sub_category': article.sub_category
             }
             return HttpResponseRedirect(self.request.path_info)
+
+class AllArticlesView(DetailView):
+
+        context_object_name = 'All'
+        template_name = 'allarticles.html'
+        model = Article
+
+        def get(self, request, *args, **kwargs):
+
+            all_articles = articles.models.Article.objects.all().order_by('-updated_at')
+            context = {
+                'articles' : all_articles,
+                
+            }
+
+            return render(request, "allarticles.html", context=context)
+

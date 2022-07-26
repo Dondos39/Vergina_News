@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'categories.context_processors.menu_links',
                 'articles.context_processors.imp_news',
+                'articles.context_processors.roaming_news',
                 
             ],
         },

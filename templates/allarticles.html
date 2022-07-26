@@ -1,0 +1,199 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div class="section-full pv9 pvb0">
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-9 sticky-column fs-content">
+                <div class="theiaStickySidebar">
+                    <div class="fs-grid-posts">
+                        <div class="fs-post-filter big-title">
+                            <h4 data-title="{{ category }}">{{ sub_category }}</h4>
+                        </div>
+                        <div class="fs-grid-viewport" style="position:relative;">
+                            <div class="row">
+              {% for article in articles %}
+							<div class="col-sm-6 masonry-item vogue">
+										<div class="fs-grid-item">
+											<a class="fs-entry-image">
+												<img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
+											</a>
+											<div class="fs-entry-meta">
+												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
+												<span><a>{{ article.updated_at }} </a></span>
+                        {% for author in article.get_authors %}
+												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
+                        {% endfor %}
+											</div>
+											<h3>
+												<a>{{ article.title }}</a>
+											</h3>
+											<p class="read-more">
+												<a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug post_id=article.id %}">read the article</a>
+											</p>
+										</div>
+									</div>
+									{% endfor %}
+
+									</div>
+							<!-- /.fs-grid-viewport -->
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- //theiaStickySidebar -->
+                <nav class="mt-4" aria-label="Page navigation sample">
+                    {% if articles.has_other_pages %}
+                  <ul class="pagination">
+                      {% if articles.has_previous %}
+                    <li class="page-item "><a class="page-link" href="?page={{articles.previous_page_number}}">Previous</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    {% endif %}
+                    {% for i in articles.paginator.page_range %}
+                        {% if articles.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                        {% else %}
+                        <li class="page-item "><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if articles.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{articles.next_page_number}}">Next</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                    {% endif %}
+                  </ul>
+                  {% endif %}
+                </nav>
+
+            </div>
+            <div class="col-sm-3 sidebar mt2">
+
+
+                <div class="widget">
+                    <h5 class="widget-title"><span>Tag Cloud</span></h5>
+                    <div class="widget-tags">
+                        <a href="javascript:;">Politics</a>
+                        <a href="javascript:;">Opition</a>
+                        <a href="javascript:;">Healt</a>
+                        <a href="javascript:;">Travel</a>
+                        <a href="javascript:;">Sports</a>
+                        <a href="javascript:;">Breaking</a>
+                        <a href="javascript:;">Population</a>
+                    </div>
+                </div>
+                <!-- end .widget -->
+
+
+
+
+                <div class="widget">
+                    <a href="entertainment.html">
+                        <img src="images/pages/banner-v-en.jpg" alt="banner">
+                    </a>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget">
+                    <form class="search_form">
+                        <input type="text" name="2" placeholder="Search...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget categories">
+                    <h5 class="widget-title"><span>Categories</span></h5>
+                    <ul>
+                        <li>
+                            <a href="javascript:;">Gallery Post</a>
+                            <span>4</span>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Standard Post</a>
+                            <span>2</span>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Video Post</a>
+                            <span>2</span>
+                        </li>
+                        <li>
+                            <a href="javascript:;">News</a>
+                            <span>3</span>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Quotes</a>
+                            <span>1</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget recent-posts">
+                    <h5 class="widget-title"><span>Popular Posts</span></h5>
+                    <ul>
+                                                        <li class="post hover-light">
+                            <a href="javascript:;">
+                                <div class="image image-thumb" data-src="images/news/category-01.jpg"></div>
+                            </a>
+                            <h4><a href="#">North Carolina</a></h4>
+                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
+                            <div class="meta">
+                                <span class="author">Dave Clark</span>
+                                <span class="date">2h</span>
+                            </div>
+                        </li>
+                                                        <li class="post hover-light">
+                            <a href="javascript:;">
+                                <div class="image image-thumb" data-src="images/news/category-02.jpg"></div>
+                            </a>
+                            <h4><a href="#">North Carolina</a></h4>
+                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
+                            <div class="meta">
+                                <span class="author">Dave Clark</span>
+                                <span class="date">2h</span>
+                            </div>
+                        </li>
+                                                        <li class="post hover-light">
+                            <a href="javascript:;">
+                                <div class="image image-thumb" data-src="images/news/category-03.jpg"></div>
+                            </a>
+                            <h4><a href="#">North Carolina</a></h4>
+                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
+                            <div class="meta">
+                                <span class="author">Dave Clark</span>
+                                <span class="date">2h</span>
+                            </div>
+                        </li>
+                         </ul>
+                </div>
+                <!-- end .widget -->
+
+
+                <div class="widget light">
+                    <div class="subscribe-form">
+                        <form>
+                            <input type="text" placeholder="ENTER YOUR EMAIL">
+                            <button type="submit"><i class="fa fa-envelope-o"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end .widget -->
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
