@@ -97,10 +97,9 @@
           <div class="col-md-12">
             <h2
               class="block-title mt8"
-              data-title="Celebrities"
-              style="margin-bottom: -40px"
+              data-title="Author"
             >
-              Celebrities
+              {{ author.first_name }}
             </h2>
 
             <div
@@ -114,14 +113,13 @@
                   <div class="swiper-slide">
                     <div class="swiper-holder">
                       <img
-                        src="images/entertainment/quote-01.png"
+                        src="https://source.unsplash.com/user/c_v_r"
                         alt="Quote author"
                       />
                       <blockquote>
-                        <cite>Kevin Cook</cite>
+                        <cite>{{ author.first_name }}</cite>
                         <p>
-                          The concept you have about me won’t change who i am,
-                          but it can change my concept about you.
+                          {{ author.short_bio }}.
                         </p>
                       </blockquote>
                     </div>
@@ -135,32 +133,34 @@
             </div>
             <!-- /.testimonial-slider -->
 
-            <h2 class="block-title mt8" data-title="Finances">Articles</h2>
+            <h2 class="block-title mt8" data-title="{{ author.get_job_title }}">Articles</h2>
 
             <div class="section-blog en-block category-block sticky-parent">
               <div class="row">
                 <div class="col-sm-8 col-md-9 sticky-column">
                   <div class="row none-masonry animated-blocks">
+                    {% for article in articles %}
+                    {% if forloop.counter < 3 %}
                     <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
                       <div class="post boxed mb3 color-2 cart-style">
                         <div class="clearfix">
                           <img
                             class="image-thumb"
-                            src="images/user-01.png"
+                            src="https://source.unsplash.com/user/c_v_r"
                             alt="Image"
                           />
-                          <a href="blog.html" class="label">LATEST</a>
+                          <a href="blog.html" class="label">{{ article.category__name }}</a>
                           <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
+                            <span class="author">{{ author }}</span>
+                            <br>
+                            <span class="date">{{ article.updated_at }}</span>
                           </div>
                         </div>
                         <h4 class="font18">
-                          <a href="single.html">North Carolina.</a>
+                          <a href="single.html">{{ article.title }}</a>
                         </h4>
                         <p>
-                          This is James McAvoy's third film, where curve bullets
-                          play.
+                          {{ article.text | safe |slice:":100"}}...
                         </p>
                         <div class="image-grid col-2">
                           <div
@@ -183,92 +183,28 @@
                         /></a>
                       </div>
                     </div>
-                    <!-- /.col -->
+                    {% elif forloop.counter > 3 and forloop.counter < 8 %}
                     <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
+
                       <div class="post boxed mb3 color-2 cart-style">
                         <div class="clearfix">
                           <img
                             class="image-thumb"
-                            src="images/user-02.png"
+                            src="https://source.unsplash.com/user/c_v_r"
                             alt="Image"
                           />
-                          <a href="blog.html" class="label">LATEST</a>
+                          <a href="blog.html" class="label">{{ article.category__name }}</a>
                           <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
+                            <span class="author">{{ author }}</span>
+                            <br>
+                            <span class="date">{{ article.updated_at }}</span>
                           </div>
                         </div>
                         <h4 class="font18">
-                          <a href="single.html"
-                            >User centric electric service.</a
-                          >
+                          <a href="single.html">{{ article.title }}</a>
                         </h4>
                         <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-03.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >Exit will be a new start for you.</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-01.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html">North Carolina.</a>
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curve bullets
-                          play.
+                          {{ article.text | safe |slice:":100"}}...
                         </p>
                         <div class="image-grid col-2">
                           <div
@@ -291,286 +227,8 @@
                         /></a>
                       </div>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-02.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >User centric electric service.</a
-                          >
-                        </h4>
-
-                        <img
-                          src="images/entertainment/post-12.jpg"
-                          alt="Image"
-                        />
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-03.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >Exit will be a new start for you.</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-01.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html">North Carolina.</a>
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curve bullets
-                          play.
-                        </p>
-                        <div class="image-grid col-2">
-                          <div
-                            class="image"
-                            data-src="images/entertainment/gallery-01.png"
-                          >
-                            <img src="images/4x3.png" alt="Placeholder" />
-                          </div>
-                          <div
-                            class="image"
-                            data-src="images/entertainment/gallery-02.png"
-                          >
-                            <img src="images/4x3.png" alt="Placeholder" />
-                          </div>
-                        </div>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-02.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >User centric electric service.</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-03.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >Exit will be a new start for you.</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-01.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html">North Carolina.</a>
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curve bullets
-                          play.
-                        </p>
-                        <div class="image-grid col-2">
-                          <div
-                            class="image"
-                            data-src="images/entertainment/gallery-01.png"
-                          >
-                            <img src="images/4x3.png" alt="Placeholder" />
-                          </div>
-                          <div
-                            class="image"
-                            data-src="images/entertainment/gallery-02.png"
-                          >
-                            <img src="images/4x3.png" alt="Placeholder" />
-                          </div>
-                        </div>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-02.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >User centric electric service.</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
-                      <div class="post boxed mb3 color-2 cart-style">
-                        <div class="clearfix">
-                          <img
-                            class="image-thumb"
-                            src="images/user-03.png"
-                            alt="Image"
-                          />
-                          <a href="blog.html" class="label">LATEST</a>
-                          <div class="meta">
-                            <span class="author">Dave Clark</span>
-                            <span class="date">2h</span>
-                          </div>
-                        </div>
-                        <h4 class="font18">
-                          <a href="single.html"
-                            >Exit will be a new start for you.</a
-                          >
-                        </h4>
-                        <p>
-                          This is James McAvoy's third film, where curving
-                          bullets play a crucial role. The first one is Wanted,
-                          where Mc Avowalk. The second one is Men.
-                        </p>
-
-                        <a href="single.html" class="category-more"
-                          >Continue to the news
-                          <img src="images/arrow-right.png" alt="Arrow"
-                        /></a>
-                      </div>
-                    </div>
+                    {% endif %}
+                    {% endfor %}
                     <!-- /.col -->
                   </div>
                   <!-- /.row -->

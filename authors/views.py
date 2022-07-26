@@ -11,8 +11,9 @@ class AuthorView(DetailView):
         def get(self, request, *args, **kwargs):
             id = self.kwargs.get('author_id')
 
-            detail = Author.objects.all().filter(first_name=id)
+            author = Author.objects.all().filter(first_name=id).first()
             context = {
-                    "author_id": detail,
+                    "author": author,
+                    "articles": author.get_articles().order_by('-updated_at')
             }
             return render(request, 'author.html', context=context)
