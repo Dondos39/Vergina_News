@@ -14,10 +14,10 @@
                                    <div class="ms-slide color-2">
                                     <div class="slide-pattern"></div>
                                     <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
-    
-                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category__name }}</span></div>						    	
+
+                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category__name }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-                                        
+
                                         <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
                                             <h3>{{ important.title }}</h3>
                                             <div class="meta">
@@ -30,20 +30,20 @@
                                         <div class="clearfix"></div>
                                         <div class="excerpt border-top animate-element" data-anim="fadeInUp">{{ important.text | safe }}</div>
                                     </div>
-    
+
                                     <div class="ms-thumb">
                                         <div class="image color-1" data-src="{% static 'images/music/ms2-thumb.jpg' %}"></div>
                                     </div>
-    
+
                                 </div>
                                 {% endfor %}
                                   <!-- <div class="ms-slide color-3">
                                     <div class="slide-pattern"></div>
                                     <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms3.jpg' %}" alt="Image"/>
-    
+
                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ latest.sub_category }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-                                        
+
                                         <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
                                             <h3>{{ latest.title }}</h3>
                                             <div class="meta">
@@ -54,17 +54,17 @@
                                         <div class="clearfix"></div>
                                         <div class="excerpt border-top animate-element" data-anim="fadeInUp">{{ frontnew.text | safe }}</div>
                                     </div>
-    
+
                                     <div class="ms-thumb">
                                         <div class="image color-1" data-src="{% static 'images/music/ms3-thumb.jpg' %}"></div>
                                     </div>
-    
+
                                 </div> -->
 
-                                
+
                             </div><!-- end of masterslider -->
                         </div><!-- end of gallery-slider -->
-    
+
                     </div>
                 </div>
             </div>
@@ -506,7 +506,6 @@
                 <!-- End of container -->
             </div>
             <!-- End of container aeria -->
-
             <!-- Ne setion -->
             <div class="section-full pv9 pvb0">
                 <div class="container">
@@ -698,30 +697,37 @@
         </div>
     </div>
 </div>
+{% for category in category_list %}
+{% if category.name == 'People' %}
+
             <!-- New Section -->
             <div class="row">
 
                 <div class="col-md-12">
 
-                    <h2 class="block-title mt8" data-title="Celebrities" >
-                        Celebrities
+                    <h2 class="block-title mt8" data-title="Featured" >
+                        {{ category.name }}
                     </h2>
 
                     <div class="testimonial-slider fs-blog-carousel" data-col="1" data-row="1" data-responsive="1,1,1">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
 
+                        <div class="swiper-container">
+
+                            <div class="swiper-wrapper">
+                              {% for author in authors_list %}
+                              {% if author.featured %}
                            <div class="swiper-slide">
                                     <div class="swiper-holder">
 
-                                        <img src="images/entertainment/quote-01.png" alt="Quote author">
+                                        <img src="https://source.unsplash.com/user/c_v_r" alt="Quote author">
                                         <blockquote>
-                                            <cite>Kevin Cook</cite>
-                                            <p>The concept you have about me won’t change who i am, but it can change my concept about you.</p>
+                                            <cite>{{ author.first_name }} {{ author.last_name }}</cite>
+                                            <p>{{ author.short_bio }}.</p>
                                         </blockquote>
                                     </div>
                                     <!-- /.swiper-holder -->
-
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
                                 <!-- /.swiper-slide -->
 
@@ -738,125 +744,15 @@
 
 			<div class="swiper-container carousel-container">
 			    <div class="swiper-wrapper animated-blocks">
-
-
 				    <div class="swiper-slide">
-
 				    	<div class="masonry-layout row" data-col-width=".col-md-3">
-
-				    		<div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
-			    				<div class="post">
-			    					<div class="image" data-src="images/entertainment/post-01.png">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content">
-				    					<div class="meta mb0">
-				    						<span class="author">John Taylor</span>
-				    					</div>
-				    					<h4><a href="single.html">This is over whelming</a></h4>
-			    					</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
-				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
-			    				<div class="post text-light color-1">
-			    					<div class="image" data-src="images/entertainment/post-02.png">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content">
-			    						<a href="blog.html" class="label">What's Hot</a>
-				    					<h4 class="font36"><a href="single.html">I'm happy with my dog.</a></h4>
-				    					<div class="meta mb0">
-				    						<span class="author">Jonny man</span>
-				    					</div>
-			    					</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
-				    		<div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
-			    				<div class="post">
-			    					<div class="image" data-src="images/entertainment/post-03.png">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content post-content-bottom">
-				    					<div class="meta mb0">
-				    						<span class="author">John Taylor</span>
-				    					</div>
-				    					<h4><a href="single.html">This is over whelming</a></h4>
-				    				</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
-				    		<div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
-			    				<div class="post text-light">
-			    					<div class="image" data-src="images/entertainment/post-04.png">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content meta-bottom">
-				    					<h4 class="font36"><a href="single.html">Here<br> to<br> take<br> over.</a></h4>
-				    					<div class="meta mb0 white">
-				    						<span class="author">Conor Mcgregor</span>
-				    					</div>
-			    					</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
-				    		<div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
-			    				<div class="post text-light half-height">
-			    					<div class="image" data-src="images/entertainment/post-05.png">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content">
-				    					<div class="meta mb0 white">
-				    						<span class="author">Kevin Cook</span>
-				    					</div>
-				    					<h4><a href="single.html">Know yourself.</a></h4>
-				    				</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
-				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
-			    				<div class="post">
-			    					<div class="image" data-src="images/entertainment/post-06.jpg">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content">
-			    						<h4><a href="single.html">The next big thing is here.</a></h4>
-			    					</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
-				    		<div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
-			    				<div class="post half-height">
-			    					<div class="image" data-src="images/entertainment/post-07.png">
-			    						<img src="images/1x1.png" alt="Placeholder">
-			    					</div>
-			    					<div class="post-content">
-			    						<h4><a href="single.html">THE<br> WEEKEND<br> IS<br> HERE.</a></h4>
-			    					</div>
-			    				</div>
-
-				    		</div>
-				    		<!-- /.col -->
-
 				    	</div>
 				    	<!-- /.masonry-layout -->
 				    </div>
 				    <!-- /.swiper-slide -->
 
-
+            {% endif %}
+            {% endfor %}
 
 
 
@@ -918,6 +814,7 @@
 <!-- end .row -->
 <!-- New Section -->
 {% for category in categories_list %}
+{% if category.name != 'People' %}
 <div class="content-area pvt0 entertainment-layout">
     <div class="container">
       <div class="row">
@@ -1025,6 +922,7 @@
     </div>
     <!-- end .container -->
   </div>
+  {% endif %}
   {% endfor %}
 </div>
 
