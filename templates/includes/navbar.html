@@ -61,14 +61,11 @@
                                 </ul>
                             </li>
                             {% endfor %}
-
-
                         </ul>
-
-
                         <div class="search-panel">
-                            <form method="get">
-                                <input type="text" name="s" placeholder="Search...">
+                            <form method="post">
+                              {% csrf_token %}
+                                <input type="text" name="search" required="required" placeholder="Search...">
                                 <button type="submit"></button>
                             </form>
                         </div>
@@ -121,7 +118,7 @@
                         <h4>29</h4>
                         <p>APR, Wednesday</p>
                     </div>
-                    
+
                     <div class="tt-el-info text-right">
                         <h4>32˚C</h4>
                         <p>Current location</p>

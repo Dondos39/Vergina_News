@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'categories',
     'tags',
     'links',
+    'subscribers',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
                 'categories.context_processors.menu_links',
                 'articles.context_processors.imp_news',
                 'articles.context_processors.roaming_news',
-                
+
             ],
         },
     },

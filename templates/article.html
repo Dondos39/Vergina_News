@@ -46,7 +46,7 @@
                             </h5>
                             <span>24 likes, 6 comment</span>
                         </div>
-                        <div class="entry-views">5000 views</div>
+                        <div class="entry-views">{{ total_views }} Views</div>
                         <div class="entry-social">
                             <a href="javascript:;"><i class="fa fa-facebook"></i></a>
                             <a href="javascript:;"><i class="fa fa-youtube"></i></a>
@@ -336,10 +336,18 @@
 
                 <div class="widget light">
                     <div class="subscribe-form">
-                        <form>
-                            <input type="text" placeholder="ENTER YOUR EMAIL">
+                        <form method="post">
+                          {% csrf_token %}
+                            <input type="text" name="email_sub" placeholder="ENTER YOUR EMAIL">
                             <button type="submit"><i class="fa fa-envelope-o"></i></button>
                         </form>
+                        {% if messages %}
+                        <ul class="messages">
+                          {% for message in messages %}
+                          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                          {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- end .widget -->

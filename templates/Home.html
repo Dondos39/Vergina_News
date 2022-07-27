@@ -107,7 +107,7 @@
                             <a href="javascript:;">
                                 <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
                             </a>
-                            <h4><a href="#">{{ latest.title }}</a></h4>
+                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
                                 <!-- {% for author in latest.get_authors %}

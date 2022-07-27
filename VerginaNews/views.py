@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 import categories.models
 import articles.models
@@ -25,7 +25,14 @@ class HomepageViews(ListView):
         })
         return context
 
+    def post(self, request, *args, **kwargs):
+        keyword = request.POST.get('search')
+        if keyword == "":
+            result = 'all'
+        else:
+            result = keyword
+        return redirect('articles_view', search=result)
+
 # def weather(request):
 #     if request.method == 'POST':
 #         city = request.POST['city']
-
