@@ -8,16 +8,10 @@ class AuthorAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         old_prof_pic = Author.objects.get(id=obj.id).prof_pic
+        if obj.prof_pic:
+            if old_prof_pic:
+                obj.prof_pic.storage.delete(str(old_prof_pic))
 
-        print("-----------------")
-        print(obj.prof_pic)
-        print("-----------------")
-        print(old_prof_pic)
-        print("-----------------")
-
-        if obj.prof_pic != None and old_prof_pic != None:
-            obj.prof_pic.storage.delete(str(old_prof_pic))
-        
         if request.POST.get('prof_pic-clear') == 'on':
             obj.prof_pic.storage.delete(str(old_prof_pic))
 
