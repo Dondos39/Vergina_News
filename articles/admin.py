@@ -7,7 +7,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_editable = ('no_important', 'no_homepage')
     list_filter = ('no_important', 'date_added')
     search_fields = ['tags__name', 'author__first_name']
-    readonly_fields = ['updated_at', 'updated_by']
+    readonly_fields = ['updated_at', 'updated_by', 'total_views']
 
     def check_no_important(self, obj, request):
         duplicate = obj.__class__.objects.filter(no_important=obj.no_important).values_list('id', flat=True)

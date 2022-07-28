@@ -47,6 +47,9 @@ class ArticleManager(models.Manager):
     def get_frontnews(self):
         return self.filter(no_homepage__in=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
 
+    def get_popular(self):
+        return self.order_by('total_views')
+
 class Article(models.Model):
     ##  Attributes ##
     author = models.ManyToManyField(authors.models.Author)
@@ -55,7 +58,7 @@ class Article(models.Model):
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
     pictures = models.ImageField(upload_to='article_pics', blank=True)
-    video = models.FileField(upload_to='videos_uploaded',
+    video = models.FileField(upload_to='videos',
                              null=True,
                              blank=True,
                              validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
@@ -72,6 +75,8 @@ class Article(models.Model):
     ##  Logging  ##
     updated_at = models.DateTimeField(auto_now=True, null=True)
     updated_by = models.CharField(max_length=32, blank=True, null=True)
+
+    total_views = models.IntegerField(default=0)
 
     @property
     def article_id(self):
