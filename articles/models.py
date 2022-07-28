@@ -58,7 +58,7 @@ class Article(models.Model):
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
     pictures = models.ImageField(upload_to='article_pics', blank=True)
-    video = models.FileField(upload_to='videos_uploaded',
+    video = models.FileField(upload_to='videos',
                              null=True,
                              blank=True,
                              validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])

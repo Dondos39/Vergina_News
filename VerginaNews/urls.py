@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.conf import settings
+from django.conf.urls.static import static
 import articles.views
 import categories.views
 import authors.views
@@ -30,3 +32,7 @@ urlpatterns = [
     re_path('category/(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),
     re_path('/(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view')
 ]
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
