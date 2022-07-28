@@ -6,6 +6,8 @@ from django.core.validators import FileExtensionValidator
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from model_utils import FieldTracker
+import uuid
+import os
 
 # Create your models here.
 CATEGORIES = (("1", "Sports"),
@@ -37,6 +39,18 @@ HOMEPAGE_N = [
     ('10', '10'),
 ]
 
+def get_img_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename_start = filename.replace('.'+ext,'')
+    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
+    return os.path.join('article_pics', filename)
+
+def get_video_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename_start = filename.replace('.'+ext,'')
+    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
+    return os.path.join('videos', filename)
+
 class ArticleManager(models.Manager):
     def get_important(self):
         return self.filter(no_important__in=['1', '2', '3', '4', '5']).order_by('no_important')
@@ -53,12 +67,12 @@ class ArticleManager(models.Manager):
 class Article(models.Model):
     ##  Attributes ##
     author = models.ManyToManyField(authors.models.Author)
-    title = models.CharField(max_length=32, unique=True)
+    title = models.CharField(max_length=256, unique=True)
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
-    pictures = models.ImageField(upload_to='article_pics', blank=True)
-    video = models.FileField(upload_to='videos',
+    article_pic = models.ImageField(upload_to=get_img_path, blank=True)
+    article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,
                              validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
@@ -94,5 +108,16 @@ class Article(models.Model):
     def get_comments(self):
         return self.comment_set.all()
 
+    def get_tags(self):
+        return self.tags.all()
+
     def add_comment(self, dict):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
+
+    def delete(self, using=None, keep_parents=False):
+        if self.article_pic.url != None:
+            self.article_pic.storage.delete(self.article_pic.name)
+
+        if self.article_video.url != None:
+            self.article_video.storage.delete(self.article_video.name)
+        super().delete()

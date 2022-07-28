@@ -25,8 +25,12 @@
 
                 <div class="post first text-bigger hover-dark entry-media">
                     <div class="image video-frame">
-                        <img src="images/news/video-big-01.jpg" alt="Post image"/>
-                        <a class="video-player video-player-center video-player-large" href="https://www.youtube.com/watch?v=AJtDXIazrMo"></a>
+                      {% if article_pic %}
+                        <img src="{{ article_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
+                      {% endif %}
+                      {% if article_video %}
+                        <a class="video-player video-player-center video-player-large" href="{{ article_video.url }}"></a>
+                      {% endif %}
                     </div>
                 </div>
 
@@ -44,7 +48,6 @@
                                 <a href="javascript:;">{{ author }}</a><br>
                               {% endfor  %}
                             </h5>
-                            <span>24 likes, 6 comment</span>
                         </div>
                         <div class="entry-views">{{ total_views }} Views</div>
                         <div class="entry-social">
@@ -225,22 +228,13 @@
 
         </div>
         <!-- end .col-md-9 -->
-
-
-
             <div class="col-sm-3 sidebar mt2">
-
-
                 <div class="widget">
                     <h5 class="widget-title"><span>Tag Cloud</span></h5>
                     <div class="widget-tags">
-                        <a href="javascript:;">Politics</a>
-                        <a href="javascript:;">Opition</a>
-                        <a href="javascript:;">Healt</a>
-                        <a href="javascript:;">Travel</a>
-                        <a href="javascript:;">Sports</a>
-                        <a href="javascript:;">Breaking</a>
-                        <a href="javascript:;">Population</a>
+                      {% for tag in tags%}
+                        <a href="javascript:;">{{tag}}</a>
+                      {% endfor %}
                     </div>
                 </div>
                 <!-- end .widget -->
