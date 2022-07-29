@@ -6,7 +6,11 @@ import articles.models
 import authors.models
 import urllib.request
 import json
-# import requests
+from decouple import config
+
+def weather(request):
+    if request.method == 'POST':
+        city = request.POST['city']
 
 class HomepageViews(ListView):
     #context_object_name = 'categories'
@@ -22,7 +26,10 @@ class HomepageViews(ListView):
             'important_list': articles.models.Article.objects.get_important(),
             'roaming_news_list': articles.models.Article.objects.get_latest(),
             'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
+            'popular_news_list': articles.models.Article.objects.get_popular(),
+
         })
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -32,7 +39,3 @@ class HomepageViews(ListView):
         else:
             result = keyword
         return redirect('articles_view', search=result)
-
-# def weather(request):
-#     if request.method == 'POST':
-#         city = request.POST['city']

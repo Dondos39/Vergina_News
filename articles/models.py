@@ -62,7 +62,7 @@ class ArticleManager(models.Manager):
         return self.filter(no_homepage__in=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
 
     def get_popular(self):
-        return self.order_by('total_views')
+        return self.order_by('-total_views')
 
 class Article(models.Model):
     ##  Attributes ##
@@ -115,9 +115,9 @@ class Article(models.Model):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
 
     def delete(self, using=None, keep_parents=False):
-        if self.article_pic.url != None:
+        if self.article_pic:
             self.article_pic.storage.delete(self.article_pic.name)
 
-        if self.article_video.url != None:
+        if self.article_video:
             self.article_video.storage.delete(self.article_video.name)
         super().delete()

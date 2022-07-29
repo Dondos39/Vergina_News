@@ -96,9 +96,6 @@
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
-                                <!-- {% for author in latest.get_authors %}
-                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
-                                {% endfor %} -->
                                 <span class="date">{{ latest.date_added }}</span>
                             </div>
                         </div>
@@ -106,10 +103,25 @@
                          <!-- end .post -->
                     
                         <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
-                    </div>
+                      </div>
+
                     <!-- /.tab-panel -->
 
                     <div class="tab-content">
+                      {% for pouplar in popular_news_list %}
+                      <div class="post hover-light">
+                          <a href="javascript:;">
+                              <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                          </a>
+                          <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">{{ pouplar.title }}</a></h4>
+                          <p>{{ pouplar.text | safe | slice:":100" }}...</p>
+                          <div class="meta">
+                              <span class="date">{{ pouplar.date_added }}</span>
+                          </div>
+                      </div>
+                      {% endfor %}
+                       <!-- end .post -->
+
 
                         {% for latest in roaming_news_list %}
                         <div class="post hover-light">
@@ -130,13 +142,11 @@
                     
                         <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
 
+
                     </div>
                     <!-- /.tab-panel -->
-
                             <div class="tab-content">
-
                         <!-- /.row -->
-
                     </div>
                     <!-- /.tab-panel -->
 
@@ -147,7 +157,8 @@
 
                 </div>
             </div>
-        
+
+
         <!-- end .col-md-4 -->
 
         <div class="col-sm-9">
@@ -370,7 +381,8 @@
     </div>
     <!-- end .col-md-8 -->
 
-</div><!-- /.row -->
+    </div><!-- /.row -->
+<!-- </div> -->
 
 
 
