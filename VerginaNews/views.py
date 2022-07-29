@@ -8,9 +8,22 @@ import urllib.request
 import json
 from decouple import config
 
-def weather(request):
-    if request.method == 'POST':
-        city = request.POST['city']
+def get_weather():
+    api=config('WEATHER_API_KEY')
+    print('--------------')
+    print(api)
+    print('--------------')
+
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&units=imperial&appid={api}'
+    weather = request.get(url).json()
+
+    print('--------------')
+    print(weather)
+    print('--------------')
+
+    context = {'weather' : weather}
+
+    return render(request, 'weather/index.html', context)
 
 class HomepageViews(ListView):
     #context_object_name = 'categories'
@@ -27,7 +40,7 @@ class HomepageViews(ListView):
             'roaming_news_list': articles.models.Article.objects.get_latest(),
             'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
             'popular_news_list': articles.models.Article.objects.get_popular(),
-
+            'weather': get_weather(),
         })
 
         return context
