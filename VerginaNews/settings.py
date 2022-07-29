@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jquery',
     'ckeditor',
+    'geoip2',
     'articles',
     'authors',
     'comments',
