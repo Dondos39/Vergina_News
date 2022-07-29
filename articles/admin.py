@@ -34,14 +34,16 @@ class ArticleAdmin(admin.ModelAdmin):
             self.check_no_important(obj, request)
 
         #Check if a new image is inserted when there is already one.
-        old_article_pic = Article.objects.get(id=obj.id).article_pic
+        if obj.id:
+            old_article_pic = Article.objects.get(id=obj.id).article_pic
         if obj.article_pic and old_article_pic and old_article_pic != obj.article_pic:
             obj.article_pic.storage.delete(str(old_article_pic))
        #Check if user checked picture clear button.
         if request.POST.get('article_pic-clear') == 'on':
             obj.article_pic.storage.delete(str(old_article_pic))
        #Check if a new video is inserted when there is already one.
-        old_article_video = Article.objects.get(id=obj.id).article_video
+        if obj.id:
+            old_article_video = Article.objects.get(id=obj.id).article_video
         if obj.article_video and old_article_video and old_article_video != obj.article_video:
             obj.article_video.storage.delete(str(old_article_video))
        #Check if user checked video clear button.
