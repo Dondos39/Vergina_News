@@ -1042,6 +1042,7 @@ address abbr:first-child span {
 
 .simple-tab-space .tab-title a.active {
   color: #000;
+  border-bottom: 1px solid black
 }
 /* Element information
 ------------------------------------ */

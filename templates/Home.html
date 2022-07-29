@@ -89,20 +89,6 @@
                 <div class="tab-panel">
                     <div class="tab-content active">
                         {% for latest in roaming_news_list %}
-                        <!-- <div class="post first hover-dark color-2">
-                            <a href="single.html">
-                                <div class="image" data-src="images/entertainment/post-11.jpg">
-                                    <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
-                                    <a href="{% url 'subcategory_view' category=latest.category.slug sub_category=latest.sub_category.slug %}" class="label">{{ latest.sub_category }}</a>
-                                </div>
-                            </a>
-                            <div class="meta inline-meta mb0">
-
-                                <span class="date">{{ latest.updated_at }}</span>
-                            </div>
-                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
-                        </div> -->
-
                         <div class="post hover-light">
                             <a href="javascript:;">
                                 <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
@@ -118,13 +104,31 @@
                         </div>
                         {% endfor %}
                          <!-- end .post -->
-
+                    
                         <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
-
+                    </div>
                     <!-- /.tab-panel -->
 
                     <div class="tab-content">
 
+                        {% for latest in roaming_news_list %}
+                        <div class="post hover-light">
+                            <a href="javascript:;">
+                                <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                            </a>
+                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
+                            <p>{{ latest.text | safe | slice:":100" }}...</p>
+                            <div class="meta">
+                                <!-- {% for author in latest.get_authors %}
+                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                                {% endfor %} -->
+                                <span class="date">{{ latest.date_added }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                         <!-- end .post -->
+                    
+                        <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
 
                     </div>
                     <!-- /.tab-panel -->
@@ -136,14 +140,14 @@
                     </div>
                     <!-- /.tab-panel -->
 
-                            </div>
+                 </div>
                 <!-- /.tab-panel -->
             </div>
                     <!-- /.simple-tab-space -->
 
                 </div>
             </div>
-        </div>
+        
         <!-- end .col-md-4 -->
 
         <div class="col-sm-9">
@@ -176,8 +180,8 @@
 
                 <div class="post color-2">
                     <a href="single.html">
-                        <div class="image" data-src="images/entertainment/post-01.jpg">
-                            <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                        <div class="image">
+                            <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                             <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                         </div>
                     </a>
@@ -199,7 +203,7 @@
                     <h4 class="font28"><a href="#">{{ frontnew.title}}</a></h4>
                     <div class="border-line"></div>
                     <p>{{ frontnew.text | safe |slice:":800"  }}...</p>
-                    <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                    <a href="single.html" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -209,7 +213,7 @@
 
             <div class="pv2">
                 <a href="blog.html">
-                    <img src="images/ads-660x440.png" alt="Ads" class="full-size">
+                    <img loading="lazy" src="{% static 'images/ads-660x440.png' %}" alt="Ads" class="full-size">
                 </a>
             </div>
             <div class="border-line mb5"></div>
@@ -222,7 +226,7 @@
                     <div class="post hover-dark color-1">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                                <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
@@ -234,7 +238,7 @@
                         </div>
                         <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="single.html" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
 
@@ -247,7 +251,7 @@
                     <div class="post first hover-dark color-2">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-10.jpg">
-                                <img src="images/5x3.png" alt="Proportion"/>
+                                <img loading="lazy" src="images/5x3.png" alt="Proportion"/>
                             </div>
                         </a>
                     </div>
@@ -262,7 +266,7 @@
 
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                                <img  loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
@@ -274,7 +278,7 @@
                         </div>
                         <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe | slice:":600"  }}...</p>
-                        <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="single.html" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
                 </div>
@@ -285,7 +289,7 @@
             <div class="row">
                 <div class="col-sm-12 mv3 mvt0">
                     <a href="entertainment.html">
-                        <img src="images/pages/banner-1.jpg" alt="banner" class="full-size">
+                        <img loading="lazy" src="images/pages/banner-1.jpg" alt="banner" class="full-size">
                     </a>
                 </div>
             </div>
@@ -302,7 +306,7 @@
 
 											<div class="image" data-src="images/news/rightnow-03.jpg">
 												<a href="single.html">
-													<img src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+													<img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
 												</a>
 												<a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
 											</div>
@@ -353,7 +357,7 @@
             <div class="row">
                 <div class="col-sm-12 mv3 mvt0">
                     <a href="entertainment.html">
-                        <img src="" alt="banner" class="full-size">
+                        <img loading="lazy" src="" alt="banner" class="full-size">
                     </a>
                 </div>
             </div>
@@ -367,6 +371,8 @@
     <!-- end .col-md-8 -->
 
 </div><!-- /.row -->
+
+
 
             <!-- New section -->
 
@@ -743,7 +749,7 @@
 
 		</div>
 		<!-- /.section-carousel -->
-
+              
         <h2 class="block-title mt8" data-title="Blogs" >
             Blogers
         </h2>
