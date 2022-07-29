@@ -91,7 +91,7 @@
                         {% for latest in roaming_news_list %}
                         <div class="post hover-light">
                             <a href="javascript:;">
-                                <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                                <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                             </a>
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
@@ -111,7 +111,7 @@
                       {% for pouplar in popular_news_list %}
                       <div class="post hover-light">
                           <a href="javascript:;">
-                              <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                              <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                           </a>
                           <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">{{ pouplar.title }}</a></h4>
                           <p>{{ pouplar.text | safe | slice:":100" }}...</p>
@@ -122,23 +122,6 @@
                       {% endfor %}
                        <!-- end .post -->
 
-
-                        {% for latest in roaming_news_list %}
-                        <div class="post hover-light">
-                            <a href="javascript:;">
-                                <div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
-                            </a>
-                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
-                            <p>{{ latest.text | safe | slice:":100" }}...</p>
-                            <div class="meta">
-                                <!-- {% for author in latest.get_authors %}
-                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
-                                {% endfor %} -->
-                                <span class="date">{{ latest.date_added }}</span>
-                            </div>
-                        </div>
-                        {% endfor %}
-                         <!-- end .post -->
                     
                         <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
 
@@ -468,7 +451,7 @@
                              <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
+                                        <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Hottest</span>
                                     <div class="entry-title">
@@ -817,7 +800,7 @@
             {{ category.name }}
             <a href="single.html" class="category-more text-right"
               >Continue to the category
-              <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
+              <img loading="lazy" src="{% static 'images/arrow-right.png' %}" alt="Arrow"
             /></a>
           </h2>
 
@@ -835,7 +818,7 @@
                         class="image"
                         data-src="images/entertainment/post-14.jpg"
                       >
-                        <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
+                        <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
                         <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
                       <div class="meta inline-meta small-meta">
@@ -877,7 +860,7 @@
                       class="image"
                       data-src="images/entertainment/post-11.jpg"
                     >
-                      <img src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
+                      <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
                       <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
                     <div class="meta inline-meta small-meta">
