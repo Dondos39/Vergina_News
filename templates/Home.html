@@ -194,10 +194,10 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <h4 class="font28"><a href="#">{{ frontnew.title}}</a></h4>
+                    <h4 class="font28"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title}}</a></h4>
                     <div class="border-line"></div>
                     <p>{{ frontnew.text | safe |slice:":800"  }}...</p>
-                    <a href="single.html" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -218,7 +218,7 @@
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
-                        <a href="single.html">
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -230,9 +230,9 @@
                             {% endfor %}
                             <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
-                        <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
+                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                        <a href="single.html" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
 
@@ -258,7 +258,7 @@
 
                     <div class="post hover-light color-2">
 
-                        <a href="single.html">
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img  loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -270,9 +270,9 @@
                             {% endfor %}
                             <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
-                        <h4 class="font18"><a href="#">{{ frontnew.title }}</a></h4>
+                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe | slice:":600"  }}...</p>
-                        <a href="single.html" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
                 </div>
@@ -299,7 +299,7 @@
 									<div class="post first color-1 hover-light">
 
 											<div class="image" data-src="images/news/rightnow-03.jpg">
-												<a href="single.html">
+												<a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
 													<img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
 												</a>
 												<a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -311,7 +311,7 @@
                                                 {% endfor %}
 												<span class="date">{{ frontnew.updated_at }}</span>
 											</div>
-											<h4><a href="#">{{ frontnew.title }}</a></h4>
+											<h4><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
 											<p>{{ frontnew.text | safe | slice:":800" }}...</p>
 										</div>
 
@@ -327,10 +327,10 @@
                   {% if forloop.counter > 7 %}
 									<div class="category-block articles">
 									    <div class="post hover-light">
-											<a href="javascript:;">
+											<a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
 												<div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
 											</a>
-											<h4><a href="#">{{ frontnew.title }}</a></h4>
+											<h4><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
 											<p>{{ frontnew.text | safe | slice:":100" }}...</p>
 											<div class="meta">
                                                 {% for author in frontnew.get_authors %}
