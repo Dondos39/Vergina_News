@@ -8,6 +8,7 @@ import urllib.request
 import json
 import requests
 import geoip2.webservice
+import datetime
 from decouple import config
 from urllib.request import urlopen
 
@@ -52,6 +53,8 @@ class HomepageViews(ListView):
     model = categories.models.Category
 
     def get(self, request, *args, **kwargs):
+        date= datetime.datetime.now()
+        print(date)
         context = {
         'categories_list': categories.models.Category.objects.all(),
         'articles_list': articles.models.Article.objects.all(),
@@ -61,7 +64,14 @@ class HomepageViews(ListView):
         'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
         'popular_news_list': articles.models.Article.objects.get_popular(),
         'weather': get_weather(request),
+        'date': date,
         }
+        for category in context['categories_list']:
+            if category.name == "People":
+                print("--------------")
+                print("i")
+                print("--------------")
+
         return render(request, "Home.html", context=context)
 
     def post(self, request, *args, **kwargs):
