@@ -120,8 +120,18 @@
                     </div>
 
                     <div class="tt-el-info text-right">
-                        <h4>32˚C</h4>
-                        <p>Current location</p>
+                        <h4>{{ weather.main.temp }}˚C</h4>
+                        <p>{{ weather.sys.country }}, {{ weather.name }}</p>
+
+
+                    </div>
+                    <div class="tt-el-info text-right">
+
+                      <div class="weather-icon">
+                        <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="weather">
+
+                      </div>
+
                     </div>
                 </div>
             </div>
