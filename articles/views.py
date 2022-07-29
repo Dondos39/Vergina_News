@@ -45,7 +45,10 @@ class ArticleView(DetailView):
             "category": detail.category.name,
             "sub_category": detail.sub_category.name,
             "related_articles": articles.models.Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
-            "total_views": detail.total_views
+            "total_views": detail.total_views,
+            "tags": detail.get_tags(),
+            "article_pic": detail.article_pic,
+            "article_video": detail.article_video,
             }
             return render(request, "article.html", context=context)
 
