@@ -6,6 +6,7 @@ import articles.models
 import authors.models
 import urllib.request
 import json
+import requests
 from decouple import config
 
 def get_weather():
@@ -15,15 +16,15 @@ def get_weather():
     print('--------------')
 
     url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&units=imperial&appid={api}'
-    weather = request.get(url).json()
+    weather = requests.get(url).json()
 
     print('--------------')
     print(weather)
     print('--------------')
 
-    context = {'weather' : weather}
+    return weather
 
-    return render(request, 'weather/index.html', context)
+   
 
 class HomepageViews(ListView):
     #context_object_name = 'categories'

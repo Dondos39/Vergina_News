@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'tags',
     'links',
     'subscribers',
+    'requests',
 ]
 
 MIDDLEWARE = [
