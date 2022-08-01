@@ -262,26 +262,12 @@
                 <div class="widget categories">
                     <h5 class="widget-title"><span>Categories</span></h5>
                     <ul>
+                        {% for category in links %}
                         <li>
-                            <a href="javascript:;">Gallery Post</a>
-                            <span>4</span>
+                            <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
+                            
                         </li>
-                        <li>
-                            <a href="javascript:;">Standard Post</a>
-                            <span>2</span>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Video Post</a>
-                            <span>2</span>
-                        </li>
-                        <li>
-                            <a href="javascript:;">News</a>
-                            <span>3</span>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Quotes</a>
-                            <span>1</span>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <!-- end .widget -->
@@ -290,39 +276,22 @@
                 <div class="widget recent-posts">
                     <h5 class="widget-title"><span>Popular Posts</span></h5>
                     <ul>
-                                                        <li class="post hover-light">
-                            <a href="javascript:;">
+                        {% for latest in roamingnews %}
+                        {% if forloop.counter < 5 %}
+                         <li class="post hover-light">
+                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">
                                 <div class="image image-thumb" data-src="images/news/category-01.jpg"></div>
                             </a>
-                            <h4><a href="#">North Carolina</a></h4>
-                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
+                            <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
+                            <p>{{ latest.text | safe | slice:":100" }}..</p>
                             <div class="meta">
-                                <span class="author">Dave Clark</span>
-                                <span class="date">2h</span>
+                              
+                                <span class="date">{{ latest.date_added }}</span>
                             </div>
                         </li>
-                                                        <li class="post hover-light">
-                            <a href="javascript:;">
-                                <div class="image image-thumb" data-src="images/news/category-02.jpg"></div>
-                            </a>
-                            <h4><a href="#">North Carolina</a></h4>
-                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
-                            <div class="meta">
-                                <span class="author">Dave Clark</span>
-                                <span class="date">2h</span>
-                            </div>
-                        </li>
-                                                        <li class="post hover-light">
-                            <a href="javascript:;">
-                                <div class="image image-thumb" data-src="images/news/category-03.jpg"></div>
-                            </a>
-                            <h4><a href="#">North Carolina</a></h4>
-                            <p>Voter ID Law Is Upheld by Federal Judge...</p>
-                            <div class="meta">
-                                <span class="author">Dave Clark</span>
-                                <span class="date">2h</span>
-                            </div>
-                        </li>
+                        {% endif %}
+                        {% endfor %}
+                       
                          </ul>
                 </div>
                 <!-- end .widget -->
@@ -429,6 +398,7 @@
                             <p class="comment-form-comment">
                                 <textarea id="comment" name="comment" placeholder="Comments"></textarea>
                             </p>
+                            {{captcha}}
                             <p class="form-submit">
                                 {% csrf_token %}
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">

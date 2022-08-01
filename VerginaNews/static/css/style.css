@@ -152,6 +152,7 @@
   bottom: 0px;
   line-height: 65px;
   height: 65px;
+  color:#fff;
 }
 
 #header .header-wrapper .right-content .user-profile {
@@ -300,7 +301,7 @@
   font-family: 'SF-UI-Display';
   font-size: 14px;
   font-weight: 500;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid #c39f5dff;
   padding-top: 20px;
   padding-bottom: 10px;
   z-index: 999;
@@ -619,6 +620,7 @@
 #header .left-content a {
   display: inline-block;
   text-decoration: none;
+  color: #fff;
 }
 
 #header .right-content a + a,
@@ -1042,7 +1044,7 @@ address abbr:first-child span {
 
 .simple-tab-space .tab-title a.active {
   color: #000;
-  border-bottom: 1px solid black
+  border-bottom: 1px solid #c39f5dff
 }
 /* Element information
 ------------------------------------ */
@@ -1145,11 +1147,12 @@ address abbr:first-child span {
   font-size: 50px;
   font-weight: 700;
   font-family: Montserrat;
-  color: #000;
+  color: rgb(195, 159, 93);
   text-transform: uppercase;
   margin-top: 30px;
   margin-bottom: 19px;
   position: relative;
+  
 }
 
 .block-title::after {
@@ -1159,6 +1162,7 @@ address abbr:first-child span {
   font-size: 160px;
   top: -72px;
   left: -14px;
+  color: #000;
 }
 @media screen and (max-width: 768px) {
   
@@ -7717,7 +7721,7 @@ blockquote:before {
 }
 
 .color-1 .label {
-  background: #f84432;
+  background: linear-gradient(290deg, #c39f5dff, transparent);
   color: #fff;
 }
 
@@ -7730,12 +7734,12 @@ blockquote:before {
 }
 
 .color-2 .label {
-  background: #1976d2;
+  background: linear-gradient(290deg, #c39f5dff, transparent);
   color: #fff;
 }
 
 .color-2 .label:before {
-  background: #1976d2;
+  background: linear-gradient(290deg, #c39f5dff, transparent);
 }
 
 .color-2 .meta:before {
@@ -8966,7 +8970,7 @@ blockquote:before {
 }
 
 .border-bottom2.color-1 {
-  border-color: #f84432;
+  border-color: #c39f5dff;
 }
 
 .border-bottom2.color-2 {
