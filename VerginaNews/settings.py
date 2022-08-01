@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'jquery',
     'ckeditor',
     'geoip2',
+    'ads',
     'articles',
     'authors',
     'comments',

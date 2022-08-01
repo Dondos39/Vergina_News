@@ -39,6 +39,7 @@ HOMEPAGE_N = [
     ('10', '10'),
 ]
 
+
 def get_img_path(instance, filename):
     ext = filename.split('.')[-1]
     filename_start = filename.replace('.'+ext,'')
@@ -64,6 +65,9 @@ class ArticleManager(models.Manager):
     def get_popular(self):
         return self.order_by('-total_views')
 
+    def get_featured(self):
+        return self.filter(featured=True)
+
 class Article(models.Model):
     ##  Attributes ##
     author = models.ManyToManyField(authors.models.Author)
@@ -82,6 +86,7 @@ class Article(models.Model):
     category = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)
     sub_category = models.ForeignKey(categories.models.SubCategory, on_delete=models.CASCADE, null=True)
     tags = models.ManyToManyField(tags.models.Tags, blank=True)
+    featured = models.BooleanField(max_length=1, default=False)
 
     tracker = FieldTracker()
     objects = ArticleManager()
@@ -110,7 +115,7 @@ class Article(models.Model):
 
     def get_tags(self):
         return self.tags.all()
-
+        
     def add_comment(self, dict):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
 
