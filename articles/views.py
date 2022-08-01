@@ -12,12 +12,12 @@ from django.contrib import messages
 from django import forms
 import json
 # import requests
-# Google captcha 
+# Google captcha
 from captcha.fields import ReCaptchaField
 
 class FormWithCaptcha(forms.Form):
     captcha = ReCaptchaField()
-    
+
 # Create your views here.
 def get_subcategory(request):
     id = request.GET.get('id', '')
@@ -105,11 +105,4 @@ class AllArticlesView(DetailView):
             context = {
                 'articles' : articles,
             }
-<<<<<<< HEAD
             return render(request, "allarticles.html", context=context)
-=======
-
-            return render(request, "allarticles.html", context=context)#
-
-
->>>>>>> ee32034b9e71057dbb37f4949b86917c86b25de8

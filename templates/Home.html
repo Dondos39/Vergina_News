@@ -13,7 +13,7 @@
                                 {% for important in important_list %}
                                    <div class="ms-slide color-2">
                                     <div class="slide-pattern"></div>
-                                    <img src="{{ important.article_pic }}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
+                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
 
                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category__name }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
@@ -53,18 +53,17 @@
             </div>
         </div>
         <!-- // Picture News -->
-
-{% for ad in ads %}
         <div class="container">
+
+
             <div class="row">
                 <div class="col-sm-12 pv3 pvb0">
-                    <a href="{{ ad.url }}">
-                        <img src="{{ ad.ad_pic.url }}" alt="banner">
+                    <a href="blog.html">
+                        <img src="{% static 'images/pages/banner-3-big.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
             <div class="border-line mv3"></div>
-{% endfor %}
   <!-- Section 5 -->
 
   <div class="row">
@@ -104,7 +103,7 @@
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
-                                
+
                             </div>
                         </div>
                         {% endfor %}
@@ -165,10 +164,12 @@
                                     <div class="widget">
                                         <h5 class="widget-title"><span>Tag Cloud:</span></h5>
                                         <div class="widget-tags">
-                                          {% for tag in popular_tags %}
-                                            <a href="{% url 'articles_view' search=tag.name %}">{{ tag.name }}</a>
-                                          {% endfor %}
 
+                                            <a href="javascript:;">Politics</a>
+                                            <a href="javascript:;">Opition</a>
+                                            <a href="javascript:;">Healt</a>
+                                            <a href="javascript:;">Travel</a>
+                                            <a href="javascript:;">Sports</a>
                                         </div>
                                     </div>
                             </div>
@@ -317,8 +318,8 @@
                                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
                                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                                     </div>
-                
-                
+
+
                                 </div>
                                 {% endif%}
                                 {% endfor %}
@@ -543,7 +544,6 @@
 </div>
 {% for category in categories_list %}
 {% if category.name == "People" %}
-
             <!-- New Section -->
             <div class="row">
 
@@ -552,41 +552,24 @@
                     <h2 class="block-title mt8" data-title="Featured" >
                         {{ category.name }}
                     </h2>
-
                     <div class="testimonial-slider fs-blog-carousel" data-col="1" data-row="1" data-responsive="1,1,1">
 
+
                         <div class="swiper-container">
-
                             <div class="swiper-wrapper">
-<<<<<<< HEAD
-                              {% for featured in category.get_featured %}
-
                            <div class="swiper-slide">
+                             {% for featured in category.get_featured %}
                                     <div class="swiper-holder">
-                                      {% if featured.prof_pic %}
-=======
-                           <div class="swiper-slide">
-                                    <div class="swiper-holder">
+                                      <img src="{{ featured.article_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
->>>>>>> ee32034b9e71057dbb37f4949b86917c86b25de8
-                                      <img src="{{ author.prof_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
-                                
                                         <blockquote>
-<<<<<<< HEAD
                                             <cite>{{ featured.title }}</cite>
-
-=======
-                                            <cite></cite>
-                                            <p></p>
->>>>>>> ee32034b9e71057dbb37f4949b86917c86b25de8
+                                            <p>{{ featured.text | safe }}</p>
                                         </blockquote>
+
                                     </div>
                                     <!-- /.swiper-holder -->
-
-<<<<<<< HEAD
-                                    {% endfor %}
-=======
->>>>>>> ee32034b9e71057dbb37f4949b86917c86b25de8
+                             {% endfor %}
                                 </div>
                                 <!-- /.swiper-slide -->
 
@@ -595,6 +578,7 @@
 
                         </div>
                         <!-- /.swiper-container -->
+
 
                     </div>
                     <!-- /.testimonial-slider -->
@@ -649,8 +633,8 @@
                     				    		</div>
                     				    		<!-- /.col -->
                                                 {% endif %}
-                                                {% endfor %}  
-                    				    		
+                                                {% endfor %}
+
                                                 {% for articles in category.get_articles %}
                                                 {% if forloop.counter > 5 %}
                     				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
@@ -672,7 +656,7 @@
                     				    		</div>
                     				    		<!-- /.col -->
                                                 {% endif %}
-                                                {% endfor %}  
+                                                {% endfor %}
 
 
                     				    	</div>
@@ -780,7 +764,7 @@
                         <span class="date">{{ articles.updated_at }}</span>
                       </div>
                     </a>
-                    
+
                   </div>
 
                   <div class="row">

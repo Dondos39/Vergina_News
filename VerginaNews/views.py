@@ -69,7 +69,6 @@ class HomepageViews(ListView):
         'weather': get_weather(request),
         'date': date,
         }
-        print(context['ads'])
         return render(request, "Home.html", context=context)
 
     def post(self, request, *args, **kwargs):

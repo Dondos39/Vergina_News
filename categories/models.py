@@ -12,7 +12,7 @@ class Category(models.Model):
         ordering = ('name', )
         verbose_name = 'category'
         verbose_name_plural = 'categories'
-        
+
     def id(self):
         return self.id
 
@@ -33,7 +33,11 @@ class Category(models.Model):
         return articles.models.Article.objects.all().filter(category__name=self.name).order_by('-updated_at')[:6][::1]
 
     def get_featured(self):
-        return articles.models.Article.objects.all().filter(featured=True)
+        print("----------------")
+        print(articles.models.Article.objects.filter(featured=True).values('article_pic', 'title', 'text'))
+        print("----------------")
+        print()
+        return articles.models.Article.objects.filter(featured=True)
 
 
 class SubCategory(models.Model):
