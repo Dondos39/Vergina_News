@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'links',
     'subscribers',
     'requests',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,7 @@ TEMPLATES = [
                 'categories.context_processors.menu_links',
                 'articles.context_processors.imp_news',
                 'articles.context_processors.roaming_news',
+                'VerginaNews.context_processors.menu_weather',
 
             ],
         },
@@ -151,3 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CSRF_COOKIE_SECURE = True
+
+
+RECAPTCHA_PUBLIC_KEY = '6LdDsDkhAAAAAFt8aF8tv9QT8EcCmP52bXu5bwK9'
+RECAPTCHA_PRIVATE_KEY = '6LdDsDkhAAAAAPUP9I1UB6OGSVtT7A8pp4D5yT_B'
+RECAPTCHA_REQUIRED_SCORE = 0.85

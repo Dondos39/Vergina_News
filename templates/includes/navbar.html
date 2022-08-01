@@ -11,7 +11,7 @@
                         <div class="site-branding">
                             <!-- image logo -->
                             <a href="{% url 'home' %}" rel="home" class="custom-logo-link">
-                                <img src="images/logo.svg" alt="logo image">
+                                <img src="media/logo/logo.png" alt="logo image">
                             </a>
                             <!-- text logo -->
                             <!--
@@ -117,23 +117,23 @@
                     <div class="tt-el-info text-right">
                         <h4>{% now "d" %}</h4>
                         <p>{% now "M" %}, {% now "Y" %}</p>
+                      
                 
                     </div>
-
                     <div class="tt-el-info text-right">
-                        <h4>{{ weather.main.temp }}˚C</h4>
-                        <p>{{ weather.sys.country }}, {{ weather.name }}</p>
-
+                        <div class="weather-icon">
+                            
+                            <img style="margin-top: -40px; margin-right: -60px;" src="http://openweathermap.org/img/wn/{{ menuweather.icon }}@2x.png" alt="weather">
+                        </div>
+                        </div>
+                    <div class="tt-el-info text-right">
+                       
+                        <h4>{{ menuweather.main.temp }}˚C</h4>
+                        <p>{{ menuweather.sys.country }}, {{ menuweather.name }}</p>
+                        
 
                     </div>
-                    <div class="tt-el-info text-right">
 
-                      <div class="weather-icon">
-                        <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="weather">
-
-                      </div>
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -159,7 +159,7 @@
                 <nav class="big-menu">
                     <ul>
                         {% for category in links %}
-                        <li><a href="news.html">{{ category.name }}</a></li>
+                        <li><a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a></li>
                         <nav class="small-menu">
                             <ul>
                               {% for subcategory in category.get_subcategories %}

@@ -12,7 +12,12 @@ from django.contrib import messages
 from django import forms
 import json
 # import requests
+# Google captcha 
+from captcha.fields import ReCaptchaField
 
+class FormWithCaptcha(forms.Form):
+    captcha = ReCaptchaField()
+    
 # Create your views here.
 def get_subcategory(request):
     id = request.GET.get('id', '')
@@ -20,10 +25,7 @@ def get_subcategory(request):
     category_id=int(id)).values('id', 'name'))
     return HttpResponse(json.dumps(result), content_type="application/json")
 
-# def newshome(request):
-#     news_api_request = requests.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=d9051363b5064c83a6c6983704369199")
-#     api = json.load(news_api_request)
-#     return render (request, 'Home.html', {'api':api})
+
 
 class ArticleView(DetailView):
         context_object_name = 'articles'
@@ -42,6 +44,7 @@ class ArticleView(DetailView):
             "authors": detail.get_authors(),
             "updated_at":detail.updated_at,
             "comments": detail.get_comments(),
+            "captcha": FormWithCaptcha,
             "category": detail.category.name,
             "sub_category": detail.sub_category.name,
             "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
@@ -102,4 +105,11 @@ class AllArticlesView(DetailView):
             context = {
                 'articles' : articles,
             }
+<<<<<<< HEAD
             return render(request, "allarticles.html", context=context)
+=======
+
+            return render(request, "allarticles.html", context=context)#
+
+
+>>>>>>> ee32034b9e71057dbb37f4949b86917c86b25de8
