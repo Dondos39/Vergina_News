@@ -30,7 +30,7 @@ urlpatterns = [
     path('category/search=<str:search>/', articles.views.AllArticlesView.as_view(), name='articles_view'),
     re_path('category/(?P<category>[\w\-]+)/$', categories.views.CategoryView.as_view(), name='category_view'),
     re_path('category/(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),
-    re_path('/(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view')
+    re_path('/(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view'),
 ]
 
 if settings.DEBUG:

@@ -3,8 +3,8 @@ from .models import Article
 from django import forms
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_added', 'time_added', 'no_important', 'no_homepage')
-    list_editable = ('no_important', 'no_homepage')
+    list_display = ('title', 'date_added', 'time_added', 'no_important', 'no_homepage', 'featured')
+    list_editable = ('no_important', 'no_homepage', 'featured')
     list_filter = ('no_important', 'date_added')
     search_fields = ['tags__name', 'author__first_name']
     readonly_fields = ['updated_at', 'updated_by', 'total_views']
@@ -53,6 +53,15 @@ class ArticleAdmin(admin.ModelAdmin):
        #Check if user checked video clear button.
         if request.POST.get('article_video-clear') == 'on':
             obj.article_video.storage.delete(str(old_article_video))
+
+        if obj.featured:
+            if Article.objects.get_featured().exists():
+                temp = obj.__class__.objects.get(featured=True)
+            else:
+                temp = None
+            if temp != None and self != temp:
+                temp.featured = False
+                temp.save()
         super().save_model(request, obj, form, change)
 
 # Register your models here.

@@ -1,8 +1,20 @@
 from django.db import models
+import categories.models
+
+
+class TagManager(models.Manager):
+    def get_popular(self):
+        return self.order_by('-total_views')
 
 # Create your models here.
 class Tags(models.Model):
     name = models.TextField()
+    category = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)
+    sub_category = models.ForeignKey(categories.models.SubCategory, on_delete=models.CASCADE, null=True)
+
+    total_views = models.IntegerField(default=0)
+
+    objects = TagManager()
 
     class Meta:
         verbose_name_plural = "Tags"

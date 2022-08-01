@@ -12,6 +12,7 @@ class Category(models.Model):
         ordering = ('name', )
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+
     def id(self):
         return self.id
 
@@ -21,12 +22,22 @@ class Category(models.Model):
     def get_subcategories(self):
         return self.subcategory_set.all()
 
+    def get_popular_tags(self):
+            print(self.tags_set.order_by('-total_views'))
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
     def get_articles(self):
         return articles.models.Article.objects.all().filter(category__name=self.name).order_by('-updated_at')[:6][::1]
+
+    def get_featured(self):
+        print("----------------")
+        print(articles.models.Article.objects.filter(featured=True).values('article_pic', 'title', 'text'))
+        print("----------------")
+        print()
+        return articles.models.Article.objects.filter(featured=True)
 
 
 class SubCategory(models.Model):
