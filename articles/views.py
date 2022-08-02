@@ -26,7 +26,6 @@ def get_subcategory(request):
     return HttpResponse(json.dumps(result), content_type="application/json")
 
 
-
 class ArticleView(DetailView):
         context_object_name = 'articles'
         template_name = 'article.html'
@@ -91,14 +90,15 @@ class AllArticlesView(DetailView):
         model = Article
 
         def get(self, request, *args, **kwargs):
-
             categories = Article.objects.all().values_list('category__name', flat=True).distinct()
             sub_categories = Article.objects.all().values_list('sub_category__name', flat=True).distinct()
             tags = Tags.objects.all().values_list('name', flat=True).distinct()
-
             if kwargs['search'] == 'all':
                 articles = Article.objects.all().order_by('-updated_at')
             elif kwargs['search'] in tags:
+                tag = Tags.objects.get(name=kwargs['search'])
+                tag.total_views = tag.total_views + 1
+                tag.save(update_fields=['total_views'])
                 articles = Article.objects.filter(tags__name=kwargs['search']).order_by('-updated_at')
             else:
                 articles = Article.objects.filter(title__icontains=kwargs['search']).order_by('-updated_at')

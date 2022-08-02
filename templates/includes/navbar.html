@@ -51,7 +51,7 @@
                             </li>
                             {% for category in links %}
                             <li class="menu-item-has-children">
-                                <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
+                                <a href="{% url 'category_view' category=category.slug %}">{{ category.name }}</a>
 
                                 <ul>
 
@@ -117,20 +117,20 @@
                     <div class="tt-el-info text-right">
                         <h4>{% now "d" %}</h4>
                         <p>{% now "M" %}, {% now "Y" %}</p>
-                      
-                
+
+
                     </div>
                     <div class="tt-el-info text-right">
                         <div class="weather-icon">
-                            
+
                             <img style="margin-top: -40px; margin-right: -60px;" src="http://openweathermap.org/img/wn/{{ menuweather.icon }}@2x.png" alt="weather">
                         </div>
                         </div>
                     <div class="tt-el-info text-right">
-                       
+
                         <h4>{{ menuweather.main.temp }}˚C</h4>
                         <p>{{ menuweather.sys.country }}, {{ menuweather.name }}</p>
-                        
+
 
                     </div>
 

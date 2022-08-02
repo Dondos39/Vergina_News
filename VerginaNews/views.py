@@ -73,6 +73,9 @@ class HomepageViews(ListView):
 
     def post(self, request, *args, **kwargs):
         keyword = request.POST.get('search')
+        print('-------------')
+        print(request.POST.get('tag'))
+        print('-------------')
         if keyword == "":
             result = 'all'
         else:
