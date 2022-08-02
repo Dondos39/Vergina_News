@@ -23,7 +23,7 @@ class Category(models.Model):
         return self.subcategory_set.all()
 
     def get_popular_tags(self):
-            print(self.tags_set.order_by('-total_views'))
+        return self.tags_set.order_by('-total_views')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -33,10 +33,6 @@ class Category(models.Model):
         return articles.models.Article.objects.all().filter(category__name=self.name).order_by('-updated_at')[:6][::1]
 
     def get_featured(self):
-        print("----------------")
-        print(articles.models.Article.objects.filter(featured=True).values('article_pic', 'title', 'text'))
-        print("----------------")
-        print()
         return articles.models.Article.objects.filter(featured=True)
 
 
@@ -53,6 +49,9 @@ class SubCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_popular_tags(self):
+        return self.tags_set.order_by('-total_views')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

@@ -115,7 +115,7 @@ class Article(models.Model):
 
     def get_tags(self):
         return self.tags.all()
-        
+
     def add_comment(self, dict):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
 

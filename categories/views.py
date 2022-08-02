@@ -15,11 +15,8 @@ class CategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         category_name = self.kwargs.get('category')
-        articles = Article.objects.all().filter(category__name=category_name).order_by('-updated_at')
-        category = Category.objects.filter(name=category_name)
-        print("---------------")
-        print(category)
-        print("---------------")
+        articles = Article.objects.all().filter(category__slug=category_name).order_by('-updated_at')
+        category = Category.objects.filter(slug=category_name)
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)

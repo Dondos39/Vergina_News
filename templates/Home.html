@@ -164,12 +164,9 @@
                                     <div class="widget">
                                         <h5 class="widget-title"><span>Tag Cloud:</span></h5>
                                         <div class="widget-tags">
-
-                                            <a href="javascript:;">Politics</a>
-                                            <a href="javascript:;">Opition</a>
-                                            <a href="javascript:;">Healt</a>
-                                            <a href="javascript:;">Travel</a>
-                                            <a href="javascript:;">Sports</a>
+                                          {% for tag in popular_tags %}
+                                            <a href="{% url 'articles_view' search=tag %}">{{ tag }}</a>
+                                          {% endfor %}
                                         </div>
                                     </div>
                             </div>
