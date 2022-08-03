@@ -6,8 +6,7 @@ from django.core.validators import FileExtensionValidator
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from model_utils import FieldTracker
-import uuid
-import os
+from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
 
 # Create your models here.
 CATEGORIES = (("1", "Sports"),
@@ -19,6 +18,7 @@ CATEGORIES = (("1", "Sports"),
                ("7", "Business"),
                ("8", "Economy"),
 )
+
 IMPORTANT_N = [
     ('1', '1'),
     ('2', '2'),
@@ -26,6 +26,7 @@ IMPORTANT_N = [
     ('4', '4'),
     ('5', '5'),
 ]
+
 HOMEPAGE_N = [
     ('1', '1'),
     ('2', '2'),
@@ -38,19 +39,6 @@ HOMEPAGE_N = [
     ('9', '9'),
     ('10', '10'),
 ]
-
-
-def get_img_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename_start = filename.replace('.'+ext,'')
-    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
-    return os.path.join('article_pics', filename)
-
-def get_video_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename_start = filename.replace('.'+ext,'')
-    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
-    return os.path.join('videos', filename)
 
 class ArticleManager(models.Manager):
     def get_important(self):
@@ -75,7 +63,7 @@ class Article(models.Model):
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
-    article_pic = models.ImageField(upload_to=get_img_path, blank=True)
+    article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,
