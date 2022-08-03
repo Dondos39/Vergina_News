@@ -9,8 +9,8 @@ class TagManager(models.Manager):
 # Create your models here.
 class Tags(models.Model):
     name = models.TextField()
-    category = models.ManyToManyField(categories.models.Category, null=True)
-    sub_category = models.ManyToManyField(categories.models.SubCategory, null=True)
+    category = models.ManyToManyField(categories.models.Category)
+    sub_category = models.ManyToManyField(categories.models.SubCategory)
 
     total_views = models.IntegerField(default=0)
 
