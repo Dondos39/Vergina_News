@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .models import Article
 from categories.models import SubCategory
-import articles.models
-import subscribers.models
+from subscribers.models import Subscriber
+from tags.models import Tags
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
@@ -12,12 +12,12 @@ from django.contrib import messages
 from django import forms
 import json
 # import requests
-# Google captcha 
+# Google captcha
 from captcha.fields import ReCaptchaField
 
 class FormWithCaptcha(forms.Form):
     captcha = ReCaptchaField()
-    
+
 # Create your views here.
 def get_subcategory(request):
     id = request.GET.get('id', '')
@@ -26,16 +26,15 @@ def get_subcategory(request):
     return HttpResponse(json.dumps(result), content_type="application/json")
 
 
-
 class ArticleView(DetailView):
         context_object_name = 'articles'
         template_name = 'article.html'
-        model = articles.models.Article
+        model = Article
 
         def get(self, request, *args, **kwargs):
             post_id = self.kwargs.get('post_id')
 
-            detail = articles.models.Article.objects.get(id=post_id)
+            detail = Article.objects.get(id=post_id)
             detail.total_views = detail.total_views + 1
             detail.save(update_fields=['total_views'])
             context = {
@@ -47,7 +46,7 @@ class ArticleView(DetailView):
             "captcha": FormWithCaptcha,
             "category": detail.category.name,
             "sub_category": detail.sub_category.name,
-            "related_articles": articles.models.Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
+            "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
             "total_views": detail.total_views,
             "tags": detail.get_tags(),
             "article_pic": detail.article_pic,
@@ -58,7 +57,7 @@ class ArticleView(DetailView):
         def post(self, request, *args, **kwargs):
             id = request.POST.get('Article ID')
             if id != None:
-                article = articles.models.Article.objects.get(id=id)
+                article = Article.objects.get(id=id)
                 comment = {
                    "author": request.POST.get('author'),
                    "email": request.POST.get('email'),
@@ -78,10 +77,10 @@ class ArticleView(DetailView):
                     validate_email(email)
                 except forms.ValidationError:
                     messages.info(request, 'Please enter a correct email address.')
-                if subscribers.models.Subscriber.objects.filter(email=email).exists():
+                if Subscriber.objects.filter(email=email).exists():
                         messages.info(request, 'Email Address already exists.')
                 else:
-                    sub = subscribers.models.Subscriber(email=email)
+                    sub = Subscriber(email=email)
                     sub.save()
             return HttpResponseRedirect(self.request.path_info)
 
@@ -91,15 +90,19 @@ class AllArticlesView(DetailView):
         model = Article
 
         def get(self, request, *args, **kwargs):
+            categories = Article.objects.all().values_list('category__name', flat=True).distinct()
+            sub_categories = Article.objects.all().values_list('sub_category__name', flat=True).distinct()
+            tags = Tags.objects.all().values_list('name', flat=True).distinct()
             if kwargs['search'] == 'all':
-                all_articles = articles.models.Article.objects.all().order_by('-updated_at')
+                articles = Article.objects.all().order_by('-updated_at')
+            elif kwargs['search'] in tags:
+                tag = Tags.objects.get(name=kwargs['search'])
+                tag.total_views = tag.total_views + 1
+                tag.save(update_fields=['total_views'])
+                articles = Article.objects.filter(tags__name=kwargs['search']).order_by('-updated_at')
             else:
-                all_articles = articles.models.Article.objects.filter(title__icontains=kwargs['search']).order_by('-updated_at')
+                articles = Article.objects.filter(title__icontains=kwargs['search']).order_by('-updated_at')
             context = {
-                'articles' : all_articles,
-
+                'articles' : articles,
             }
-
-            return render(request, "allarticles.html", context=context)#
-
-
+            return render(request, "allarticles.html", context=context)

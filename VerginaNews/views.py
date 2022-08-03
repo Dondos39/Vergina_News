@@ -4,6 +4,8 @@ from django.views.generic.list import ListView
 import categories.models
 import articles.models
 import authors.models
+import ads.models
+import tags.models
 import urllib.request
 import json
 import requests
@@ -54,7 +56,6 @@ class HomepageViews(ListView):
 
     def get(self, request, *args, **kwargs):
         date= datetime.datetime.now()
-        print(date)
         context = {
         'categories_list': categories.models.Category.objects.all(),
         'articles_list': articles.models.Article.objects.all(),
@@ -63,19 +64,18 @@ class HomepageViews(ListView):
         'roaming_news_list': articles.models.Article.objects.get_latest(),
         'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
         'popular_news_list': articles.models.Article.objects.get_popular(),
+        'popular_tags': tags.models.Tags.objects.get_popular(),
+        'ads': ads.models.Ad.objects.get_priority(1),
         'weather': get_weather(request),
         'date': date,
         }
-        for category in context['categories_list']:
-            if category.name == "People":
-                print("--------------")
-                print("i")
-                print("--------------")
-
         return render(request, "Home.html", context=context)
 
     def post(self, request, *args, **kwargs):
         keyword = request.POST.get('search')
+        print('-------------')
+        print(request.POST.get('tag'))
+        print('-------------')
         if keyword == "":
             result = 'all'
         else:

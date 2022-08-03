@@ -14,16 +14,17 @@ class CategoryView(DetailView):
     model = Category
 
     def get(self, request, *args, **kwargs):
-        category = self.kwargs.get('category')
-        articles = Article.objects.all().filter(category__name=category).order_by('-updated_at')
+        category_name = self.kwargs.get('category')
+        articles = Article.objects.all().filter(category__slug=category_name).order_by('-updated_at')
+        category = Category.objects.filter(slug=category_name)
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)
         article_count = articles.count()
         context = {
-                "category":articles.values_list('category__name', flat=True).first(),
+                "category": category,
                 "articles": page_articles ,
-                'article_count' : article_count, 
+                'article_count' : article_count,
         }
         return render(request, "category.html", context=context)
 
@@ -47,7 +48,3 @@ class SubCategoryView(DetailView):
                 "article_count": article_count,
         }
         return render(request, "sub_category.html", context=context)
-
-
-
-

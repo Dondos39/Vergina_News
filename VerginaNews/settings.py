@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'jquery',
     'ckeditor',
     'geoip2',
+    'ads',
     'articles',
     'authors',
     'comments',
@@ -81,6 +82,7 @@ TEMPLATES = [
                 'categories.context_processors.menu_links',
                 'articles.context_processors.imp_news',
                 'articles.context_processors.roaming_news',
+                'tags.context_processors.tag_cloud',
                 'VerginaNews.context_processors.menu_weather',
 
             ],

@@ -4,6 +4,7 @@ from django.dispatch import receiver
 import articles.models
 import uuid
 import os
+from model_utils import FieldTracker
 
 
 
@@ -18,6 +19,12 @@ JOB_CHOICES = (("1", "Sports"),
                ("8", "Economy"),
 )
 
+FEATURED_N = [
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+]
+
 def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
     filename_start = filename.replace('.'+ext,'')
@@ -31,7 +38,9 @@ class Author(models.Model):
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)
     job_title = models.CharField(max_length=10, choices=JOB_CHOICES)
-    featured = models.BooleanField(max_length=1, default=False)
+    no_featured =  models.CharField(choices=FEATURED_N, max_length=4, null=True, blank=True)
+
+    tracker = FieldTracker()
 
     @property
     def author_id(self):

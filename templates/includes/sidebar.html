@@ -7,13 +7,9 @@
                 <div class="widget">
                     <h5 class="widget-title"><span>Tag Cloud</span></h5>
                     <div class="widget-tags">
-                        <a href="javascript:;">Politics</a>
-                        <a href="javascript:;">Opition</a>
-                        <a href="javascript:;">Healt</a>
-                        <a href="javascript:;">Travel</a>
-                        <a href="javascript:;">Sports</a>
-                        <a href="javascript:;">Breaking</a>
-                        <a href="javascript:;">Population</a>
+                      {% for tag in popular_tags %}
+                        <a href="{% url 'articles_view' search=tag %}">{{ tag }}</a>
+                      {% endfor %}
                     </div>
                 </div>
                 <!-- end .widget -->
@@ -44,7 +40,7 @@
                         {% for category in links %}
                         <li>
                             <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
-                            
+
                         </li>
                         {% endfor %}
                     </ul>
@@ -64,13 +60,13 @@
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}..</p>
                             <div class="meta">
-                              
+
                                 <span class="date">{{ latest.date_added }}</span>
                             </div>
                         </li>
                         {% endif %}
                         {% endfor %}
-                       
+
                          </ul>
                 </div>
                 <!-- end .widget -->
@@ -86,5 +82,3 @@
                 </div>
                 <!-- end .widget -->
             </div>
-
-

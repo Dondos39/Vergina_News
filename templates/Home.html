@@ -103,7 +103,7 @@
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
-                                
+
                             </div>
                         </div>
                         {% endfor %}
@@ -164,12 +164,9 @@
                                     <div class="widget">
                                         <h5 class="widget-title"><span>Tag Cloud:</span></h5>
                                         <div class="widget-tags">
-
-                                            <a href="javascript:;">Politics</a>
-                                            <a href="javascript:;">Opition</a>
-                                            <a href="javascript:;">Healt</a>
-                                            <a href="javascript:;">Travel</a>
-                                            <a href="javascript:;">Sports</a>
+                                          {% for tag in popular_tags %}
+                                            <a href="{% url 'articles_view' search=tag %}">{{ tag }}</a>
+                                          {% endfor %}
                                         </div>
                                     </div>
                             </div>
@@ -318,8 +315,8 @@
                                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
                                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                                     </div>
-                
-                
+
+
                                 </div>
                                 {% endif%}
                                 {% endfor %}
@@ -544,7 +541,6 @@
 </div>
 {% for category in categories_list %}
 {% if category.name == "People" %}
-
             <!-- New Section -->
             <div class="row">
 
@@ -553,24 +549,26 @@
                     <h2 class="block-title mt8" data-title="Featured" >
                         {{ category.name }}
                     </h2>
-
                     <div class="testimonial-slider fs-blog-carousel" data-col="1" data-row="1" data-responsive="1,1,1">
 
-                        <div class="swiper-container">
 
+                        <div class="swiper-container">
                             <div class="swiper-wrapper">
                            <div class="swiper-slide">
+                             {% for featured in category.get_featured %}
                                     <div class="swiper-holder">
+                                      <img src="" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
-                                      <img src="{{ author.prof_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
-                                
                                         <blockquote>
-                                            <cite>fdfsdfds</cite>
-                                            <p>fsdfsdfsdf</p>
+
+                                            <cite>{{ featured.title }}</cite>
+                                            <p>{{ featured.text | safe }}</p>
+
                                         </blockquote>
+
                                     </div>
                                     <!-- /.swiper-holder -->
-
+                             {% endfor %}
                                 </div>
                                 <!-- /.swiper-slide -->
 
@@ -579,6 +577,7 @@
 
                         </div>
                         <!-- /.swiper-container -->
+
 
                     </div>
                     <!-- /.testimonial-slider -->
@@ -633,8 +632,8 @@
                     				    		</div>
                     				    		<!-- /.col -->
                                                 {% endif %}
-                                                {% endfor %}  
-                    				    		
+                                                {% endfor %}
+
                                                 {% for articles in category.get_articles %}
                                                 {% if forloop.counter > 5 %}
                     				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
@@ -656,7 +655,7 @@
                     				    		</div>
                     				    		<!-- /.col -->
                                                 {% endif %}
-                                                {% endfor %}  
+                                                {% endfor %}
 
 
                     				    	</div>
@@ -764,7 +763,7 @@
                         <span class="date">{{ articles.updated_at }}</span>
                       </div>
                     </a>
-                    
+
                   </div>
 
                   <div class="row">
