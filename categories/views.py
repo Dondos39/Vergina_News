@@ -6,7 +6,6 @@ from articles.models import Article
 from .models import Category , SubCategory
 from django.views.generic.list import ListView
 
-
 # Create your views here.
 class CategoryView(DetailView):
     context_object_name = 'category'

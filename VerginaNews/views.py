@@ -7,53 +7,10 @@ import authors.models
 import ads.models
 import tags.models
 import urllib.request
-import json
-import requests
 import geoip2.webservice
 import datetime
-from decouple import config
 from urllib.request import urlopen
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
-
-def get_location(ip_address):
-    request_url = 'https://geolocation-db.com/jsonp/' + ip_address
-    # Send request and decode the result
-    response = requests.get(request_url)
-    result = response.content.decode()
-    # Clean the returned string so it just contains the dictionary data for the IP address
-    result = result.split("(")[1].strip(")")
-    # Convert this data into a dictionary
-    result  = json.loads(result)
-    return result['latitude'], result['longitude']
-
-def convert_to_celsius(Fahrenheit):
-    Celsius = (Fahrenheit - 32) * 5.0/9.0
-    return Celsius
-
-def get_weather(request):
-    client_ip = get_client_ip(request)
-    lat, lon = get_location('91.184.219.149')
-    api=config('WEATHER_API_KEY')
-
-    url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
-    weather = requests.get(url).json()
-
-    weather['main']['temp'] = int(convert_to_celsius(weather['main']['temp']))
-    weather['icon'] = weather['weather'][0]['icon']
-    return weather
-
-def get_news(request):
-    api=config('NEWS_API_KEY')
-    url = f'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={api}'
-    articles = requests.get(url).json()
-    return articles['articles']
+from VerginaNews.utils import get_weather, get_news
 
 class HomepageViews(ListView):
     #context_object_name = 'categories'
@@ -80,9 +37,6 @@ class HomepageViews(ListView):
 
     def post(self, request, *args, **kwargs):
         keyword = request.POST.get('search')
-        print('-------------')
-        print(request.POST.get('tag'))
-        print('-------------')
         if keyword == "":
             result = 'all'
         else:

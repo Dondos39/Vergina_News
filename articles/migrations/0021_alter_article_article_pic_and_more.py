@@ -3,7 +3,7 @@
 import articles.models
 import django.core.validators
 from django.db import migrations, models
-
+import VerginaNews
 
 class Migration(migrations.Migration):
 
@@ -15,12 +15,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='article',
             name='article_pic',
-            field=models.ImageField(blank=True, upload_to=articles.models.get_img_path),
+            field=models.ImageField(blank=True, upload_to=VerginaNews.utils.get_img_path),
         ),
         migrations.AlterField(
             model_name='article',
             name='article_video',
-            field=models.FileField(blank=True, null=True, upload_to=articles.models.get_video_path, validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])]),
+            field=models.FileField(blank=True, null=True, upload_to=VerginaNews.utils.get_video_path, validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])]),
         ),
         migrations.AlterField(
             model_name='article',

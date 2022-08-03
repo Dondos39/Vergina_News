@@ -5,8 +5,7 @@ import articles.models
 import uuid
 import os
 from model_utils import FieldTracker
-
-
+from VerginaNews.utils import get_img_path
 
 # Create your models here.
 JOB_CHOICES = (("1", "Sports"),
@@ -25,12 +24,6 @@ FEATURED_N = [
     ('3', '3'),
 ]
 
-def get_file_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename_start = filename.replace('.'+ext,'')
-    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
-    return os.path.join('author_pics', filename)
-
 class AuthorManager(models.Manager):
         def get_featured(self):
             return self.filter(no_featured__in=['1', '2', '3']).order_by('no_featured')
@@ -38,7 +31,7 @@ class AuthorManager(models.Manager):
 class Author(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-    prof_pic = models.ImageField(upload_to=get_file_path, blank=True)
+    prof_pic = models.ImageField(upload_to=get_img_path, blank=True)
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)
     job_title = models.CharField(max_length=10, choices=JOB_CHOICES)

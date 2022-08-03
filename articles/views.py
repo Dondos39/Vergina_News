@@ -25,7 +25,6 @@ def get_subcategory(request):
     category_id=int(id)).values('id', 'name'))
     return HttpResponse(json.dumps(result), content_type="application/json")
 
-
 class ArticleView(DetailView):
         context_object_name = 'articles'
         template_name = 'article.html'
