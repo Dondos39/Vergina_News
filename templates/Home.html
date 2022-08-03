@@ -468,11 +468,13 @@
                            <div class="swiper-slide">
                              {% for featured in category.get_featured %}
                                     <div class="swiper-holder">
-                                      <img src="{{ featured.article_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
+                                      <img src="" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
                                         <blockquote>
+
                                             <cite>{{ featured.title }}</cite>
                                             <p>{{ featured.text | safe }}</p>
+
                                         </blockquote>
 
                                     </div>
@@ -614,7 +616,7 @@
 						</div>
 						<!-- /.meta -->
 
-						<a href="single.html" class="category-more">Continue to the news <img src="images/arrow-right.png" alt="Arrow"></a>
+						<a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"></a>
 
 					</div>
 
