@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load humanize %}
 {% block content %}
 
     <div class="content-area pvt0 entertainment-layout">
@@ -99,7 +100,7 @@
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">
                                 <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                             </a>
-                            <span class="date">{{ latest.date_added }}</span>
+                            <span class="date">{{ latest.updated_at|naturaltime }}</span>
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
@@ -123,7 +124,7 @@
                           <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">{{ pouplar.title }}</a></h4>
                           <p>{{ pouplar.text | safe | slice:":100" }}...</p>
                           <div class="meta">
-                              <span class="date">{{ pouplar.date_added }}</span>
+                              <span class="date">{{ latest.updated_at|naturaltime }}</span>
                           </div>
                       </div>
                       {% endfor %}
@@ -187,7 +188,7 @@
                         {% for author in frontnew.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
-                        <span class="date">{{ frontnew.updated_at }}</span>
+                        <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
 
                         <div class="social-links pull-right">
                             <span>Share: </span>
@@ -232,7 +233,7 @@
                             {% for author in frontnew.get_authors %}
                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.updated_at }}</span>
+                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -270,7 +271,7 @@
                             {% for author in frontnew.get_authors %}
                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.updated_at }}</span>
+                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -309,7 +310,7 @@
                                             {% for author in frontnew.get_authors %}
                                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                             {% endfor %}
-                                            <span class="date">{{ frontnew.updated_at }}</span>
+                                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                                         </div>
                                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
                                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -336,7 +337,7 @@
                                                 {% for author in frontnew.get_authors %}
                                                 <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                                 {% endfor %}
-												<span class="date">{{ frontnew.date_added }}</span>
+												<span class="date">{{ frontnew.updated_at|naturaltime }}</span>
 											</div>
 										</div>
 
@@ -415,7 +416,7 @@
             <div class="col-sm-12">
 
                 <div class="fs-blog-carousel" data-col="4" data-row="2" data-responsive="3,2,1">
-                    <h3 class="fs-title text-center">Word News</h3>
+                    <h3 class="fs-title text-center">World News</h3>
                     <div class="fs-pager">
                         <span>
                             <a href="single.html" class="fs-arrow-prev swiper-prev"><img src="{% static 'images/arrow-prev.png' %}" alt="preview"></a>
@@ -425,112 +426,22 @@
                     </div>
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
+                          {% for article in external_articles %}
                              <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="single.html">
-                                        <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
+                                        <img loading="lazy" src="{{ article.urlToImage }}" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Hottest</span>
                                     <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
+                                        <h4><a href="{{ article.url }}">{{ article.title }}</a></h4>
                                         <p class="read-more">
-                                            <a href="single.html">read the article</a>
+                                            <a href="{[ article.url ]}">read the article</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                                                            <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                         <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                   <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                                                            <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                                            <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                    <span class='fs-label'>Trending</span>						        		<div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                                            <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                                                            <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                 <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                                                            <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                  <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                    <span class='fs-label'>Hottest</span>						        		<div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                                                            <div class="swiper-slide">
-                                <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
-                                        <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
-                                    </a>
-                                                                            <div class="entry-title">
-                                        <h4><a href="single.html">What does Drake’s whiskey say about him?</a></h4>
-                                        <p class="read-more">
-                                            <a href="single.html">read the article</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
+                           {% endfor %}
                          </div>
                     </div>
                 </div>
@@ -760,7 +671,7 @@
                         {% for author in articles.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
-                        <span class="date">{{ articles.updated_at }}</span>
+                        <span class="date">{{ articles.updated_at|naturaltime }}</span>
                       </div>
                     </a>
 
@@ -804,7 +715,7 @@
                       {% for author in articles.get_authors %}
                       <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                       {% endfor %}
-                      <span class="date">{{ articles.updated_at }}</span>
+                      <span class="date">{{ articles.updated_at|naturaltime }}</span>
                     </div>
                     <!-- <div class="border-bottom2 mb2 color-1"></div> -->
                     <h4 class="font18">

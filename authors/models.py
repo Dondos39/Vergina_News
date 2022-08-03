@@ -31,6 +31,10 @@ def get_file_path(instance, filename):
     filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
     return os.path.join('author_pics', filename)
 
+class AuthorManager(models.Manager):
+        def get_featured(self):
+            return self.filter(no_featured__in=['1', '2', '3']).order_by('no_featured')
+
 class Author(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
@@ -41,6 +45,7 @@ class Author(models.Model):
     no_featured =  models.CharField(choices=FEATURED_N, max_length=4, null=True, blank=True)
 
     tracker = FieldTracker()
+    objects= AuthorManager()
 
     @property
     def author_id(self):

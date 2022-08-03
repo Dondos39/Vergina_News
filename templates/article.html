@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <div class="row">
     <div class="col-md-12">
@@ -40,7 +41,7 @@
 
                     <div class="col-md-2 entry-details">
 
-                        <div class="entry-date">{{ updated_at }}</div>
+                        <div class="entry-date">{{ updated_at|naturaltime }}</div>
                         <div class="entry-author">
                             by
                             <h5>
@@ -265,7 +266,7 @@
                         {% for category in links %}
                         <li>
                             <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
-                            
+
                         </li>
                         {% endfor %}
                     </ul>
@@ -285,13 +286,13 @@
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}..</p>
                             <div class="meta">
-                              
+
                                 <span class="date">{{ latest.date_added }}</span>
                             </div>
                         </li>
                         {% endif %}
                         {% endfor %}
-                       
+
                          </ul>
                 </div>
                 <!-- end .widget -->
@@ -372,7 +373,7 @@
                                             {{ comment.text }}
                                         </div>
                                         <div class="meta-data">
-                                            <span class="comment-date">{{ comment.updated_at }}</span>
+                                            <span class="comment-date">{{ comment.updated_at|naturaltime }}</span>
                                             <span class="comment-reply">
                                                 <a class="comment-reply-link" href="#">Reply</a>
                                             </span>
@@ -430,7 +431,7 @@
                                                   {% for author in article.get_authors %}
                                                     <span class="author">{{ author }}</span>
                                                   {% endfor %}
-                                                    <span class="date">{{ article.updated_at }}</span>
+                                                    <span class="date">{{ article.updated_at|naturaltime }}</span>
                                                 </div>
                                                 <h4><a href="#">{{ article.title }}</a></h4>
                                                 <p>{{ article.text | safe | slice:":50"}}...</p>
@@ -442,7 +443,7 @@
                                                   {% for author in article.get_authors %}
                                                     <span class="author">{{ author }}</span>
                                                   {% endfor %}
-                                                    <span class="date">{{ article.updated_at }}</span>
+                                                    <span class="date">{{ article.updated_at|naturaltime }}</span>
                                                 </div>
                                                 <h4><a href="#">{{ article.title }}</a></h4>
                                                 <p>{{ article.text | safe | slice:":50"}}...</p>

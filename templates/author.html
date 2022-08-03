@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load humanize %}
 {% block content %}
 
 <html lang="en">
@@ -153,7 +154,7 @@
                           <div class="meta">
                             <span class="author">{{ author }}</span>
                             <br>
-                            <span class="date">{{ article.updated_at }}</span>
+                            <span class="date">{{ article.updated_at|naturaltime }}</span>
                           </div>
                         </div>
                         <h4 class="font18">
@@ -197,7 +198,7 @@
                           <div class="meta">
                             <span class="author">{{ author }}</span>
                             <br>
-                            <span class="date">{{ article.updated_at }}</span>
+                            <span class="date">{{ article.updated_at|naturaltime }}</span>
                           </div>
                         </div>
                         <h4 class="font18">

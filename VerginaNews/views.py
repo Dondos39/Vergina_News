@@ -49,6 +49,12 @@ def get_weather(request):
     weather['icon'] = weather['weather'][0]['icon']
     return weather
 
+def get_news(request):
+    api=config('NEWS_API_KEY')
+    url = f'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={api}'
+    articles = requests.get(url).json()
+    return articles['articles']
+
 class HomepageViews(ListView):
     #context_object_name = 'categories'
     template_name = 'Home.html'
@@ -59,7 +65,7 @@ class HomepageViews(ListView):
         context = {
         'categories_list': categories.models.Category.objects.all(),
         'articles_list': articles.models.Article.objects.all(),
-        'authors_list': authors.models.Author.objects.all(),
+        'authors_list': authors.models.Author.objects.get_featured(),
         'important_list': articles.models.Article.objects.get_important(),
         'roaming_news_list': articles.models.Article.objects.get_latest(),
         'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
@@ -67,6 +73,7 @@ class HomepageViews(ListView):
         'popular_tags': tags.models.Tags.objects.get_popular(),
         'ads': ads.models.Ad.objects.get_priority(1),
         'weather': get_weather(request),
+        'external_articles': get_news(request),
         'date': date,
         }
         return render(request, "Home.html", context=context)
