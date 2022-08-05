@@ -159,11 +159,11 @@
                 <nav class="big-menu">
                     <ul>
                         {% for category in links %}
-                        <li><a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a></li>
+                        <li><a href="{% url 'category_view' category=category.slug %}">{{ category.name }}</a></li>
                         <nav class="small-menu">
                             <ul>
                               {% for subcategory in category.get_subcategories %}
-                                <li><a href="news2.html">{{ subcategory.name }}</a></li>
+                                <li><a href="{% url 'subcategory_view' category=category.slug sub_category=subcategory.slug %}">{{ subcategory.name }}</a></li>
                               {% endfor %}
                             </ul>
                         {% endfor %}

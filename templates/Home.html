@@ -73,7 +73,7 @@
 
         <h2 class="block-title mt8" data-title="Vergina News">
         Front page
-        <a href="single.html" class="category-more text-right">Continue to the category <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+        <a href="{% url 'articles_view' search='all' %}" class="category-more text-right">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
         </h2>
 
     </div>
@@ -110,7 +110,7 @@
                         {% endfor %}
                          <!-- end .post -->
 
-                        <a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="{% url 'articles_view' search='all' %}" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                       </div>
 
                     <!-- /.tab-panel -->
@@ -130,9 +130,9 @@
                       {% endfor %}
                        <!-- end .post -->
 
-
-                        <a href="#" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
-
+             
+                        <a href="" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                    
 
                     </div>
                     <!-- /.tab-panel -->
@@ -147,10 +147,25 @@
                     <!-- /.simple-tab-space -->
 
                 </div>
+                <div class="sidebar boxed p3 mt2">
+                    <h4 class="font40" style="text-align: center;"><a href="#">Stocks</a></h4>
+                    <div class="simple-tab-space">
+
+                        <div class="tab-title clearfix">
+                            <a href="#" class="active" style="font-size: 13px;">Forex</a>
+                            <a href="#" style="font-size: 13px;">Crypto</a>
+                            <a href="#" style="font-size: 13px;">Stocks</a>
+                            
+        
+                        </div>
+                    </div>
+                    </div>
+
             </div>
 
 
         <!-- end .col-md-4 -->
+
 
         <div class="col-sm-9">
 
@@ -165,7 +180,7 @@
                                     <div class="widget">
                                         <h5 class="widget-title"><span>Tag Cloud:</span></h5>
                                         <div class="widget-tags">
-                                          {% for tag in popular_tags %}
+                                            {% for tag in popular_tags %}
                                             <a href="{% url 'articles_view' search=tag %}">{{ tag }}</a>
                                           {% endfor %}
                                         </div>
@@ -364,6 +379,9 @@
 
     </div>
     <!-- end .col-md-8 -->
+   
+
+   
 
     </div><!-- /.row -->
 <!-- </div> -->
@@ -429,14 +447,14 @@
                           {% for article in external_articles %}
                              <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
-                                    <a href="single.html">
+                                    <a href="{{ article.url }}">
                                         <img loading="lazy" src="{{ article.urlToImage }}" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Hottest</span>
                                     <div class="entry-title">
                                         <h4><a href="{{ article.url }}">{{ article.title }}</a></h4>
                                         <p class="read-more">
-                                            <a href="{[ article.url ]}">read the article</a>
+                                            <a href="{{ article.url }}">read the article</a>
                                         </p>
                                     </div>
                                 </div>
