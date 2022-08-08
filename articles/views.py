@@ -28,16 +28,16 @@ def get_subcategory(request):
     category_id=int(id)).values('id', 'name'))
     return HttpResponse(json.dumps(result), content_type="application/json")
 
-class ArticleView(ListView):
+class ArticleView(DetailView):
         context_object_name = 'articles'
         template_name = 'article.html'
         model = Article
 
         def get(self, request, *args, **kwargs):
-            post_slug = self.kwargs.get('title')
-            print('-----------')
-            print(self.kwargs)
-            print('-----------')
+            post_slug = kwargs.get('title')
+            print('---------------')
+            print('Article')
+            print('---------------')
             detail = Article.objects.get(slug=post_slug)
             detail.total_views = detail.total_views + 1
             detail.save(update_fields=['total_views'])
@@ -55,7 +55,7 @@ class ArticleView(ListView):
                 "tags": detail.get_tags(),
                 "article_pic": detail.article_pic,
                 "article_video": detail.article_video,
-            }
+             }
             return render(request, "article.html", context=context)
 
         def post(self, request, *args, **kwargs):
@@ -102,9 +102,6 @@ class AllArticlesView(DetailView):
         model = Article
 
         def get(self, request, *args, **kwargs):
-            print("-----------------")
-            print(kwargs['search'])
-            print("-----------------")
             categories = Article.objects.all().values_list('category__name', flat=True).distinct()
             sub_categories = Article.objects.all().values_list('sub_category__name', flat=True).distinct()
             tags = Tags.objects.all().values_list('name', flat=True).distinct()
