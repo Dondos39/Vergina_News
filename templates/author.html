@@ -211,8 +211,9 @@
                   <!-- end .widget -->
 
                   <div class="widget recent-posts">
-                    <h5 class="widget-title"><span>Popular Posts</span></h5>
+                    <h5 class="widget-title"><span>Related Authors</span></h5>
                     <ul>
+                      {% for author in other_authors %}
                       <li class="post hover-light">
                         <a href="javascript:;">
                           <div
@@ -220,41 +221,15 @@
                             data-src="images/news/category-01.jpg"
                           ></div>
                         </a>
-                        <h4><a href="#">North Carolina</a></h4>
-                        <p>Voter ID Law Is Upheld by Federal Judge...</p>
+                        <h4><a href="#">{{ author.first_name }}</a></h4>
+                        <h4><a href="#">{{ author.last_name }}</a></h4>
+
                         <div class="meta">
-                          <span class="author">Dave Clark</span>
-                          <span class="date">2h</span>
+                          <span class="author"></span>
+                          <span class="date"></span>
                         </div>
                       </li>
-                      <li class="post hover-light">
-                        <a href="javascript:;">
-                          <div
-                            class="image image-thumb"
-                            data-src="images/news/category-02.jpg"
-                          ></div>
-                        </a>
-                        <h4><a href="#">North Carolina</a></h4>
-                        <p>Voter ID Law Is Upheld by Federal Judge...</p>
-                        <div class="meta">
-                          <span class="author">Dave Clark</span>
-                          <span class="date">2h</span>
-                        </div>
-                      </li>
-                      <li class="post hover-light">
-                        <a href="javascript:;">
-                          <div
-                            class="image image-thumb"
-                            data-src="images/news/category-03.jpg"
-                          ></div>
-                        </a>
-                        <h4><a href="#">North Carolina</a></h4>
-                        <p>Voter ID Law Is Upheld by Federal Judge...</p>
-                        <div class="meta">
-                          <span class="author">Dave Clark</span>
-                          <span class="date">2h</span>
-                        </div>
-                      </li>
+                      {% endfor %}
                     </ul>
                   </div>
                   <!-- end .widget -->

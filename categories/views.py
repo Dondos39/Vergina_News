@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 import articles
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -27,6 +27,14 @@ class CategoryView(DetailView):
         }
         return render(request, "category.html", context=context)
 
+    def post(self, request, *args, **kwargs):
+        keyword = request.POST.get('search')
+        if keyword == "":
+            result = 'all'
+        else:
+            result = keyword
+        return redirect('articles_view', search=result)
+
 class SubCategoryView(DetailView):
     context_object_name = 'sub_category'
     template_name = 'sub_category.html'
@@ -47,3 +55,11 @@ class SubCategoryView(DetailView):
                 "article_count": article_count,
         }
         return render(request, "sub_category.html", context=context)
+
+    def post(self, request, *args, **kwargs):
+        keyword = request.POST.get('search')
+        if keyword == "":
+            result = 'all'
+        else:
+            result = keyword
+        return redirect('articles_view', search=result)
