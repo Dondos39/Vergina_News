@@ -85,7 +85,6 @@ TEMPLATES = [
                 'articles.context_processors.roaming_news',
                 'tags.context_processors.tag_cloud',
                 'VerginaNews.context_processors.menu_weather',
-
             ],
         },
     },

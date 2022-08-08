@@ -24,6 +24,17 @@ def get_video_path(instance, filename):
     return os.path.join('videos', filename)
 
 def get_client_ip(request):
+    """Get the IP address of the client.
+
+     Detect the client IP address, then check if it exist and get the ip value
+     else return REMOTE_ADDR which is a realable ip address
+
+    Args:
+        request : the request object
+
+    Returns:
+        ip (string): the ip of the user who made the request
+    """
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -32,21 +43,51 @@ def get_client_ip(request):
     return ip
 
 def get_location(ip_address):
+    """Get the location of IP address.
+
+     Send request and decode the result. Then clean the returned string so it just contains the
+     dictionary data for the IP address and afterwards convert this data into a dictionary.
+
+    Args:
+        ip_address (string) : the ip address provided
+
+    Returns:
+        lat (float): the latitude of the ip that was provided
+        long (float): the longtitude of the ip that was provided
+    """
     request_url = 'https://geolocation-db.com/jsonp/' + ip_address
-    # Send request and decode the result
     response = requests.get(request_url)
     result = response.content.decode()
-    # Clean the returned string so it just contains the dictionary data for the IP address
     result = result.split("(")[1].strip(")")
-    # Convert this data into a dictionary
     result  = json.loads(result)
     return result['latitude'], result['longitude']
 
 def convert_to_celsius(Fahrenheit):
+    """Convert Fahrenheit to Celsius.
+
+     Get the temperature provided and convert it to Celsius
+
+    Args:
+        Fahrenheit (float) : Temperature in Fahrenheit
+
+    Returns:
+        Celsius (int) : Temperature in Celsius
+    """
     Celsius = (Fahrenheit - 32) * 5.0/9.0
     return Celsius
 
 def get_weather(request):
+    """Get Weather from OpenWeather API.
+
+     Get client ip, then geolocate the ip. Make request using the data provided and get json with data. Convert
+     Fahrenheit to Celsius.
+
+    Args:
+        request : the request object
+
+    Returns:
+        weather (dict) : Weather query.
+    """
     client_ip = get_client_ip(request)
     api=config('WEATHER_API_KEY')
     try:
@@ -62,7 +103,65 @@ def get_weather(request):
     return weather
 
 def get_news(request):
+    """Get World News from News API.
+
+     Get JSON from url with API key.
+
+    Args:
+        request : the request object
+
+    Returns:
+        Articles (dict) : Articles that the json provided.
+    """
     api=config('NEWS_API_KEY')
     url = f'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={api}'
     articles = requests.get(url).json()
     return articles['articles']
+
+def get_stocks(request):
+    api=config('FINANCE_API_KEY')
+    API_URL = f'https://www.alphavantage.co/query/'
+
+    symbols= ["IBM", "MSFT", "AAPL", "NFLX", "GOOGL"]
+    exchange_data = []
+    for symbol in symbols:
+        data = {
+            "function": "GLOBAL_QUOTE",
+            "symbol": symbol,
+            "apikey": api,
+            }
+        exchange_data.append(requests.get(API_URL, params=data).json())
+    return exchange_data
+
+def get_crypto(request):
+    api=config('FINANCE_API_KEY')
+    API_URL = f'https://www.alphavantage.co/query/'
+
+    coins = ["BTC", "ETH"]
+    crypto_data = []
+    for coin in coins:
+        data = {
+            "function": "CURRENCY_EXCHANGE_RATE",
+            "from_currency": coin,
+            "to_currency": "USD",
+            "apikey": api,
+            }
+        crypto_data.append(requests.get(API_URL, params=data).json())
+    return crypto_data
+
+def get_exchange(request):
+    api=config('FINANCE_API_KEY')
+    API_URL = f'https://www.alphavantage.co/query/'
+
+    currencies = ["USD", "CNY", "RUB"]
+    forex_data = []
+    for currency in currencies:
+        data = {
+            "function": "CURRENCY_EXCHANGE_RATE",
+            "from_currency": "EUR",
+            "to_currency": currency,
+            "apikey": api,
+            }
+        forex_data.append(requests.get(API_URL, params=data).json())
+
+    return forex_data

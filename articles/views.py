@@ -1,15 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Article
 from categories.models import SubCategory
 from subscribers.models import Subscriber
 from tags.models import Tags
 from django.http import HttpResponse
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.validators import validate_email
 from django.contrib import messages
 from django import forms
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404
 import json
 # import requests
 # Google captcha
@@ -25,35 +28,45 @@ def get_subcategory(request):
     category_id=int(id)).values('id', 'name'))
     return HttpResponse(json.dumps(result), content_type="application/json")
 
-class ArticleView(DetailView):
+class ArticleView(ListView):
         context_object_name = 'articles'
         template_name = 'article.html'
         model = Article
 
         def get(self, request, *args, **kwargs):
-            post_id = self.kwargs.get('post_id')
-
-            detail = Article.objects.get(id=post_id)
+            post_slug = self.kwargs.get('title')
+            print('-----------')
+            print(self.kwargs)
+            print('-----------')
+            detail = Article.objects.get(slug=post_slug)
             detail.total_views = detail.total_views + 1
             detail.save(update_fields=['total_views'])
             context = {
-            "id": detail.id,
-            "title": detail.title,
-            "authors": detail.get_authors(),
-            "updated_at":detail.updated_at,
-            "comments": detail.get_comments(),
-            "captcha": FormWithCaptcha,
-            "category": detail.category.name,
-            "sub_category": detail.sub_category.name,
-            "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
-            "total_views": detail.total_views,
-            "tags": detail.get_tags(),
-            "article_pic": detail.article_pic,
-            "article_video": detail.article_video,
+                "id": detail.id,
+                "title": detail.title,
+                "authors": detail.get_authors(),
+                "updated_at":detail.updated_at,
+                "comments": detail.get_comments(),
+                "captcha": FormWithCaptcha,
+                "category": detail.category.name,
+                "sub_category": detail.sub_category.name,
+                "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
+                "total_views": detail.total_views,
+                "tags": detail.get_tags(),
+                "article_pic": detail.article_pic,
+                "article_video": detail.article_video,
             }
             return render(request, "article.html", context=context)
 
         def post(self, request, *args, **kwargs):
+            keyword = request.POST.get('search')
+            if keyword:
+                if keyword == "":
+                    result = 'all'
+                else:
+                    result = keyword
+                return redirect('articles_view', search=result)
+
             id = request.POST.get('Article ID')
             if id != None:
                 article = Article.objects.get(id=id)
@@ -89,6 +102,9 @@ class AllArticlesView(DetailView):
         model = Article
 
         def get(self, request, *args, **kwargs):
+            print("-----------------")
+            print(kwargs['search'])
+            print("-----------------")
             categories = Article.objects.all().values_list('category__name', flat=True).distinct()
             sub_categories = Article.objects.all().values_list('sub_category__name', flat=True).distinct()
             tags = Tags.objects.all().values_list('name', flat=True).distinct()
@@ -105,3 +121,11 @@ class AllArticlesView(DetailView):
                 'articles' : articles,
             }
             return render(request, "allarticles.html", context=context)
+
+        def post(self, request, *args, **kwargs):
+            keyword = request.POST.get('search')
+            if keyword == "":
+                result = 'all'
+            else:
+                result = keyword
+            return redirect('articles_view', search=result)

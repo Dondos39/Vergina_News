@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-      
+
     </div>
 </div>
 <!-- end .row -->
@@ -280,10 +280,10 @@
                         {% for latest in roamingnews %}
                         {% if forloop.counter < 5 %}
                          <li class="post hover-light">
-                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">
+                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                                 <div class="image image-thumb" data-src="images/news/category-01.jpg"></div>
                             </a>
-                            <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
+                            <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}..</p>
                             <div class="meta">
 

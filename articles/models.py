@@ -7,6 +7,7 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 from model_utils import FieldTracker
 from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
+from django.utils.text import slugify
 
 # Create your models here.
 CATEGORIES = (("1", "Sports"),
@@ -60,6 +61,7 @@ class Article(models.Model):
     ##  Attributes ##
     author = models.ManyToManyField(authors.models.Author)
     title = models.CharField(max_length=256, unique=True)
+    slug = models.SlugField(max_length=150, blank=True)
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
@@ -106,6 +108,10 @@ class Article(models.Model):
 
     def add_comment(self, dict):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Article, self).save(*args, **kwargs)
 
     def delete(self, using=None, keep_parents=False):
         if self.article_pic:
