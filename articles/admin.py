@@ -5,7 +5,7 @@ from django import forms
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_added', 'time_added', 'no_important', 'no_homepage', 'featured')
     list_editable = ('no_important', 'no_homepage', 'featured')
-    list_filter = ('no_important', 'date_added')
+    list_filter = ('no_important', 'category__name', 'date_added')
     search_fields = ['tags__name', 'author__first_name']
     readonly_fields = ['updated_at', 'updated_by', 'total_views']
 

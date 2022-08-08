@@ -117,13 +117,9 @@
                   <div class="widget">
                     <h5 class="widget-title"><span>Tag Cloud</span></h5>
                     <div class="widget-tags">
-                      <a href="javascript:;">Politics</a>
-                      <a href="javascript:;">Opition</a>
-                      <a href="javascript:;">Healt</a>
-                      <a href="javascript:;">Travel</a>
-                      <a href="javascript:;">Sports</a>
-                      <a href="javascript:;">Breaking</a>
-                      <a href="javascript:;">Population</a>
+                      {% for tag in tags %}
+                      <a href="{% url 'articles_view' search=tag %}">{{ tag }}</a>
+                      {% endfor %}
                     </div>
                   </div>
                   <!-- end .widget -->
@@ -161,7 +157,7 @@
                   <div class="widget recent-posts">
                     <h5 class="widget-title"><span>Related Authors</span></h5>
                     <ul>
-                      {% for author in other_authors %}
+                      {% for author in related_authors %}
                       <li class="post hover-light">
                         <a href="javascript:;">
                           <div

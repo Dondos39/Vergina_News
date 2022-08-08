@@ -35,9 +35,6 @@ class ArticleView(DetailView):
 
         def get(self, request, *args, **kwargs):
             post_slug = kwargs.get('title')
-            print('---------------')
-            print('Article')
-            print('---------------')
             detail = Article.objects.get(slug=post_slug)
             detail.total_views = detail.total_views + 1
             detail.save(update_fields=['total_views'])
