@@ -24,6 +24,7 @@ class AuthorView(DetailView):
                     "author": author,
                     "articles": page_articles,
                     "article_count": article_count,
+                    "other_authors": author.__class__.objects.filter(job_title=author.job_title).exclude(id=author.id)
             }
             return render(request, 'author.html', context=context)
 

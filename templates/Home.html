@@ -83,7 +83,7 @@
     <div class="row">
 
         <div class="col-sm-3 category-block en-block">
-            <div class="sidebar boxed p3">
+            <div class="sidebar boxed p3 mb-3">
             <h4 class="font40" style="text-align: center;"><a href="#">Ρoή Ειδήσεων</a></h4>
             <div class="simple-tab-space">
 
@@ -149,78 +149,122 @@
                     <!-- /.simple-tab-space -->
 
                 </div>
-                <div class="sidebar boxed p3 mt2">
+                <!-- <div class="sidebar boxed p3 mt2">
                     <h4 class="font40" style="text-align: center;"><a href="#">Stocks</a></h4>
-                    <div class="simple-tab-space">
-
-                        <div class="tab-title clearfix">
-                            <a href="#" class="active" style="font-size: 13px;">Forex</a>
-                            <a href="#" style="font-size: 13px;">Crypto</a>
-                            <a href="#" style="font-size: 13px;">Stocks</a>
-
-
-                        </div>
-                        <div class="tab-panel">
-                            <div class="tab-content active">
-                              {% for currency in forex %}
-                                {% for data in currency.values %}
-                                  {% for value in data.values %}
-                                    {% if forloop.counter == 1 %}
-                                      {{ value }}
-                                    {% endif %}
-                                    {% if forloop.counter == 3 %}
-                                      {{ value }}
-                                    {% endif %}
-                                    {% if forloop.counter == 5 %}
-                                      {{ value }}
-                                    {% endif %}
-                                  {% endfor %}
-                                {% endfor %}
-                              {% endfor %}
-                            </div>
-                            <!-- tab content active  -->
-                            <div class="tab-content">
-                              {% for coin in cryptos %}
-                                {% for data in coin.values %}
-                                  {% for value in data.values %}
-                                    {% if forloop.counter == 1 %}
-                                      {{ value }}
-                                    {% endif %}
-                                    {% if forloop.counter == 5 %}
-                                      {{ value }}
-                                    {% endif %}
-                                    {% if forloop.counter == 10 %}
-                                      {{ value }}
-                                    {% endif %}
-                                    {% endfor %}
-                                  {% endfor %}
-                                {% endfor %}
-                            </div>
-                            <!-- End of tab content -->
-                            <div class="tab-content">
-                                {% for stock in stocks %}
-                                  {% for data in stock.values %}
-                                    {% for value in data.values %}
-                                      {% if forloop.counter == 1 %}
-                                        {{ value }}
-                                      {% endif %}
-                                      {% if forloop.counter == 5 %}
-                                        {{ value }}
-                                      {% endif %}
-                                      {% if forloop.counter == 3 %}
-                                        {{ value }}
-                                      {% endif %}
-
-                                    {% endfor %}
-                                  {% endfor %}
-                                {% endfor %}
-                            </div>
-                            <!-- End of tab content -->
-                        </div>
-                        <!-- tab panel  -->
-                    </div>
-                       <!-- /.simple-tab-space -->
-                    </div>
+                    
+                       
+                    </div> -->
+                    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Crypto</span></a> <span class="blue-text">and</span> <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Stocks</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+    {
+    "colorTheme": "light",
+    "dateRange": "1M",
+    "showChart": false,
+    "locale": "en",
+    "largeChartUrl": "",
+    "isTransparent": false,
+    "showSymbolLogo": true,
+    "showFloatingTooltip": false,
+    "width": "270",
+    "height": "465",
+    "tabs": [
+      {
+        "title": "Forex",
+        "symbols": [
+          {
+            "s": "FX:EURUSD",
+            "d": "EUR/USD"
+          },
+          {
+            "s": "FX:GBPUSD",
+            "d": "GBP/USD"
+          },
+          {
+            "s": "FX:USDJPY",
+            "d": "USD/JPY"
+          },
+          {
+            "s": "FX:USDCHF",
+            "d": "USD/CHF"
+          },
+          {
+            "s": "FX:AUDUSD",
+            "d": "AUD/USD"
+          },
+          {
+            "s": "FX:USDCAD",
+            "d": "USD/CAD"
+          }
+        ],
+        "originalTitle": "Forex"
+      },
+      {
+        "title": "Crypto",
+        "symbols": [
+          {
+            "s": "BITSTAMP:BTCUSD",
+            "d": "BTC/USD"
+          },
+          {
+            "s": "BITSTAMP:ETHUSD",
+            "d": "ETH/USD"
+          },
+          {
+            "s": "BINANCE:XRPUSDT",
+            "d": "XRP/USDT"
+          },
+          {
+            "s": "BINANCE:SHIBUSDT",
+            "d": "SHIP/USDT"
+          },
+          {
+            "s": "BINANCE:DOTUSDT",
+            "d": "DOT/USDT"
+          },
+          {
+            "s": "BINANCE:LINKUSDT",
+            "d": "LINK/USDT"
+          }
+        ]
+      },
+      {
+        "title": "Stocks",
+        "symbols": [
+          {
+            "s": "NASDAQ:AAPL",
+            "d": "AAPL"
+          },
+          {
+            "s": "NASDAQ:TSLA",
+            "d": "TSLA"
+          },
+          {
+            "s": "NASDAQ:AMZN",
+            "d": "AMZN"
+          },
+          {
+            "s": "NASDAQ:MSFT",
+            "d": "MSFT"
+          },
+          {
+            "s": "NASDAQ:GOOGL",
+            "d": "GOOGL"
+          },
+          {
+            "s": "NASDAQ:META",
+            "d": "META"
+          }
+        ]
+      }
+    ]
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+                
 
             </div>
 
