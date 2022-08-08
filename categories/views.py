@@ -42,7 +42,6 @@ class SubCategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         sub_category = self.kwargs.get('sub_category')
-
         articles = Article.objects.all().filter(sub_category__slug = sub_category).order_by('-updated_at')
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
