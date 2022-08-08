@@ -10,7 +10,7 @@ import urllib.request
 import geoip2.webservice
 import datetime
 from urllib.request import urlopen
-from VerginaNews.utils import get_weather, get_news
+from VerginaNews.utils import get_weather, get_news, get_stocks, get_crypto, get_exchange
 
 class HomepageViews(ListView):
     #context_object_name = 'categories'
@@ -31,6 +31,9 @@ class HomepageViews(ListView):
         'ads': ads.models.Ad.objects.get_priority(1),
         'weather': get_weather(request),
         'external_articles': get_news(request),
+        'stocks': get_stocks(request),
+        'cryptos': get_crypto(request),
+        'forex': get_exchange(request),
         'date': date,
         }
         return render(request, "Home.html", context=context)

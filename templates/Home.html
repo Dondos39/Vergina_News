@@ -20,7 +20,7 @@
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
 
                                         <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
-                                            <a href="{% url 'article_view' category=important.category.slug sub_category=important.sub_category.slug post_id=important.id %}">
+                                            <a href="{% url 'article_view' category=important.category.slug sub_category=important.sub_category.slug title=important.slug %}">
                                             <h3>{{ important.title }}</h3>
                                         </a>
                                             <div class="meta">
@@ -97,11 +97,11 @@
                     <div class="tab-content active">
                         {% for latest in roaming_news_list %}
                         <div class="post hover-light">
-                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">
+                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                                 <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                             </a>
                             <span class="date">{{ latest.updated_at|naturaltime }}</span>
-                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
+                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
                                
@@ -118,11 +118,13 @@
                     <div class="tab-content">
                       {% for pouplar in popular_news_list %}
                       <div class="post hover-light">
-                          <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">
+                          <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
                               <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                           </a>
-                          <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">{{ pouplar.title }}</a></h4>
-                       
+
+                          <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
+                          <p>{{ pouplar.text | safe | slice:":100" }}...</p>
+
                           <div class="meta">
                               <span class="date">{{ latest.updated_at|naturaltime }}</span>
                           </div>
@@ -130,9 +132,9 @@
                       {% endfor %}
                        <!-- end .post -->
 
-             
+
                         <a href="" class="category-more">Continue to the news <img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
-                    
+
 
                     </div>
                     <!-- /.tab-panel -->
@@ -155,26 +157,63 @@
                             <a href="#" class="active" style="font-size: 13px;">Forex</a>
                             <a href="#" style="font-size: 13px;">Crypto</a>
                             <a href="#" style="font-size: 13px;">Stocks</a>
-                            
-        
+
+
                         </div>
                         <div class="tab-panel">
                             <div class="tab-content active">
-                                <!-- Your Code hire  -->
-
-                                
+                              {% for currency in forex %}
+                                {% for data in currency.values %}
+                                  {% for value in data.values %}
+                                    {% if forloop.counter == 1 %}
+                                      {{ value }}
+                                    {% endif %}
+                                    {% if forloop.counter == 3 %}
+                                      {{ value }}
+                                    {% endif %}
+                                    {% if forloop.counter == 5 %}
+                                      {{ value }}
+                                    {% endif %}
+                                  {% endfor %}
+                                {% endfor %}
+                              {% endfor %}
                             </div>
                             <!-- tab content active  -->
                             <div class="tab-content">
-                                <!-- Your code hire  -->
-
-
+                              {% for coin in cryptos %}
+                                {% for data in coin.values %}
+                                  {% for value in data.values %}
+                                    {% if forloop.counter == 1 %}
+                                      {{ value }}
+                                    {% endif %}
+                                    {% if forloop.counter == 5 %}
+                                      {{ value }}
+                                    {% endif %}
+                                    {% if forloop.counter == 10 %}
+                                      {{ value }}
+                                    {% endif %}
+                                    {% endfor %}
+                                  {% endfor %}
+                                {% endfor %}
                             </div>
                             <!-- End of tab content -->
                             <div class="tab-content">
-                                <!-- Your code hire  -->
+                                {% for stock in stocks %}
+                                  {% for data in stock.values %}
+                                    {% for value in data.values %}
+                                      {% if forloop.counter == 1 %}
+                                        {{ value }}
+                                      {% endif %}
+                                      {% if forloop.counter == 5 %}
+                                        {{ value }}
+                                      {% endif %}
+                                      {% if forloop.counter == 3 %}
+                                        {{ value }}
+                                      {% endif %}
 
-
+                                    {% endfor %}
+                                  {% endfor %}
+                                {% endfor %}
                             </div>
                             <!-- End of tab content -->
                         </div>
@@ -184,7 +223,6 @@
                     </div>
 
             </div>
-
 
         <!-- end .col-md-4 -->
 
@@ -215,7 +253,7 @@
                 {% if forloop.counter < 2 %}
 
                 <div class="post color-1">
-                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
+                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                         <div class="image">
                             <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                             <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -236,10 +274,10 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <h4 class="font28"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title}}</a></h4>
+                    <h4 class="font28"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title}}</a></h4>
                     <div class="border-line"></div>
                     <p>{{ frontnew.text | safe |slice:":800"  }}...</p>
-                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -260,7 +298,7 @@
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -272,9 +310,9 @@
                             {% endfor %}
                             <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                         </div>
-                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
+                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
 
@@ -298,7 +336,7 @@
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                 <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -310,9 +348,9 @@
                             {% endfor %}
                             <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                         </div>
-                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
+                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
 
@@ -337,7 +375,7 @@
                                 <div class="col-md-6">
 
                                     <div class="post hover-dark color-1">
-                                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
+                                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                                             <div class="image" data-src="images/entertainment/post-11.jpg">
                                                 <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
@@ -349,9 +387,9 @@
                                             {% endfor %}
                                             <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                                         </div>
-                                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
+                                        <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                                     </div>
 
 
@@ -365,10 +403,10 @@
                   {% if forloop.counter > 7 %}
 									<div class="category-block articles">
 									    <div class="post hover-light">
-											<a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">
+											<a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
 												<div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
 											</a>
-											<h4><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug post_id=frontnew.id %}">{{ frontnew.title }}</a></h4>
+											<h4><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
 											<p>{{ frontnew.text | safe | slice:":100" }}...</p>
 											<div class="meta">
                                                 {% for author in frontnew.get_authors %}
@@ -401,9 +439,9 @@
 
     </div>
     <!-- end .col-md-8 -->
-   
 
-   
+
+
 
     </div><!-- /.row -->
 <!-- </div> -->
@@ -431,10 +469,10 @@
                                         {% for pouplar in popular_news_list %}
                                           <div class="swiper-slide">
                                             <div class="fs-blog-item">
-                                                <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">
+                                                <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
                                                     <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                                 </a>
-                                                <h4><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">{{ pouplar.text | safe | slice:":100" }}...</a></h4>
+                                                <h4><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.text | safe | slice:":100" }}...</a></h4>
                                             </div>
                                         </div>
                                         {% endfor %}
@@ -554,7 +592,7 @@
                     			    					</div>
                     			    					<div class="post-content">
                     			    						<a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label">{{ articles.sub_category.name }}</a>
-                    				    					<h4 class="font36"><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug post_id=articles.id %}">{{ articles.title }}.</a></h4>
+                    				    					<h4 class="font36"><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">{{ articles.title }}.</a></h4>
                     				    					<div class="meta mb0">
                                                                 {% for author in articles.get_authors %}
                     				    						<span class="author">{{ author }}</span>
@@ -578,7 +616,7 @@
                                                             {% for author in articles.get_authors %}
                                                             <span class="author">{{ author }}</span>
                                                             {% endfor %}
-                    				    					<h4><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug post_id=articles.id %}">{{ articles.title }}.</a></h4>
+                    				    					<h4><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">{{ articles.title }}.</a></h4>
                     			    					</div>
                     			    				</div>
 
@@ -596,7 +634,7 @@
                     			    					</div>
                     			    					<div class="post-content">
                     			    						<a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label">{{ articles.sub_category.name }}</a>
-                    				    					<h4 class="font36"><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug post_id=articles.id %}">{{ articles.title }}.</a></h4>
+                    				    					<h4 class="font36"><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">{{ articles.title }}.</a></h4>
                     				    					<div class="meta mb0">
                                                                 {% for author in articles.get_authors %}
                     				    						<span class="author">{{ author }}</span>
@@ -701,7 +739,7 @@
                 {% if forloop.counter < 3 %}
                 <div class="col-md-6">
                   <div class="post first hover-dark">
-                    <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug post_id=articles.id %}">
+                    <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
                       <div
                         class="image"
                         data-src="images/entertainment/post-14.jpg"
@@ -723,7 +761,7 @@
                     <div class="col-md-12">
                       <div class="post hover-light">
                         <h4>
-                          <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug post_id=articles.id %}"
+                          <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}"
                             >{{ articles.title }}</a
                           >
                         </h4>
@@ -761,7 +799,7 @@
                     </div>
                     <!-- <div class="border-bottom2 mb2 color-1"></div> -->
                     <h4 class="font18">
-                      <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug post_id=articles.id %}"
+                      <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}"
                         >{{ articles.title }}</a
                       >
                     </h4>

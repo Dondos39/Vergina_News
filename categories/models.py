@@ -6,6 +6,7 @@ import articles.models
 class Category(models.Model):
     name = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
+    description = models.CharField(max_length=150, null=True)
 
     class Meta:
         ordering = ('name', )
@@ -39,6 +40,8 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
+    description = models.CharField(max_length=150, null=True)
+
     class Meta:
         ordering = ('name', )
         verbose_name = 'sub-category'

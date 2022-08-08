@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 
 import articles
@@ -26,6 +26,7 @@ class AuthorView(DetailView):
                     "article_count": article_count,
             }
             return render(request, 'author.html', context=context)
+
 
 
 
