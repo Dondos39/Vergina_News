@@ -104,7 +104,7 @@
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug post_id=latest.id %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
-
+                               
                             </div>
                         </div>
                         {% endfor %}
@@ -122,7 +122,7 @@
                               <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                           </a>
                           <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug post_id=pouplar.id %}">{{ pouplar.title }}</a></h4>
-                          <p>{{ pouplar.text | safe | slice:":100" }}...</p>
+                       
                           <div class="meta">
                               <span class="date">{{ latest.updated_at|naturaltime }}</span>
                           </div>
@@ -500,15 +500,16 @@
                     <h2 class="block-title mt8" data-title="Featured" >
                         {{ category.name }}
                     </h2>
-                    <div class="testimonial-slider fs-blog-carousel" data-col="1" data-row="1" data-responsive="1,1,1">
+                    {% for featured in category.get_featured %}
+                    <div class="testimonial-slider fs-blog-carousel" style="background: #fff;" data-col="1" data-row="1" data-responsive="1,1,1">
 
 
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                            <div class="swiper-slide">
-                             {% for featured in category.get_featured %}
+                            
                                     <div class="swiper-holder">
-                                      <img src="" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
+                                      <img src="https://source.unsplash.com/user/c_v_r" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
                                         <blockquote>
 
@@ -519,7 +520,7 @@
 
                                     </div>
                                     <!-- /.swiper-holder -->
-                             {% endfor %}
+                           
                                 </div>
                                 <!-- /.swiper-slide -->
 
@@ -532,6 +533,7 @@
 
                     </div>
                     <!-- /.testimonial-slider -->
+                    {% endfor %}
 
                     <div class="article-carousel en-block en-carousel-block">
 
@@ -649,14 +651,14 @@
 						</div>
 						<blockquote>{{ author.short_bio }}</blockquote>
 						<div class="author clearfix">
-							<a href="single.html">
+							<a href="{% url 'author_view' author_id=author %}">
 								<img class="image image-thumb border-radius" src="https://source.unsplash.com/user/c_v_r" alt="Image">
 							</a>
-							<a href="blog.html" class="label">{{ author.get_job_title }}</a>
+							<a href="{% url 'category_view' category=author.get_job_title %}" class="label">{{ author.get_job_title }}</a>
 						</div>
 						<!-- /.meta -->
 
-						<a href="single.html" class="category-more">Continue to the news <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"></a>
+						<a href="{% url 'author_view' author_id=author %}" class="category-more">Continue to the Author <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"></a>
 
 					</div>
 

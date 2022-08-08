@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
+
+import articles
 from .models import Author
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Create your views here.
 class AuthorView(DetailView):
@@ -12,8 +15,17 @@ class AuthorView(DetailView):
             id = self.kwargs.get('author_id')
 
             author = Author.objects.all().filter(first_name=id).first()
+            articles = author.get_articles().order_by('-updated_at')
+            paginator = Paginator(articles, 12)
+            page = request.GET.get('page')
+            page_articles = paginator.get_page(page)
+            article_count = articles.count()           
             context = {
                     "author": author,
-                    "articles": author.get_articles().order_by('-updated_at')
+                    "articles": page_articles,
+                    "article_count": article_count,
             }
             return render(request, 'author.html', context=context)
+
+
+

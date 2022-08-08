@@ -268,7 +268,6 @@
 		 	slider.control('scrollbar' , {dir:'h',color:'#444',align:'bottom',autohide:false,margin:20,width:2});
 
 		 	var _options = {
-				autoplay: true,
 		        width: 1170,
 		        height: sliderHeight,
 		        space:0,
@@ -1081,9 +1080,19 @@
                 $(this).addClass('active');
             });
 	    });
-
+		
 
 	});
+	$(window).on('scroll', function() {
+		if($(window).scrollTop() > 10 ) {
+			$('.panel-menu').addClass('pmenu');
+		} else {
+			$('.panel-menu').removeClass('pmenu');
+		}
+
+	});
+
+
 
 
 })(jQuery);

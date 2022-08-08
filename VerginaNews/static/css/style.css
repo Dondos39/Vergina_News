@@ -295,7 +295,15 @@
   display: inline-block;
   margin-left: 3px;
 }
+.pmenu {
 
+  position: fixed;
+  background: #fff;
+  z-index: 1000;
+  width: 100%;
+  top: 0%;
+
+}
 #header nav.main-nav {
   position: relative;
   font-family: 'SF-UI-Display';
@@ -2850,7 +2858,7 @@ h4.block-title .category-more.text-right {
 
 .en-carousel-block .meta {
   display: inline-block;
-  border-bottom: 2px solid #f84432;
+  border-bottom: 2px solid #c39f5dff;
   padding-bottom: 15px;
   margin-bottom: 20px;
   font-family: 'SF-UI-Display';
@@ -3076,7 +3084,7 @@ h4.block-title .category-more.text-right {
 }
 
 .testimonial-slider.fs-blog-carousel blockquote cite {
-  border-bottom: 2px solid #f84432;
+  border-bottom: 2px solid rgb(195, 159, 93);
   display: inline-block;
   text-transform: none;
   padding-bottom: 10px;
@@ -6594,8 +6602,18 @@ blockquote:before {
 .page-item.active .page-link{
   z-index: 3;
   color: #fff;
-  background-color: grey;
-  border-color: #007bff;
+  background-color: #c39f5dff;
+  border-color: gray;
+}
+.page-link {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
 }
 
 #footer {
@@ -7023,7 +7041,7 @@ blockquote:before {
 
 .sidebar .widget-title span {
   display: inline-block;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid #c39f5dff;
   padding-bottom: 15px;
 }
 
@@ -7716,9 +7734,7 @@ blockquote:before {
   color: #f70100;
 }
 
-.color-1 {
-  color: #f84432;
-}
+
 
 .color-1 .label {
   background: linear-gradient(290deg, #c39f5dff, transparent);
@@ -7730,7 +7746,7 @@ blockquote:before {
 }
 
 .color-1 .meta:before {
-  border-color: #f84432;
+  border-color: #c39f5dff;
 }
 
 .color-2 .label {
@@ -8966,7 +8982,7 @@ blockquote:before {
 }
 
 .border-bottom2 {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid #c39f5dff;
 }
 
 .border-bottom2.color-1 {
