@@ -26,5 +26,5 @@ def tag_cloud(request, *args, **kwargs):
         tags = categories.models.Category.objects.filter(slug=category).first().get_popular_tags()
         name = None
     else:
-        tags = None
+        tags = Tags.objects.get_popular()
     return dict(popular_tags=tags)

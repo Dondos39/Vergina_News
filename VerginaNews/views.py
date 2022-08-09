@@ -13,13 +13,13 @@ import time
 from urllib.request import urlopen
 from VerginaNews.utils import get_weather, get_news
 
+
 class HomepageViews(ListView):
     #context_object_name = 'categories'
     template_name = 'Home.html'
     model = categories.models.Category
 
     def get(self, request, *args, **kwargs):
-        t0 = time.time()
         date= datetime.datetime.now()
         context = {
         'categories_list': categories.models.Category.objects.all(),
@@ -34,7 +34,6 @@ class HomepageViews(ListView):
         'external_articles': get_news(request),
         'date': date,
         }
-        print(f'Seconds: {time.time() - t0}')
         return render(request, "Home.html", context=context)
 
     def post(self, request, *args, **kwargs):
