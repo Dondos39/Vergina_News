@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'requests',
     'captcha',
     'django_social_share',
+    'django_resized',
 ]
 
 MIDDLEWARE = [

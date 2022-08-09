@@ -56,7 +56,12 @@ def get_location(ip_address):
         long (float): the longtitude of the ip that was provided
     """
     request_url = 'https://geolocation-db.com/jsonp/' + ip_address
-    response = requests.get(request_url)
+
+    try:
+        response = requests.get(request_url, timeout=5)
+    except requests.exceptions.ConnectionError:
+        print("Site not rechable", request_url)
+        
     result = response.content.decode()
     result = result.split("(")[1].strip(")")
     result  = json.loads(result)

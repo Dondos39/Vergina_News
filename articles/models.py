@@ -8,6 +8,7 @@ from django.conf import settings
 from model_utils import FieldTracker
 from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
 from django.utils.text import slugify
+from django_resized import ResizedImageField
 
 # Create your models here.
 CATEGORIES = (("1", "Sports"),
@@ -65,7 +66,7 @@ class Article(models.Model):
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextField()
-    article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
+    article_pic = ResizedImageField(size=[665, 404], upload_to=get_img_path, blank=True, validators=[image_size_validator])
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,
