@@ -26,7 +26,7 @@
                                 {% for important in important_list %}
                                    <div class="ms-slide color-2">
                                     <div class="slide-pattern"></div>
-                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
+                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}"  alt="Image"/>
 
                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category.name }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
@@ -51,7 +51,7 @@
                                     </div>
 
                                     <div class="ms-thumb">
-                                        <div class="image color-1" data-src="{% static 'images/music/ms2-thumb.jpg' %}"></div>
+                                        <div class="image color-1"  data-src="{% static 'images/music/ms2-thumb.jpg' %}"></div>
                                     </div>
 
                                 </div>
@@ -72,7 +72,7 @@
             <div class="row">
                 <div class="col-sm-12 pv3 pvb0">
                     <a href="blog.html">
-                        <img src="{% static 'images/pages/banner-3-big.jpg' %}" alt="banner">
+                        <img src="{% static 'images/pages/banner-3-big.jpg' %}" loading="lazy"  alt="banner">
                     </a>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                         {% for latest in roaming_news_list %}
                         <div class="post hover-light">
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
-                                <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                                <div class="image image-thumb"  loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                             </a>
                             <span class="date">{{ latest.updated_at|naturaltime }}</span>
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
@@ -131,7 +131,7 @@
                       {% for pouplar in popular_news_list %}
                       <div class="post hover-light">
                           <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
-                              <div class="image image-thumb" loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                              <div class="image image-thumb" loading="lazy" fetchpriority="low" data-src="https://source.unsplash.com/user/c_v_r"></div>
                           </a>
 
                           <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
@@ -311,7 +311,7 @@
                 <div class="post color-1">
                     <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                         <div class="image">
-                            <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                            <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                             <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                         </div>
                     </a>
@@ -356,7 +356,7 @@
                     <div class="post hover-dark color-1">
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                                <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
@@ -381,7 +381,7 @@
                     <div class="post first hover-dark color-2">
                         <a href="single.html">
                             <div class="image" data-src="images/entertainment/post-10.jpg">
-                                <img loading="lazy" src="images/5x3.png" alt="Proportion"/>
+                                <img loading="lazy"  src="images/5x3.png" alt="Proportion"/>
                             </div>
                         </a>
                     </div>
@@ -394,7 +394,7 @@
                     <div class="post hover-dark color-1">
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                                <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                         </a>
@@ -418,7 +418,7 @@
             <div class="row">
                 <div class="col-sm-12 mv3 mvt0">
                     <a href="entertainment.html">
-                        <img loading="lazy" src="images/pages/banner-1.jpg" alt="banner" class="full-size">
+                        <img loading="lazy"  src="images/pages/banner-1.jpg" alt="banner" class="full-size">
                     </a>
                 </div>
             </div>
@@ -433,7 +433,7 @@
                                     <div class="post hover-dark color-1">
                                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                                             <div class="image" data-src="images/entertainment/post-11.jpg">
-                                                <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                                                <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
                                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                             </div>
                                         </a>
@@ -526,7 +526,7 @@
                                           <div class="swiper-slide">
                                             <div class="fs-blog-item">
                                                 <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
-                                                    <img src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
+                                                    <img loading="lazy" fetchpriority="low"  src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
                                                 </a>
                                                 <h4><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.text | safe | slice:":100" }}...</a></h4>
                                             </div>
@@ -564,7 +564,7 @@
                              <div class="swiper-slide">
                                 <div class="fs-blog-item boxed-title">
                                     <a href="{{ article.url }}">
-                                        <img loading="lazy" src="{{ article.urlToImage }}" alt="portfolio image">
+                                        <img loading="lazy" fetchpriority="low" src="{{ article.urlToImage }}" alt="portfolio image">
                                     </a>
                                     <span class='fs-label'>Hottest</span>
                                     <div class="entry-title">
@@ -603,7 +603,7 @@
                            <div class="swiper-slide">
 
                                     <div class="swiper-holder">
-                                      <img src="https://source.unsplash.com/user/c_v_r" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
+                                      <img loading="lazy" fetchpriority="auto"  src="https://source.unsplash.com/user/c_v_r" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
                                         <blockquote>
 
@@ -644,7 +644,7 @@
                     				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
                     			    				<div class="post text-light color-1">
                     			    					<div class="image" data-src="images/entertainment/post-02.png">
-                    			    						<img src="images/1x1.png" alt="Placeholder">
+                    			    						<img loading="lazy" fetchpriority="auto"  src="images/1x1.png" alt="Placeholder">
                     			    					</div>
                     			    					<div class="post-content">
                     			    						<a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label">{{ articles.sub_category.name }}</a>
@@ -666,7 +666,7 @@
                                                 <div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
                     			    				<div class="post">
                     			    					<div class="image" data-src="images/entertainment/post-01.png">
-                    			    						<img src="images/1x1.png" alt="Placeholder">
+                    			    						<img loading="lazy" fetchpriority="auto"  src="images/1x1.png" alt="Placeholder">
                     			    					</div>
                     			    					<div class="post-content">
                                                             {% for author in articles.get_authors %}
@@ -686,7 +686,7 @@
                     				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
                     			    				<div class="post text-light color-1">
                     			    					<div class="image" data-src="images/entertainment/post-02.png">
-                    			    						<img src="images/1x1.png" alt="Placeholder">
+                    			    						<img loading="lazy" fetchpriority="auto"  src="images/1x1.png" alt="Placeholder">
                     			    					</div>
                     			    					<div class="post-content">
                     			    						<a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label">{{ articles.sub_category.name }}</a>
@@ -746,7 +746,7 @@
 						<blockquote>{{ author.short_bio }}</blockquote>
 						<div class="author clearfix">
 							<a href="{% url 'author_view' author_id=author %}">
-								<img class="image image-thumb border-radius" src="https://source.unsplash.com/user/c_v_r" alt="Image">
+								<img loading="lazy"  class="image image-thumb border-radius" src="https://source.unsplash.com/user/c_v_r" alt="Image">
 							</a>
 							<a href="{% url 'category_view' category=author.get_job_title %}" class="label">{{ author.get_job_title }}</a>
 						</div>
@@ -774,7 +774,7 @@
 <!-- New Section -->
 {% for category in categories_list %}
 {% if category.name != 'People' %}
-<div class="content-area pvt0 entertainment-layout">
+<div class="content-area pvt0 entertainment-layout" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -782,7 +782,7 @@
             {{ category.name }}
             <a href="{% url 'category_view' category=category.name %}" class="category-more text-right"
               >Continue to the category
-              <img loading="lazy" src="{% static 'images/arrow-right.png' %}" alt="Arrow"
+              <img loading="lazy" fetchpriority="low" src="{% static 'images/arrow-right.png' %}" alt="Arrow"
             /></a>
           </h2>
 
@@ -800,7 +800,7 @@
                         class="image"
                         data-src="images/entertainment/post-14.jpg"
                       >
-                        <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
+                        <img loading="lazy" fetchpriority="low"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
                         <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
                       <div class="meta inline-meta small-meta">
@@ -844,7 +844,7 @@
                       class="image"
                       data-src="images/entertainment/post-11.jpg"
                     >
-                      <img loading="lazy" src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
+                      <img loading="lazy" fetchpriority="low"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
                       <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
                     <div class="meta inline-meta small-meta">
