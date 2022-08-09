@@ -17,10 +17,13 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="Search">{{ sub_category }}</h4>
+                            <h4 data-title="Search">{{ search }}</h4>
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
+              {% if not articles %}
+              {{ 'No articles found' }}
+              {% endif %}
               {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
@@ -75,9 +78,9 @@
                   </ul>
                   {% endif %}
                 </nav>
-
             </div>
-            {% include 'includes/sidebar.html'%}
+            {% include 'includes/sidebar.html' %}
+
         </div>
 
     </div>

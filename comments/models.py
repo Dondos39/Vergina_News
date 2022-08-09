@@ -10,8 +10,6 @@ class Comment(models.Model):
     verified = models.BooleanField(default=False)
 
     updated_at = models.DateTimeField(auto_now=True, null=True)
-
-  
-
+    
     def __str__(self):
         return self.name

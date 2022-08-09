@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
-
+{% load social_share %}
 {% block headblock %}
 
 <title>VerginaNews | Επικαιρότητα και Τελευταίες Ειδήσεις </title>
@@ -11,7 +11,6 @@
 <meta name="author" content="VerginaNews">
 
 {% endblock %}
-
 {% load humanize %}
 {% block content %}
 
@@ -26,7 +25,11 @@
                                 {% for important in important_list %}
                                    <div class="ms-slide color-2">
                                     <div class="slide-pattern"></div>
-                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}"  alt="Image"/>
+
+                                    {% if important.article_pic %}
+                                    <img src="{{ important.article_pic.url }}" alt="Image" class="img-responsive"/>
+                                    {% endif %}
+
 
                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category.name }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
@@ -163,8 +166,8 @@
                 </div>
                 <!-- <div class="sidebar boxed p3 mt2">
                     <h4 class="font40" style="text-align: center;"><a href="#">Stocks</a></h4>
-                    
-                       
+
+
                     </div> -->
                     <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
@@ -276,7 +279,7 @@
     </script>
   </div>
   <!-- TradingView Widget END -->
-                
+
 
             </div>
 
@@ -323,10 +326,9 @@
 
                         <div class="social-links pull-right">
                             <span>Share: </span>
-                            <a href="single.html"><i class="fa fa-facebook"></i></a>
-                            <a href="single.html"><i class="fa fa-twitter"></i></a>
-                            <a href="single.html"><i class="fa fa-google-plus"></i></a>
-                            <a href="single.html"><i class="fa fa-instagram"></i></a>
+                            <a href="">{% post_to_facebook article '<i class="fa fa-facebook"></i>' %}</a>
+                            <a href="">{% post_to_twitter '{{frontnew.title}}' article '<i class="fa fa-twitter"></i>' %}</a>
+                            <a href="">{% post_to_gplus article '<i class="fa fa-google-plus"></i>' %}</a>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -780,7 +782,7 @@
         <div class="col-md-12">
           <h2 class="block-title mt8" data-title="{{ category.name }}">
             {{ category.name }}
-            <a href="{% url 'category_view' category=category.name %}" class="category-more text-right"
+            <a href="{% url 'category_view' category=category.slug %}" class="category-more text-right"
               >Continue to the category
               <img loading="lazy" fetchpriority="low" src="{% static 'images/arrow-right.png' %}" alt="Arrow"
             /></a>

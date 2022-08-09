@@ -3,8 +3,8 @@
 
 {% block headblock %}
 
-<title>VerginaNews | {{ category | first }} </title>
-<meta name="description" content="{% for category in category %}{{ category.description }}{% endfor %}">
+<title>VerginaNews | {{ category }} </title>
+<meta name="description" content="{{ description }}">
 <meta name="keywords" content="{% for tag in popular_tags %} {{ tag }},{% endfor %}" >
 <meta name="author" content="VerginaNews">
 
@@ -19,10 +19,13 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="{{ category | first }}">All</h4>
+                            <h4 data-title="{{ category }}">All</h4>
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
+                              {% if not articles %}
+                              {{ 'No articles found' }}
+                              {% endif %}
                                  {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
