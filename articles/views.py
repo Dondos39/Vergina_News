@@ -99,8 +99,6 @@ class AllArticlesView(DetailView):
         model = Article
 
         def get(self, request, *args, **kwargs):
-            categories = Article.objects.all().values_list('category__name', flat=True).distinct()
-            sub_categories = Article.objects.all().values_list('sub_category__name', flat=True).distinct()
             tags = Tags.objects.all().values_list('name', flat=True).distinct()
             if kwargs['search'] == 'all':
                 articles = Article.objects.all().order_by('-updated_at')
@@ -113,6 +111,7 @@ class AllArticlesView(DetailView):
                 articles = Article.objects.filter(title__icontains=kwargs['search']).order_by('-updated_at')
             context = {
                 'articles' : articles,
+                'search': kwargs['search'],
             }
             return render(request, "allarticles.html", context=context)
 
