@@ -52,6 +52,7 @@ class ArticleView(DetailView):
                 "tags": detail.get_tags(),
                 "article_pic": detail.article_pic,
                 "article_video": detail.article_video,
+                "text": detail.text,
              }
             return render(request, "article.html", context=context)
 

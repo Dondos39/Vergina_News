@@ -115,12 +115,14 @@
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                                 <div class="image image-thumb"  loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
                             </a>
-                            <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                            
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
-
+                              
                             </div>
+                            <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                            <div class="border-bottom" ></div>
                         </div>
                         {% endfor %}
                          <!-- end .post -->

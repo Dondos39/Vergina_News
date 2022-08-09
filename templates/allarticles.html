@@ -22,7 +22,9 @@
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
               {% if not articles %}
-              {{ 'No articles found' }}
+              <h1>Δεν βρέθηκαν αποτελέσματα</h1>
+               <h2> Παρακαλούμε επαναλάβετε την αναζήτησή σας με διαφορετικά κριτήρια</h2>
+          
               {% endif %}
               {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
