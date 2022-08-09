@@ -25,7 +25,9 @@
                                 {% for important in important_list %}
                                    <div class="ms-slide color-2">
                                     <div class="slide-pattern"></div>
-                                    <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
+                                    {% if important.article_pic %}
+                                    <img src="{{ important.article_pic.url }}" alt="Image" class="img-responsive"/>
+                                    {% endif %}
 
                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category.name }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
