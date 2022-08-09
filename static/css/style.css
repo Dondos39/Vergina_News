@@ -142,8 +142,10 @@
 }
 
 #header .header-wrapper .site-branding img {
-  width: 337px;
+  width: 250px;
   height: auto;
+  margin-bottom: -20px;
+  margin-left: -15px;
 }
 
 #header .header-wrapper .right-content {

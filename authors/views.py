@@ -29,5 +29,6 @@ class AuthorView(DetailView):
                     "article_count": article_count,
                     "related_authors": related_authors,
                     "tags": tags,
+
             }
             return render(request, 'author.html', context=context)

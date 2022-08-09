@@ -1,5 +1,13 @@
 {% extends 'base.html'%}
 {% load static %}
+{% block headblock %}
+
+<title>VerginaNews | {{ author.first_name }} </title>
+<meta name="description" content="{{ author.short_bio }}">
+<meta name="keywords" content="{% for tag in popular_tags %} {{ tag }},{% endfor %}" >
+<meta name="author" content="VerginaNews">
+
+{% endblock %}
 {% load humanize %}
 {% block content %}
 

@@ -1,5 +1,15 @@
 {% extends 'base.html'%}
 {% load static %}
+
+{% block headblock %}
+
+<title>VerginaNews | {{ category}} | {{ sub_category }} </title>
+<meta name="description" content="{{ sub_category.description }}">
+<meta name="keywords" content="{% for tag in popular_tags %} {{ tag }},{% endfor %}" >
+<meta name="author" content="VerginaNews">
+
+{% endblock %}
+
 {% load humanize %}
 {% block content %}
 <div class="section-full pv9 pvb0">
