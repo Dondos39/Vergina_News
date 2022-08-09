@@ -1,5 +1,13 @@
 {% extends 'base.html'%}
 {% load static %}
+{% block headblock %}
+
+<title>VerginaNews | {{ search }} </title>
+<meta name="description" content="{{ search }}">
+<meta name="keywords" content="{% for tag in tags%} {{ tag }},{% endfor %}" >
+<meta name="author" content="VerginaNews">
+
+{% endblock %}
 {% load humanize %}
 {% block content %}
 <div class="section-full pv9 pvb0">
@@ -9,7 +17,7 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h4 data-title="{{ category }}">{{ sub_category }}</h4>
+                            <h4 data-title="Search">{{ sub_category }}</h4>
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">

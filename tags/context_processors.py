@@ -11,11 +11,11 @@ def tag_cloud(request, *args, **kwargs):
     values = [x.strip() for x in values if x.strip()]
 
     try:
-        sub_category = values[2]
+        sub_category = values[1]
     except IndexError:
         sub_category = None
     try:
-        category = values[1]
+        category = values[0]
     except IndexError:
         category = None
 

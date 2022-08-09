@@ -31,9 +31,7 @@ class HomepageViews(ListView):
         'ads': ads.models.Ad.objects.get_priority(1),
         'weather': get_weather(request),
         'external_articles': get_news(request),
-        'stocks': get_stocks(request),
-        'cryptos': get_crypto(request),
-        'forex': get_exchange(request),
+
         'date': date,
         }
         return render(request, "Home.html", context=context)

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'subscribers',
     'requests',
     'captcha',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [

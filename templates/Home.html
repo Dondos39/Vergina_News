@@ -1,5 +1,17 @@
 {% extends 'base.html'%}
 {% load static %}
+
+{% block headblock %}
+
+<title>VerginaNews | Επικαιρότητα και Τελευταίες Ειδήσεις </title>
+<meta name="description" content="Tana - Blog, News and Magazine HTML Template">
+
+<meta name="keywords" content="{% for tag in popular_tags %} {{ tag }},{% endfor %}" >
+
+<meta name="author" content="VerginaNews">
+
+{% endblock %}
+
 {% load humanize %}
 {% block content %}
 

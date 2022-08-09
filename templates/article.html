@@ -1,5 +1,13 @@
 {% extends 'base.html'%}
 {% load static %}
+{% block headblock %}
+
+<title>VerginaNews | {{ title }} </title>
+<meta name="description" content="{{ title }}">
+<meta name="keywords" content="{% for tag in tags%} {{ tag }},{% endfor %}" >
+<meta name="author" content="{% for author in authors %}{{ author }}{% endfor %} | VerginaNews">
+
+{% endblock %}
 {% load humanize %}
 {% block content %}
 <div class="row">
