@@ -25,7 +25,7 @@ class ArticleManager(models.Manager):
 
 # Create your models here.
 class Ad(models.Model):
-    name =  models.CharField(max_length=64, unique=True)
+    name =  models.CharField(max_length=64, unique=True, db_index=True)
     ad_pic = models.ImageField(upload_to=get_file_path, blank=True)
     url = models.URLField(max_length=256)
     priority = models.CharField(choices=PRIORITY_N, max_length=6, null=True, blank=True)

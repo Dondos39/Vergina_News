@@ -8,7 +8,7 @@ class TagManager(models.Manager):
 
 # Create your models here.
 class Tags(models.Model):
-    name = models.TextField()
+    name = models.TextField(unique=True, db_index=True)
     category = models.ManyToManyField(categories.models.Category)
     sub_category = models.ManyToManyField(categories.models.SubCategory)
 
