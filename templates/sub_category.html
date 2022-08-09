@@ -22,6 +22,9 @@
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
+                              {% if not articles %}
+                              {{ 'No articles found' }}
+                              {% endif %}
               {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
