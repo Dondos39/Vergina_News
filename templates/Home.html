@@ -28,7 +28,7 @@
                                     <div class="slide-pattern"></div>
                                     <img src="{% static 'vendors/masterslider/style/blank.gif' %}" data-src="{% static 'images/music/ms2.jpg' %}" alt="Image"/>
 
-                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category__name }}</span></div>
+                                     <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><span class="label">{{ important.sub_category.name }}</span></div>
                                     <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
 
                                         <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
@@ -41,7 +41,7 @@
                                                 <span class="author">{{ author }}</span>
                                             </a>
                                                 {% endfor %}
-                                                <span class="date">{{ important.updated_at }}</span>
+                                                <span class="date">{{ important.updated_at|naturaltime }}</span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -116,7 +116,7 @@
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}...</p>
                             <div class="meta">
-                               
+
                             </div>
                         </div>
                         {% endfor %}
@@ -601,7 +601,7 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                            <div class="swiper-slide">
-                            
+
                                     <div class="swiper-holder">
                                       <img src="https://source.unsplash.com/user/c_v_r" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
@@ -614,7 +614,7 @@
 
                                     </div>
                                     <!-- /.swiper-holder -->
-                           
+
                                 </div>
                                 <!-- /.swiper-slide -->
 

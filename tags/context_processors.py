@@ -27,5 +27,4 @@ def tag_cloud(request, *args, **kwargs):
         name = None
     else:
         tags = None
-
     return dict(popular_tags=tags)
