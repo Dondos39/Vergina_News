@@ -31,17 +31,17 @@
     font-weight: 900;
     src: url(fonts/SF-UI-Display-Black.otf);
 }
-@font-face {
+/* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 800;
     src: url(fonts/SF-UI-Display-Heavy.otf);
-}
-@font-face {
+} */
+/* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 700;
     src: url(fonts/SF-UI-Display-Bold.otf);
-}
-@font-face {
+} */
+/* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 600;
     src: url(fonts/SF-UI-Display-Semibold.otf);
@@ -55,17 +55,17 @@
     font-family: 'SF-UI-Display';
     font-weight: 400;
     src: url(fonts/SF-UI-Display-Regular.otf);
-}
-@font-face {
+} */
+/* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 300;
     src: url(fonts/SF-UI-Display-Light.otf);
-}
-@font-face {
+} */
+/* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 200;
     src: url(fonts/SF-UI-Display-Thin.otf);
-}
+} */
 @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 100;
@@ -1581,7 +1581,7 @@ h4.block-title .category-more.text-right {
 /* Trending
 ------------------------------------ */
 
-.trending .post {
+/* .trending .post {
   position: relative;
   margin-bottom: 45px;
 }
@@ -1606,7 +1606,7 @@ h4.block-title .category-more.text-right {
   z-index: 0;
   line-height: 105px;
   letter-spacing: -13px;
-}
+} */
 /* More link
 ------------------------------------ */
 
@@ -1647,7 +1647,7 @@ h4.block-title .category-more.text-right {
 /* Pagination
 ------------------------------------ */
 
-.pagination-next-prev {
+/* .pagination-next-prev {
   text-align: center;
 }
 
@@ -1690,7 +1690,7 @@ h4.block-title .category-more.text-right {
   -webkit-transform: translateX(60px);
   -moz-transform: translateX(60px);
   transform: translateX(60px);
-}
+} */
 /* News slider
 ------------------------------------ */
 
@@ -2040,7 +2040,7 @@ h4.block-title .category-more.text-right {
 /* Fullscreen & Fullwidth section
 ------------------------------------ */
 
-.fullscreen-section {
+/* .fullscreen-section {
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
@@ -2060,7 +2060,7 @@ h4.block-title .category-more.text-right {
 
 .fullwidth-section {
   min-height: 200px;
-}
+} */
 /* Twitter share able
 ------------------------------------ */
 

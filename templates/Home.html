@@ -337,7 +337,7 @@
                     <h4 class="font28"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title}}</a></h4>
                     <div class="border-line"></div>
                     <p>{{ frontnew.text | safe |slice:":800"  }}...</p>
-                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">Continue to the news <img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">Continue to the news <img  src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                 </div>
                 {% endif %}
                 {% endfor %}

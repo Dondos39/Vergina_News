@@ -200,6 +200,7 @@
 
 			slider.setup(_id , {
 				autoplay: true,
+				preload: 2,
 				width:1170,
 				height:sliderHeight,
 				space:0,
@@ -961,7 +962,7 @@
 		$('body').addClass('page-loaded');
 
 		// parallax columns
-		$('.parallax-columns-container').parallaxColumn();
+		// $('.parallax-columns-container').parallaxColumn();
 
 		//sticky
 		$('.sticky-parent').each(function(){

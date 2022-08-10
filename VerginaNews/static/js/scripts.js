@@ -962,7 +962,7 @@
 		$('body').addClass('page-loaded');
 
 		// parallax columns
-		$('.parallax-columns-container').parallaxColumn();
+		// $('.parallax-columns-container').parallaxColumn();
 
 		//sticky
 		$('.sticky-parent').each(function(){
