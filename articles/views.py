@@ -55,11 +55,13 @@ class ArticleView(DetailView):
                 "article_pic": detail.article_pic,
                 "article_video": detail.article_video,
                 "text": detail.text,
+                "captcha": FormWithCaptcha(),
              }
             return render(request, "article.html", context=context)
 
         @method_decorator(check_honeypot(field_name='email'), name='hp_email')
         def post(self, request, *args, **kwargs):
+            # Check for search POST  then validate
             keyword = request.POST.get('search')
             if keyword:
                 if keyword == "":
@@ -68,6 +70,7 @@ class ArticleView(DetailView):
                     result = keyword
                 return redirect('articles_view', search=result)
 
+            # Check for comment POST  then validate
             id = request.POST.get('Article ID')
             if id != None:
                 article = Article.objects.get(id=id)
@@ -84,6 +87,7 @@ class ArticleView(DetailView):
                    'sub_category': article.sub_category
                 }
 
+            # Check for subscription POST then validate
             email = request.POST.get('email_sub')
             if email != None:
                 try:
@@ -95,6 +99,12 @@ class ArticleView(DetailView):
                 else:
                     sub = Subscriber(email=email)
                     sub.save()
+
+            # Check for Captcha POST then validate
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            print('----------------')
+            print(recaptcha_response)
+            print('----------------')
             return HttpResponseRedirect(self.request.path_info)
 
 class AllArticlesView(DetailView):

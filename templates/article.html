@@ -259,7 +259,7 @@
                             <p class="comment-form-comment">
                                 <textarea id="comment" name="comment" placeholder="Comments"></textarea>
                             </p>
-                            {{captcha}}
+                            {{ captcha }}
                             <p class="form-submit">
                                 {% render_honeypot_field "email" %}
                                 {% csrf_token %}
