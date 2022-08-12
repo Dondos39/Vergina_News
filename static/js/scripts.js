@@ -1087,8 +1087,14 @@
 	$(window).on('scroll', function() {
 		if($(window).scrollTop() > 10 ) {
 			$('.panel-menu').addClass('pmenu');
+			$('.kati').addClass('d-none');
+			$('.cl2').removeClass('d-none');
+			
 		} else {
 			$('.panel-menu').removeClass('pmenu');
+			$('.kati').removeClass('d-none');
+			$('.cl2').addClass('d-none');
+
 		}
 
 	});

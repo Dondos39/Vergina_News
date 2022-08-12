@@ -47,10 +47,14 @@
                     <nav class="main-nav">
                         <ul>
                             <li class="current-menu-item">
-                                <a href="{% url 'home' %}">Home</a>
+                                <!-- <a href="{% url 'home' %}">Home</a> -->
+                                <a href="{% url 'home' %}" rel="home" class="custom-logo-link cl2 d-none" style="width: 170px; height: 60px;">
+                                    <img src="{% static 'images/VerginaBlack.svg' %}"  alt="logo image">
+                                </a>
+                                 <a class="kati" href="{% url 'home' %}">Home</a>
                             </li>
                             {% for category in links %}
-                            <li class="menu-item-has-children ">
+                            <li class="menu-item-has-children">
                                 <a href="{% url 'category_view' category=category.slug %}">{{ category.name }}</a>
 
                                 <ul>
