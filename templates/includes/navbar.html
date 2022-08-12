@@ -50,7 +50,7 @@
                                 <a href="{% url 'home' %}">Home</a>
                             </li>
                             {% for category in links %}
-                            <li class="menu-item-has-children">
+                            <li class="menu-item-has-children ">
                                 <a href="{% url 'category_view' category=category.slug %}">{{ category.name }}</a>
 
                                 <ul>

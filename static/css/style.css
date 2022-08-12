@@ -355,6 +355,13 @@
   transition: all 0.25s ease;
 }
 
+/* @media (max-width: 768px) {
+
+  #header nav.main-nav > ul > li > a {
+      display: none;
+  }
+} */
+
 #header nav.main-nav > ul > li:first-child:not(.menu-item-has-children) > a {
   padding-left: 0;
 }
