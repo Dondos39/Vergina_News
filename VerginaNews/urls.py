@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
 import articles.views
@@ -23,11 +23,11 @@ import authors.views
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(r's3cr3t4dm1n/', admin.site.urls),
     re_path(r'^getSubcategory/$', articles.views.get_subcategory),
     path('', views.HomepageViews.as_view(), name='home'),
     path('search=<str:search>/', articles.views.AllArticlesView.as_view(), name='articles_view'),
-    re_path('^/(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view'),
+    re_path('^(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view'),
     re_path('(?P<category>[\w\-]+)/$', categories.views.CategoryView.as_view(), name='category_view'),
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<title>[\w-]+)/$', articles.views.ArticleView.as_view(), name='article_view'),

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'captcha',
     'django_social_share',
     'django_resized',
+    'axes',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware',
 ]
 
 SESSION_EXPIRE_SECONDS = 1800 # 30 Minutes
@@ -124,6 +126,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Backends
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
