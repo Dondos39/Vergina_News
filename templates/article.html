@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load honeypot %}
 {% block headblock %}
 
 <title>VerginaNews | {{ title }} </title>
@@ -252,7 +253,7 @@
                                     <input id="{{ author.id }}" name="author" type="text" value="" size="30" placeholder="Your Name *">
                                 </p>
                                 <p class="comment-form-email col-sm-6">
-                                    <input id="1" name="email" type="email" value="" size="30" placeholder="Your E-mail *">
+                                    <input id="1" name="email1233" type="email" value="" size="30" placeholder="Your E-mail *">
                                 </p>
                             </div>
                             <p class="comment-form-comment">
@@ -260,6 +261,7 @@
                             </p>
                             {{captcha}}
                             <p class="form-submit">
+                                {% render_honeypot_field "email" %}
                                 {% csrf_token %}
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <input type="hidden" name="Article ID" value="{{ id }}">

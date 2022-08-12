@@ -13,6 +13,8 @@ from django.contrib import messages
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
+from honeypot.decorators import check_honeypot
 import json
 # import requests
 # Google captcha
@@ -56,6 +58,7 @@ class ArticleView(DetailView):
              }
             return render(request, "article.html", context=context)
 
+        @method_decorator(check_honeypot(field_name='email'), name='hp_email')
         def post(self, request, *args, **kwargs):
             keyword = request.POST.get('search')
             if keyword:
@@ -70,7 +73,7 @@ class ArticleView(DetailView):
                 article = Article.objects.get(id=id)
                 comment = {
                    "author": request.POST.get('author'),
-                   "email": request.POST.get('email'),
+                   "email": request.POST.get('email1233'),
                    "text": request.POST.get('comment')
                 }
 
