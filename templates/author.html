@@ -36,10 +36,12 @@
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <div class="swiper-holder">
+                      {% if author.prof_pic%}
                       <img
-                        src="https://source.unsplash.com/user/c_v_r"
+                        src="{{ author.prof_pic.url }}"
                         alt="Quote author"
                       />
+                      {% endif %}
                       <blockquote>
                         <cite>{{ author.first_name }}</cite>
                         <p>
@@ -57,7 +59,7 @@
             </div>
             <!-- /.testimonial-slider -->
 
-            <h2 class="block-title mt8" data-title="{{ author.get_job_title }}">Articles</h2>
+            <h2 class="block-title mt8" data-title="{{ author.first_name }}">Articles</h2>
 
             <div class="section-blog en-block category-block sticky-parent">
               <div class="row">
@@ -66,12 +68,17 @@
                     {% for article in articles %}
                     <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
                       <div class="post boxed mb3 color-2 cart-style">
+                        
+               
+                       
                         <div class="clearfix">
+                          {% if author.prof_pic%}
                           <img
                             class="image-thumb"
-                            src="https://source.unsplash.com/user/c_v_r"
+                            src="{{ author.prof_pic.url }}"
                             alt="Image"
                           />
+                          {% endif %}
                           <a href="blog.html" class="label">{{ article.category__name }}</a>
                           <div class="meta">
                             <span class="author">{{ author }}</span>
@@ -80,12 +87,12 @@
                           </div>
                         </div>
                         <h4 class="font18">
-                          <a href="single.html">{{ article.title }}</a>
+                          <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">{{ article.title }}</a>
                         </h4>
                         <p>
                           {{ article.text | safe |slice:":100"}}...
                         </p>
-                        <a href="single.html" class="category-more"
+                        <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}" class="category-more"
                           >Continue to the news
                           <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
                         /></a>
@@ -154,7 +161,7 @@
                     <ul>
                       {% for category in links %}
                       <li>
-                          <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
+                          <a href="{% url 'category_view' category=category.slug %}">{{ category.name }}</a>
 
                       </li>
                       {% endfor %}
@@ -168,10 +175,13 @@
                       {% for author in related_authors %}
                       <li class="post hover-light">
                         <a href="javascript:;">
+             
+                          {% if author.prof_pic%}
                           <div
                             class="image image-thumb"
-                            data-src=""
+                            data-src="{{ author.prof_pic.url }}"
                           ></div>
+                          {% endif %}
                         </a>
                         <h4><a href="#">{{ author.first_name }}</a></h4>
                         <h4><a href="#">{{ author.last_name }}</a></h4>

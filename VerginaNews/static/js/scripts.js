@@ -1099,6 +1099,17 @@
 
 	});
 
+	$(window).on('scroll', function() {
+		if($(window).scrollTop() > 1000 ) {
+			$('.backToTop').removeClass('d-none');
+						
+		} else {
+
+			$('.backToTop').addClass('d-none');
+		}
+
+	});
+
 
 
 

@@ -1,5 +1,7 @@
 <div class="clearfix"></div>
-
+            <!-- back to top -->
+          
+            <div class="backToTop d-none"><i class="fa fa-arrow-up scroll-to-top"></i></div>
 <footer id="footer" class="footer-news ">
     
     <div class="container">
@@ -30,7 +32,7 @@
                     <h5 class="widget-title">{{ category.name }}</h5>
                     <ul>
                         {% for subcategory in category.get_subcategories %}
-                        <li><a href="#">{{ subcategory.name }}</a></li>
+                        <li><a href="{% url 'subcategory_view' category=category.slug sub_category=subcategory.slug %}">{{ subcategory.name }}</a></li>
                         {% endfor %}
                     </ul>
                     
@@ -75,7 +77,7 @@
                             <li><a href="#">Terms of Service</a></li>
                             <li><a href="#">Terms of Sale</a></li>
                         </ul>
-                        <div class="copyright-text pull-right"><i class="fa fa-chevron-up scroll-to-top"></i> Copyight &copy; 2016 Designed by ThemeTon</div>
+                        <div class="copyright-text pull-right"><i class="fa fa-chevron-up scroll-to-top"></i> Copyight &copy; 2016 Designed by Pantelis</div>
                     </div>
                 </div>
                 

@@ -53,8 +53,14 @@
                                     </a>
                                     </div>
 
+                                    
+                                    
+                                    
+                                    
                                     <div class="ms-thumb">
-                                        <div class="image color-1"  data-src="{% static 'images/music/ms2-thumb.jpg' %}"></div>
+                                      {% if important.article_pic %}
+                                        <div class="image color-1"  data-src="{{ important.article_pic.url }}"></div>
+                                        {% endif %}
                                     </div>
 
                                 </div>
@@ -80,8 +86,10 @@
                 </div>
             </div>
             <div class="border-line mv3"></div>
-  <!-- Section 5 -->
 
+  
+  <!-- Section 5 -->
+  
   <div class="row">
 
     <div class="col-md-12">
@@ -113,7 +121,9 @@
                         {% for latest in roaming_news_list %}
                         <div class="post hover-light">
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
-                                <div class="image image-thumb"  loading="lazy" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                              {% if latest.article_pic %}
+                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
+                              {% endif %}
                             </a>
                             
                             <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
@@ -136,7 +146,9 @@
                       {% for pouplar in popular_news_list %}
                       <div class="post hover-light">
                           <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
-                              <div class="image image-thumb" loading="lazy" fetchpriority="low" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                            {% if popoular.article_pic %}
+                            <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic.url }}"></div>
+                          {% endif %}
                           </a>
 
                           <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
@@ -316,7 +328,9 @@
                 <div class="post color-1">
                     <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                         <div class="image">
-                            <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                          {% if frontnew.article_pic %}
+                            <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
+                            {% endif %}
                             <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                         </div>
                     </a>
@@ -326,7 +340,7 @@
                         {% endfor %}
                         <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
 
-                        <div class="social-links pull-right">
+                        <div class="social-links pull-right" style="display: inline-flex;">
                             <span>Share: </span>
                             <a href="">{% post_to_facebook article '<i class="fa fa-facebook"></i>' %}</a>
                             <a href="">{% post_to_twitter '{{frontnew.title}}' article '<i class="fa fa-twitter"></i>' %}</a>
@@ -359,10 +373,13 @@
 
                     <div class="post hover-dark color-1">
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
-                            <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                          {% if frontnew.article_pic %}
+                            <div class="image" data-src="{{ frontnew.article_pic.url }}">
+                          
+                                <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
+                            {% endif %}
                         </a>
                         <div class="meta inline-meta small-meta">
                             {% for author in frontnew.get_authors %}
@@ -397,10 +414,12 @@
 
                     <div class="post hover-dark color-1">
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
-                            <div class="image" data-src="images/entertainment/post-11.jpg">
-                                <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
+                          {% if frontnew.article_pic %}
+                            <div class="image" data-src="{{ frontnew.article_pic.url }}">
+                                <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
+                            {% endif %}
                         </a>
                         <div class="meta inline-meta small-meta">
                             {% for author in frontnew.get_authors %}
@@ -436,10 +455,12 @@
 
                                     <div class="post hover-dark color-1">
                                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
-                                            <div class="image" data-src="images/entertainment/post-11.jpg">
-                                                <img loading="lazy"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion"/>
-                                                <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
-                                            </div>
+                                          {% if frontnew.article_pic %}
+                                          <div class="image" data-src="{{ frontnew.article_pic.url }}">
+                                              <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
+                                              <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
+                                          </div>
+                                          {% endif %}
                                         </a>
                                         <div class="meta inline-meta small-meta">
                                             {% for author in frontnew.get_authors %}
@@ -464,7 +485,9 @@
 									<div class="category-block articles">
 									    <div class="post hover-light">
 											<a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
-												<div class="image image-thumb" data-src="https://source.unsplash.com/user/c_v_r"></div>
+                        {% if frontnew.article_pic %}
+												<div class="image image-thumb" data-src="{{ frontnew.article_pic.url }}"></div>
+                        {% endif %}
 											</a>
 											<h4><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
 											<p>{{ frontnew.text | safe | slice:":100" }}...</p>
@@ -530,7 +553,9 @@
                                           <div class="swiper-slide">
                                             <div class="fs-blog-item">
                                                 <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
-                                                    <img loading="lazy" fetchpriority="low"  src="https://source.unsplash.com/user/c_v_r" alt="portfolio image">
+                                                  {% if pouplar.article_pic %}
+                                                    <img loading="lazy" fetchpriority="low"  src="{{ pouplar.article_pic.url }}" alt="portfolio image">
+                                                  {% endif %}
                                                 </a>
                                                 <h4><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.text | safe | slice:":100" }}...</a></h4>
                                             </div>
@@ -607,8 +632,10 @@
                            <div class="swiper-slide">
 
                                     <div class="swiper-holder">
-                                      <img loading="lazy" fetchpriority="auto"  src="https://source.unsplash.com/user/c_v_r" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
 
+                                    {% if featured.article_pic %}
+                                      <img loading="lazy" fetchpriority="auto"  src="{{ featured.article_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
+                                      {% endif %}
                                         <blockquote>
 
                                             <cite>{{ featured.title }}</cite>
@@ -647,9 +674,11 @@
                                                 {% if forloop.counter < 2 %}
                     				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
                     			    				<div class="post text-light color-1">
-                    			    					<div class="image" data-src="images/entertainment/post-02.png">
-                    			    						<img loading="lazy" fetchpriority="auto"  src="images/1x1.png" alt="Placeholder">
+                                        {% if articles.article_pic %}
+                    			    					<div class="image" data-src="{{ articles.article_pic.url }}">
+                    			    						<img loading="lazy" fetchpriority="auto"  src="{{ articles.article_pic.url }}" alt="Placeholder">
                     			    					</div>
+                                        {% endif %}
                     			    					<div class="post-content">
                     			    						<a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label">{{ articles.sub_category.name }}</a>
                     				    					<h4 class="font36"><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">{{ articles.title }}.</a></h4>
@@ -669,9 +698,11 @@
                                                 {% if forloop.counter > 2 %}
                                                 <div class="col-xs-12 col-sm-4 col-md-3 masonry-item ab-item">
                     			    				<div class="post">
-                    			    					<div class="image" data-src="images/entertainment/post-01.png">
-                    			    						<img loading="lazy" fetchpriority="auto"  src="images/1x1.png" alt="Placeholder">
+                                        {% if articles.article_pic %}
+                    			    					<div class="image" data-src="{{ articles.article_pic.url }}">
+                    			    						<img loading="lazy" fetchpriority="auto"  src="{{ articles.article_pic.url }}" alt="Placeholder">
                     			    					</div>
+                                        {% endif %}
                     			    					<div class="post-content">
                                                             {% for author in articles.get_authors %}
                                                             <span class="author">{{ author }}</span>
@@ -689,9 +720,11 @@
                                                 {% if forloop.counter > 5 %}
                     				    		<div class="col-xs-12 col-sm-4 col-md-6 masonry-item ab-item">
                     			    				<div class="post text-light color-1">
-                    			    					<div class="image" data-src="images/entertainment/post-02.png">
-                    			    						<img loading="lazy" fetchpriority="auto"  src="images/1x1.png" alt="Placeholder">
+                                        {% if articles.article_pic %}
+                    			    					<div class="image" data-src="{{ articles.article_pic.url }}">
+                    			    						<img loading="lazy" fetchpriority="auto"  src="{{ articles.article_pic.url }}" alt="Placeholder">
                     			    					</div>
+                                        {% endif %}
                     			    					<div class="post-content">
                     			    						<a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label">{{ articles.sub_category.name }}</a>
                     				    					<h4 class="font36"><a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">{{ articles.title }}.</a></h4>
@@ -750,7 +783,9 @@
 						<blockquote>{{ author.short_bio }}</blockquote>
 						<div class="author clearfix">
 							<a href="{% url 'author_view' author_id=author %}">
-								<img loading="lazy"  class="image image-thumb border-radius" src="https://source.unsplash.com/user/c_v_r" alt="Image">
+                {% if author.prof_pic%}
+								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic.url}}" alt="Image">
+                {% endif %}
 							</a>
 							<a href="{% url 'category_view' category=author.get_job_title %}" class="label">{{ author.get_job_title }}</a>
 						</div>
@@ -800,13 +835,17 @@
                 <div class="col-md-6">
                   <div class="post first hover-dark">
                     <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
+
+  
+                      {% if articles.article_pic %}
                       <div
                         class="image"
-                        data-src="images/entertainment/post-14.jpg"
+                        data-src="{{ articles.article_pic.url }"
                       >
-                        <img loading="lazy" fetchpriority="low"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
+                        <img loading="lazy" fetchpriority="low"  src="{{ articles.article_pic.url }}" alt="Proportion" />
                         <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
+                      {% endif %}
                       <div class="meta inline-meta small-meta">
                         {% for author in articles.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
@@ -844,13 +883,15 @@
                 {% if forloop.counter > 2 %}
                 <div class="col-md-3">
                   <div class="post hover-light">
+                    {% if articles.article_pic %}
                     <div
                       class="image"
-                      data-src="images/entertainment/post-11.jpg"
+                      data-src="{{ articles.article_pic.url }}"
                     >
-                      <img loading="lazy" fetchpriority="low"  src="https://source.unsplash.com/user/c_v_r" alt="Proportion" />
+                      <img loading="lazy" fetchpriority="low"  src="{{ articles.article_pic.url }}" alt="Proportion" />
                       <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
+                    {% endif %}
                     <div class="meta inline-meta small-meta">
                       {% for author in articles.get_authors %}
                       <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>

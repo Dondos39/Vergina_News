@@ -29,7 +29,7 @@
             <h2 class="block-title mv5" data-title="{{ category }}">
                 {{ sub_category }}
             </h2>
-
+        
             <article class="blog-item blog-single">
 
                 <div class="post first text-bigger hover-dark entry-media">
@@ -54,7 +54,7 @@
                             by
                             <h5>
                               {% for author in authors %}
-                                <a href="javascript:;">{{ author }}</a><br>
+                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a><br>
                               {% endfor  %}
                             </h5>
                         </div>
@@ -140,7 +140,9 @@
                         {% if forloop.counter < 5 %}
                          <li class="post hover-light">
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
-                                <div class="image image-thumb" data-src="images/news/category-01.jpg"></div>
+                                {% if latest.article_pic %}
+                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
+                              {% endif %}
                             </a>
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}..</p>
