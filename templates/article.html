@@ -13,12 +13,13 @@
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-
     </div>
 </div>
 <!-- end .row -->
 </div>
 <!-- end .container -->
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62f789fba11776a4"></script>
 
 <section class="section-content single">
 
@@ -30,7 +31,7 @@
             <h2 class="block-title mv5" data-title="{{ category }}">
                 {{ sub_category }}
             </h2>
-        
+
             <article class="blog-item blog-single">
 
                 <div class="post first text-bigger hover-dark entry-media">
@@ -252,19 +253,20 @@
                         <form method="post" id="commentform" class="comment-form" novalidate="">
                             <div class="row">
                                 <p class="comment-form-author col-sm-6">
-                                    <input id="{{ author.id }}" name="author" type="text" value="" size="30" placeholder="Your Name *">
+                                    <input id="{{ author.id }}" name="author" type="text" value="" size="30" required="required" placeholder="Your Name *">
                                 </p>
                                 <p class="comment-form-email col-sm-6">
-                                    <input id="1" name="email1233" type="email" value="" size="30" placeholder="Your E-mail *">
+                                    <input id="1" name="email1233" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
                                 </p>
                             </div>
                             <p class="comment-form-comment">
-                                <textarea id="comment" name="comment" placeholder="Comments"></textarea>
+                                <textarea id="comment" name="comment" required="required" placeholder="Comments"></textarea>
                             </p>
-                            {{ captcha }}
                             <p class="form-submit">
                                 {% render_honeypot_field "email" %}
                                 {% csrf_token %}
+                                <script src='https://www.google.com/recaptcha/api.js'></script>
+                                <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <input type="hidden" name="Article ID" value="{{ id }}">
                                 <span>The required fields have * symbols</span>
