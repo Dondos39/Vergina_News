@@ -10,18 +10,14 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.validators import validate_email
 from django.contrib import messages
-from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from honeypot.decorators import check_honeypot
 import json
-# import requests
+import requests
 # Google captcha
-from captcha.fields import ReCaptchaField
-
-class FormWithCaptcha(forms.Form):
-    captcha = ReCaptchaField()
+from django.conf import settings
 
 # Create your views here.
 def get_subcategory(request):
@@ -46,7 +42,6 @@ class ArticleView(DetailView):
                 "authors": detail.get_authors(),
                 "updated_at":detail.updated_at,
                 "comments": detail.get_comments(),
-                "captcha": FormWithCaptcha,
                 "category": detail.category.name,
                 "sub_category": detail.sub_category.name,
                 "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
@@ -55,7 +50,7 @@ class ArticleView(DetailView):
                 "article_pic": detail.article_pic,
                 "article_video": detail.article_video,
                 "text": detail.text,
-                "captcha": FormWithCaptcha(),
+                "site_key": settings.RECAPTCHA_PUBLIC_KEY,
              }
             return render(request, "article.html", context=context)
 
@@ -69,23 +64,6 @@ class ArticleView(DetailView):
                 else:
                     result = keyword
                 return redirect('articles_view', search=result)
-
-            # Check for comment POST  then validate
-            id = request.POST.get('Article ID')
-            if id != None:
-                article = Article.objects.get(id=id)
-                comment = {
-                   "author": request.POST.get('author'),
-                   "email": request.POST.get('email1233'),
-                   "text": request.POST.get('comment')
-                }
-
-                article.add_comment(comment)
-                context = {
-                   'post_id': article.id,
-                   'category': article.category,
-                   'sub_category': article.sub_category
-                }
 
             # Check for subscription POST then validate
             email = request.POST.get('email_sub')
@@ -102,9 +80,33 @@ class ArticleView(DetailView):
 
             # Check for Captcha POST then validate
             recaptcha_response = request.POST.get('g-recaptcha-response')
-            print('----------------')
-            print(recaptcha_response)
-            print('----------------')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            data = {
+                'secret':  settings.RECAPTCHA_PRIVATE_KEY,
+                'response': recaptcha_response,
+            }
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result = r.json()
+
+            if result['success']:
+                # Check for comment POST  then validate
+                id = request.POST.get('Article ID')
+                if id and request.POST.get('author') and request.POST.get('email1233') and request.POST.get('comment'):
+                    comment = {
+                        "author": request.POST.get('author'),
+                        "email": request.POST.get('email1233'),
+                        "text": request.POST.get('comment')
+                    }
+                    article = Article.objects.get(id=id)
+                    article.add_comment(comment)
+                    context = {
+                        'post_id': article.id,
+                        'category': article.category,
+                        'sub_category': article.sub_category
+                    }
+                    messages.success(request, 'New comment added with success!')
+            else:
+                messages.info(request, 'Invalid reCAPTCHA. Please try again.')
             return HttpResponseRedirect(self.request.path_info)
 
 class AllArticlesView(DetailView):
