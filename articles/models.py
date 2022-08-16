@@ -3,7 +3,7 @@ import authors.models
 import categories.models
 import tags.models
 from django.core.validators import FileExtensionValidator
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from model_utils import FieldTracker
 from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
@@ -65,7 +65,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
-    text = RichTextField()
+    text = RichTextUploadingField()
     article_pic = ResizedImageField(size=[665, 404], upload_to=get_img_path, blank=True, validators=[image_size_validator])
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,

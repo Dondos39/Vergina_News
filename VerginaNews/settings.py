@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'jquery',
     'ckeditor',
+    'ckeditor_uploader',
     'geoip2',
     'ads',
     'articles',
@@ -161,12 +162,17 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CKEDITOR
+
+# upload path
+CKEDITOR_UPLOAD_PATH="uploads/"
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
         'height': 600,
         'width': 1400,
         'allowedContent': True,
+        'extraPlugins': ['autoembed', 'autogrow']
     },
 }
 
