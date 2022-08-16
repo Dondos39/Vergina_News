@@ -17,7 +17,7 @@ from honeypot.decorators import check_honeypot
 import json
 import requests
 # Google captcha
-from django.conf import settings
+from decouple import config
 
 # Create your views here.
 def get_subcategory(request):
@@ -50,7 +50,7 @@ class ArticleView(DetailView):
                 "article_pic": detail.article_pic,
                 "article_video": detail.article_video,
                 "text": detail.text,
-                "site_key": settings.RECAPTCHA_PUBLIC_KEY,
+                "site_key": config('RECAPTCHA_PUBLIC_KEY'),
              }
             return render(request, "article.html", context=context)
 
@@ -82,7 +82,7 @@ class ArticleView(DetailView):
             recaptcha_response = request.POST.get('g-recaptcha-response')
             url = 'https://www.google.com/recaptcha/api/siteverify'
             data = {
-                'secret':  settings.RECAPTCHA_PRIVATE_KEY,
+                'secret':  config('RECAPTCHA_PRIVATE_KEY'),
                 'response': recaptcha_response,
             }
             r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
