@@ -61,7 +61,7 @@ def get_location(ip_address):
         response = requests.get(request_url, timeout=5)
     except requests.exceptions.ConnectionError:
         print("Site not rechable", request_url)
-        
+
     result = response.content.decode()
     result = result.split("(")[1].strip(")")
     result  = json.loads(result)
@@ -98,13 +98,13 @@ def get_weather(request):
     try:
         lat, lon = get_location('91.184.219.149')
     except requests.exceptions.SSLError:
-        lat, lon = (None, None)
+        lat, lon = (None, None)    
+    else:
+        url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
+        weather = requests.get(url).json()
 
-    url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
-    weather = requests.get(url).json()
-
-    weather['main']['temp'] = int(convert_to_celsius(weather['main']['temp']))
-    weather['icon'] = weather['weather'][0]['icon']
+        weather['main']['temp'] = int(convert_to_celsius(weather['main']['temp']))
+        weather['icon'] = weather['weather'][0]['icon']
     return weather
 
 def get_news(request):
