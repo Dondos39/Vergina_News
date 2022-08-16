@@ -111,7 +111,12 @@ class Article(models.Model):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
+        latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+        greek2latin = str.maketrans(greek_alphabet, latin_alphabet)
+
+        latin = self.title.translate(greek2latin)
+        self.slug = slugify(latin)
         super(Article, self).save(*args, **kwargs)
 
     def delete(self, using=None, keep_parents=False):
