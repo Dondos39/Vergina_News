@@ -160,6 +160,16 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CKEDITOR
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 600,
+        'width': 1400,
+        'allowedContent': True,
+    },
+}
+
 # SSL
 
 SESSION_COOKIE_SECURE = True
