@@ -5,6 +5,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from articles.models import Article
 from .models import Category , SubCategory
 from django.views.generic.list import ListView
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 class CategoryView(DetailView):
@@ -14,7 +15,6 @@ class CategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         category_name = self.kwargs.get('category')
-        print()
         articles = Article.objects.filter(category__slug=category_name).order_by('-updated_at')
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
@@ -30,11 +30,15 @@ class CategoryView(DetailView):
 
     def post(self, request, *args, **kwargs):
         keyword = request.POST.get('search')
-        if keyword == "":
-            result = 'all'
+        if keyword:
+            if keyword == "":
+                result = 'all'
+            else:
+                result = keyword
+            return redirect('articles_view', search=result)
         else:
-            result = keyword
-        return redirect('articles_view', search=result)
+            request.session['email'] = request.POST.get('email_sub')
+            return HttpResponseRedirect(request.path_info)
 
 class SubCategoryView(DetailView):
     context_object_name = 'sub_category'
@@ -59,8 +63,12 @@ class SubCategoryView(DetailView):
 
     def post(self, request, *args, **kwargs):
         keyword = request.POST.get('search')
-        if keyword == "":
-            result = 'all'
+        if keyword:
+            if keyword == "":
+                result = 'all'
+            else:
+                result = keyword
+            return redirect('articles_view', search=result)
         else:
-            result = keyword
-        return redirect('articles_view', search=result)
+            request.session['email'] = request.POST.get('email_sub')
+            return HttpResponseRedirect(request.path_info)

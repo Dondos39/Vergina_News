@@ -8,12 +8,12 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.core.validators import validate_email
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from honeypot.decorators import check_honeypot
+
 import json
 import requests
 # Google captcha
@@ -54,9 +54,7 @@ class ArticleView(DetailView):
              }
             return render(request, "article.html", context=context)
 
-        @method_decorator(check_honeypot(field_name='email'), name='hp_email')
         def post(self, request, *args, **kwargs):
-            # Check for search POST  then validate
             keyword = request.POST.get('search')
             if keyword:
                 if keyword == "":
@@ -64,19 +62,8 @@ class ArticleView(DetailView):
                 else:
                     result = keyword
                 return redirect('articles_view', search=result)
-
-            # Check for subscription POST then validate
-            email = request.POST.get('email_sub')
-            if email != None:
-                try:
-                    validate_email(email)
-                except forms.ValidationError:
-                    messages.info(request, 'Please enter a correct email address.')
-                if Subscriber.objects.filter(email=email).exists():
-                        messages.info(request, 'Email Address already exists.')
-                else:
-                    sub = Subscriber(email=email)
-                    sub.save()
+            else:
+                request.session['email'] = request.POST.get('email_sub')
 
             # Check for Captcha POST then validate
             recaptcha_response = request.POST.get('g-recaptcha-response')
@@ -132,6 +119,7 @@ class AllArticlesView(DetailView):
             return render(request, "allarticles.html", context=context)
 
         def post(self, request, *args, **kwargs):
+            request.session['email'] = request.POST.get('email_sub')
             keyword = request.POST.get('search')
             if keyword == "":
                 result = 'all'
