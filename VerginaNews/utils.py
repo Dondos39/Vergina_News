@@ -14,7 +14,7 @@ def image_size_validator(image):
 def get_img_path(instance, filename):
     ext = filename.split('.')[-1]
     filename_start = filename.replace('.'+ext,'')
-    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
+    filename = "%s.%s" % (uuid.uuid4(),filename_start, ext)
     return os.path.join(f'{instance.__class__.__name__}_pics', filename)
 
 def get_video_path(instance, filename):

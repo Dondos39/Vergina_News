@@ -29,7 +29,7 @@ class HomepageViews(ListView):
         'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
         'popular_news_list': articles.models.Article.objects.get_popular(),
         'popular_tags': tags.models.Tags.objects.get_popular(),
-        'ads': ads.models.Ad.objects.get_priority(1),
+        'ads': ads.models.get_priority(7),
         'weather': get_weather(request),
         'external_articles': get_news(request),
         'date': date,
