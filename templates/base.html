@@ -47,7 +47,16 @@
     <!-- <link rel="stylesheet" href="{% static 'vendors/mediaelement/mediaelementplayer.min.css' %}" />   -->
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+    
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "784cceee-6007-4ffa-9262-99907991ce5c",
+        });
+      });
+    </script>
 
 </head>
 

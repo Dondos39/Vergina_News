@@ -377,8 +377,9 @@
 @media (max-width: 768px) {
 
   #header nav.main-nav > ul > li.menu-item-has-children{
-      display: none;
+    display: none;
   }
+
   .backToTop {
     position: fixed;
     z-index: 10;
@@ -435,7 +436,7 @@
   background-color: #1a1a1a;
   width: 186px;
   margin-top: 10px;
-  visibility: hidden;
+  visibility: visible;
   opacity: 0;
 }
 
@@ -1320,6 +1321,7 @@ h4.block-title .category-more.text-right {
   color: #000;
   text-decoration: none;
   line-height: 20px;
+  overflow-wrap: break-word;
 }
 
 .category-block a:not(.label):hover {

@@ -1087,6 +1087,7 @@
 	$(window).on('scroll', function() {
 		if($(window).scrollTop() > 10 ) {
 			$('.panel-menu').addClass('pmenu');
+			
 			$('.kati').addClass('d-none');
 			$('.cl2').removeClass('d-none');
 			
