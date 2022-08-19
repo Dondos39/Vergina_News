@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'django_resized',
     'axes',
     'honeypot',
-    'imagekit',
 ]
 
 MIDDLEWARE = [
