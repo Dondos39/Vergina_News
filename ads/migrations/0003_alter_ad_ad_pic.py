@@ -2,6 +2,7 @@
 
 import ads.models
 from django.db import migrations, models
+from VerginaNews.utils import get_img_path
 
 
 class Migration(migrations.Migration):
@@ -14,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='ad',
             name='ad_pic',
-            field=models.ImageField(blank=True, upload_to=ads.models.get_file_path),
+            field=models.ImageField(blank=True, upload_to=get_img_path),
         ),
     ]

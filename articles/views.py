@@ -11,8 +11,6 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
-from django.utils.decorators import method_decorator
-from honeypot.decorators import check_honeypot
 
 import json
 import requests
@@ -78,10 +76,10 @@ class ArticleView(DetailView):
             if result['success']:
                 # Check for comment POST  then validate
                 id = request.POST.get('Article ID')
-                if id and request.POST.get('author') and request.POST.get('email1233') and request.POST.get('comment'):
+                if id and request.POST.get('author') and request.POST.get('email') and request.POST.get('comment'):
                     comment = {
                         "author": request.POST.get('author'),
-                        "email": request.POST.get('email1233'),
+                        "email": request.POST.get('email'),
                         "text": request.POST.get('comment')
                     }
                     article = Article.objects.get(id=id)
