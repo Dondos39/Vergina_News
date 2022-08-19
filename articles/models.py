@@ -63,6 +63,7 @@ class Article(models.Model):
     author = models.ManyToManyField(authors.models.Author)
     title = models.CharField(max_length=150, unique=True, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
+    has_video = models.BooleanField(max_length=1, default=False)
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextUploadingField()
@@ -78,6 +79,7 @@ class Article(models.Model):
     sub_category = models.ForeignKey(categories.models.SubCategory, on_delete=models.CASCADE, null=True)
     tags = models.ManyToManyField(tags.models.Tags, blank=True)
     featured = models.BooleanField(max_length=1, default=False)
+
 
     tracker = FieldTracker()
     objects = ArticleManager()

@@ -173,7 +173,7 @@ CKEDITOR_CONFIGS = {
         'height': 600,
         'width': 1400,
         'allowedContent': True,
-        'extraPlugins': ['autoembed', 'autogrow']
+        'extraPlugins': ['autoembed', 'autogrow',]
     },
 }
 
