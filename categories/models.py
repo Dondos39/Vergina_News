@@ -26,7 +26,12 @@ class Category(models.Model):
         return self.tags_set.order_by('-total_views')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
+        latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+        greek2latin = str.maketrans(greek_alphabet, latin_alphabet)
+
+        latin = self.name.translate(greek2latin)
+        self.slug = slugify(latin)
         super(Category, self).save(*args, **kwargs)
 
     def get_articles(self):
@@ -56,5 +61,10 @@ class SubCategory(models.Model):
         return self.tags_set.order_by('-total_views')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
+        latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+        greek2latin = str.maketrans(greek_alphabet, latin_alphabet)
+
+        latin = self.name.translate(greek2latin)
+        self.slug = slugify(latin)
         super(SubCategory, self).save(*args, **kwargs)
