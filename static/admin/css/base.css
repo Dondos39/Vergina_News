@@ -6,7 +6,7 @@
 
 /* VARIABLE DEFINITIONS */
 :root {
-  --primary: #79aec8;
+  --primary: #333;
   --secondary: #417690;
   --accent: #f5dd5d;
   --primary-fg: #fff;
@@ -18,7 +18,7 @@
 
   --header-color: #ffc;
   --header-branding-color: var(--accent);
-  --header-bg: var(--secondary);
+  --header-bg: var(--body-loud-color);
   --header-link-color: var(--primary-fg);
 
   --breadcrumbs-fg: #c4dce8;

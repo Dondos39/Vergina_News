@@ -2698,6 +2698,7 @@ h4.block-title .category-more.text-right {
   bottom: 0 !important;
   left: auto !important;
   padding: 70px;
+  background: linear-gradient(265deg, rgb(195, 159, 93), transparent);
 }
 
 .movie-slider .ms-layer.right-side h3 {
@@ -2717,6 +2718,7 @@ h4.block-title .category-more.text-right {
 .movie-slider .one-half {
   width: 50%;
   float: left;
+  
 }
 
 .movie-slider .meta span {

@@ -16,7 +16,7 @@ class AuthorView(DetailView):
             id = self.kwargs.get('author_id')
 
             author = Author.objects.filter(first_name=id).first()
-            related_authors = Author.objects.filter(job_title=author.get_job_title()).exclude(id=author.id)
+            related_authors = Author.objects.filter(job_title=author.job_title).exclude(id=author.id)
             articles = author.get_articles().order_by('-updated_at')
             tags = categories.models.Category.objects.filter(name=author.get_job_title()).first().get_popular_tags()
             paginator = Paginator(articles, 12)
