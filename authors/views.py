@@ -32,3 +32,15 @@ class AuthorView(DetailView):
 
             }
             return render(request, 'author.html', context=context)
+
+        def post(self, request, *args, **kwargs):
+            keyword = request.POST.get('search')
+            if keyword:
+                if keyword == "":
+                    result = 'all'
+                else:
+                    result = keyword
+                return redirect('articles_view', search=result)
+            else:
+                request.session['email'] = request.POST.get('email_sub')
+                return HttpResponseRedirect(request.path_info)

@@ -7,9 +7,9 @@ import os
 
 def image_size_validator(image):
     file_size = image.file.size
-    limit_mb = 5
-    if file_size > limit_mb * 1024 * 1024:
-        raise ValidationError("Max size of file is %s MB" % limit_mb)
+    limit_kb = 200
+    if file_size > limit_kb * 1024:
+        raise ValidationError("Max size of file is %s KB" % limit_kb)
 
 def get_img_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -98,7 +98,7 @@ def get_weather(request):
     try:
         lat, lon = get_location('91.184.219.149')
     except requests.exceptions.SSLError:
-        lat, lon = (None, None)    
+        lat, lon = (None, None)
     else:
         url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
         weather = requests.get(url).json()

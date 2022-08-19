@@ -23,12 +23,17 @@
                         <div class="right-content">
                                 <div class="follow-links">
                                     <span class="visible-lg-*">Follow Us:</span>
-                                    <a class="visible-lg-*" href="javascript:;"><i class="fa fa-facebook"></i></a>
-                                    <a class="visible-lg-*" href="javascript:;"><i class="fa fa-twitter"></i></a>
-                                    <a class="visible-lg-*" href="javascript:;"><i class="fa fa-youtube"></i></a>
-                                    <a class="visible-lg-*" href="javascript:;"><i class="fa fa-google-plus"></i></a>
-                                    <a class="hidden-lg" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a>
-
+                                    {% for link in media_links %}
+                                    {% if link.name == 'Facebook' %}
+                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-facebook"></i></a>
+                                    {% elif link.name == 'Twitter'%}
+                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-twitter"></i></a>
+                                    {% elif link.name == 'Instagram'%}
+                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-instagram"></i></a>
+                                    {% elif link.name == 'Linkedin'%}
+                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-linkedin"></i></a>
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
 
                         </div>

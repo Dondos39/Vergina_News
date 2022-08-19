@@ -87,10 +87,19 @@
 
                 <div class="widget light">
                     <div class="subscribe-form">
-                        <form>
-                            <input type="text" placeholder="ENTER YOUR EMAIL">
+                        <form method='post'>
+                          {% csrf_token %}
+                            <input type="text" name="email_sub" placeholder="ENTER YOUR EMAIL">
                             <button type="submit"><i class="fa fa-envelope-o"></i></button>
                         </form>
+                        {% if message %}
+                            <div class="alert alert-dismissible alert-success">
+                              <button type="button" class="close" data-dismiss="alert">
+                              ×
+                              </button>
+                              <strong>{{message}}</strong>
+                            </div>    
+                        {% endif %}
                     </div>
                 </div>
                 <!-- end .widget -->

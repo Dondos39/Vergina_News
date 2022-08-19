@@ -169,31 +169,6 @@
                 </div>
                 <!-- end .widget -->
 
-
-                <div class="widget light">
-                    <div class="subscribe-form">
-                        <form method="post">
-                          {% csrf_token %}
-                            <input type="text" name="email_sub" placeholder="ENTER YOUR EMAIL">
-                            <button type="submit"><i class="fa fa-envelope-o"></i></button>
-                        </form>
-                        {% if messages %}
-                        <ul class="messages">
-                          {% for message in messages %}
-                          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                          {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </div>
-                </div>
-                <!-- end .widget -->
-
-
-
-
-
-
-
             </div>
             <!-- end .sidebar -->
 
@@ -280,7 +255,6 @@
                                 <textarea id="comment" name="comment" required="required" placeholder="Comments"></textarea>
                             </p>
                             <p class="form-submit">
-                                {% render_honeypot_field "email" %}
                                 {% csrf_token %}
                                 <script src='https://www.google.com/recaptcha/api.js'></script>
                                 <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
