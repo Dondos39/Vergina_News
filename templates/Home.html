@@ -136,202 +136,10 @@
 
     <div class="row">
 
-        <div class="col-lg-3 order-1 order-lg-2 category-block en-block ">
-            <div class="sidebar boxed p3 mb-3">
-            <h4 class="font40" style="text-align: center;"><a href="#">Ρoή Ειδήσεων</a></h4>
-            <div class="simple-tab-space">
-
-                <div class="tab-title clearfix">
-                    <a href="#" class="active">Ειδήσεις</a>
-                    <a href="#">Δημοφιλή</a>
-
-                </div>
-
-                <div class="tab-panel">
-                    <div class="tab-content active">
-                        {% for latest in roaming_news_list %}
-                        <div class="post hover-light">
-                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
-                              {% if latest.article_pic %}
-                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
-                              {% endif %}
-                            </a>
-                            
-                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
-                            <p>{{ latest.text | safe | slice:":100" }}...</p>
-                            <div class="meta">
-                              
-                            </div>
-                            <span class="date">{{ latest.updated_at|naturaltime }}</span>
-                            <div class="border-bottom" ></div>
-                        </div>
-                        {% endfor %}
-                         <!-- end .post -->
-
-                        <a href="{% url 'articles_view' search='all' %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
-                      </div>
-
-                    <!-- /.tab-panel -->
-
-                    <div class="tab-content">
-                      {% for pouplar in popular_news_list %}
-                      <div class="post hover-light">
-                          <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
-                            {% if popoular.article_pic %}
-                            <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic.url }}"></div>
-                          {% endif %}
-                          </a>
-
-                          <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
-                          <p>{{ pouplar.text | safe | slice:":100" }}...</p>
-
-                          <div class="meta">
-                              <span class="date">{{ latest.updated_at|naturaltime }}</span>
-                          </div>
-                      </div>
-                      {% endfor %}
-                       <!-- end .post -->
 
 
-                        <a href="" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
 
-
-                    </div>
-                    <!-- /.tab-panel -->
-                            <div class="tab-content">
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.tab-panel -->
-
-                 </div>
-                <!-- /.tab-panel -->
-            </div>
-                    <!-- /.simple-tab-space -->
-
-                </div>
-                <!-- <div class="sidebar boxed p3 mt2">
-                    <h4 class="font40" style="text-align: center;"><a href="#">Stocks</a></h4>
-
-
-                    </div> -->
-                    <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Crypto</span></a> <span class="blue-text">and</span> <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Stocks</span></a> by TradingView</div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-    {
-    "colorTheme": "light",
-    "dateRange": "1M",
-    "showChart": false,
-    "locale": "en",
-    "largeChartUrl": "",
-    "isTransparent": false,
-    "showSymbolLogo": true,
-    "showFloatingTooltip": false,
-    "width": "270",
-    "height": "465",
-    "tabs": [
-      {
-        "title": "Forex",
-        "symbols": [
-          {
-            "s": "FX:EURUSD",
-            "d": "EUR/USD"
-          },
-          {
-            "s": "FX:GBPUSD",
-            "d": "GBP/USD"
-          },
-          {
-            "s": "FX:USDJPY",
-            "d": "USD/JPY"
-          },
-          {
-            "s": "FX:USDCHF",
-            "d": "USD/CHF"
-          },
-          {
-            "s": "FX:AUDUSD",
-            "d": "AUD/USD"
-          },
-          {
-            "s": "FX:USDCAD",
-            "d": "USD/CAD"
-          }
-        ],
-        "originalTitle": "Forex"
-      },
-      {
-        "title": "Crypto",
-        "symbols": [
-          {
-            "s": "BITSTAMP:BTCUSD",
-            "d": "BTC/USD"
-          },
-          {
-            "s": "BITSTAMP:ETHUSD",
-            "d": "ETH/USD"
-          },
-          {
-            "s": "BINANCE:XRPUSDT",
-            "d": "XRP/USDT"
-          },
-          {
-            "s": "BINANCE:SHIBUSDT",
-            "d": "SHIP/USDT"
-          },
-          {
-            "s": "BINANCE:DOTUSDT",
-            "d": "DOT/USDT"
-          },
-          {
-            "s": "BINANCE:LINKUSDT",
-            "d": "LINK/USDT"
-          }
-        ]
-      },
-      {
-        "title": "Stocks",
-        "symbols": [
-          {
-            "s": "NASDAQ:AAPL",
-            "d": "AAPL"
-          },
-          {
-            "s": "NASDAQ:TSLA",
-            "d": "TSLA"
-          },
-          {
-            "s": "NASDAQ:AMZN",
-            "d": "AMZN"
-          },
-          {
-            "s": "NASDAQ:MSFT",
-            "d": "MSFT"
-          },
-          {
-            "s": "NASDAQ:GOOGL",
-            "d": "GOOGL"
-          },
-          {
-            "s": "NASDAQ:META",
-            "d": "META"
-          }
-        ]
-      }
-    ]
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
-
-
-            </div>
-
-        <!-- end .col-md-4 -->
-
-
-        <div class="col-sm-9 order-2 order-lg-1">
+        <div class="col-sm-9 ">
 
             <div class="boxed wide-space">
             <div class="category-block en-block">
@@ -579,6 +387,199 @@
 
     </div>
     <!-- end .col-md-8 -->
+    <div class="col-lg-3  category-block en-block ">
+      <div class="sidebar boxed p3 mb-3">
+      <h4 class="font40" style="text-align: center;"><a href="#">Ρoή Ειδήσεων</a></h4>
+      <div class="simple-tab-space">
+
+          <div class="tab-title clearfix">
+              <a href="#" class="active">Ειδήσεις</a>
+              <a href="#">Δημοφιλή</a>
+
+          </div>
+
+          <div class="tab-panel">
+              <div class="tab-content active">
+                  {% for latest in roaming_news_list %}
+                  <div class="post hover-light">
+                      <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
+                        {% if latest.article_pic %}
+                          <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
+                        {% endif %}
+                      </a>
+                      
+                      <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
+                      <p>{{ latest.text | safe | slice:":100" }}...</p>
+                      <div class="meta">
+                        
+                      </div>
+                      <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                      <div class="border-bottom" ></div>
+                  </div>
+                  {% endfor %}
+                   <!-- end .post -->
+
+                  <a href="{% url 'articles_view' search='all' %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                </div>
+
+              <!-- /.tab-panel -->
+
+              <div class="tab-content">
+                {% for pouplar in popular_news_list %}
+                <div class="post hover-light">
+                    <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
+                      {% if popoular.article_pic %}
+                      <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic.url }}"></div>
+                    {% endif %}
+                    </a>
+
+                    <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
+                    <p>{{ pouplar.text | safe | slice:":100" }}...</p>
+
+                    <div class="meta">
+                        <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                 <!-- end .post -->
+
+
+                  <a href="" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+
+
+              </div>
+              <!-- /.tab-panel -->
+                      <div class="tab-content">
+                  <!-- /.row -->
+              </div>
+              <!-- /.tab-panel -->
+
+           </div>
+          <!-- /.tab-panel -->
+      </div>
+              <!-- /.simple-tab-space -->
+
+          </div>
+          <!-- <div class="sidebar boxed p3 mt2">
+              <h4 class="font40" style="text-align: center;"><a href="#">Stocks</a></h4>
+
+
+              </div> -->
+              <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Crypto</span></a> <span class="blue-text">and</span> <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Stocks</span></a> by TradingView</div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+{
+"colorTheme": "light",
+"dateRange": "1M",
+"showChart": false,
+"locale": "en",
+"largeChartUrl": "",
+"isTransparent": false,
+"showSymbolLogo": true,
+"showFloatingTooltip": false,
+"width": "270",
+"height": "465",
+"tabs": [
+{
+  "title": "Forex",
+  "symbols": [
+    {
+      "s": "FX:EURUSD",
+      "d": "EUR/USD"
+    },
+    {
+      "s": "FX:GBPUSD",
+      "d": "GBP/USD"
+    },
+    {
+      "s": "FX:USDJPY",
+      "d": "USD/JPY"
+    },
+    {
+      "s": "FX:USDCHF",
+      "d": "USD/CHF"
+    },
+    {
+      "s": "FX:AUDUSD",
+      "d": "AUD/USD"
+    },
+    {
+      "s": "FX:USDCAD",
+      "d": "USD/CAD"
+    }
+  ],
+  "originalTitle": "Forex"
+},
+{
+  "title": "Crypto",
+  "symbols": [
+    {
+      "s": "BITSTAMP:BTCUSD",
+      "d": "BTC/USD"
+    },
+    {
+      "s": "BITSTAMP:ETHUSD",
+      "d": "ETH/USD"
+    },
+    {
+      "s": "BINANCE:XRPUSDT",
+      "d": "XRP/USDT"
+    },
+    {
+      "s": "BINANCE:SHIBUSDT",
+      "d": "SHIP/USDT"
+    },
+    {
+      "s": "BINANCE:DOTUSDT",
+      "d": "DOT/USDT"
+    },
+    {
+      "s": "BINANCE:LINKUSDT",
+      "d": "LINK/USDT"
+    }
+  ]
+},
+{
+  "title": "Stocks",
+  "symbols": [
+    {
+      "s": "NASDAQ:AAPL",
+      "d": "AAPL"
+    },
+    {
+      "s": "NASDAQ:TSLA",
+      "d": "TSLA"
+    },
+    {
+      "s": "NASDAQ:AMZN",
+      "d": "AMZN"
+    },
+    {
+      "s": "NASDAQ:MSFT",
+      "d": "MSFT"
+    },
+    {
+      "s": "NASDAQ:GOOGL",
+      "d": "GOOGL"
+    },
+    {
+      "s": "NASDAQ:META",
+      "d": "META"
+    }
+  ]
+}
+]
+}
+</script>
+</div>
+<!-- TradingView Widget END -->
+
+
+      </div>
+
+  <!-- end .col-md-4 -->
 
 
 
@@ -706,9 +707,10 @@
                                       <img loading="lazy" fetchpriority="auto"  src="{{ featured.article_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
                                       {% endif %}
                                         <blockquote>
-
-                                            <cite>{{ featured.sub_category.name }}</cite>
-                                            <p>{{ featured.title }}</p>
+                                            <a href="{% url 'subcategory_view' category=featured.category.slug sub_category=featured.sub_category.slug %}">
+                                            <cite>{{ featured.sub_category.name }}</cite></a>
+                                            <a href="{% url 'article_view' category=featured.category.slug sub_category=featured.sub_category.slug title=featured.slug %}">
+                                            <p>{{ featured.title }}</p></a>
 
                                         </blockquote>
 
@@ -902,8 +904,9 @@
                 {% for articles in category.get_articles %}
                 {% if forloop.counter < 3 %}
                 <div class="col-md-6">
+                 
                   <div class="post first hover-dark">
-                    <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
+                    <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
 
   
                       {% if articles.article_pic %}
@@ -912,7 +915,7 @@
                         data-src="{{ articles.article_pic.url }"
                       >
                         <img loading="lazy" fetchpriority="low"  src="{{ articles.article_pic.url }}" alt="Proportion" />
-                        <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
+                        <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
                       {% endif %}
                       <div class="meta inline-meta small-meta">
