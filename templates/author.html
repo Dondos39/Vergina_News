@@ -93,7 +93,7 @@
                           {{ article.text | safe |slice:":100"}}...
                         </p>
                         <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}" class="category-more"
-                          >Continue to the news
+                          >Διάβαστε το Αρθρο
                           <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
                         /></a>
                       </div>
