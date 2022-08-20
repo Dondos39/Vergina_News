@@ -1,6 +1,5 @@
 {% extends 'base.html'%}
 {% load static %}
-{% load social_share %}
 {% block headblock %}
 
 <title>VerginaNews | Επικαιρότητα και Τελευταίες Ειδήσεις </title>
@@ -22,18 +21,18 @@
 		<div class="movie-section">
       <div class="container">
           <div class="row">
-  
-  
+
+
               <div class="col-md-12">
-                  
-                  
+
+
                   <div class="row">
-  
+
                       <div class="col-md-12">
-  
+
                           <!-- Movie slider -->
                           <div class="gallery-slider movie-slider">
-  
+
                               <!-- masterslider -->
                               <div class="master-slider ms-skin-default" id="masterslider4">
                                 {% for important in important_list %}
@@ -42,9 +41,9 @@
                                       {% if important.article_pic %}
                                       <img src="{{ important.article_pic.url }}" data-src="{{ important.article_pic.url }}" alt="Image"/>
                                       {% endif %}
-                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><a href="blog.html" class="label">{{ important.sub_category.name }}</a></div>							    								    	
+                                      <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><a href="blog.html" class="label">{{ important.sub_category.name }}</a></div>
                                       <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
-                                          
+
                                           <div class="one-half animate-element movie-slider-meta" data-anim="fadeInUp">
 
                                               <h3><a href="single.html">{{ important.title }}</a></h3>
@@ -56,12 +55,12 @@
                                               </div>
                                           </div>
                                           <!-- /.one-half -->
-                                          
+
                                           <!-- <div class="one-half animate-element movie-slider-circle" data-anim="fadeInUp">
                                               <div class="bottom">
                                                   <div class="circle-chart" data-circle-width="7" data-percent="89" data-text="8.9 <small>IMDB</small>"></div>
                                               </div>
-                                          
+
                                           </div> -->
                                           <!-- /.one-half -->
                                           <div class="clearfix"></div>
@@ -69,42 +68,42 @@
                                           <!-- <a class="icon-link animate-element" data-anim="fadeInUp" href="single.html">Watch trailer <img src="images/entertainment/icon-play.png" alt="Icon"></a>
                                           <a class="icon-link animate-element" data-anim="fadeInUp" href="single.html">Read more <img src="images/entertainment/icon-magnifier.png" alt="Icon"></a> -->
                                       </div>
-  
+
                                       <div class="ms-thumb">
                                         {% if important.article_pic %}
                                           <div class="image color-1" data-src="{{ important.article_pic.url }}"></div>
                                       </div>
                                       {% endif %}
-  
+
                                   </div>
-                                  
+
                                   {% endfor %}
-                              
+
                               </div>
                               <!-- end of masterslider -->
-  
+
                           </div>
                           <!-- /.movie-slider -->
-  
+
                       </div><!-- end col-md-12 -->
-  
+
                   </div>
                   <!-- end .row -->
-                  
-  
+
+
               </div>
               <!-- end .col-md-12 -->
-  
+
           </div>
           <!-- end .row -->
-  
+
       </div>
       <!-- /.movie-slider -->
   </div>
   <!-- /.container-fluid -->
 
 
-        
+
         <!-- // Picture News -->
         <div class="container">
 
@@ -118,9 +117,9 @@
             </div>
             <div class="border-line mv3"></div>
 
-  
+
   <!-- Section 5 -->
-  
+
   <div class="row">
 
     <div class="col-md-12">
@@ -137,7 +136,190 @@
     <div class="row">
 
 
+                </div>
 
+                <div class="tab-panel">
+                    <div class="tab-content active">
+                        {% for latest in roaming_news_list %}
+                        <div class="post hover-light">
+                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
+                              {% if latest.article_pic %}
+                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
+                              {% endif %}
+                            </a>
+
+                            <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
+                            <p>{{ latest.text | safe | slice:":100" }}...</p>
+                            <div class="meta">
+
+                            </div>
+                            <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                            <div class="border-bottom" ></div>
+                        </div>
+                        {% endfor %}
+                         <!-- end .post -->
+
+                        <a href="{% url 'articles_view' search='all' %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                      </div>
+
+                    <!-- /.tab-panel -->
+
+                    <div class="tab-content">
+                      {% for pouplar in popular_news_list %}
+                      <div class="post hover-light">
+                          <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
+                            {% if popoular.article_pic %}
+                            <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic.url }}"></div>
+                          {% endif %}
+                          </a>
+
+                          <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
+                          <p>{{ pouplar.text | safe | slice:":100" }}...</p>
+
+                          <div class="meta">
+                              <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                          </div>
+                      </div>
+                      {% endfor %}
+                       <!-- end .post -->
+
+
+                        <a href="" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+
+
+                    </div>
+                    <!-- /.tab-panel -->
+                            <div class="tab-content">
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.tab-panel -->
+
+                 </div>
+                <!-- /.tab-panel -->
+            </div>
+                    <!-- /.simple-tab-space -->
+
+                </div>
+                <!-- <div class="sidebar boxed p3 mt2">
+                    <h4 class="font40" style="text-align: center;"><a href="#">Stocks</a></h4>
+
+
+                    </div> -->
+                    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Crypto</span></a> <span class="blue-text">and</span> <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Stocks</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+    {
+    "colorTheme": "light",
+    "dateRange": "1M",
+    "showChart": false,
+    "locale": "en",
+    "largeChartUrl": "",
+    "isTransparent": false,
+    "showSymbolLogo": true,
+    "showFloatingTooltip": false,
+    "width": "270",
+    "height": "465",
+    "tabs": [
+      {
+        "title": "Forex",
+        "symbols": [
+          {
+            "s": "FX:EURUSD",
+            "d": "EUR/USD"
+          },
+          {
+            "s": "FX:GBPUSD",
+            "d": "GBP/USD"
+          },
+          {
+            "s": "FX:USDJPY",
+            "d": "USD/JPY"
+          },
+          {
+            "s": "FX:USDCHF",
+            "d": "USD/CHF"
+          },
+          {
+            "s": "FX:AUDUSD",
+            "d": "AUD/USD"
+          },
+          {
+            "s": "FX:USDCAD",
+            "d": "USD/CAD"
+          }
+        ],
+        "originalTitle": "Forex"
+      },
+      {
+        "title": "Crypto",
+        "symbols": [
+          {
+            "s": "BITSTAMP:BTCUSD",
+            "d": "BTC/USD"
+          },
+          {
+            "s": "BITSTAMP:ETHUSD",
+            "d": "ETH/USD"
+          },
+          {
+            "s": "BINANCE:XRPUSDT",
+            "d": "XRP/USDT"
+          },
+          {
+            "s": "BINANCE:SHIBUSDT",
+            "d": "SHIP/USDT"
+          },
+          {
+            "s": "BINANCE:DOTUSDT",
+            "d": "DOT/USDT"
+          },
+          {
+            "s": "BINANCE:LINKUSDT",
+            "d": "LINK/USDT"
+          }
+        ]
+      },
+      {
+        "title": "Stocks",
+        "symbols": [
+          {
+            "s": "NASDAQ:AAPL",
+            "d": "AAPL"
+          },
+          {
+            "s": "NASDAQ:TSLA",
+            "d": "TSLA"
+          },
+          {
+            "s": "NASDAQ:AMZN",
+            "d": "AMZN"
+          },
+          {
+            "s": "NASDAQ:MSFT",
+            "d": "MSFT"
+          },
+          {
+            "s": "NASDAQ:GOOGL",
+            "d": "GOOGL"
+          },
+          {
+            "s": "NASDAQ:META",
+            "d": "META"
+          }
+        ]
+      }
+    ]
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+
+
+            </div>
+
+        <!-- end .col-md-4 -->
 
         <div class="col-sm-9 ">
 
@@ -220,7 +402,7 @@
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                           {% if frontnew.article_pic %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
-                          
+
                                 <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
@@ -855,10 +1037,10 @@
 						<div class="author clearfix">
 							<a href="{% url 'author_view' author_id=author %}">
                 {% if author.prof_pic%}
-								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic.url}}" alt="Image">
+								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic_large.url}}" alt="Image">
                 {% endif %}
 							</a>
-							<a href="{% url 'category_view' category=author.get_job_title %}" class="label">{{ author.get_job_title }}</a>
+							<a href="{% url 'category_view' category=author.job_title.slug %}" class="label">{{ author.job_title }}</a>
 						</div>
 						<!-- /.meta -->
 
@@ -908,7 +1090,7 @@
                   <div class="post first hover-dark">
                     <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
 
-  
+
                       {% if articles.article_pic %}
                       <div
                         class="image"

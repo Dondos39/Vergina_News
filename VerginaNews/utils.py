@@ -14,13 +14,13 @@ def image_size_validator(image):
 def get_img_path(instance, filename):
     ext = filename.split('.')[-1]
     filename_start = filename.replace('.'+ext,'')
-    filename = "%s.%s" % (uuid.uuid4(),filename_start, ext)
+    filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join(f'{instance.__class__.__name__}_pics', filename)
 
 def get_video_path(instance, filename):
     ext = filename.split('.')[-1]
     filename_start = filename.replace('.'+ext,'')
-    filename = "%s__%s.%s" % (uuid.uuid4(),filename_start, ext)
+    filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join('videos', filename)
 
 def get_client_ip(request):
@@ -58,14 +58,15 @@ def get_location(ip_address):
     request_url = 'https://geolocation-db.com/jsonp/' + ip_address
 
     try:
-        response = requests.get(request_url, timeout=5)
+        response = requests.get(request_url, timeout=10)
     except requests.exceptions.ConnectionError:
         print("Site not rechable", request_url)
-
-    result = response.content.decode()
-    result = result.split("(")[1].strip(")")
-    result  = json.loads(result)
-    return result['latitude'], result['longitude']
+    else:
+        result = response.content.decode()
+        result = result.split("(")[1].strip(")")
+        result  = json.loads(result)
+        return result['latitude'], result['longitude']
+    return 0
 
 def convert_to_celsius(Fahrenheit):
     """Convert Fahrenheit to Celsius.
