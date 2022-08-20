@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'django_social_share',
     'django_resized',
     'axes',
-    'honeypot',
 ]
 
 MIDDLEWARE = [
