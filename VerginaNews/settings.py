@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'subscribers',
     'requests',
     'captcha',
-    'django_social_share',
-    'django_resized',
+    #'django_social_share',
+    #'django_resized',
+    'imagekit',
     'axes',
 ]
 
@@ -187,3 +188,7 @@ CSRF_COOKIE_SECURE = True
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = 0.85
+
+# IMAGEKIT
+
+IMAGEKIT_CACHEFILE_DIR = os.path.join(MEDIA_ROOT, "CACHE\images")

@@ -8,19 +8,10 @@ from django.conf import settings
 from model_utils import FieldTracker
 from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
 from django.utils.text import slugify
-from django_resized import ResizedImageField
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
-CATEGORIES = (("1", "Sports"),
-               ("2", "People"),
-               ("3", "Auto"),
-               ("4", "Culture"),
-               ("5", "Politics"),
-               ("6", "Society"),
-               ("7", "Business"),
-               ("8", "Economy"),
-)
-
 IMPORTANT_N = [
     ('1', '1'),
     ('2', '2'),
@@ -67,7 +58,22 @@ class Article(models.Model):
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextUploadingField()
-    article_pic = ResizedImageField(size=[665, 404], upload_to=get_img_path, blank=True, validators=[image_size_validator])
+    article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
+
+    article_pic_large = ImageSpecField(source='prof_pic',
+                                        processors=[ResizeToFill(900, 900)],
+                                        format='WEBP',
+                                        options={'quality': 60})
+
+    article_pic_medium = ImageSpecField(source='prof_pic',
+                                        processors=[ResizeToFill(600, 600)],
+                                        format='WEBP',
+                                        options={'quality': 60})
+
+    article_pic_small = ImageSpecField(source='prof_pic',
+                                        processors=[ResizeToFill(300, 300)],
+                                        format='WEBP',
+                                        options={'quality': 60})
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,
