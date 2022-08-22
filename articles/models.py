@@ -60,20 +60,20 @@ class Article(models.Model):
     text = RichTextUploadingField()
     article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
-    article_pic_large = ImageSpecField(source='prof_pic',
-                                        processors=[ResizeToFill(900, 900)],
-                                        format='WEBP',
-                                        options={'quality': 60})
+    article_pic_large = ImageSpecField(source='article_pic',
+                                        processors=[ResizeToFill(1170, 603)],
+                                        format='JPEG',
+                                        options={'quality': 75})
 
-    article_pic_medium = ImageSpecField(source='prof_pic',
-                                        processors=[ResizeToFill(600, 600)],
-                                        format='WEBP',
-                                        options={'quality': 60})
+    article_pic_medium = ImageSpecField(source='article_pic',
+                                        processors=[ResizeToFill(665, 404)],
+                                        format='JPEG',
+                                        options={'quality': 75})
 
-    article_pic_small = ImageSpecField(source='prof_pic',
-                                        processors=[ResizeToFill(300, 300)],
-                                        format='WEBP',
-                                        options={'quality': 60})
+    article_pic_small = ImageSpecField(source='article_pic',
+                                        processors=[ResizeToFill(355, 196)],
+                                        format='JPEG',
+                                        options={'quality': 75})
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,
