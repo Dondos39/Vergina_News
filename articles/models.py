@@ -58,19 +58,20 @@ class Article(models.Model):
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextUploadingField()
+
     article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
-    article_pic_large = ImageSpecField(source='prof_pic',
+    article_pic_large = ImageSpecField(source='article_pic',
                                         processors=[ResizeToFill(900, 900)],
                                         format='WEBP',
                                         options={'quality': 60})
 
-    article_pic_medium = ImageSpecField(source='prof_pic',
+    article_pic_medium = ImageSpecField(source='article_pic',
                                         processors=[ResizeToFill(600, 600)],
                                         format='WEBP',
                                         options={'quality': 60})
 
-    article_pic_small = ImageSpecField(source='prof_pic',
+    article_pic_small = ImageSpecField(source='article_pic',
                                         processors=[ResizeToFill(300, 300)],
                                         format='WEBP',
                                         options={'quality': 60})
