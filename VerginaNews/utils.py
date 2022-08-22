@@ -58,15 +58,16 @@ def get_location(ip_address):
     request_url = 'https://geolocation-db.com/jsonp/' + ip_address
 
     try:
-        response = requests.get(request_url, timeout=10)
+        response = requests.get(request_url, None, timeout=5)
+        if response:
+            result = response.content.decode()
+            result = result.split("(")[1].strip(")")
+            result  = json.loads(result)
     except requests.exceptions.ConnectionError:
         print("Site not rechable", request_url)
-    else:
-        result = response.content.decode()
-        result = result.split("(")[1].strip(")")
-        result  = json.loads(result)
-        return result['latitude'], result['longitude']
-    return 0
+
+    return result['latitude'], result['longitude']
+
 
 def convert_to_celsius(Fahrenheit):
     """Convert Fahrenheit to Celsius.

@@ -7,7 +7,17 @@ class ArticleAdmin(admin.ModelAdmin):
     list_editable = ('no_important', 'no_homepage', 'featured')
     list_filter = ('no_important', 'category__name', 'date_added')
     search_fields = ['tags__name', 'author__first_name']
-    readonly_fields = ['slug', 'updated_at', 'updated_by', 'total_views']
+    readonly_fields = ['slug', 'updated_at', 'updated_by', 'total_views', 'date_added', 'time_added']
+
+    fieldsets = (
+        (None, {
+            'fields': ('author', 'title', 'has_video', 'text', 'featured', 'article_pic', 'article_video', 'url', 'no_homepage', 'no_important', 'category', 'sub_category', 'tags')
+        }),
+        ('Advanced options', {
+            'classes': ('collapse',),
+            'fields': ('slug', 'updated_at', 'updated_by', 'total_views', 'date_added', 'time_added'),
+        }),
+        )
 
     def check_no_important(self, obj, request):
         duplicate = obj.__class__.objects.filter(no_important=obj.no_important).values_list('id', flat=True)
@@ -33,16 +43,28 @@ class ArticleAdmin(admin.ModelAdmin):
         if obj.no_important != prev_no_important:
             self.check_no_important(obj, request)
 
-        #Check if a new image is inserted when there is already one.
         if obj.id:
             old_article_pic = Article.objects.get(id=obj.id).article_pic
         else:
             old_article_pic = None
         if obj.article_pic and old_article_pic and old_article_pic != obj.article_pic:
             obj.article_pic.storage.delete(str(old_article_pic))
+
        #Check if user checked picture clear button.
         if request.POST.get('article_pic-clear') == 'on':
-            obj.article_pic.storage.delete(str(old_article_pic))
+            if obj.no_homepage or obj.no_important:
+                messages.warning(request, "Cannot delete image while the article is important/homepage")
+                messages.set_level(request, messages.WARNING)
+                obj.article_pic = old_article_pic
+                return
+            else:
+                obj.article_pic.storage.delete(str(old_article_pic))
+        else:
+            if (obj.no_homepage or obj.no_important) and not obj.article_pic:
+                messages.warning(request, "Important and Homepage articles are required to have an image")
+                messages.set_level(request, messages.WARNING)
+                return
+
        #Check if a new video is inserted when there is already one.
         if obj.id:
             old_article_video = Article.objects.get(id=obj.id).article_video
@@ -54,6 +76,7 @@ class ArticleAdmin(admin.ModelAdmin):
         if request.POST.get('article_video-clear') == 'on':
             obj.article_video.storage.delete(str(old_article_video))
 
+        # If featured is clicked check there not another one.
         if obj.featured:
             if Article.objects.get_featured().exists():
                 temp = obj.__class__.objects.get(featured=True)
@@ -62,6 +85,8 @@ class ArticleAdmin(admin.ModelAdmin):
             if temp != None and self != temp:
                 temp.featured = False
                 temp.save()
+
+
         super().save_model(request, obj, form, change)
 
 # Register your models here.

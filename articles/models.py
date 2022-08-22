@@ -58,6 +58,7 @@ class Article(models.Model):
     date_added = models.DateField(("Date"), auto_now=True)
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextUploadingField()
+
     article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
     article_pic_large = ImageSpecField(source='article_pic',
@@ -74,6 +75,7 @@ class Article(models.Model):
                                         processors=[ResizeToFill(355, 196)],
                                         format='JPEG',
                                         options={'quality': 75})
+
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,
