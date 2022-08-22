@@ -62,6 +62,7 @@ class Article(models.Model):
     article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
     article_pic_large = ImageSpecField(source='article_pic',
+<<<<<<< HEAD
                                         processors=[ResizeToFill(900, 900)],
                                         format='WEBP',
                                         options={'quality': 60})
@@ -75,6 +76,21 @@ class Article(models.Model):
                                         processors=[ResizeToFill(300, 300)],
                                         format='WEBP',
                                         options={'quality': 60})
+=======
+                                        processors=[ResizeToFill(1170, 603)],
+                                        format='JPEG',
+                                        options={'quality': 75})
+
+    article_pic_medium = ImageSpecField(source='article_pic',
+                                        processors=[ResizeToFill(665, 404)],
+                                        format='JPEG',
+                                        options={'quality': 75})
+
+    article_pic_small = ImageSpecField(source='article_pic',
+                                        processors=[ResizeToFill(355, 196)],
+                                        format='JPEG',
+                                        options={'quality': 75})
+>>>>>>> d50a02f1e636901c78d7f780e5340dec5ac4a0c9
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,
                              blank=True,

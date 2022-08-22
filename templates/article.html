@@ -35,7 +35,7 @@
                 <div class="post first text-bigger hover-dark entry-media">
                     <div class="image video-frame">
                       {% if article_pic %}
-                        <img src="{{ article_pic.url }}" alt="Quote author" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
+                        <img src="{{ article_pic.url }}" alt="article img" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" >
                       {% endif %}
                       {% if article_video %}
                         <a class="video-player video-player-center video-player-large" href="{{ article_video.url }}"></a>
@@ -93,7 +93,7 @@
                     <h5 class="widget-title"><span>Tag Cloud</span></h5>
                     <div class="widget-tags">
                       {% for tag in tags%}
-                        <a href="javascript:;">{{tag}}</a>
+                        <a href="{% url 'articles_view' search=tag %}">{{tag}}</a>
                       {% endfor %}
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                          <li class="post hover-light">
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                                 {% if latest.article_pic %}
-                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
+                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic_small.url }}"></div>
                               {% endif %}
                             </a>
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>

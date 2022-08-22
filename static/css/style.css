@@ -3126,7 +3126,7 @@ h4.block-title .category-more.text-right {
 
 .testimonial-slider.fs-blog-carousel blockquote {
   position: absolute;
-  right: 10%;
+  right: 5%;
   top: 50%;
   text-transform: uppercase;
   -webkit-transform: translateY(-50%);
