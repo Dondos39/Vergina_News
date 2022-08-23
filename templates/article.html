@@ -99,7 +99,16 @@
                 </div>
                 <!-- end .widget -->
 
-
+                <div class="row">
+                  {% if ad_3.ad_pic %}
+                    <div class="col-sm-12 pv3 pvb0">
+                        <a href="{{ ad_3.url }}">
+                          <img src="{{ ad_3.ad_pic.url }}" alt="Image"/>
+                        </a>
+                    </div>
+                    {% else %}
+                      {{ ad_3.widget }}
+                    {% endif %}
 
 
                 <div class="widget">

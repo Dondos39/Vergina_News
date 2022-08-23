@@ -49,6 +49,7 @@ class ArticleView(DetailView):
                 "article_video": detail.article_video,
                 "text": detail.text,
                 "site_key": config('RECAPTCHA_PUBLIC_KEY'),
+                "ad_3": models.ads.get_priority(4),
              }
             return render(request, "article.html", context=context)
 

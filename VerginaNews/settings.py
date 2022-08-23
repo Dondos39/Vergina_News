@@ -165,7 +165,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CKEDITOR
 
-CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, MEDIA_URL, 'ckeditor_media')
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'ckeditor_media')
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
@@ -174,15 +174,15 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'height': 600,
         'width': 1400,
-        "removePlugins": "stylesheetparser",
-        'allowedContent':  True,
+        'removePlugins': 'stylesheetparser',
+        #'allowedContent': True ,
         'extraAllowedContent': 'iframe[*]',
-        'providerUrl': '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
+        'embed_provider': '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
         'extraPlugins': ','.join(['uploadimage',
-                                  #'div',
-                                  #'iframe',
-                                  #'autolink',
-                                  #'embed',
+                                  'div',
+                                  'iframe',
+                                  'autolink',
+                                  'embed',
                                   'autoembed',
                                   'embedsemantic',
                                   'autogrow',]),
