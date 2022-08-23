@@ -27,20 +27,6 @@ class Author(models.Model):
     last_name = models.CharField(max_length=32)
     prof_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
-    prof_pic_large = ImageSpecField(source='prof_pic',
-                                    processors=[ResizeToFill(900, 900)],
-                                    format='WEBP',
-                                    options={'quality': 60})
-
-    prof_pic_medium = ImageSpecField(source='prof_pic',
-                                    processors=[ResizeToFill(600, 600)],
-                                    format='WEBP',
-                                    options={'quality': 60})
-
-    prof_pic_small = ImageSpecField(source='prof_pic',
-                                    processors=[ResizeToFill(300, 300)],
-                                    format='WEBP',
-                                    options={'quality': 60})
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)
     job_title = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)

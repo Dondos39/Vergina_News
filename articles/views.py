@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
-
+import ads.models
 import json
 import requests
 # Google captcha
@@ -49,7 +49,7 @@ class ArticleView(DetailView):
                 "article_video": detail.article_video,
                 "text": detail.text,
                 "site_key": config('RECAPTCHA_PUBLIC_KEY'),
-                "ad_3": models.ads.get_priority(4),
+                "ad_3": ads.models.get_priority(4).first(),
              }
             return render(request, "article.html", context=context)
 
