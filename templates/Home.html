@@ -109,13 +109,20 @@
 
 
             <div class="row">
+              {% for ad in ads %}
+              {{ ad.name }}
+
+
                 <div class="col-sm-12 pv3 pvb0">
-                    <a href="blog.html">
-                        <img class="img-fluid"src="{% static 'images/pages/banner-3-big.jpg' %}" loading="lazy"  alt="banner">
+                    <a href="{{ ad.url }}">
+                      <img src="{{ ad.ad_pic.url }}" alt="Image"/>
                     </a>
                 </div>
+                {% endfor %}
             </div>
+
             <div class="border-line mv3"></div>
+
 
 
   <!-- Section 5 -->
@@ -164,12 +171,12 @@
                     <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                         <div class="image">
                           {% if frontnew.article_pic %}
-                         
+
                             <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                             <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                            <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
-                      
-                        
+                            <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+
+
                             {% endif %}
                             <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                         </div>
@@ -222,11 +229,11 @@
                           {% if frontnew.article_pic %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
 
-                           
+
                                 <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                                 <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
-                            
+                                <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
                             {% endif %}
@@ -278,11 +285,11 @@
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                           {% if frontnew.article_pic %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
-                              
+
                                 <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                                 <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
-                              
+                                <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                 {% if frontnew.has_video %}
                                 <a class="video-player"></a>
@@ -326,11 +333,11 @@
                                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                                           {% if frontnew.article_pic %}
                                           <div class="image" data-src="{{ frontnew.article_pic.url }}">
-                                           
+
                                               <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                                               <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                              <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
-                                          
+                                              <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+
                                               <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                               <a class=" video-player-inside" href=""></a>
                                           </div>
@@ -424,11 +431,11 @@
                           <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic_small.url }}"></div>
                         {% endif %}
                       </a>
-                      
+
                       <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                       <p>{{ latest.text | safe | slice:":100" }}...</p>
                       <div class="meta">
-                        
+
                       </div>
                       <span class="date">{{ latest.updated_at|naturaltime }}</span>
                       <div class="border-bottom" ></div>
@@ -755,21 +762,21 @@
                         {% for articles in category.get_articles %}
                         {% if forloop.counter < 3 %}
                         <div class="col-md-6">
-                         
+
                           <div class="post first hover-dark">
                             <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
-        
-        
+
+
                               {% if articles.article_pic %}
                               <div
                                 class="image"
                                 data-src="{{ articles.article_pic.url }"
                               >
-                             
+
                                 <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                                 <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
-                           
+                                <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+
                                 <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                               </div>
                               {% endif %}
@@ -780,9 +787,9 @@
                                 <span class="date">{{ articles.updated_at|naturaltime }}</span>
                               </div>
                             </a>
-        
+
                           </div>
-        
+
                           <div class="row">
                             <div class="col-md-12">
                               <div class="post hover-light">
@@ -817,8 +824,8 @@
                             >
                               <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                               <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                              <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
-                       
+                              <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+
                               <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                             </div>
                             {% endif %}
@@ -842,10 +849,10 @@
                         <!-- /.col -->
                         {% endif %}
                         {% endfor %}
-        
+
                       </div>
                       <!-- /.row -->
-        
+
                       <div class="border-bottom2 mb2 color-1"></div>
                     </div>
                     <!-- /.swiper-container -->
@@ -923,7 +930,7 @@
                 {% for articles in category.get_articles %}
                 {% if forloop.counter < 3 %}
                 <div class="col-md-6">
-                 
+
                   <div class="post first hover-dark">
                     <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
 
@@ -933,11 +940,11 @@
                         class="image"
                         data-src="{{ articles.article_pic.url }"
                       >
-                     
+
                         <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                         <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                        <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
-                 
+                        <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+
                         <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
                       {% endif %}
@@ -983,11 +990,11 @@
                       class="image"
                       data-src="{{ articles.article_pic.url }}"
                     >
-                   
+
                       <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                       <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                      <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
-                  
+                      <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+
                       <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
                     {% endif %}
@@ -1030,7 +1037,6 @@
   {% endif %}
   {% endfor %}
 </div>
-
 		</div>
 		<!-- /.boxed -->
     </div>

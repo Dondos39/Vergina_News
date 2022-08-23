@@ -25,7 +25,7 @@ class Author(models.Model):
 
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-    prof_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[])
+    prof_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
     prof_pic_large = ImageSpecField(source='prof_pic',
                                     processors=[ResizeToFill(900, 900)],
@@ -65,10 +65,4 @@ class Author(models.Model):
     def delete(self, using=None, keep_parents=False):
         if self.prof_pic.url != None:
             self.prof_pic.storage.delete(self.prof_pic.name)
-        print('--------------')
-        print(self.prof_pic_small)
-        print('--------------')
-        if self.prof_pic_small:
-
-            self.prof_pic_small.storage.delete(self.prof_pic_small)
-        #super().delete()
+        super().delete()
