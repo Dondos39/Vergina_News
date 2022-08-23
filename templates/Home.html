@@ -39,7 +39,7 @@
                                        <div class="ms-slide color-1">
                                       <div class="slide-pattern tint"></div>
                                       {% if important.article_pic %}
-                                      <img src="{{ important.article_pic_large.url }}" data-src="{{ important.article_pic_medium.url }}" alt="Image"/>
+                                      <img src="{{ important.article_pic.url }}" data-src="{{ important.article_pic.url }}" alt="Image"/>
                                       {% endif %}
                                       <div class="ms-layer" data-effect="fade(400)" data-origin="tl" data-delay="0" data-offset-y="70"><a href="blog.html" class="label">{{ important.sub_category.name }}</a></div>
                                       <div class="ms-layer right-side" data-duration="300" data-ease="easeInOut">
@@ -182,10 +182,7 @@
                     <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                         <div class="image">
                           {% if frontnew.article_pic %}
-
-                            <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                            <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                            <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+                            <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
 
 
                             {% endif %}
@@ -239,11 +236,7 @@
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                           {% if frontnew.article_pic %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
-
-
-                                <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                                <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+                                <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
 
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                             </div>
@@ -296,10 +289,7 @@
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                           {% if frontnew.article_pic %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
-
-                                <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                                <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+                                <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
 
                                 <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                 {% if frontnew.has_video %}
@@ -344,10 +334,7 @@
                                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                                           {% if frontnew.article_pic %}
                                           <div class="image" data-src="{{ frontnew.article_pic.url }}">
-
-                                              <source srcset="{{ frontnew.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                                              <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                              <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>
+                                              <img loading="lazy"  src="{{ frontnew.article_pic.url }}" alt="Proportion"/>
 
                                               <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                               <a class=" video-player-inside" href=""></a>
@@ -378,7 +365,7 @@
 									    <div class="post hover-light">
 											<a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                         {% if frontnew.article_pic %}
-												<div class="image image-thumb" data-src="{{ frontnew.article_pic_small.url }}"></div>
+												<div class="image image-thumb" data-src="{{ frontnew.article_pic.url }}"></div>
                         {% endif %}
 											</a>
 											<h4><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
@@ -439,7 +426,7 @@
                   <div class="post hover-light">
                       <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                         {% if latest.article_pic %}
-                          <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic_small.url }}"></div>
+                          <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
                         {% endif %}
                       </a>
 
@@ -464,7 +451,7 @@
                 <div class="post hover-light">
                     <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
                       {% if popoular.article_pic %}
-                      <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic_small.url }}"></div>
+                      <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic.url }}"></div>
                     {% endif %}
                     </a>
 
@@ -647,7 +634,7 @@
                                             <div class="fs-blog-item">
                                                 <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
                                                   {% if pouplar.article_pic %}
-                                                    <img loading="lazy" fetchpriority="low"  src="{{ pouplar.article_pic_small.url }}" alt="portfolio image">
+                                                    <img loading="lazy" fetchpriority="low"  src="{{ pouplar.article_pic.url }}" alt="portfolio image">
                                                   {% endif %}
                                                 </a>
                                                 <h4><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.text | safe | slice:":100" }}...</a></h4>
@@ -784,9 +771,7 @@
                                 data-src="{{ articles.article_pic.url }"
                               >
 
-                                <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                                <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                                <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+                                <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic.url }}" alt="Proportion"/>
 
                                 <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                               </div>
@@ -833,9 +818,9 @@
                               class="image"
                               data-src="{{ articles.article_pic.url }}"
                             >
-                              <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                              <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                              <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+                              <source srcset="{{ articles.article_pic.url }}" type="image/jpeg" media="(max-width: 768px)" />
+                              <source srcset="{{ articles.article_pic.url }}" type="image/jpeg" media="(max-width: 1024px)" />
+                              <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic.url }}" alt="Proportion"/>
 
                               <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                             </div>
@@ -952,9 +937,7 @@
                         data-src="{{ articles.article_pic.url }"
                       >
 
-                        <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                        <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                        <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+                        <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic.url }}" alt="Proportion"/>
 
                         <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       </div>
@@ -1001,10 +984,7 @@
                       class="image"
                       data-src="{{ articles.article_pic.url }}"
                     >
-
-                      <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
-                      <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
-                      <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>
+                      <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic.url }}" alt="Proportion"/>
 
                       <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
