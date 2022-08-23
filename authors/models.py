@@ -29,17 +29,17 @@ class Author(models.Model):
 
     prof_pic_large = ImageSpecField(source='prof_pic',
                                     processors=[ResizeToFill(900, 900)],
-                                    format='WEBP',
+                                    format='JPEG',
                                     options={'quality': 60})
 
     prof_pic_medium = ImageSpecField(source='prof_pic',
                                     processors=[ResizeToFill(600, 600)],
-                                    format='WEBP',
+                                    format='JPEG',
                                     options={'quality': 60})
 
     prof_pic_small = ImageSpecField(source='prof_pic',
                                     processors=[ResizeToFill(300, 300)],
-                                    format='WEBP',
+                                    format='JPEG',
                                     options={'quality': 60})
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)

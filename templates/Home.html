@@ -106,16 +106,19 @@
 
         <!-- // Picture News -->
         <div class="container">
-
-
+          
+   
+            
             <div class="row">
                 <div class="col-sm-12 pv3 pvb0">
-                    <a href="blog.html">
-                        <img class="img-fluid"src="{% static 'images/pages/banner-3-big.jpg' %}" loading="lazy"  alt="banner">
+                    <a href="{{ ad.url }}">
+                        <img class="img-fluid"src="{{ ad.ad_pic.url }}" loading="lazy"  alt="{{ ad.name }}">
                     </a>
+                    {{ad.widget }}
                 </div>
             </div>
             <div class="border-line mv3"></div>
+ 
 
 
   <!-- Section 5 -->
@@ -135,7 +138,7 @@
 
     <div class="row">
 
-        <div class="col-sm-9 ">
+        <div class="col-lg-9 ">
 
             <div class="boxed wide-space">
             <div class="category-block en-block">
@@ -172,6 +175,9 @@
                         
                             {% endif %}
                             <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
+                            {% if frontnew.has_video %}
+                            <a class="video-player"></a>
+                            {% endif %}
                         </div>
                     </a>
                     <div class="meta font18 inline-meta">
@@ -218,8 +224,9 @@
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
+                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}"></a>
                           {% if frontnew.article_pic %}
+                          <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
 
                            
@@ -227,7 +234,10 @@
                                 <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
                                 <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
                             
-                                <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
+                                <a style="z-index: 800;"href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
+                                {% if frontnew.has_video %}
+                                <a class="video-player"></a>
+                                {% endif %}
                             </div>
                             {% endif %}
                         </a>
@@ -275,7 +285,7 @@
                 <div class="col-md-6">
 
                     <div class="post hover-dark color-1">
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
+                      <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                           {% if frontnew.article_pic %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
                               
@@ -283,7 +293,7 @@
                                 <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
                                 <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
                               
-                                <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
+                                <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                 {% if frontnew.has_video %}
                                 <a class="video-player"></a>
                                 {% endif %}
@@ -323,7 +333,7 @@
                                 <div class="col-md-6">
 
                                     <div class="post hover-dark color-1">
-                                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
+                                        <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
                                           {% if frontnew.article_pic %}
                                           <div class="image" data-src="{{ frontnew.article_pic.url }}">
                                            
@@ -331,8 +341,10 @@
                                               <source srcset="{{ frontnew.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
                                               <img loading="lazy"  src="{{ frontnew.article_pic_large.url }}" alt="Proportion"/>   
                                           
-                                              <a href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
-                                              <a class=" video-player-inside" href=""></a>
+                                              <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
+                                              {% if frontnew.has_video %}
+                                              <a class="video-player"></a>
+                                              {% endif %}
                                           </div>
                                           {% endif %}
                                         </a>
@@ -445,8 +457,8 @@
                 {% for pouplar in popular_news_list %}
                 <div class="post hover-light">
                     <a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">
-                      {% if popoular.article_pic %}
-                      <div class="image image-thumb"  loading="lazy" data-src="{{ popoular.article_pic_small.url }}"></div>
+                      {% if pouplar.article_pic %}
+                      <div class="image image-thumb"  loading="lazy" data-src="{{ pouplar.article_pic_small.url }}"></div>
                     {% endif %}
                     </a>
 
@@ -496,7 +508,7 @@
 "isTransparent": false,
 "showSymbolLogo": true,
 "showFloatingTooltip": false,
-"width": "270",
+"width": "255",
 "height": "465",
 "tabs": [
 {
@@ -771,6 +783,9 @@
                                 <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
                            
                                 <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
+                                {% if articles.has_video %}
+                                <a class="video-player"></a>
+                                {% endif %}
                               </div>
                               {% endif %}
                               <div class="meta inline-meta small-meta">
@@ -810,6 +825,7 @@
                         {% if forloop.counter > 2 %}
                         <div class="col-md-3">
                           <div class="post hover-light">
+                            <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
                             {% if articles.article_pic %}
                             <div
                               class="image"
@@ -819,9 +835,13 @@
                               <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
                               <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
                        
-                              <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
+                              <a style="z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
+                              {% if articles.has_video %}
+                              <a class="video-player"></a>
+                              {% endif %}
                             </div>
                             {% endif %}
+                          </a>
                             <div class="meta inline-meta small-meta">
                               {% for author in articles.get_authors %}
                               <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
@@ -874,7 +894,7 @@
 						<div class="author clearfix">
 							<a href="{% url 'author_view' author_id=author %}">
                 {% if author.prof_pic%}
-								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic.url}}" alt="Image">
+								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic_small.url}}" alt="Image">
                 {% endif %}
 							</a>
 							<a href="{% url 'category_view' category=author.job_title.slug %}" class="label">{{ author.job_title }}</a>
@@ -939,6 +959,9 @@
                         <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
                  
                         <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
+                        {% if articles.has_video %}
+                        <a class="video-player"></a>
+                        {% endif %} 
                       </div>
                       {% endif %}
                       <div class="meta inline-meta small-meta">
@@ -978,6 +1001,7 @@
                 {% if forloop.counter > 2 %}
                 <div class="col-md-3">
                   <div class="post hover-light">
+                    <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
                     {% if articles.article_pic %}
                     <div
                       class="image"
@@ -987,10 +1011,13 @@
                       <source srcset="{{ articles.article_pic_small.url }}" type="image/jpeg" media="(max-width: 768px)" />
                       <source srcset="{{ articles.article_pic_medium.url }}" type="image/jpeg" media="(max-width: 1024px)" />
                       <img loading="lazy" fetchpriority="auto" src="{{ articles.article_pic_large.url }}" alt="Proportion"/>   
-                  
-                      <a href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
+                      {% if articles.has_video %}
+                      <a class="video-player"></a>
+                      {% endif %}
+                      <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                     </div>
                     {% endif %}
+                  </a>
                     <div class="meta inline-meta small-meta">
                       {% for author in articles.get_authors %}
                       <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>

@@ -38,7 +38,7 @@
                     <div class="swiper-holder">
                       {% if author.prof_pic%}
                       <img
-                        src="{{ author.prof_pic.url }}"
+                        src="{{ author.prof_pic_medium.url }}"
                         alt="Quote author"
                       />
                       {% endif %}
@@ -75,7 +75,7 @@
                           {% if author.prof_pic%}
                           <img
                             class="image-thumb"
-                            src="{{ author.prof_pic.url }}"
+                            src="{{ author.prof_pic_small.url }}"
                             alt="Image"
                           />
                           {% endif %}
@@ -179,7 +179,7 @@
                           {% if author.prof_pic%}
                           <div
                             class="image image-thumb"
-                            data-src="{{ author.prof_pic.url }}"
+                            data-src="{{ author.prof_pic_small.url }}"
                           ></div>
                           {% endif %}
                         </a>

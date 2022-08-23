@@ -45,7 +45,7 @@ class ArticleView(DetailView):
                 "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
                 "total_views": detail.total_views,
                 "tags": detail.get_tags(),
-                "article_pic": detail.article_pic,
+                "article_pic": detail.article_pic_medium,
                 "article_video": detail.article_video,
                 "text": detail.text,
                 "site_key": config('RECAPTCHA_PUBLIC_KEY'),
