@@ -109,16 +109,27 @@
 
 
             <div class="row">
-              {% for ad in ads %}
-              {{ ad.name }}
-
-
+              {% if ad_1.ad_pic %}
                 <div class="col-sm-12 pv3 pvb0">
-                    <a href="{{ ad.url }}">
-                      <img src="{{ ad.ad_pic.url }}" alt="Image"/>
+                    <a href="{{ ad_1.url }}">
+                      <img src="{{ ad_1.ad_pic.url }}" alt="Image"/>
                     </a>
                 </div>
-                {% endfor %}
+                {% else %}
+                <!-- Add the google ad widget here -->
+                {% endif %}
+            </div>
+
+            <div class="row">
+              {% if ad_2.ad_pic %}
+                <div class="col-sm-12 pv3 pvb0">
+                    <a href="{{ ad_2.url }}">
+                      <img src="{{ ad_2.ad_pic.url }}" alt="Image"/>
+                    </a>
+                </div>
+                {% else %}
+                <!-- Add the google ad widget here -->
+                {% endif %}
             </div>
 
             <div class="border-line mv3"></div>
