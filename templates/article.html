@@ -159,7 +159,7 @@
                          <li class="post hover-light">
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                                 {% if latest.article_pic %}
-                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic_small.url }}"></div>
+                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
                               {% endif %}
                             </a>
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
@@ -327,6 +327,7 @@
                     <!-- end .row -->
                 </div>
                 <!-- end .container -->
+</div>
 
 
 

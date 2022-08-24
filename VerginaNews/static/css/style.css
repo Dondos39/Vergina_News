@@ -26,11 +26,11 @@
   -------------------------------------------------------------------------*/
 
 
-@font-face {
+/* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 900;
     src: url(fonts/SF-UI-Display-Black.otf);
-}
+} */
 /* @font-face {
     font-family: 'SF-UI-Display';
     font-weight: 800;
@@ -2663,7 +2663,7 @@ h4.block-title .category-more.text-right {
 
 .movie-section {
   padding: 100px 0;
-  background-image: url('images/entertainment/section-5-background.jpg');
+  /* background-image: url('images/entertainment/section-5-background.jpg'); */
   background-size: cover;
 }
 
