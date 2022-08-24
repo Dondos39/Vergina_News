@@ -110,29 +110,15 @@
    
             
             <div class="row">
-              {% if ad_1 %}
-                {% if ad_1.ad_pic %}
+              {% if ad_banner_1 %}
+                {% if ad_banner_1.ad_pic %}
                   <div class="col-sm-12 pv3 pvb0">
-                    <a href="{{ ad_1.url }}">
-                      <img src="{{ ad_1.ad_pic.url }}" alt="Image"/>
+                    <a href="{{ ad_banner_1.url }}">
+                      <img src="{{ ad_banner_1.ad_pic.url }}" class="img-fluid" alt="Image"/>
                     </a>
                   </div>
                 {% else %}
-                  {{ ad_1.widget }}
-                {% endif %}
-              {% endif %}
-            </div>
-
-            <div class="row">
-              {% if ad_2 %}
-                {% if ad_2.ad_pic %}
-                  <div class="col-sm-12 pv3 pvb0">
-                    <a href="{{ ad_2.url }}">
-                      <img src="{{ ad_2.ad_pic.url }}" alt="Image"/>
-                    </a>
-                  </div>
-                {% else %}
-                  {{ ad_2.widget }}
+                  {{ ad_banner_1.widget }}
                 {% endif %}
               {% endif %}
             </div>
@@ -218,22 +204,21 @@
             </div>
             <!-- end .category-block -->
 
-            <div class="pv2">
-                <!-- <a href="blog.html">
-                    <img loading="lazy" src="{% static 'images/ads-660x440.png' %}" alt="Ads" class="full-size">
-                </a> -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-5039243942639303"
-     data-ad-slot="8825023724"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+            <!-- /.col -->
+            <div class="row">
+              {% if ad_news_1 %}
+                {% if ad_news_1.ad_pic %}
+                  <div class="col-sm-12 pv3 pvb0">
+                    <a href="{{ ad_news_1.url }}">
+                      <img src="{{ ad_news_1.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                    </a>
+                  </div>
+                {% else %}
+                  {{ ad_news_1.widget }}
+                {% endif %}
+              {% endif %}
             </div>
+
             <div class="border-line mb5"></div>
 
             <div class="row category-block en-block">
@@ -275,26 +260,19 @@
                 {% endfor %}
                 <!-- /.col -->
 
-                <div class="col-md-6">
-                    <!-- <div class="post first hover-dark color-2">
-                        <a href="single.html">
-                            <div class="image" data-src="images/entertainment/post-10.jpg">
-                                <img loading="lazy"  src="images/5x3.png" alt="Proportion"/>
-                            </div>
+                <!-- /.col -->
+                <div class="row">
+                  {% if ad_news_2 %}
+                    {% if ad_news_2.ad_pic %}
+                      <div class="col-sm-12 pv3 pvb0">
+                        <a href="{{ ad_news_2.url }}">
+                          <img src="{{ ad_news_2.ad_pic.url }}" class="img-fluid" alt="Image"/>
                         </a>
-                    </div> -->
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
-     crossorigin="anonymous"></script>
-<!-- testdiafimisi1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-5039243942639303"
-     data-ad-slot="9662365191"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+                      </div>
+                    {% else %}
+                      {{ ad_news_2.widget }}
+                    {% endif %}
+                  {% endif %}
                 </div>
 
                 {% for frontnew in frontnews_list %}
@@ -325,19 +303,25 @@
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
                     </div>
 
-
                 </div>
                 {% endif%}
                 {% endfor %}
             </div>
             <!-- /.col -->
             <div class="row">
-                <div class="col-sm-12 mv3 mvt0">
-                    <a href="entertainment.html">
-                        <img loading="lazy"  src="images/pages/banner-1.jpg" alt="banner" class="full-size">
+              {% if ad_news_3 %}
+                {% if ad_news_3.ad_pic %}
+                  <div class="col-sm-12 pv3 pvb0">
+                    <a href="{{ ad_news_3.url }}">
+                      <img src="{{ ad_news_3.ad_pic.url }}" class="img-fluid" alt="Image"/>
                     </a>
-                </div>
+                  </div>
+                {% else %}
+                  {{ ad_news_3.widget }}
+                {% endif %}
+              {% endif %}
             </div>
+
 
             <h3 class="title-middle title-border"></h3>
 
@@ -403,27 +387,7 @@
                     {% endif%}
                     {% endfor %}
 								</div>
-
-
 							</div>
-                                        <!-- /.col -->
-            <div class="row">
-                <!-- <div class="col-sm-12 mv3 mvt0">
-                    <a href="entertainment.html">
-                        <img loading="lazy" src="" alt="banner" class="full-size">
-                    </a>
-                </div> -->
-                <amp-ad width="100vw" height="320"
-     type="adsense"
-     data-ad-client="ca-pub-5039243942639303"
-     data-ad-slot="6643667222"
-     data-auto-format="rspv"
-     data-full-width="">
-  <div overflow=""></div>
-</amp-ad>
-            </div>
-
-
         </div>
         <!-- /.row -->
 
@@ -717,17 +681,20 @@
     </div>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-5039243942639303"
-     data-ad-slot="8285704349"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+<!-- /.col -->
+<div class="row">
+  {% if ad_banner_2 %}
+    {% if ad_banner_2.ad_pic %}
+      <div class="col-sm-12 pv3 pvb0">
+        <a href="{{ ad_banner_2.url }}">
+          <img src="{{ ad_banner_2.ad_pic.url }}" class="img-fluid" alt="Image"/>
+        </a>
+      </div>
+    {% else %}
+      {{ ad_banner_2.widget }}
+    {% endif %}
+  {% endif %}
+</div>
 {% for category in categories_list %}
 {% if category.name == "People" %}
             <!-- New Section -->

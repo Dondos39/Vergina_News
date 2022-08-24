@@ -23,6 +23,21 @@
 <section class="section-content single">
 
 <div class="container">
+  <!-- /.col -->
+  <div class="row">
+    {% if ad_banner %}
+      {% if ad_banner.ad_pic %}
+        <div class="col-sm-12 pv3 pvb0">
+          <a href="{{ ad_banner.url }}">
+            <img src="{{ ad_banner.ad_pic.url }}" class="img-fluid" alt="Image"/>
+          </a>
+        </div>
+      {% else %}
+        {{ ad_banner.widget }}
+      {% endif %}
+    {% endif %}
+  </div>
+
     <div class="row">
         <div class="col-sm-9 with-sidebar">
 
@@ -99,17 +114,20 @@
                 </div>
                 <!-- end .widget -->
 
+                <!-- /.col -->
                 <div class="row">
-                  {% if ad_3.ad_pic %}
-                    <div class="col-sm-12 pv3 pvb0">
-                        <a href="{{ ad_3.url }}">
-                          <img src="{{ ad_3.ad_pic.url }}" alt="Image"/>
+                  {% if ad_sidebar %}
+                    {% if ad_sidebar.ad_pic %}
+                      <div class="col-sm-12 pv3 pvb0">
+                        <a href="{{ ad_sidebar.url }}">
+                          <img src="{{ ad_sidebar.ad_pic.url }}" class="img-fluid" alt="Image"/>
                         </a>
-                    </div>
+                      </div>
                     {% else %}
-                      {{ ad_3.widget }}
+                      {{ ad_sidebar.widget }}
                     {% endif %}
-
+                  {% endif %}
+                </div>
 
                 <div class="widget">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
