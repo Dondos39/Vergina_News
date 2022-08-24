@@ -49,12 +49,8 @@ class ArticleView(DetailView):
                 "article_video": detail.article_video,
                 "text": detail.text,
                 "site_key": config('RECAPTCHA_PUBLIC_KEY'),
-<<<<<<< HEAD
                 "ad_banner": ads.models.get_priority(7).first(),
                 "ad_sidebar": ads.models.get_priority(8).first(),
-=======
-                #"ad_3": ads.models.get_priority(4).first(),
->>>>>>> fdc5b494568d3ba1ae9b6678b15b68a7427f8fc0
              }
             return render(request, "article.html", context=context)
 
