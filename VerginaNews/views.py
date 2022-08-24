@@ -29,16 +29,26 @@ class HomepageViews(ListView):
         'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
         'popular_news_list': articles.models.Article.objects.get_popular(),
         'popular_tags': tags.models.Tags.objects.get_popular(),
+<<<<<<< HEAD
         'ad_banner_1': ads.models.get_priority(1).first(),
         'ad_banner_2': ads.models.get_priority(1).first(),
         'ad_news_1': ads.models.get_priority(2).first(),
         'ad_news_2': ads.models.get_priority(2).first(),
         'ad_news_3': ads.models.get_priority(2).first(),
+=======
+
+        # 'ad_1': ads.models.get_priority(1).first(),
+        # 'ad_2': ads.models.get_priority(2).first(),
+
+>>>>>>> fdc5b494568d3ba1ae9b6678b15b68a7427f8fc0
         'weather': get_weather(request),
         'external_articles': get_news(request),
         'date': date,
+
         }
+        # print(context['ads'])
         return render(request, "Home.html", context=context)
+
 
     def post(self, request, *args, **kwargs):
         keyword = request.POST.get('search')
