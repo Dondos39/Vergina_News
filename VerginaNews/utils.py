@@ -63,6 +63,8 @@ def get_location(ip_address):
             result = response.content.decode()
             result = result.split("(")[1].strip(")")
             result  = json.loads(result)
+        else:
+            result = None
     except requests.exceptions.ConnectionError:
         print("Site not rechable", request_url)
 

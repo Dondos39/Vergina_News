@@ -32,7 +32,7 @@ urlpatterns = [
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<title>[\w-]+)/$', articles.views.ArticleView.as_view(), name='article_view'),
     re_path('author=(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view'),
-    
+
 ]
 
 if settings.DEBUG:

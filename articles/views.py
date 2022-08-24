@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
-
+import ads.models
 import json
 import requests
 # Google captcha
@@ -45,10 +45,11 @@ class ArticleView(DetailView):
                 "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
                 "total_views": detail.total_views,
                 "tags": detail.get_tags(),
-                "article_pic": detail.article_pic_medium,
+                "article_pic": detail.article_pic,
                 "article_video": detail.article_video,
                 "text": detail.text,
                 "site_key": config('RECAPTCHA_PUBLIC_KEY'),
+                #"ad_3": ads.models.get_priority(4).first(),
              }
             return render(request, "article.html", context=context)
 
