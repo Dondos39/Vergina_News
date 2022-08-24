@@ -68,9 +68,9 @@
                     {% for article in articles %}
                     <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
                       <div class="post boxed mb3 color-2 cart-style">
-                        
-               
-                       
+
+
+
                         <div class="clearfix">
                           {% if author.prof_pic%}
                           <img
@@ -139,22 +139,20 @@
                   </div>
                   <!-- end .widget -->
 
-                  <div class="widget">
-                    <a href="entertainment.html">
-                      <img src="images/pages/banner-v-en.jpg" alt="banner" />
-                    </a>
+                  <!-- /.col -->
+                  <div class="row">
+                    {% if ad_sidebar %}
+                      {% if ad_sidebar.ad_pic %}
+                        <div class="col-sm-12 pv3 pvb0">
+                          <a href="{{ ad_sidebar.url }}">
+                            <img src="{{ ad_sidebar.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                          </a>
+                        </div>
+                      {% else %}
+                        {{ ad_sidebar.widget }}
+                      {% endif %}
+                    {% endif %}
                   </div>
-                  <!-- end .widget -->
-
-                  <div class="widget">
-                    <form class="search_form">
-                      <input type="text" name="2" placeholder="Search..." />
-                      <button type="submit">
-                        <i class="fa fa-search"></i>
-                      </button>
-                    </form>
-                  </div>
-                  <!-- end .widget -->
 
                   <div class="widget categories">
                     <h5 class="widget-title"><span>Categories</span></h5>
@@ -175,7 +173,7 @@
                       {% for author in related_authors %}
                       <li class="post hover-light">
                         <a href="javascript:;">
-             
+
                           {% if author.prof_pic%}
                           <div
                             class="image image-thumb"

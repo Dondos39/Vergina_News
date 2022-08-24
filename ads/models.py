@@ -26,7 +26,7 @@ def get_priority(num):
         ad = GoogleAd.objects.get_priority(num)
         if ad.exists():
             return ad
-    return 0
+    return None
 
 class ArticleManager(models.Manager):
     def get_priority(self, num):

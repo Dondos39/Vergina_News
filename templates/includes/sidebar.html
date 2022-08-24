@@ -15,34 +15,20 @@
                 </div>
                 <!-- end .widget -->
 
-
-
-
-                <div class="widget">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
-                    crossorigin="anonymous"></script>
-               <!-- sidebar -->
-               <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-5039243942639303"
-                    data-ad-slot="4061025476"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-               <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-               </script>
+                <!-- /.col -->
+                <div class="row">
+                  {% if ad %}
+                    {% if ad.ad_pic %}
+                      <div class="col-sm-12 pv3 pvb0">
+                        <a href="{{ ad.url }}">
+                          <img src="{{ ad.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                        </a>
+                      </div>
+                    {% else %}
+                      {{ ad.widget }}
+                    {% endif %}
+                  {% endif %}
                 </div>
-                <!-- end .widget -->
-
-
-                <div class="widget">
-                    <form class="search_form">
-                        <input type="text" name="2" placeholder="Search...">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <!-- end .widget -->
-
 
                 <div class="widget categories">
                     <h5 class="widget-title"><span>Categories</span></h5>
