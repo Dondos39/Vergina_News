@@ -109,27 +109,31 @@
 
 
             <div class="row">
-              {% if ad_1.ad_pic %}
-                <div class="col-sm-12 pv3 pvb0">
+              {% if ad_1 %}
+                {% if ad_1.ad_pic %}
+                  <div class="col-sm-12 pv3 pvb0">
                     <a href="{{ ad_1.url }}">
                       <img src="{{ ad_1.ad_pic.url }}" alt="Image"/>
                     </a>
-                </div>
+                  </div>
                 {% else %}
-                <!-- Add the google ad widget here -->
+                  {{ ad_1.widget }}
                 {% endif %}
+              {% endif %}
             </div>
 
             <div class="row">
-              {% if ad_2.ad_pic %}
-                <div class="col-sm-12 pv3 pvb0">
+              {% if ad_2 %}
+                {% if ad_2.ad_pic %}
+                  <div class="col-sm-12 pv3 pvb0">
                     <a href="{{ ad_2.url }}">
                       <img src="{{ ad_2.ad_pic.url }}" alt="Image"/>
                     </a>
-                </div>
+                  </div>
                 {% else %}
-                <!-- Add the google ad widget here -->
+                  {{ ad_2.widget }}
                 {% endif %}
+              {% endif %}
             </div>
 
             <div class="border-line mv3"></div>
