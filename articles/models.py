@@ -8,8 +8,7 @@ from django.conf import settings
 from model_utils import FieldTracker
 from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
 from django.utils.text import slugify
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from django_resized import ResizedImageField
 
 # Create your models here.
 IMPORTANT_N = [
@@ -59,7 +58,7 @@ class Article(models.Model):
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextUploadingField()
 
-    article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
+    article_pic = ResizedImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,

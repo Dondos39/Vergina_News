@@ -104,6 +104,8 @@ class AllArticlesView(DetailView):
             tags = Tags.objects.all().values_list('name', flat=True).distinct()
             if kwargs['search'] == 'all':
                 articles = Article.objects.all().order_by('-updated_at')
+            elif kwargs['search'] == 'popular':
+                articles = Article.objects.all().order_by('-total_views')
             elif kwargs['search'] in tags:
                 tag = Tags.objects.get(name=kwargs['search'])
                 tag.total_views = tag.total_views + 1

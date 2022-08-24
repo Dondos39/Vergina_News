@@ -6,8 +6,7 @@ import uuid
 import os
 from model_utils import FieldTracker
 from VerginaNews.utils import get_img_path, image_size_validator
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from django_resized import ResizedImageField
 import categories.models
 
 # Create your models here.
@@ -25,7 +24,7 @@ class Author(models.Model):
 
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-    prof_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
+    prof_pic = ResizedImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)
     job_title = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)

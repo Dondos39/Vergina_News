@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'requests',
     'captcha',
     #'django_social_share',
-    #'django_resized',
-    'imagekit',
+    'django_resized',
+    #'imagekit',
     'axes',
 ]
 
@@ -196,11 +196,15 @@ SESSION_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CSRF_COOKIE_SECURE = True
 
+# RECAPTCHA
 
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = 0.85
 
-# IMAGEKIT
+# Resized
 
-IMAGEKIT_CACHEFILE_DIR = os.path.join(MEDIA_ROOT, "CACHE\images")
+DJANGORESIZED_DEFAULT_SIZE = [400, 400]
+DJANGORESIZED_DEFAULT_QUALITY = 60
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+
