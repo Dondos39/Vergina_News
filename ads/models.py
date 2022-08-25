@@ -21,11 +21,11 @@ def get_priority(num):
     if num < 11 and num > 0:
         ad = Ad.objects.get_priority(num)
         if ad.exists():
-            return ad
+            return ad.first()
 
         ad = GoogleAd.objects.get_priority(num)
         if ad.exists():
-            return ad
+            return ad.first()
     return None
 
 class ArticleManager(models.Manager):

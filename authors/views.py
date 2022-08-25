@@ -29,7 +29,7 @@ class AuthorView(DetailView):
                     "article_count": article_count,
                     "related_authors": related_authors,
                     "tags": category.get_popular_tags(),
-                    "ad_sidebar": ads.models.get_priority(9).first(),
+                    "ad_sidebar": ads.models.get_priority(9),
             }
             return render(request, 'author.html', context=context)
 
