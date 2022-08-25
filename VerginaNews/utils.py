@@ -58,16 +58,18 @@ def get_location(ip_address):
     request_url = 'https://geolocation-db.com/jsonp/' + ip_address
 
     try:
-        response = requests.get(request_url, None, timeout=5)
+        response = requests.get(request_url, None, timeout=1)
         if response:
             result = response.content.decode()
             result = result.split("(")[1].strip(")")
             result  = json.loads(result)
         else:
-            result = None
+            return 37.98, 23.72
     except requests.exceptions.ConnectionError:
         print("Site not rechable", request_url)
-
+        return 37.98, 23.72
+    else:
+        return 37.98, 23.72
     return result['latitude'], result['longitude']
 
 
@@ -99,16 +101,20 @@ def get_weather(request):
     """
     client_ip = get_client_ip(request)
     api=config('WEATHER_API_KEY')
-    try:
-        lat, lon = get_location('91.184.219.149')
-    except requests.exceptions.SSLError:
-        lat, lon = (None, None)
-    else:
-        url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
-        weather = requests.get(url).json()
 
+    lat, lon = get_location(client_ip)
+
+    url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
+    weather = requests.get(url, None, timeout=5).json()
+    
+    if weather['cod'] == '400':
+        return None
+
+    if weather:
         weather['main']['temp'] = int(convert_to_celsius(weather['main']['temp']))
         weather['icon'] = weather['weather'][0]['icon']
+    else:
+        return None
     return weather
 
 def get_news(request):

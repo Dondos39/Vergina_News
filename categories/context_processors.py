@@ -7,6 +7,4 @@ def menu_links(request):
 
 def sidebar_ad(request):
     ad = ads.models.get_priority(10)
-    if ad:
-        ad = ad.first()
     return dict(ad=ad)
