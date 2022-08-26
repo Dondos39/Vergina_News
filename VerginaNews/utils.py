@@ -66,7 +66,10 @@ def get_location(ip_address):
         else:
             return 37.98, 23.72
     except requests.exceptions.ConnectionError:
-        print("Site not rechable", request_url)
+        print("Site not reachable", request_url)
+        return 37.98, 23.72
+    except requests.exceptions.Timeout:
+        print("Timeout occurred")
         return 37.98, 23.72
     else:
         return 37.98, 23.72
@@ -106,7 +109,7 @@ def get_weather(request):
 
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
     weather = requests.get(url, None, timeout=5).json()
-    
+
     if weather['cod'] == '400':
         return None
 
