@@ -5,16 +5,16 @@ import uuid
 from VerginaNews.utils import get_img_path
 
 PRIORITY_N = [
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5'),
-    ('6', '6'),
-    ('7', '7'),
-    ('8', '8'),
-    ('9', '9'),
-    ('10', '10'),
+    ('1', 'Homepage Banner 1'),
+    ('2', 'Home VerginaNews 1'),
+    ('3', 'Home VerginaNews 2'),
+    ('4', 'Home VerginaNews 3'),
+    ('5', 'Home VerginaNews 4'),
+    ('6', 'Homepage Banner 2'),
+    ('7', 'Article Banner'),
+    ('8', 'Article Sidebar'),
+    ('9', 'Author Sidebar'),
+    ('10', 'Category/SubCategory Sidebar'),
 ]
 
 def get_priority(num):
