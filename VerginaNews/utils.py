@@ -65,11 +65,8 @@ def get_location(ip_address):
             result  = json.loads(result)
         else:
             return 37.98, 23.72
-    except requests.exceptions.ConnectionError:
-        print("Site not reachable", request_url)
-        return 37.98, 23.72
-    except requests.exceptions.Timeout:
-        print("Timeout occurred")
+    except:
+        print("Something went wrong", request_url)
         return 37.98, 23.72
     else:
         return 37.98, 23.72
