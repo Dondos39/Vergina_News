@@ -58,7 +58,7 @@ class Article(models.Model):
     time_added = models.TimeField(("Time"), auto_now=True)
     text = RichTextUploadingField()
 
-    article_pic = ResizedImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
+    article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
 
     article_video = models.FileField(upload_to=get_video_path,
                              null=True,

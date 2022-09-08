@@ -12,6 +12,7 @@ import datetime
 import time
 from urllib.request import urlopen
 from VerginaNews.utils import get_weather, get_news
+from django.core.paginator import Paginator
 
 
 class HomepageViews(ListView):
@@ -20,9 +21,16 @@ class HomepageViews(ListView):
     model = categories.models.Category
 
     def get(self, request, *args, **kwargs):
+        category = categories.models.Category.objects.all()
+        paginator = Paginator(category, 1)
+        page = request.GET.get('page')
+        page_category = paginator.get_page(page)
+        category_count = category.count()
+
         date= datetime.datetime.now()
         context = {
-        'categories_list': categories.models.Category.objects.all(),
+        'categories_list': page_category,
+        'categories_count': category_count,
         'authors_list': authors.models.Author.objects.get_featured(),
         'important_list': articles.models.Article.objects.get_important(),
         'roaming_news_list': articles.models.Article.objects.get_latest(),
