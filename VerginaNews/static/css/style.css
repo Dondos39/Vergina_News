@@ -5869,7 +5869,7 @@ blockquote:before {
   height: 100%;
   object-fit: cover;
 }
-.section-full .fs-slide .swiper-slide {
+.fs-slide .swiper-slide {
 
   background: #0d5baa; 
   display: -webkit-box;
