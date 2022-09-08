@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     {% block headblock %}
 
 
@@ -34,7 +34,10 @@
     <!-- Swiper -->
     <link rel="stylesheet" type="text/css" href="{% static 'vendors/swiper/css/swiper.min.css' %}">
  
-
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+  />
     <!-- Magnific-popup
     <link rel="stylesheet" type="text/css" href="{% static 'vendors/magnific-popup/magnific-popup.css' %}"> -->
 
@@ -83,22 +86,29 @@
 
 
     <!-- Include jQuery and Scripts -->
-    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}" ></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <!-- <script type="text/javascript" src="{% static 'js/jquery.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'js/migatejquery.js' %}" ></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
 
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <!-- <script type="text/javascript" src="{% static 'js/blockinspect.js' %}" ></script> -->
     <!-- <script type="text/javascript" src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" async></script>
 
     <script type="text/javascript" src="{% static 'vendors/jquery.waypoints.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'vendors/infinite.min.js' %}" defer></script>
     <!-- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> -->
-    <script type="text/javascript" src="{% static 'vendors/isotope.pkgd.min.js' %}"  defer></script>
+    <!-- <script type="text/javascript" src="{% static 'vendors/isotope.pkgd.min.js' %}"  defer></script> -->
     <script type="text/javascript" src="{% static 'vendors/typed.min.js' %}" ></script>
     <!-- <script type="text/javascript" src="{% static 'vendors/theia-sticky-sidebar.js' %}"  ></script> -->
     <script type="text/javascript" src="{% static 'vendors/circles.min.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'vendors/jquery.stellar.min.js' %}" defer></script>
     <!-- <script type="text/javascript" src="{% static 'vendors/jquery.parallax.columns.js'%}" ></script> -->
     <!-- <script type="text/javascript" src="{% static 'vendors/svg-morpheus.js' %}"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <!-- Swiper -->
     
@@ -119,6 +129,34 @@
     <script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.js"></script> -->
 
     <script type="text/javascript" src="{% static 'js/scripts.js' %}" ></script>
+
+    <script>
+      var swiper = new Swiper(".mySwiper2", {
+        loop: true,
+        lazy: true,
+        // autoplay: true,
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true
+        
+      });
+      var swiper2 = new Swiper(".mySwiper", {
+        loop: true,
+        speed: 800,
+        // autoplay: true,
+        parallax: true,
+        lazy: true,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        },
+        thumbs: {
+          swiper: swiper
+        }
+      });
+    </script>
 
 
 </body>

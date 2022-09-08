@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from tkinter import S
+from tkinter.tix import Tree
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -197,6 +199,13 @@ CKEDITOR_CONFIGS = {
 SESSION_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Strict'
+SECURE_BROWSER_XSS_FILTERING = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_SSL_REDIRECT = True
+X_FRAME_OPTIONS = 'DENY'
+
+
 
 # RECAPTCHA
 
