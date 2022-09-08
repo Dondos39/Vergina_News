@@ -15,7 +15,7 @@
                 </div>
                 <!-- end .widget -->
 
-                <!-- /.col -->
+         
                 <div class="row">
                   {% if ad %}
                     {% if ad.ad_pic %}
@@ -72,7 +72,9 @@
 
 
                 <div class="widget light">
+                  <h5 class="widget-title"><span>Subscribe</span></h5>
                     <div class="subscribe-form">
+                     
                         <form method='post'>
                           {% csrf_token %}
                             <input type="text" name="email_sub" placeholder="ENTER YOUR EMAIL">

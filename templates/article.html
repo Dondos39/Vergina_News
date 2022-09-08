@@ -23,20 +23,8 @@
 <section class="section-content single">
 
 <div class="container">
-  <!-- /.col -->
-  <div class="row">
-    {% if ad_banner %}
-      {% if ad_banner.ad_pic %}
-        <div class="col-sm-12 pv3 pvb0">
-          <a href="{{ ad_banner.url }}">
-            <img src="{{ ad_banner.ad_pic.url }}" class="img-fluid" alt="Image"/>
-          </a>
-        </div>
-      {% else %}
-        {{ ad_banner.widget }}
-      {% endif %}
-    {% endif %}
-  </div>
+
+
 
     <div class="row">
         <div class="col-sm-9 with-sidebar">
@@ -129,30 +117,9 @@
                   {% endif %}
                 </div>
 
-                <div class="widget">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
-                    crossorigin="anonymous"></script>
-               <!-- sidebarArticle -->
-               <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-5039243942639303"
-                    data-ad-slot="2556372110"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-               <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-               </script>
-                </div>
-                <!-- end .widget -->
+              
 
 
-                <div class="widget">
-                    <form class="search_form">
-                        <input type="text" name="2" placeholder="Search...">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <!-- end .widget -->
 
 
                 <div class="widget categories">
@@ -210,22 +177,20 @@
 
 
 
-                                                    <div class="border-line mv3"></div>
-                                                            <div class="row">
-                            <div class="col-md-12 pv3 pvb0">
-                                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5039243942639303"
-                                crossorigin="anonymous"></script>
-                           <ins class="adsbygoogle"
-                                style="display:block; text-align:center;"
-                                data-ad-layout="in-article"
-                                data-ad-format="fluid"
-                                data-ad-client="ca-pub-5039243942639303"
-                                data-ad-slot="6786690348"></ins>
-                           <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                           </script>
+                     <div class="border-line mv3"></div>
+                     <div class="row">
+                        {% if ad_banner %}
+                          {% if ad_banner.ad_pic %}
+                            <div class="col-sm-12 pv3 pvb0">
+                              <a href="{{ ad_banner.url }}">
+                                <img src="{{ ad_banner.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                              </a>
                             </div>
-                        </div>
+                          {% else %}
+                            {{ ad_banner.widget }}
+                          {% endif %}
+                        {% endif %}
+                      </div>
                             <div class="row">
                                 <div class="col-md-9">
 

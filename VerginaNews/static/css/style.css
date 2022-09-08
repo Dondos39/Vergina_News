@@ -122,7 +122,7 @@
 }
 
 #header .panel-header {
-  background-color: #1a1a1a;
+  background-color: #1d3b62;
   position: relative;
   z-index: 1000;
 }
@@ -357,7 +357,7 @@
 
 
 #header nav.main-nav > ul > li > a {
-  color: #000000;
+  color: #1d3b62;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0px;
@@ -412,7 +412,7 @@
   top: 0px;
   left: 0px;
   width: 100%;
-  background-color: #1a1a1a;
+  background-color: #1d3b62;
   z-index: -1;
   visibility: hidden;
   opacity: 0;
@@ -429,7 +429,7 @@
   position: absolute;
   top: 100%;
   left: 0px;
-  background-color: #1a1a1a;
+  background-color: #1d3b62;
   width: 186px;
   margin-top: 10px;
   visibility: visible;
@@ -1213,14 +1213,15 @@ address abbr:first-child span {
   
 }
 
-.block-title::after {
+
+.block-title::before {
   content: attr(data-title);
   position: absolute;
   opacity: .1;
   font-size: 160px;
   top: -72px;
   left: -14px;
-  color: #000;
+  color: #1d3b62;
 }
 @media screen and (max-width: 768px) {
   
@@ -4200,7 +4201,7 @@ input[type=submit].text-light {
   font-family: 'Montserrat';
   font-weight: normal;
   font-size: 25px;
-  color: #000;
+  color: #1d3b62;
 }
 
 .push-menu .pm-container .pm-wrap .small-menu ul {
@@ -4210,8 +4211,9 @@ input[type=submit].text-light {
 }
 
 .push-menu .pm-container .pm-wrap .small-menu ul li {
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 15px;
 }
 
 .push-menu .pm-container .pm-wrap .small-menu ul li a {
@@ -4219,7 +4221,7 @@ input[type=submit].text-light {
   font-weight: 300;
   font-size: 16px;
   letter-spacing: 0.7px;
-  color: #999;
+  color: #747d89;
 }
 
 .push-menu .pm-container .bottom-content {
@@ -5843,6 +5845,77 @@ blockquote:before {
 }
 /* Personal Blog Carousel
 ==============================*/
+/* my swiper */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.mySwiper2 {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.mySwiper2 .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+.mySwiper2 .swiper-slide-thumb-active {
+  opacity: 1;
+}
+.swiper-slide img {
+  /* display: block; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fs-slide .swiper-slide {
+
+  background: #0d5baa; 
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.mySwiper2 .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  }
+.swiper-slide {
+background-size: cover;
+background-position: center;
+}
+.mySwiper {
+  width: 100%;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.verginabanner {
+  margin-left: -750px;
+  margin-top: -555px;
+  height: 665px !important;
+  object-fit: fill !important;
+  position: absolute;
+}
+
+
 
 .fs-blog-carousel .fs-title {
   font-size: 24px;
@@ -6806,7 +6879,7 @@ blockquote:before {
 ------------------------------------ */
 
 #footer {
-  background: #1a1a1a;
+  background: #1d3b62;
   padding: 100px 0;
   color: #949494;
   font-weight: 500;
@@ -6853,7 +6926,7 @@ blockquote:before {
 
 #footer .border-line,
 #footer .border-line-1 {
-  border-color: #414141;
+  border-color: #fff;
 }
 
 #footer .widget-title {
@@ -6864,7 +6937,7 @@ blockquote:before {
 
 #footer.light {
   background: #fcfcfc;
-  color: rgba(0, 0, 0, 0.8);
+  color: #fff;
 }
 
 #footer.light a {
@@ -6919,15 +6992,15 @@ blockquote:before {
 }
 
 .sub-footer {
-  color: #414141;
+  color: #fff;
 }
 
 .sub-footer a {
-  color: #414141;
+  color: #fff;
 }
 
 .sub-footer a:hover {
-  color: #5a5a5a;
+  color: #fff;
 }
 
 .sub-footer p,
