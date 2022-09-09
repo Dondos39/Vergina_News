@@ -31,6 +31,9 @@ class AuthorView(DetailView):
                     "tags": category.get_popular_tags(),
                     "ad_sidebar": ads.models.get_priority(9),
             }
+            print("-----------------")
+            print(articles)
+            print("-----------------")
             return render(request, 'author.html', context=context)
 
         def post(self, request, *args, **kwargs):
