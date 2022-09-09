@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load thumbnail %}
 {% block headblock %}
 
 <title>VerginaNews | {{ author.first_name }} </title>
@@ -36,12 +37,19 @@
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <div class="swiper-holder">
-                      {% if author.prof_pic%}
-                      <img
-                        src="{{ author.prof_pic.url }}"
-                        alt="Quote author"
-                      />
-                      {% endif %}
+
+                      {% if author.prof_pic %}
+                        <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                            srcset="
+                                {% thumbnail author.prof_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                {% thumbnail author.prof_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                {% thumbnail author.prof_pic '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                {% thumbnail author.prof_pic '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                {% thumbnail author.prof_pic '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                            alt="Some awesome soup"
+                            sizes="100vw"
+                          />
+                        {% endif %}
                       <blockquote>
                         <cite>{{ author.first_name }}</cite>
                         <p>
@@ -68,17 +76,19 @@
                     {% for article in articles %}
                     <div class="col-xs-12 col-sm-6 col-md-4 ab-item">
                       <div class="post boxed mb3 color-2 cart-style">
-
-
-
                         <div class="clearfix">
-                          {% if author.prof_pic%}
-                          <img
-                            class="image-thumb"
-                            src="{{ author.prof_pic.url }}"
-                            alt="Image"
-                          />
-                          {% endif %}
+                          {% if author.prof_pic %}
+                            <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                                srcset="
+                                    {% thumbnail author.prof_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                                alt="Some awesome soup"
+                                sizes="100vw"
+                              />
+                            {% endif %}
                           <a href="blog.html" class="label">{{ article.category__name }}</a>
                           <div class="meta">
                             <span class="author">{{ author }}</span>
@@ -174,12 +184,18 @@
                       <li class="post hover-light">
                         <a href="javascript:;">
 
-                          {% if author.prof_pic%}
-                          <div
-                            class="image image-thumb"
-                            data-src="{{ author.prof_pic.url }}"
-                          ></div>
-                          {% endif %}
+                          {% if author.prof_pic %}
+                            <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                                srcset="
+                                    {% thumbnail author.prof_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                    {% thumbnail author.prof_pic '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                                alt="Some awesome soup"
+                                sizes="100vw"
+                              />
+                            {% endif %}
                         </a>
                         <h4><a href="#">{{ author.first_name }}</a></h4>
                         <h4><a href="#">{{ author.last_name }}</a></h4>
@@ -197,7 +213,7 @@
                   <div class="widget light">
                     <h5 class="widget-title"><span>Subscribe</span></h5>
                     <div class="subscribe-form">
-                       
+
                       <form>
                         <input type="text" placeholder="ENTER YOUR EMAIL" />
                         <button type="submit">
