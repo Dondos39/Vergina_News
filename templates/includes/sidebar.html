@@ -1,5 +1,6 @@
 {% load static %}
 {% load humanize %}
+{% load thumbnail %}
 
 
             <div class="col-sm-3 sidebar mt2">
@@ -15,7 +16,7 @@
                 </div>
                 <!-- end .widget -->
 
-         
+
                 <div class="row">
                   {% if ad %}
                     {% if ad.ad_pic %}
@@ -52,9 +53,18 @@
                          <li class="post hover-light">
 
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
-                                {% if latest.article_pic %}
-                                <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
-                              {% endif %}
+                              {% if latest.article_pic %}
+                                <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                                    srcset="
+                                        {% thumbnail latest.article_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                        {% thumbnail latest.article_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                        {% thumbnail latest.article_pic '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                        {% thumbnail latest.article_pic '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                        {% thumbnail latest.article_pic '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                                    alt="Some awesome soup"
+                                    sizes="100vw"
+                                  />
+                                {% endif %}
                             </a>
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                             <p>{{ latest.text | safe | slice:":100" }}..</p>
@@ -74,7 +84,7 @@
                 <div class="widget light">
                   <h5 class="widget-title"><span>Subscribe</span></h5>
                     <div class="subscribe-form">
-                     
+
                         <form method='post'>
                           {% csrf_token %}
                             <input type="text" name="email_sub" placeholder="ENTER YOUR EMAIL">
