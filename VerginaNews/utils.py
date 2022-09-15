@@ -58,19 +58,16 @@ def get_location(ip_address):
     request_url = 'https://geolocation-db.com/jsonp/' + ip_address
 
     try:
-        response = requests.get(request_url, None, timeout=1)
-        if response:
-            result = response.content.decode()
-            result = result.split("(")[1].strip(")")
-            result  = json.loads(result)
-        else:
-            return 37.98, 23.72
+        response = requests.get(request_url, None, timeout=5)
     except:
-        print("Something went wrong", request_url)
         return 37.98, 23.72
-    else:
-        return 37.98, 23.72
-    return result['latitude'], result['longitude']
+
+    result = response.content.decode()
+    result = result.split("(")[1].strip(")")
+    result  = json.loads(result)
+    if result['latitude'] != 'Not found' and result['longitude'] != 'Not found':
+        return result['latitude'], result['longitude']
+    return 37.98, 23.72
 
 
 def convert_to_celsius(Fahrenheit):
@@ -105,7 +102,10 @@ def get_weather(request):
     lat, lon = get_location(client_ip)
 
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
-    weather = requests.get(url, None, timeout=5).json()
+    try:
+        weather = requests.get(url, None, timeout=5).json()
+    except:
+        return None
 
     if weather['cod'] == '400':
         return None
