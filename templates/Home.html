@@ -93,9 +93,18 @@
               {% if ad_banner_1 %}
                 {% if ad_banner_1.ad_pic %}
                   <div class="col-sm-12 pv3 pvb0">
-                    <a href="{{ ad_banner_1.url }}">
-                      <img src="{{ ad_banner_1.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                    <!-- <form class="form-submit" action="{{ ad_banner_1.url }}" method="post" target="_blank" onsubmit="setTimeout(function(){
+                      window.location.reload();
+                    }, 1)">
+                      <input name='Ad ID' type="submit" src="{{ ad_banner_1.ad_pic.url }}" value="{{ ad_banner_1.id }}" class="img-fluid" alt="Image">
+                    </form> -->
+                    <form class="form-submit" method="post">
+                      {% csrf_token %}
+                      <a href="{{ ad_banner_1.url }}" style="z-index: 800;" target="_blank">
+                      <input id='Ad ID' type="image" src="{{ ad_banner_1.ad_pic.url }}" value="{{ ad_banner_1.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+                      <input type="hidden" name="comment_post_ID" value="{{ ad_banner_1.id }}" id="comment_post_ID">
                     </a>
+                    </form>
                   </div>
                 {% else %}
                   {{ ad_banner_1.widget }}
@@ -196,8 +205,8 @@
               {% if ad_news_1 %}
                 {% if ad_news_1.ad_pic %}
                   <div class="col-sm-12 pv3 pvb0">
-                    <a href="{{ ad_news_1.url }}">
-                      <img src="{{ ad_news_1.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                    <a id='yo' href="{{ ad_news_1.url }}">
+                      <img src="{{ ad_news_1.ad_pic.url }}" class="img-fluid" alt="Image1"/>
                     </a>
                   </div>
                 {% else %}
@@ -916,7 +925,7 @@
 
 
                     </div>
-                
+
                   </a>
                     <div class="meta inline-meta small-meta">
                       {% for author in articles.get_authors %}
