@@ -102,7 +102,7 @@
                       {% csrf_token %}
                       <a href="{{ ad_banner_1.url }}" style="z-index: 800;" target="_blank">
                       <input id='Ad ID' type="image" src="{{ ad_banner_1.ad_pic.url }}" value="{{ ad_banner_1.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
-                      <input type="hidden" name="comment_post_ID" value="{{ ad_banner_1.id }}" id="comment_post_ID">
+                      <input type="hidden" name="ad_id" value="{{ ad_banner_1.id }}">
                     </a>
                     </form>
                   </div>
@@ -206,7 +206,13 @@
                 {% if ad_news_1.ad_pic %}
                   <div class="col-sm-12 pv3 pvb0">
                     <a id='yo' href="{{ ad_news_1.url }}">
-                      <img src="{{ ad_news_1.ad_pic.url }}" class="img-fluid" alt="Image1"/>
+                      <form class="form-submit" method="post">
+                        {% csrf_token %}
+                        <a href="{{ ad_news_1.url }}" style="z-index: 800;" target="_blank">
+                        <input id='Ad ID' type="image" src="{{ ad_news_1.ad_pic.url }}" value="{{ ad_news_1.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+                        <input type="hidden" name="ad_id" value="{{ ad_news_1.id }}">
+                      </a>
+                      </form>
                     </a>
                   </div>
                 {% else %}
@@ -266,9 +272,13 @@
                   {% if ad_news_2 %}
                     {% if ad_news_2.ad_pic %}
                       <div class="col-sm-6 pv3 pvb0">
-                        <a href="{{ ad_news_2.url }}">
-                          <img src="{{ ad_news_2.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                        <form class="form-submit" method="post">
+                          {% csrf_token %}
+                          <a href="{{ ad_news_2.url }}" style="z-index: 800;" target="_blank">
+                          <input id='Ad ID' type="image" src="{{ ad_news_2.ad_pic.url }}" value="{{ ad_news_2.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+                          <input type="hidden" name="ad_id" value="{{ ad_news_2.id }}">
                         </a>
+                        </form>
                       </div>
                     {% else %}
                       {{ ad_news_2.widget }}
@@ -319,9 +329,13 @@
               {% if ad_news_3 %}
                 {% if ad_news_3.ad_pic %}
                   <div class="col-md-12 pv3 pvb0">
-                    <a href="{{ ad_news_3.url }}">
-                      <img src="{{ ad_news_3.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                    <form class="form-submit" method="post">
+                      {% csrf_token %}
+                      <a href="{{ ad_news_3.url }}" style="z-index: 800;" target="_blank">
+                      <input id='Ad ID' type="image" src="{{ ad_news_3.ad_pic.url }}" value="{{ ad_news_3.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+                      <input type="hidden" name="ad_id" value="{{ ad_news_3.id }}">
                     </a>
+                    </form>
                   </div>
                 {% else %}
                   {{ ad_news_3.widget }}
@@ -414,9 +428,13 @@
                 {% if ad_news_4 %}
                   {% if ad_news_4.ad_pic %}
                     <div class="col-md-12 pv3 pvb0">
-                      <a href="{{ ad_news_4.url }}">
-                        <img src="{{ ad_news_4.ad_pic.url }}" class="img-fluid" alt="Image"/>
+                      <form class="form-submit" method="post">
+                        {% csrf_token %}
+                        <a href="{{ ad_news_4.url }}" style="z-index: 800;" target="_blank">
+                        <input id='Ad ID' type="image" src="{{ ad_news_4.ad_pic.url }}" value="{{ ad_news_4.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+                        <input type="hidden" name="ad_id" value="{{ ad_news_4.id }}">
                       </a>
+                      </form>
                     </div>
                   {% else %}
                     {{ ad_news_4.widget }}
@@ -754,9 +772,13 @@
   {% if ad_banner_2 %}
     {% if ad_banner_2.ad_pic %}
       <div class="col-sm-12 pv3 pvb0">
-        <a href="{{ ad_banner_2.url }}">
-          <img src="{{ ad_banner_2.ad_pic.url }}" class="img-fluid" alt="Image"/>
+        <form class="form-submit" method="post">
+          {% csrf_token %}
+          <a href="{{ ad_banner_2.url }}" style="z-index: 800;" target="_blank">
+          <input id='Ad ID' type="image" src="{{ ad_banner_2.ad_pic.url }}" value="{{ ad_banner_2.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+          <input type="hidden" name="ad_id" value="{{ ad_banner_2.id }}">
         </a>
+        </form>
       </div>
     {% else %}
       {{ ad_banner_2.widget }}
