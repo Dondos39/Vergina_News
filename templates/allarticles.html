@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load thumbnail %}
 {% block headblock %}
 
 <title>VerginaNews | {{ search }} </title>
@@ -17,7 +18,7 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            
+
                             <h2 class="block-title mt8" style="color:#000 ;" data-title="Search" >{{ search }}</h2>
 
                         </div>
@@ -26,15 +27,24 @@
               {% if not articles %}
               <h1>Δεν βρέθηκαν αποτελέσματα</h1>
                <h2> Παρακαλούμε επαναλάβετε την αναζήτησή σας με διαφορετικά κριτήρια</h2>
-          
+
               {% endif %}
               {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
 										<div class="fs-grid-item">
 											<a class="fs-entry-image">
-                                                {% if article.article_pic %}
-												<img src="{{ article.article_pic.url }}" alt="portfolio image">
-                                                {% endif %}
+                        {% if article.article_pic %}
+                          <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                              srcset="
+                                  {% thumbnail article.article_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                  {% thumbnail article.article_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                  {% thumbnail article.article_pic '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                  {% thumbnail article.article_pic '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                                  {% thumbnail article.article_pic '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                              alt="Some awesome soup"
+                              sizes="100vw"
+                            />
+                          {% endif %}
 											</a>
 											<div class="fs-entry-meta">
 												<span><a href="single.html">{{ article.sub_category.name }}</a></span>

@@ -26,7 +26,6 @@ class HomepageViews(ListView):
         page = request.GET.get('page')
         page_category = paginator.get_page(page)
         category_count = category.count()
-
         date= datetime.datetime.now()
         context = {
         'categories_list': page_category,
@@ -48,11 +47,15 @@ class HomepageViews(ListView):
         'date': date,
 
         }
-        # print(context['ads'])
+
         return render(request, "Home.html", context=context)
 
 
     def post(self, request, *args, **kwargs):
+        i = request.POST.get('comment_post_AD')
+        print('-------------')
+        print(i)
+        print('-------------')
         keyword = request.POST.get('search')
         if keyword == "":
             result = 'all'
