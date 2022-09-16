@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 import articles
+import ads.models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from articles.models import Article
 from .models import Category , SubCategory
@@ -29,6 +30,13 @@ class CategoryView(DetailView):
         return render(request, "category.html", context=context)
 
     def post(self, request, *args, **kwargs):
+        if request.POST.get('ad_id'):
+            id = request.POST.get('ad_id')
+            ad = ads.models.Ad.objects.get(id=id)
+            ad.total_views = ad.total_views + 1
+            ad.save(update_fields=['total_views'])
+            return HttpResponseRedirect(ad.url)
+
         keyword = request.POST.get('search')
         if keyword:
             if keyword == "":
@@ -62,6 +70,13 @@ class SubCategoryView(DetailView):
         return render(request, "sub_category.html", context=context)
 
     def post(self, request, *args, **kwargs):
+        if request.POST.get('ad_id'):
+            id = request.POST.get('ad_id')
+            ad = ads.models.Ad.objects.get(id=id)
+            ad.total_views = ad.total_views + 1
+            ad.save(update_fields=['total_views'])
+            return HttpResponseRedirect(ad.url)
+
         keyword = request.POST.get('search')
         if keyword:
             if keyword == "":

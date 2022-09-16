@@ -52,10 +52,13 @@ class HomepageViews(ListView):
 
 
     def post(self, request, *args, **kwargs):
-        i = request.POST.get('comment_post_ID')
-        print('-------------')
-        print(i)
-        print('-------------')
+        if request.POST.get('ad_id'):
+            id = request.POST.get('ad_id')
+            ad = ads.models.Ad.objects.get(id=id)
+            ad.total_views = ad.total_views + 1
+            ad.save(update_fields=['total_views'])
+            return HttpResponseRedirect(ad.url)
+
         keyword = request.POST.get('search')
         if keyword == "":
             result = 'all'
