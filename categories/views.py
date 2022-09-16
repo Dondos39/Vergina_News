@@ -32,9 +32,6 @@ class CategoryView(DetailView):
     def post(self, request, *args, **kwargs):
         if request.POST.get('ad_id'):
             id = request.POST.get('ad_id')
-            print('-------')
-            print(id)
-            print('-------')
             ad = ads.models.Ad.objects.get(id=id)
             ad.total_views = ad.total_views + 1
             ad.save(update_fields=['total_views'])
