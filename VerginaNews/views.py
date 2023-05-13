@@ -21,11 +21,11 @@ class HomepageViews(ListView):
     model = categories.models.Category
 
     def get(self, request, *args, **kwargs):
-        category = categories.models.Category.objects.all()
+        category = categories.models.Category.objects.only('name')
         paginator = Paginator(category, 1)
         page = request.GET.get('page')
         page_category = paginator.get_page(page)
-        category_count = category.count()
+        category_count = len(category)
         date= datetime.datetime.now()
         context = {
         'categories_list': page_category,

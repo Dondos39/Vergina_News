@@ -23,6 +23,7 @@ import authors.views
 from . import views
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
     path(r's3cr3t4dm1n/', admin.site.urls),
     re_path(r'^getSubcategory/$', articles.views.get_subcategory),
@@ -32,6 +33,7 @@ urlpatterns = [
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/(?P<title>[\w-]+)/$', articles.views.ArticleView.as_view(), name='article_view'),
     re_path('author=(?P<author_id>[\w\-]+)/$', authors.views.AuthorView.as_view(), name='author_view'),
+
 
 ]
 
