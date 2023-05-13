@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     #'imagekit',
     'axes',
     'sorl.thumbnail',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 SESSION_EXPIRE_SECONDS = 1800 # 30 Minutes
@@ -170,7 +172,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CKEDITOR
 
-CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, MEDIA_URL, 'ckeditor_media')
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'ckeditor_media')
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
@@ -182,7 +184,7 @@ CKEDITOR_CONFIGS = {
         "removePlugins": "stylesheetparser",
         'allowedContent':  True,
         'extraAllowedContent': 'iframe[*]',
-        'providerUrl': '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
+        'providerUrl': '//ckeditor.iframe.ly/api/iframely?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
         'extraPlugins': ','.join(['uploadimage',
                                   #'div',
                                   #'iframe',
@@ -219,3 +221,9 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 DJANGORESIZED_DEFAULT_SIZE = [400, 400]
 DJANGORESIZED_DEFAULT_QUALITY = 60
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+
+# Debug
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
