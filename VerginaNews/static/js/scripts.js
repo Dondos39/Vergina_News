@@ -1089,11 +1089,14 @@
 			$('.panel-menu').addClass('pmenu');
 			$('.kati').addClass('d-none');
 			$('.cl2').removeClass('d-none');
+			$('.tt-el-ticker').addClass('d-none');
 		
 		} else {
 			$('.panel-menu').removeClass('pmenu');
 			$('.kati').removeClass('d-none');
 			$('.cl2').addClass('d-none');
+			
+			$('.tt-el-ticker').removeClass('d-none');
 
 		}
 
