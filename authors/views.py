@@ -34,6 +34,13 @@ class AuthorView(DetailView):
             return render(request, 'author.html', context=context)
 
         def post(self, request, *args, **kwargs):
+            if request.POST.get('ad_id'):
+                id = request.POST.get('ad_id')
+                ad = ads.models.Ad.objects.get(id=id)
+                ad.total_views = ad.total_views + 1
+                ad.save(update_fields=['total_views'])
+                return HttpResponseRedirect(ad.url)
+                
             keyword = request.POST.get('search')
             if keyword:
                 if keyword == "":
