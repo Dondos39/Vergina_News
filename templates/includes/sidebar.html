@@ -21,7 +21,7 @@
                   {% if ad %}
                     {% if ad.ad_pic %}
                       <div class="col-sm-12 pv3 pvb0">
-                        <form class="form-submit" method="post">
+                        <form class="form-submit" method="post" target="_blank">
                           {% csrf_token %}
                           <a href="{{ ad.url }}" style="z-index: 800;" target="_blank">
                           <input id='Ad ID' type="image" src="{{ ad.ad_pic.url }}" value="{{ ad.id }}" style="z-index: 800;" class="img-fluid" alt="Image">

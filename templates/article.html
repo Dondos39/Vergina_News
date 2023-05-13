@@ -117,7 +117,7 @@
                   {% if ad_sidebar %}
                     {% if ad_sidebar.ad_pic %}
                       <div class="col-sm-12 pv3 pvb0">
-                        <form class="form-submit" method="post">
+                        <form class="form-submit" method="post" target="_blank">
                           {% csrf_token %}
                           <a href="{{ ad_sidebar.url }}" style="z-index: 800;" target="_blank">
                           <input id='Ad ID' type="image" src="{{ ad_sidebar.ad_pic.url }}" value="{{ ad_sidebar.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
@@ -196,7 +196,7 @@
                         {% if ad_banner %}
                           {% if ad_banner.ad_pic %}
                             <div class="col-sm-12 pv3 pvb0">
-                              <form class="form-submit" method="post">
+                              <form class="form-submit" method="post" target="_blank">
                                 {% csrf_token %}
                                 <a href="{{ ad_banner.url }}" style="z-index: 800;" target="_blank">
                                 <input id='Ad ID' type="image" src="{{ ad_banner.ad_pic.url }}" value="{{ ad_banner.id }}" style="z-index: 800;" class="img-fluid" alt="Image">

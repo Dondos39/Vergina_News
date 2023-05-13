@@ -45,14 +45,10 @@ class HomepageViews(ListView):
         'weather': get_weather(request),
         'external_articles': get_news(request),
         'date': date,
-
         }
-
         return render(request, "Home.html", context=context)
 
-
     def post(self, request, *args, **kwargs):
-
         if request.POST.get('ad_id'):
             id = request.POST.get('ad_id')
             ad = ads.models.Ad.objects.get(id=id)
