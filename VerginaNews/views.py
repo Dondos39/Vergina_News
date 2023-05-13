@@ -52,6 +52,7 @@ class HomepageViews(ListView):
 
 
     def post(self, request, *args, **kwargs):
+
         if request.POST.get('ad_id'):
             id = request.POST.get('ad_id')
             ad = ads.models.Ad.objects.get(id=id)
