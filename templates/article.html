@@ -256,7 +256,7 @@
                                     <input id="{{ author.id }}" name="author" type="text" value="" size="30" required="required" placeholder="Your Name *">
                                 </p>
                                 <p class="comment-form-email col-sm-6">
-                                    <input id="1" name="email1233" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
+                                    <input id="1" name="email" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
                                 </p>
                             </div>
                             <p class="comment-form-comment">
@@ -264,13 +264,14 @@
                             </p>
                             <p class="form-submit">
                                 {% csrf_token %}
+                                <body>
                                 <script src='https://www.google.com/recaptcha/api.js'></script>
                                 <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <input type="hidden" name="Article ID" value="{{ id }}">
                                 <span>The required fields have * symbols</span>
-                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
-
+                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                                <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
                             </p>
                         </form>
                     </div>
