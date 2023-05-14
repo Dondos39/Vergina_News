@@ -19,7 +19,7 @@
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
 
-                            <h2 class="block-title mt8" style="color:#000 ;" data-title="Search" >{{ search }}</h2>
+                            <h2 class="block-title mt8" style="color:#000 ;" data-title="{{ search }}" >{{ search }}</h2>
 
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
@@ -48,7 +48,7 @@
 											</a>
 											<div class="fs-entry-meta">
 												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
-												<span><a>{{ article.updated_at|naturaltime }} </a></span>
+												<span><a>{{ article.updated_at }} </a></span>
                         {% for author in article.get_authors %}
 												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
                         {% endfor %}

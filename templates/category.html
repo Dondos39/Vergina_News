@@ -20,7 +20,7 @@
                 <div class="theiaStickySidebar">
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
-                            <h2 class="block-title mt8" style="color:#000 ;" data-title="{{ category }}" >Όλα</h2>
+                            <h2 class="block-title mt8" style="color:#000 ;" data-title="{{ category }}" >{{ category }}</h2>
                             <!-- <h4 data-title="{{ category }}">All</h4> -->
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
@@ -47,7 +47,7 @@
 											</a>
 											<div class="fs-entry-meta">
 												<span><a href="{% url 'subcategory_view' category=article.category.slug sub_category=article.sub_category.slug %}">{{ article.sub_category.name }}</a></span>
-												<span><a>{{ article.updated_at|naturaltime }} </a></span>
+												<span><a>{{ article.updated_at }} </a></span>
                                               {% for author in article.get_authors %}
 												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
                                              {% endfor %}

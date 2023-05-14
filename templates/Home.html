@@ -184,7 +184,7 @@
                         {% for author in frontnew.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
-                        <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                        <span class="date">{{ frontnew.updated_at }}</span>
 
 
                     </div>
@@ -258,7 +258,7 @@
                             {% for author in frontnew.get_authors %}
                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                            <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -321,7 +321,7 @@
                             {% for author in frontnew.get_authors %}
                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                            <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -388,7 +388,7 @@
                                             {% for author in frontnew.get_authors %}
                                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                             {% endfor %}
-                                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                                            <span class="date">{{ frontnew.updated_at }}</span>
                                         </div>
                                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                                         <p>{{ frontnew.text | safe |slice:":600" }}...</p>
@@ -417,7 +417,7 @@
                                                 {% for author in frontnew.get_authors %}
                                                 <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                                 {% endfor %}
-												<span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+												<span class="date">{{ frontnew.updated_at }}</span>
 											</div>
 										</div>
 
@@ -477,7 +477,7 @@
                       <div class="meta">
 
                       </div>
-                      <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                      <span class="date">{{ latest.updated_at }}</span>
                       <div class="border-bottom" ></div>
                   </div>
                   {% endfor %}
@@ -503,7 +503,7 @@
                     <p>{{ pouplar.text | safe | slice:":100" }}...</p>
 
                     <div class="meta">
-                        <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                        <span class="date">{{ latest.updated_at }}</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -880,7 +880,7 @@
                         {% for author in articles.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
-                        <span class="date">{{ articles.updated_at|naturaltime }}</span>
+                        <span class="date">{{ articles.updated_at }}</span>
                       </div>
                     </a>
 
@@ -944,7 +944,7 @@
                       {% for author in articles.get_authors %}
                       <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                       {% endfor %}
-                      <span class="date">{{ articles.updated_at|naturaltime }}</span>
+                      <span class="date">{{ articles.updated_at }}</span>
                     </div>
                     <!-- <div class="border-bottom2 mb2 color-1"></div> -->
                     <h4 class="font18">
