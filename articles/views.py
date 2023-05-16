@@ -61,7 +61,7 @@ class ArticleView(DetailView):
                 ad.total_views = ad.total_views + 1
                 ad.save(update_fields=['total_views'])
                 return HttpResponseRedirect(ad.url)
-                
+
             keyword = request.POST.get('search')
             if keyword:
                 if keyword == "":

@@ -62,7 +62,7 @@
 
                     <div class="col-md-2 entry-details">
 
-                        <div class="entry-date">{{ updated_at|naturaltime }}</div>
+                        <div class="entry-date">{{ updated_at }}</div>
                         <div class="entry-author">
                             by
                             <h5>
@@ -117,7 +117,7 @@
                   {% if ad_sidebar %}
                     {% if ad_sidebar.ad_pic %}
                       <div class="col-sm-12 pv3 pvb0">
-                        <form class="form-submit" method="post">
+                        <form class="form-submit" method="post" target="_blank">
                           {% csrf_token %}
                           <a href="{{ ad_sidebar.url }}" style="z-index: 800;" target="_blank">
                           <input id='Ad ID' type="image" src="{{ ad_sidebar.ad_pic.url }}" value="{{ ad_sidebar.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
@@ -197,7 +197,7 @@
                         {% if ad_banner %}
                           {% if ad_banner.ad_pic %}
                             <div class="col-sm-12 pv3 pvb0">
-                              <form class="form-submit" method="post">
+                              <form class="form-submit" method="post" target="_blank">
                                 {% csrf_token %}
                                 <a href="{{ ad_banner.url }}" style="z-index: 800;" target="_blank">
                                 <input id='Ad ID' type="image" src="{{ ad_banner.ad_pic.url }}" value="{{ ad_banner.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
@@ -237,7 +237,7 @@
                                             {{ comment.text }}
                                         </div>
                                         <div class="meta-data">
-                                            <span class="comment-date">{{ comment.updated_at|naturaltime }}</span>
+                                            <span class="comment-date">{{ comment.updated_at }}</span>
                                             <!-- <span class="comment-reply">
                                                 <a class="comment-reply-link" href="#">Reply</a>
                                             </span> -->
@@ -257,7 +257,11 @@
                                     <input id="{{ author.id }}" name="author" type="text" value="" size="30" required="required" placeholder="Your Name *">
                                 </p>
                                 <p class="comment-form-email col-sm-6">
+<<<<<<< HEAD
                                     <input id="1"  name="email1233" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
+=======
+                                    <input id="1" name="email" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
+>>>>>>> 428b7b4c74d4ae36a2a40d168f03e5d2aa2c88a7
                                 </p>
                             </div>
                             <p class="comment-form-comment">
@@ -265,13 +269,14 @@
                             </p>
                             <p class="form-submit">
                                 {% csrf_token %}
+                                <body>
                                 <script src='https://www.google.com/recaptcha/api.js'></script>
                                 <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <input type="hidden" name="Article ID" value="{{ id }}">
                                 <span>The required fields have * symbols</span>
-                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
-
+                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                                <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
                             </p>
                         </form>
                     </div>
@@ -296,7 +301,7 @@
                                                   {% for author in article.get_authors %}
                                                     <span class="author">{{ author }}</span>
                                                   {% endfor %}
-                                                    <span class="date">{{ article.updated_at|naturaltime }}</span>
+                                                    <span class="date">{{ article.updated_at }}</span>
                                                 </div>
                                                 <h4><a href="#">{{ article.title }}</a></h4>
                                                 <p>{{ article.text | safe | slice:":50"}}...</p>
@@ -308,7 +313,7 @@
                                                   {% for author in article.get_authors %}
                                                     <span class="author">{{ author }}</span>
                                                   {% endfor %}
-                                                    <span class="date">{{ article.updated_at|naturaltime }}</span>
+                                                    <span class="date">{{ article.updated_at }}</span>
                                                 </div>
                                                 <h4><a href="#">{{ article.title }}</a></h4>
                                                 <p>{{ article.text | safe | slice:":50"}}...</p>

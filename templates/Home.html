@@ -65,15 +65,16 @@
         </div>
         {% endfor %} 
       </div>
+
     </div>
   </div>
   
 
 
-  
+
         <!-- <div class="section-full pb8"> -->
 
-    
+
 
 
         <!-- // Picture News -->
@@ -84,18 +85,15 @@
               {% if ad_banner_1 %}
                 {% if ad_banner_1.ad_pic %}
                   <div class="col-sm-12 pv3 pvb0">
-                    <!-- <form class="form-submit" action="{{ ad_banner_1.url }}" method="post" target="_blank" onsubmit="setTimeout(function(){
-                      window.location.reload();
-                    }, 1)">
-                      <input name='Ad ID' type="submit" src="{{ ad_banner_1.ad_pic.url }}" value="{{ ad_banner_1.id }}" class="img-fluid" alt="Image">
-                    </form> -->
-                    <form id="ad-post" class="form-submit" method="post" action="{{ ad_banner_1.url }}" target="_blank">
-                      {% csrf_token %}
-                  
-                      <input id='Ad ID' type="image" src="{{ ad_banner_1.ad_pic.url }}" value="{{ ad_banner_1.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
-                      <input type="hidden" name="comment_post_ID" value="{{ ad_banner_1.id }}" id="comment_post_ID">
+                    <a id='yo' href="{{ ad_banner_1.url }}">
+                      <form class="form-submit" method="post" target="_blank">
+                        {% csrf_token %}
+                        <a href="{{ ad_banner_1.url }}" style="z-index: 800;" target="_blank">
+                        <input id='Ad ID' type="image" src="{{ ad_banner_1.ad_pic.url }}" value="{{ ad_banner_1.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
+                        <input type="hidden" name="ad_id" value="{{ ad_banner_1.id }}">
+                      </a>
+                      </form>
                     </a>
-                    </form>
                   </div>
                 {% else %}
                   {{ ad_banner_1.widget }}
@@ -180,7 +178,7 @@
                         {% for author in frontnew.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
-                        <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                        <span class="date">{{ frontnew.updated_at }}</span>
 
 
                     </div>
@@ -201,16 +199,14 @@
               {% if ad_news_1 %}
                 {% if ad_news_1.ad_pic %}
                   <div class="col-sm-12 pv3 pvb0">
-
                     <a id='yo' href="{{ ad_news_1.url }}">
-                      <form class="form-submit" method="post">
+                      <form class="form-submit" method="post" target="_blank">
                         {% csrf_token %}
                         <a href="{{ ad_news_1.url }}" style="z-index: 800;" target="_blank">
                         <input id='Ad ID' type="image" src="{{ ad_news_1.ad_pic.url }}" value="{{ ad_news_1.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
                         <input type="hidden" name="ad_id" value="{{ ad_news_1.id }}">
                       </a>
                       </form>
-
                     </a>
                   </div>
                 {% else %}
@@ -256,7 +252,7 @@
                             {% for author in frontnew.get_authors %}
                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                            <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         <!-- <p>{{ frontnew.text | safe |slice:":600" }}...</p> -->
@@ -270,12 +266,11 @@
                 <!-- /.col -->
 
                 <!-- /.col -->
-                
+
                 {% if ad_news_2 %}
                 {% if ad_news_2.ad_pic %}
                   <div class="col-sm-6 pv3 pvb0">
-
-                    <form class="form-submit" method="post">
+                    <form class="form-submit" method="post" target="_blank">
                       {% csrf_token %}
                       <a href="{{ ad_news_2.url }}" style="z-index: 800;" target="_blank">
                       <input id='Ad ID' type="image" src="{{ ad_news_2.ad_pic.url }}" value="{{ ad_news_2.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
@@ -288,7 +283,7 @@
                   {{ ad_news_2.widget }}
                 {% endif %}
               {% endif %}
-               
+
 
                 {% for frontnew in frontnews_list %}
                 {% if forloop.counter > 4 and forloop.counter < 7 %}
@@ -320,7 +315,7 @@
                             {% for author in frontnew.get_authors %}
                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                             {% endfor %}
-                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                            <span class="date">{{ frontnew.updated_at }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         <!-- <p>{{ frontnew.text | safe |slice:":600" }}...</p> -->
@@ -337,12 +332,11 @@
               {% if ad_news_3 %}
                 {% if ad_news_3.ad_pic %}
                   <div class="col-md-12 pv3 pvb0">
-                    <form class="form-submit" method="post">
+                    <form class="form-submit" method="post" target="_blank">
                       {% csrf_token %}
                       <a href="{{ ad_news_3.url }}" style="z-index: 800;" target="_blank">
                       <input id='Ad ID' type="image" src="{{ ad_news_3.ad_pic.url }}" value="{{ ad_news_3.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
                       <input type="hidden" name="ad_id" value="{{ ad_news_3.id }}">
-
                     </a>
                     </form>
                   </div>
@@ -389,7 +383,7 @@
                                             {% for author in frontnew.get_authors %}
                                             <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                             {% endfor %}
-                                            <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+                                            <span class="date">{{ frontnew.updated_at }}</span>
                                         </div>
                                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                                         <!-- <p>{{ frontnew.text | safe |slice:":600" }}...</p> -->
@@ -418,7 +412,7 @@
                                                 {% for author in frontnew.get_authors %}
                                                 <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                                                 {% endfor %}
-												<span class="date">{{ frontnew.updated_at|naturaltime }}</span>
+												<span class="date">{{ frontnew.updated_at }}</span>
 											</div>
 										</div>
 
@@ -431,13 +425,11 @@
                 {% if ad_news_4 %}
                   {% if ad_news_4.ad_pic %}
                     <div class="col-md-12 pv3 pvb0">
-
-                      <form class="form-submit" method="post">
+                      <form class="form-submit" method="post" target="_blank">
                         {% csrf_token %}
                         <a href="{{ ad_news_4.url }}" style="z-index: 800;" target="_blank">
                         <input id='Ad ID' type="image" src="{{ ad_news_4.ad_pic.url }}" value="{{ ad_news_4.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
                         <input type="hidden" name="ad_id" value="{{ ad_news_4.id }}">
-
                       </a>
                       </form>
                     </div>
@@ -470,7 +462,7 @@
                       <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                         {% if latest.article_pic %}
                           <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}">
-                            
+
                           </div>
                         {% endif %}
                       </a>
@@ -480,7 +472,7 @@
                       <div class="meta">
 
                       </div>
-                      <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                      <span class="date">{{ latest.updated_at }}</span>
                       <div class="border-bottom" ></div>
                   </div>
                   {% endfor %}
@@ -506,7 +498,7 @@
                     <!-- <p>{{ pouplar.text | safe | slice:":100" }}...</p> -->
 
                     <div class="meta">
-                        <span class="date">{{ latest.updated_at|naturaltime }}</span>
+                        <span class="date">{{ latest.updated_at }}</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -763,7 +755,7 @@
     {% if ad_banner_2.ad_pic %}
       <div class="col-sm-12 pv3 pvb0">
 
-        <form class="form-submit" method="post">
+        <form class="form-submit" method="post" target="_blank">
           {% csrf_token %}
           <a href="{{ ad_banner_2.url }}" style="z-index: 800;" target="_blank">
           <input id='Ad ID' type="image" src="{{ ad_banner_2.ad_pic.url }}" value="{{ ad_banner_2.id }}" style="z-index: 800;" class="img-fluid" alt="Image">
@@ -883,7 +875,7 @@
                         {% for author in articles.get_authors %}
                         <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                         {% endfor %}
-                        <span class="date">{{ articles.updated_at|naturaltime }}</span>
+                        <span class="date">{{ articles.updated_at }}</span>
                       </div>
                     </a>
 
@@ -947,7 +939,7 @@
                       {% for author in articles.get_authors %}
                       <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
                       {% endfor %}
-                      <span class="date">{{ articles.updated_at|naturaltime }}</span>
+                      <span class="date">{{ articles.updated_at }}</span>
                     </div>
                     <!-- <div class="border-bottom2 mb2 color-1"></div> -->
                     <h4 class="font18">
@@ -987,7 +979,7 @@
                 {% endif %}
                 </span>
             </div>
-     
+
         </div>
         <!-- end .col-md-12 -->
       </div>
@@ -995,7 +987,7 @@
     </div>
     <!-- end .container -->
   </div>
-  
+
   {% endfor %}
 
 <!-- </div> -->
