@@ -200,11 +200,10 @@
 
 			slider.setup(_id , {
 				autoplay: true,
-				preload: 2,
 				width:1170,
 				height:sliderHeight,
 				space:0,
-				speed: 100,
+				speed: 2500,
 				view:'fade'
 			});
 
@@ -269,6 +268,7 @@
 		 	slider.control('scrollbar' , {dir:'h',color:'#444',align:'bottom',autohide:false,margin:20,width:2});
 
 		 	var _options = {
+				autoplay: true,
 		        width: 1170,
 		        height: sliderHeight,
 		        space:0,
@@ -1114,10 +1114,7 @@
 	});
 
 
-	
-
-
-
 
 
 })(jQuery);
+

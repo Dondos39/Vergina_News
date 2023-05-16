@@ -203,7 +203,7 @@
 				width:1170,
 				height:sliderHeight,
 				space:0,
-				speed: 100,
+				speed: 2500,
 				view:'fade'
 			});
 
@@ -1117,3 +1117,4 @@
 
 
 })(jQuery);
+

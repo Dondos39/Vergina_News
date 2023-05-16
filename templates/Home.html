@@ -15,72 +15,65 @@
 {% block content %}
 <div class="content-area pvt0 entertainment-layout">
 
-<div class="section-full fs-slide pt5">
-  <div
-    style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; background-color: #fff;"
-    class="swiper mySwiper"
-  >
-
-    <div class="swiper-wrapper">
-      {% for important in important_list %}
-      <div class="swiper-slide">
-        {% if important.article_pic %}
-        <div class="fs-entry-bg">
-        <img
-          data-src="{{ important.article_pic.url }}"
-          class="swiper-lazy"
-        />
-      </div>
-      {% endif %}
-      <div class="container mt6">
-        <div class="row">
- 
-          <div class="col-md-6">
-
-            <div class="fs-entry-item">
-              <h4 class="fs-title fs-animate-text" data-label="{{ important.sub_category.name }}">Latest</h4>
-              <h3 class="fs-animate-text" data-swiper-parallax="-300">{{ important.title }}</h3>
-              <a href="{% url 'article_view' category=important.category.slug sub_category=important.sub_category.slug title=important.slug %}" class="read-more fs-animate-text" data-swiper-parallax="-100">Διάβαστε το Αρθρο</a>
-              <img class="verginabanner" src="{% static 'images/sun_Gold.svg' %}" alt="" >
-   
+  <div class="section-full fs-slide pt5">
+    <div
+      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; background-color: #fff;"
+      class="swiper mySwiper"
+    >
+      <div class="swiper-wrapper">
+        {% for important in important_list %}
+        <div class="swiper-slide">
+          {% if important.article_pic %}
+          <div class="fs-entry-bg">
+            <img
+              src="{{ important.article_pic.url }}"
+              class="swiper-lazy"
+            />
+       
+          </div>
+          {% endif %}
+          <div class="container mt6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="fs-entry-item">
+                  <img class="verginabanner" src="{% static 'images/sun_Gold.svg' %}" alt="" >
+                  <h4 class="fs-title fs-animate-text" data-label="{{ important.sub_category.name }}">Latest</h4>
+                  <h3 class="fs-animate-text" data-swiper-parallax="-300">{{ important.title }}</h3>
+                  <a href="{% url 'article_view' category=important.category.slug sub_category=important.sub_category.slug title=important.slug %}" class="read-more fs-animate-text" data-swiper-parallax="-100">Διάβαστε το Αρθρο</a>
+               
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
+        {% endfor %}
       </div>
-      </div>
-
-      {% endfor %}
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
-
-
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-  <div thumbsSlider="" class="swiper mySwiper2">
-    <div class="swiper-wrapper">
-      {% for important in important_list %}
-      <div class="swiper-slide">
-        {% if important.article_pic %}
-        <img
-          data-src="{{ important.article_pic.url }}"
-          class="swiper-lazy"
-        />
+    <div thumbsSlider="" class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        {% for important in important_list %}
+        <div class="swiper-slide">
+          {% if important.article_pic %}
+          <img
+            src="{{ important.article_pic.url }}"
+            class="swiper-lazy"
+          />
+     
+          {% endif %}
+        </div>
+        {% endfor %} 
       </div>
-      {% endif %}
-
-      {% endfor %} 
     </div>
   </div>
+  
 
 
   
         <!-- <div class="section-full pb8"> -->
 
-       
-  
-
+    
 
 
         <!-- // Picture News -->
@@ -194,8 +187,8 @@
                     <div class="clearfix"></div>
                     <h4 class="font28"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title}}</a></h4>
                     <div class="border-line"></div>
-                    <p>{{ frontnew.text | safe |slice:":800"  }}...</p>
-                    <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img  src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                    <!-- <p>{{ frontnew.text | safe |slice:":800"  }}...</p> -->
+                    <!-- <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img  src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a> -->
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -266,8 +259,8 @@
                             <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
-                        <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <!-- <p>{{ frontnew.text | safe |slice:":600" }}...</p> -->
+                        <!-- <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a> -->
                     </div>
 
 
@@ -330,14 +323,15 @@
                             <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                         </div>
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
-                        <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                        <!-- <p>{{ frontnew.text | safe |slice:":600" }}...</p> -->
+                        <!-- <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a> -->
                     </div>
 
                 </div>
                 {% endif%}
                 {% endfor %}
             </div>
+            
             <!-- /.col -->
             <div class="row">
               {% if ad_news_3 %}
@@ -398,8 +392,8 @@
                                             <span class="date">{{ frontnew.updated_at|naturaltime }}</span>
                                         </div>
                                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
-                                        <p>{{ frontnew.text | safe |slice:":600" }}...</p>
-                                        <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a>
+                                        <!-- <p>{{ frontnew.text | safe |slice:":600" }}...</p> -->
+                                        <!-- <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img loading="lazy" src="{% static 'images/arrow-right-red.png' %}" alt="Arrow"></a> -->
                                     </div>
 
 
@@ -460,7 +454,7 @@
     <!-- end .col-md-8 -->
     <div class="col-lg-3  category-block en-block ">
       <div class="sidebar boxed p3 mb-3">
-      <h4 class="font40" style="text-align: center;"><a href="#">Ρoή Ειδήσεων</a></h4>
+      <h4 class="font40" style="text-align: center;"><a href="{% url 'articles_view' search='all' %}">Ρoή Ειδήσεων</a></h4>
       <div class="simple-tab-space">
 
           <div class="tab-title clearfix">
@@ -482,7 +476,7 @@
                       </a>
 
                       <h4 class="font16" method="post"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
-                      <p>{{ latest.text | safe | slice:":100" }}...</p>
+                      <!-- <p>{{ latest.text | safe | slice:":100" }}...</p> -->
                       <div class="meta">
 
                       </div>
@@ -509,7 +503,7 @@
                     </a>
 
                     <h4 class="font16" method="post"><a href="{% url 'article_view' category=pouplar.category.slug sub_category=pouplar.sub_category.slug title=pouplar.slug %}">{{ pouplar.title }}</a></h4>
-                    <p>{{ pouplar.text | safe | slice:":100" }}...</p>
+                    <!-- <p>{{ pouplar.text | safe | slice:":100" }}...</p> -->
 
                     <div class="meta">
                         <span class="date">{{ latest.updated_at|naturaltime }}</span>
@@ -674,7 +668,7 @@
 
             <!-- Ne setion -->
             <div class="section-full pv9 pvb0">
-                <div class="container">
+                <!-- <div class="container">
                     <div class="row">
                         <div class="col-sm-12 ">
 
@@ -718,7 +712,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         <!-- end .container -->
         </div>
  <!-- New Section -->
@@ -903,9 +897,9 @@
                             >{{ articles.title }}</a
                           >
                         </h4>
-                        <p>
+                        <!-- <p>
                             {{articles.text | safe | slice:":200" }}...
-                        </p>
+                        </p> -->
                       </div>
                     </div>
                     <!-- /.col -->
@@ -922,14 +916,14 @@
                 {% if forloop.counter > 2 %}
                 <div class="col-md-3">
                   <div class="post hover-light">
-                    <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
+                    <a style="position: inherit; z-index: 800; height: 120px;" href="{% url 'article_view' category=articles.category.slug sub_category=articles.sub_category.slug title=articles.slug %}">
                     {% if articles.article_pic %}
                     <div
-                      class="image"
+                      class="image" 
                       data-src="{{ articles.article_pic.url }}"
                     >
 
-                    <img loading="lazy" src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                    <img loading="lazy" style=" height: 120px;" src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
                     srcset="
                         {% thumbnail articles.article_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
                         {% thumbnail articles.article_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
@@ -961,9 +955,9 @@
                         >{{ articles.title }}</a
                       >
                     </h4>
-                    <p>
+                    <!-- <p>
                         {{articles.text | safe | slice:":150" }}...
-                    </p>
+                    </p> -->
                   </div>
                 </div>
                 <!-- /.col -->
@@ -1028,6 +1022,8 @@
             }
 
         });
+
+
     </script>
 
 
