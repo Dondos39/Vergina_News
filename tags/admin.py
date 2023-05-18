@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tags
+from .models import Tags, TagCloud
 
 
 class TagsAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class TagsAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Tags, TagsAdmin)
+admin.site.register(TagCloud)
