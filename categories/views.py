@@ -56,16 +56,18 @@ class SubCategoryView(DetailView):
     model = SubCategory
 
     def get(self, request, *args, **kwargs):
-        sub_category_name = self.kwargs.get('sub_category')
-        articles = Article.objects.all().filter(sub_category__slug = sub_category_name).order_by('-updated_at')
+        subcategory_slug = self.kwargs.get('sub_category')
+        subcategory = SubCategory.objects.get(slug=subcategory_slug)
+        articles = Article.objects.filter(sub_category__slug = subcategory_slug).order_by('-updated_at')
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)
         article_count = articles.count()
+
         context = {
-                "category":articles.values_list('category__name', flat=True).first(),
-                "sub_category":articles.values_list('sub_category__name', flat=True).first(),
-                "description": articles.values_list('sub_category__description', flat=True).first(),
+                "category": subcategory.category.name,
+                "sub_category": subcategory.name,
+                "description": subcategory.description,
                 "articles": page_articles,
                 "article_count": article_count,
         }
