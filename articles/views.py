@@ -35,6 +35,7 @@ class ArticleView(DetailView):
             detail = Article.objects.get(slug=post_slug)
             detail.total_views = detail.total_views + 1
             detail.save(update_fields=['total_views'])
+            related_articles = Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id) if detail.sub_category else Article.objects.filter(category=detail.category).exclude(id=detail.id)
             context = {
                 "id": detail.id,
                 "title": detail.title,
@@ -42,8 +43,8 @@ class ArticleView(DetailView):
                 "updated_at":detail.updated_at,
                 "comments": detail.get_comments(),
                 "category": detail.category.name,
-                "sub_category": detail.sub_category.name,
-                "related_articles": Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id),
+                "sub_category": detail.sub_category if detail.sub_category else detail.category,
+                "related_articles":  related_articles,
                 "total_views": detail.total_views,
                 "tags": detail.get_tags(),
                 "article_pic": detail.article_pic,

@@ -5134,7 +5134,7 @@ blockquote:before {
 
 #comments .comments-wrapper ol.comment-list {
   margin: 0;
-  padding: 0 0 0 60px;
+  padding: 0 0 0 10px;
   list-style-type: none;
   margin-bottom: 30px;
 }
@@ -5158,7 +5158,7 @@ blockquote:before {
 }
 
 #comments .comments-wrapper ol.comment-list li article .comment-body {
-  margin-left: 85px;
+  margin-left: 5px;
 }
 
 #comments .comments-wrapper ol.comment-list li article .comment-body .meta-data {

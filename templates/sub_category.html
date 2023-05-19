@@ -24,7 +24,9 @@
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
                               {% if not articles %}
-                              {{ 'No articles found' }}
+                              <h1>Δεν βρέθηκαν αποτελέσματα</h1>
+                               <h2> Παρακαλούμε επαναλάβετε την αναζήτησή σας με διαφορετικά κριτήρια</h2>
+                
                               {% endif %}
               {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
@@ -44,7 +46,8 @@
                           {% endif %}
 											</a>
 											<div class="fs-entry-meta">
-												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
+                        
+												<span><a href="{% url 'subcategory_view' category=article.category.slug sub_category=article.sub_category.slug %}">{{ article.sub_category.name }}</a></span>
 												<span><a>{{ article.updated_at |date:"d.m.Y, H:i"}} </a></span>
                         {% for author in article.get_authors %}
 												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
