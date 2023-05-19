@@ -16,14 +16,16 @@ class CategoryView(DetailView):
 
     def get(self, request, *args, **kwargs):
         category_slug = self.kwargs.get('category')
+        category = Category.objects.get(slug=category_slug)
         articles = Article.objects.filter(category__slug=category_slug).order_by('-updated_at')
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)
         article_count = articles.count()
+
         context = {
-                "category": articles.values_list('category__name', flat=True).first(),
-                "description": articles.values_list('category__description', flat=True).first(),
+                "category": category.name,
+                "description": category.description,
                 "articles": page_articles ,
                 'article_count' : article_count,
         }
