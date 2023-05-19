@@ -74,7 +74,7 @@
                             <p>{{ latest.text | safe | slice:":100" }}..</p>
                             <div class="meta">
 
-                                <span class="date">{{ latest.updated_at | naturaltime }}</span>
+                                <span class="date">{{ latest.updated_at |date:"d.m.Y, H:i" }}</span>
                             </div>
                         </li>
                         {% endif %}

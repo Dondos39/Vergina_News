@@ -101,7 +101,7 @@ def get_weather(request):
 
     lat, lon = get_location(client_ip)
 
-    url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
+    url = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={api}'
     try:
         weather = requests.get(url, None, timeout=5).json()
     except:
