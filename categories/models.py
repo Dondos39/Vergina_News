@@ -26,8 +26,8 @@ class Category(models.Model):
         return self.tags_set.order_by('-total_views')
 
     def save(self, *args, **kwargs):
-        greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
-        latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+        greek_alphabet = 'ΑΆαάΒβΓγΔδΕΈεέΖζΗΉηήΘθΙΊιίϊΐΚκΛλΜμΝνΞξΟΌοόΠπΡρΣσςΤτΥΎυύΦφΧχΨψΩΏωώ'
+        latin_alphabet = 'AAaaBbGgDdEEeeZzHHhh88IIiiiiKkLlMmNnXxOOooPpRrSssTtYYyyFfXxCcWWww'
         greek2latin = str.maketrans(greek_alphabet, latin_alphabet)
 
         latin = self.name.translate(greek2latin)
