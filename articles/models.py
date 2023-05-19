@@ -68,7 +68,7 @@ class Article(models.Model):
     no_important = models.CharField(choices=IMPORTANT_N, max_length=6, null=True, blank=True)
     no_homepage =  models.CharField(choices=HOMEPAGE_N, max_length=9, null=True, blank=True)
     category = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)
-    sub_category = models.ForeignKey(categories.models.SubCategory, on_delete=models.CASCADE, null=True)
+    sub_category = models.ForeignKey(categories.models.SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     tags = models.ManyToManyField(tags.models.Tags, blank=True)
     featured = models.BooleanField(max_length=1, default=False)
 

@@ -62,7 +62,7 @@
 
                     <div class="col-md-2 entry-details">
 
-                        <div class="entry-date">{{ updated_at }}</div>
+                        <div class="entry-date">{{ updated_at |date:"d.m.Y, H:i"}}</div>
                         <div class="entry-author">
                             by
                             <h5>
@@ -237,7 +237,7 @@
                                             {{ comment.text }}
                                         </div>
                                         <div class="meta-data">
-                                            <span class="comment-date">{{ comment.updated_at }}</span>
+                                            <span class="comment-date">{{ comment.updated_at |date:"d.m.Y, H:i"}}</span>
                                             <!-- <span class="comment-reply">
                                                 <a class="comment-reply-link" href="#">Reply</a>
                                             </span> -->
@@ -297,7 +297,7 @@
                                                   {% for author in article.get_authors %}
                                                     <span class="author">{{ author }}</span>
                                                   {% endfor %}
-                                                    <span class="date">{{ article.updated_at }}</span>
+                                                    <span class="date">{{ article.updated_at |date:"d.m.Y, H:i"}}</span>
                                                 </div>
                                                 <h4><a href="#">{{ article.title }}</a></h4>
                                                 <p>{{ article.text | safe | slice:":50"}}...</p>
@@ -309,7 +309,7 @@
                                                   {% for author in article.get_authors %}
                                                     <span class="author">{{ author }}</span>
                                                   {% endfor %}
-                                                    <span class="date">{{ article.updated_at }}</span>
+                                                    <span class="date">{{ article.updated_at |date:"d.m.Y, H:i"}}</span>
                                                 </div>
                                                 <h4><a href="#">{{ article.title }}</a></h4>
                                                 <p>{{ article.text | safe | slice:":50"}}...</p>

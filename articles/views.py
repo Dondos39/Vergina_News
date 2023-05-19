@@ -14,6 +14,7 @@ from django.shortcuts import get_object_or_404
 import ads.models
 import json
 import requests
+
 # Google captcha
 from decouple import config
 

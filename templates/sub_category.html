@@ -45,7 +45,7 @@
 											</a>
 											<div class="fs-entry-meta">
 												<span><a href="single.html">{{ article.sub_category.name }}</a></span>
-												<span><a>{{ article.updated_at }} </a></span>
+												<span><a>{{ article.updated_at |date:"d.m.Y, H:i"}} </a></span>
                         {% for author in article.get_authors %}
 												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
                         {% endfor %}
