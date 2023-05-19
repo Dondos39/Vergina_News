@@ -187,16 +187,18 @@ CKEDITOR_CONFIGS = {
         "removePlugins": "stylesheetparser",
         'allowedContent':  True,
         'extraAllowedContent': 'iframe[*]',
-        'providerUrl': '//ckeditor.iframe.ly/api/iframely?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
+        'embed_provider': '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
+        'mediaEmbed': {'previewsInData': True},
         'extraPlugins': ','.join(['uploadimage',
-                                  #'div',
-                                  #'iframe',
-                                  #'autolink',
-                                  #'embed',
+                                  'div',
+                                  'iframe',
+                                  'autolink',
+                                  'embed',
                                   'autoembed',
                                   'embedsemantic',
                                   'autogrow',]),
     },
+
 }
 
 

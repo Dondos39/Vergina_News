@@ -27,6 +27,7 @@ class HomepageViews(ListView):
         page_category = paginator.get_page(page)
         category_count = len(category)
         date= datetime.datetime.now()
+
         context = {
         'categories_list': page_category,
         'categories_count': category_count,
@@ -35,7 +36,7 @@ class HomepageViews(ListView):
         'roaming_news_list': articles.models.Article.objects.get_latest(),
         'frontnews_list': articles.models.Article.objects.get_frontnews().extra(select={'no_homepage': 'CAST(no_homepage AS INTEGER)'}).order_by('no_homepage'),
         'popular_news_list': articles.models.Article.objects.get_popular(),
-        'popular_tags': tags.models.Tags.objects.get_popular(),
+        'popular_tags': tags.models.TagCloud.get_tags,
         'ad_banner_1': ads.models.get_priority(1),
         'ad_banner_2': ads.models.get_priority(6),
         'ad_news_1': ads.models.get_priority(2),

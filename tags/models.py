@@ -24,3 +24,16 @@ class Tags(models.Model):
     @classmethod
     def get_tags(self):
         return self.objects.values_list('id', 'name').distinct()
+
+class TagCloud(models.Model):
+    tags = models.ManyToManyField(Tags)
+
+    class Meta:
+        verbose_name_plural = "Tag Cloud"
+
+    def __str__(self):
+        return str('TagCloud')
+
+    @classmethod
+    def get_tags(self):
+        return self.objects.first().tags.all()
