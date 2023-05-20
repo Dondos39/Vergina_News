@@ -30,3 +30,5 @@ def subscribe(request):
                     sub.save()
 
     return dict(message=message)
+
+

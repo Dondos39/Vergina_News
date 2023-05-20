@@ -96,7 +96,7 @@ class Article(models.Model):
         return self.author.all().values_list('first_name', flat=True)
 
     def get_comments(self):
-        return self.comment_set.all()
+        return self.comment_set.order_by('-updated_at')
 
     def get_tags(self):
         return self.tags.all()
