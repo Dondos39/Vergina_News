@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load thumbnail %}
+
+{% block headblock %}
+
+<title>VerginaNews | {{ category }} </title>
+<meta name="description" content="{{ description }}">
+<meta name="keywords" content="{% for tag in popular_tags %} {{ tag }},{% endfor %}" >
+<meta name="author" content="VerginaNews">
+
+{% endblock %}
+
+{% load humanize %}
+{% block content %}
+<div class="section-full pv9 pvb0">
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-9 sticky-column fs-content">
+                <div class="theiaStickySidebar">
+                    <div class="fs-grid-posts">
+                        <div class="fs-post-filter big-title">
+                            <h2 class="block-title mt8" style="color:#000 ;" data-title="WebTv" >WebTv</h2>
+                            <!-- <h4 data-title="{{ category }}">All</h4> -->
+                        </div>
+
+                        <div style="padding-bottom: 56.25%; position: relative;"><iframe width="100%" height="100%" src="https://player.twitch.tv/?channel=verginachannel&muted=true&parent=https://testpd.space/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"  style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div>
+
+                    </div>
+
+                </div>
+                <!-- //theiaStickySidebar -->
+
+            </div>
+            {% include 'includes/sidebar.html'%}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -19,13 +19,14 @@
                     <div class="fs-grid-posts">
                         <div class="fs-post-filter big-title">
 
-                            <h2 class="block-title mt8" style="color:#000 ;" data-title="{{ search }}" >{{ search }}</h2>
+                            <h2 class="block-title mt8" style="color:#000 ;" data-title="ΑΝΑΖΗΤΗΣΗ" >ΑΝΑΖΗΤΗΣΗ</h2>
 
                         </div>
                         <div class="fs-grid-viewport" style="position:relative;">
                             <div class="row">
               {% if not articles %}
-              <h1>Δεν βρέθηκαν αποτελέσματα</h1>
+              <h1>Δεν βρέθηκαν αποτελέσματα για:</h1>
+              <p>{{ search }}</p>
                <h2> Παρακαλούμε επαναλάβετε την αναζήτησή σας με διαφορετικά κριτήρια</h2>
 
               {% endif %}
