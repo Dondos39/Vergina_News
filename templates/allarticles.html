@@ -35,6 +35,11 @@
 										<div class="fs-grid-item">
 											<a class="fs-entry-image">
                         {% if article.article_pic %}
+                        {% if article.sub_category %}
+						<a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">
+                            {% else %}
+                            <a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">
+                            {% endif %}
                           <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
                               srcset="
                                   {% thumbnail article.article_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
@@ -44,7 +49,7 @@
                                   {% thumbnail article.article_pic '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
                               alt="Some awesome soup"
                               sizes="100vw"
-                            />
+                            /></a>
                           {% endif %}
 											</a>
 											<div class="fs-entry-meta">
@@ -57,15 +62,12 @@
                         {% endfor %}
 											</div>
 											<h3>
-												<a>{{ article.title }}</a>
-											</h3>
-											<p class="read-more">
                                                 {% if article.sub_category %}
-												<a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">Διάβαστε το Αρθρο</a>
+												<a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">{{ article.title }}</a>
                                                 {% else %}
-                                                <a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">Διάβαστε το Αρθρο</a>
+                                                <a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">{{ article.title }}</a>
                                                 {% endif %}
-											</p>
+											</h3>
 										</div>
 									</div>
 									{% endfor %}

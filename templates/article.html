@@ -41,7 +41,7 @@
                 <div class="post first text-bigger hover-dark entry-media">
                     <div class="image video-frame">
                       {% if article_pic %}
-                        <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                        <img style="height: auto;" src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
                             srcset="
                                 {% thumbnail article_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
                                 {% thumbnail article_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
@@ -65,13 +65,16 @@
                     <div class="col-md-2 entry-details">
 
                         <div class="entry-date">{{ updated_at |date:"d.m.Y, H:i"}}</div>
+                        
                         <div class="entry-author">
+                          {% for author in authors %}
                             by
                             <h5>
-                              {% for author in authors %}
+                              
                                 <a href="{% url 'author_view' author_id=author %}">{{ author }}</a><br>
-                              {% endfor  %}
+                             
                             </h5>
+                            {% endfor  %}
                         </div>
                         <div class="entry-views">{{ total_views }} Views</div>
                         <!-- <div class="entry-social">

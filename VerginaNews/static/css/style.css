@@ -161,7 +161,7 @@
 }
 
 #header .header-wrapper .site-branding img {
-  width: 200px;
+  width: 160px;
   height: auto;
   margin-bottom: -10px;
   margin-left: -15px;
@@ -3088,7 +3088,7 @@ h4.block-title .category-more.text-right {
 
 .masonry-item img {
   width: 100%;
-  height: auto;
+  height: 250px;
 }
 
 .masonry-item .entry-hover {

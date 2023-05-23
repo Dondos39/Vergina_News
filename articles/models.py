@@ -50,7 +50,7 @@ class ArticleManager(models.Manager):
 
 class Article(models.Model):
     ##  Attributes ##
-    author = models.ManyToManyField(authors.models.Author)
+    author = models.ManyToManyField(authors.models.Author, blank=True)
     title = models.CharField(max_length=150, unique=True, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
     has_video = models.BooleanField(max_length=1, default=False)
