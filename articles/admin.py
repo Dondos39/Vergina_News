@@ -1,8 +1,19 @@
 from django.contrib import admin, messages
 from .models import Article
 from django import forms
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 class ArticleAdmin(admin.ModelAdmin):
+
+    change_form_template = 'admin/article_change_form.html'
+
+    def response_change(self, request, obj):
+        if "_preview" in request.POST:
+            url = reverse('article-preview', kwargs={'pk': obj.pk})
+            return HttpResponseRedirect(url)
+        return super().response_change(request, obj)
+
     list_display = ('title', 'date_added', 'time_added', 'no_important', 'no_homepage', 'featured')
     list_editable = ('no_important', 'no_homepage', 'featured')
     list_filter = ('no_important', 'category__name', 'date_added')
@@ -88,6 +99,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
         super().save_model(request, obj, form, change)
+
+        
 
 # Register your models here.
 admin.site.register(Article, ArticleAdmin)

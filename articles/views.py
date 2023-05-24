@@ -137,3 +137,37 @@ class AllArticlesView(DetailView):
             else:
                 result = keyword
             return redirect('articles_view', search=result)
+
+
+
+from django.views.decorators.http import require_http_methods
+
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt  
+@require_http_methods(["POST"])
+def preview_article(request, pk=None):
+    title = request.POST.get('title', '')
+    text = request.POST.get('text', '')
+    authors = request.POST.getlist('author') 
+    updated_at = request.POST.get('updated_at')
+    tags = request.POST.getlist('tags')  
+
+
+
+    preview_html = render_to_string('article_preview.html', {
+        'title': title, 
+        'text': text,
+        'authors': authors,
+        'updated_at': updated_at,
+        'tags': tags,
+
+    })
+
+    return JsonResponse({'preview_html': preview_html})
+
+
+
+

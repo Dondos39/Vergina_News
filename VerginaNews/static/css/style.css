@@ -1402,7 +1402,7 @@ h4.block-title .category-more.text-right {
 }
 
 .post h4 {
-  text-transform: capitalize;
+ 
   font-size: 14px;
   font-family: Montserrat;
   font-weight: 700;
@@ -5018,7 +5018,7 @@ input[type=submit].text-light {
 .single .post-title {
   font-size: 32px;
   line-height: 40px;
-  text-transform: capitalize;
+
   font-weight: bold;
   margin: 35px 0 25px;
 }

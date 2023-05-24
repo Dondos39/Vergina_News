@@ -1,0 +1,72 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+    {% if change %}{% if not is_popup %}
+    <li>
+        {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+        <a href="{{ delete_url }}" class="deletelink">{% trans "Delete" %}</a>
+    </li>
+    {% endif %}{% endif %}
+    {{ block.super }}
+{% endblock %}
+
+{% block after_field_sets %}
+<div id="preview-modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; height: 80%;">
+        <span id="close-modal" style="color: #aaaaaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <iframe id="preview-content" style="width: 100%; height: 80%;"></iframe>
+    </div>
+</div>
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+<div class="submit-row">
+    <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
+    {% if save_as %}<input type="submit" value="{% trans 'Save as new' %}" name="_saveasnew">{% endif %}
+    <input type="submit" value="{% trans 'Save and add another' %}" name="_addanother">
+    <input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue">
+    <input type="submit" value="{% trans 'Preview' %}" name="_preview">
+</div>
+
+<script>
+document.getElementsByName('_preview')[0].addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    // Gather form data
+    let formData = new FormData(document.getElementById('article_form'));
+    
+    
+    fetch('/preview/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        
+        let previewIframe = document.getElementById('preview-content');
+        let previewDocument = previewIframe.contentDocument || previewIframe.contentWindow.document;
+        previewDocument.body.innerHTML = data.preview_html;
+        
+      
+        document.getElementById('preview-modal').style.display = "block";
+    });
+
+  
+    document.getElementById('close-modal').onclick = function() {
+        document.getElementById('preview-modal').style.display = "none";
+    }
+
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('preview-modal')) {
+            document.getElementById('preview-modal').style.display = "none";
+        }
+    }
+});
+
+</script>
+{% endblock %}

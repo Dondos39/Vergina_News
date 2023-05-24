@@ -271,7 +271,11 @@
                         <a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.category.slug title=frontnew.slug %}"></a>
                         {% endif %}
                           {% if frontnew.article_pic %}
+                          {% if frontnew.sub_category %}
                           <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
+                            {% else %}
+                            <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.category.slug title=frontnew.slug %}">
+                              {% endif %}
                             <div class="image" data-src="{{ frontnew.article_pic.url }}">
 
                               <img loading="lazy" src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
@@ -287,7 +291,7 @@
                             {% if frontnew.sub_category %}
                                 <a style="z-index: 800;"href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                               {% else %}
-                              <a style="z-index: 800;"href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.category.slug %}" class="label">{{ frontnew.category.slug }}</a>
+                              <a style="z-index: 800;"href="{% url 'category_view' category=frontnew.category.slug %}" class="label">{{ frontnew.category.name }}</a>
                               {% endif %}
                                 {% if frontnew.has_video %}
                                 <a class="video-player"></a>
@@ -362,7 +366,7 @@
                             {% if frontnew.sub_category %}
                                 <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                 {% else %}
-                                <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug %}" class="label">{{ frontnew.category }}</a>
+                                <a style="z-index: 800;" href="{% url 'category_view' category=frontnew.category.slug  %}" class="label">{{ frontnew.category.name }}</a>
                                 {% endif %}
 
                                 {% if frontnew.has_video %}
@@ -439,7 +443,7 @@
                                           {% if frontnew.sub_category %}
                                               <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
                                               {% else %} 
-                                              <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug %}" class="label">{{ frontnew.category }}</a>
+                                              <a style="z-index: 800;" href="{% url 'category_view' category=frontnew.category.slug %}" class="label">{{ frontnew.category.name }}</a>
                                               {% endif %}
                                               {% if frontnew.has_video %}
                                               <a class="video-player"></a>
@@ -918,7 +922,7 @@
                     {% if category.sub_category %}
                         <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                         {% else %} 
-                        <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.category.slug %}" class="label bgred">{{ articles.category.name }}</a>
+                        <a style=" z-index: 800;" href="{% url 'category_view' category=articles.category.slug %}" class="label bgred">{{ articles.category.name }}</a>
                         {% endif %}
                         {% if articles.has_video %}
                         <a class="video-player"></a>
@@ -997,7 +1001,7 @@
                       {% if category.sub_category %}
                       <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
                       {% else %}
-                      <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.category.slug %}" class="label bgred">{{ articles.category.name }}</a>
+                      <a style=" z-index: 800;" href="{% url 'category_view' category=articles.category.slug  %}" class="label bgred">{{ articles.category.name }}</a>
                       {% endif %}
 
 

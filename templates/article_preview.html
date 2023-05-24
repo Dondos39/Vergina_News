@@ -1,0 +1,133 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load thumbnail %}
+{% block headblock %}
+
+<title>VerginaNews | {{ title }} </title>
+<meta name="description" content="{{ title }}">
+<meta name="keywords" content="{% for tag in tags%} {{ tag }},{% endfor %}" >
+<meta name="author" content="{% for author in authors %}{{ author }}{% endfor %} | VerginaNews">
+
+<script async src="//cdn.iframe.ly/embed.js?api_key=299b17488935461abeeedb"></script>
+
+{% endblock %}
+{% load humanize %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+    </div>
+</div>
+<!-- end .row -->
+</div>
+<!-- end .container -->
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62f789fba11776a4"></script>
+
+<section class="section-content single">
+
+<div class="container">
+
+
+
+    <div class="row">
+        <div class="col-sm-9 with-sidebar">
+
+            <h2 class="block-title mv5" data-title="Preview">
+                Preview
+            </h2>
+
+            <article class="blog-item blog-single">
+
+                <div class="post first text-bigger hover-dark entry-media">
+                    <div class="image video-frame">
+           
+                        <img style="height: auto;" src="{% static 'images/news/video-big-01.jpg' %}"/>
+
+                    </div>
+                </div>
+
+                <h2 class="post-title">{{ title }}</h2>
+
+                <div class="row">
+
+                    <div class="col-md-2 entry-details">
+
+                        <div class="entry-date">{{ updated_at |date:"d.m.Y, H:i"}}</div>
+                        
+                        <div class="entry-author">
+                          {% for author in authors %}
+                            by
+                            <h5>
+                              
+                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a><br>
+                             
+                            </h5>
+                            {% endfor  %}
+                        </div>
+                        <div class="entry-views">999 Views</div>
+                        <!-- <div class="entry-social">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:;"><i class="fa fa-youtube"></i></a>
+                            <a href="javascript:;"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:;"><i class="fa fa-linkedin"></i></a>
+                        </div> -->
+
+                    </div>
+                    <!-- end .entry-details -->
+
+                    <div class="col-md-10 entry-content">
+
+                    <div class="conteiner">
+                     {{ text | safe }}
+                    </div>
+
+
+
+
+                    </div>
+                    <!-- end .entry-details -->
+
+                </div>
+
+            </article>
+
+
+        </div>
+        <!-- end .col-md-9 -->
+            <div class="col-sm-3 sidebar mt2">
+                <div class="widget">
+                    <h5 class="widget-title"><span>Tag Cloud</span></h5>
+                    <div class="widget-tags">
+                      {% for tag in tags%}
+                        <a href="{% url 'articles_view' search=tag %}">Preview</a>
+                      {% endfor %}
+                    </div>
+                </div>
+                <!-- end .widget -->
+
+
+
+
+
+
+
+
+                <!-- end .widget -->
+
+
+                <!-- end .widget -->
+
+            </div>
+            <!-- end .sidebar -->
+
+    </div>
+    <!-- end .row -->
+</div>
+<!-- end .container -->
+
+
+</div>
+
+
+{% endblock %}
+
