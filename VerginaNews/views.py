@@ -63,3 +63,7 @@ class HomepageViews(ListView):
         else:
             result = keyword
         return redirect('articles_view', search=result)
+
+def web_tv(request):
+
+    return render (request, 'webtv.html')

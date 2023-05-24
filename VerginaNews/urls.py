@@ -28,6 +28,7 @@ urlpatterns = [
     path(r's3cr3t4dm1n/', admin.site.urls),
     re_path(r'^getSubcategory/$', articles.views.get_subcategory),
     path('', views.HomepageViews.as_view(), name='home'),
+    path('webtv', views.web_tv, name='webtv'),
     path('search=<str:search>/', articles.views.AllArticlesView.as_view(), name='articles_view'),
     re_path('(?P<category>[\w\-]+)/$', categories.views.CategoryView.as_view(), name='category_view'),
     re_path('(?P<category>[\w\-]+)/(?P<sub_category>[\w\-]+)/$', categories.views.SubCategoryView.as_view(), name='subcategory_view'),

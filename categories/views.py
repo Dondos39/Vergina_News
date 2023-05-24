@@ -66,7 +66,7 @@ class SubCategoryView(DetailView):
 
         context = {
                 "category": subcategory.category.name,
-                "sub_category": subcategory.name,
+                "sub_category": subcategory.name if subcategory.name else subcategory.category.name,
                 "description": subcategory.description,
                 "articles": page_articles,
                 "article_count": article_count,

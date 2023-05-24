@@ -41,7 +41,7 @@
                 <div class="post first text-bigger hover-dark entry-media">
                     <div class="image video-frame">
                       {% if article_pic %}
-                        <img src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
+                        <img style="height: auto;" src="{% thumbnail recipe.image '1920' as im %}{{ im.url }}{% endthumbnail %}"
                             srcset="
                                 {% thumbnail article_pic '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
                                 {% thumbnail article_pic '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
@@ -65,13 +65,16 @@
                     <div class="col-md-2 entry-details">
 
                         <div class="entry-date">{{ updated_at |date:"d.m.Y, H:i"}}</div>
+                        
                         <div class="entry-author">
+                          {% for author in authors %}
                             by
                             <h5>
-                              {% for author in authors %}
+                              
                                 <a href="{% url 'author_view' author_id=author %}">{{ author }}</a><br>
-                              {% endfor  %}
+                             
                             </h5>
+                            {% endfor  %}
                         </div>
                         <div class="entry-views">{{ total_views }} Views</div>
                         <!-- <div class="entry-social">
@@ -141,13 +144,13 @@
                 <div class="widget categories">
                     <h5 class="widget-title"><span>Categories</span></h5>
                     <ul>
-                        {% for category in links %}
-                        <li>
-                            <a href="{% url 'category_view' category=category.name %}">{{ category.name }}</a>
+                      {% for category in links %}
+                      <li>
+                          <a href="{% url 'category_view' category=category.slug %}">{{ category.name }}</a>
 
-                        </li>
-                        {% endfor %}
-                    </ul>
+                      </li>
+                      {% endfor %}
+                  </ul>
                 </div>
                 <!-- end .widget -->
 
@@ -158,12 +161,20 @@
                         {% for latest in roamingnews %}
                         {% if forloop.counter < 5 %}
                          <li class="post hover-light">
+                          {% if latest.sub_category %}
                             <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
+                            {% else %}
+                            <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.category.slug title=latest.slug %}">
+                            {% endif %}
                                 {% if latest.article_pic %}
                                 <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}"></div>
                               {% endif %}
                             </a>
+                            {% if latest.sub_category %}
                             <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
+                            {% else %}
+                            <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
+                            {% endif %}
                             <p></p>
                             <!-- <p>{{ latest.text | safe | slice:":100" }}..</p> -->
                             <div class="meta">
@@ -256,7 +267,8 @@
                         <form method="post" id="commentform" class="comment-form" novalidate="">
                             <div class="row">
                                 <p class="comment-form-author col-sm-6">
-                                    <input id="{{ author.id }}" name="author" type="text" value="" size="30" required="required" placeholder="Your Name *">
+                                    <input class="pagdas" id="pagdas" name="author" type="text" value="" size="30" required="required" placeholder="Your Name *">
+                                   
                                 </p>
                                 <p class="comment-form-email col-sm-6">
                                     <input id="1" name="email" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
@@ -273,11 +285,14 @@
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                 <input type="hidden" name="Article ID" value="{{ id }}">
                                 <span>The required fields have * symbols</span>
-                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                                <!-- <input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> -->
+                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment" disabled>
                                 <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
                             </p>
                         </form>
                     </div>
+
+                  
 
                 </div>
              </div>
@@ -301,8 +316,12 @@
                                                   {% endfor %}
                                                     <span class="date">{{ article.updated_at |date:"d.m.Y, H:i"}}</span>
                                                 </div>
-                                                <h4><a href="#">{{ article.title }}</a></h4>
-                                                <p>{{ article.text | safe | slice:":50"}}...</p>
+                                                {% if artilce.sub_category %}
+                                                <h4><a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">{{ article.title }}</a></h4>
+                                                {% else %}
+                                                <h4><a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">{{ article.title }}</a></h4>
+                                                {% endif %}
+                                                <!-- <p>{{ article.text | safe | slice:":50"}}...</p> -->
                                             </div>
 
                                             {% elif forloop.counter < 7 %}
@@ -313,8 +332,12 @@
                                                   {% endfor %}
                                                     <span class="date">{{ article.updated_at |date:"d.m.Y, H:i"}}</span>
                                                 </div>
-                                                <h4><a href="#">{{ article.title }}</a></h4>
-                                                <p>{{ article.text | safe | slice:":50"}}...</p>
+                                                {% if artilce.sub_category %}
+                                                <h4><a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">{{ article.title }}</a></h4>
+                                                {% else %}
+                                                <h4><a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">{{ article.title }}</a></h4>
+                                                {% endif %}
+                                                <!-- <p>{{ article.text | safe | slice:":50"}}...</p> -->
                                             </div>
                                             {% endif %}
                                         </div>
@@ -335,7 +358,35 @@
 </div>
 
 
+<script>
+  var authorInput = document.getElementById("pagdas");
+  var emailInput = document.getElementById('1');
+  var commentInput = document.getElementById('comment');
+  var submitButton = document.getElementById('submit');
 
+  authorInput.addEventListener('input', checkForm); 
+  emailInput.addEventListener('input', checkForm);
+  commentInput.addEventListener('input', checkForm);
+  
+
+  function checkForm() {
+      if(authorInput.value !== '' && isEmail(emailInput.value) && commentInput.value !== '') {
+          submitButton.disabled = false;
+      } else {
+          submitButton.disabled = true;
+          
+      }
+      console.log(authorInput);
+      console.log(emailInput);
+      console.log(commentInput);
+  }
+
+  function isEmail(email) {
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+  }
+</script>
 
 
 {% endblock %}
+

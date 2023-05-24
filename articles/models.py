@@ -50,7 +50,7 @@ class ArticleManager(models.Manager):
 
 class Article(models.Model):
     ##  Attributes ##
-    author = models.ManyToManyField(authors.models.Author)
+    author = models.ManyToManyField(authors.models.Author, blank=True)
     title = models.CharField(max_length=150, unique=True, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
     has_video = models.BooleanField(max_length=1, default=False)
@@ -96,7 +96,7 @@ class Article(models.Model):
         return self.author.all().values_list('first_name', flat=True)
 
     def get_comments(self):
-        return self.comment_set.all()
+        return self.comment_set.order_by('-updated_at')
 
     def get_tags(self):
         return self.tags.all()

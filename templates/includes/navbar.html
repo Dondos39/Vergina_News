@@ -22,18 +22,9 @@
 
                         <div class="right-content">
                                 <div class="follow-links">
-                                    <span class="visible-lg-*">Follow Us:</span>
-                                    {% for link in media_links %}
-                                    {% if link.name == 'Facebook' %}
-                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-facebook"></i></a>
-                                    {% elif link.name == 'Twitter'%}
-                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-twitter"></i></a>
-                                    {% elif link.name == 'Instagram'%}
-                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-instagram"></i></a>
-                                    {% elif link.name == 'Linkedin'%}
-                                    <a class="visible-lg-*" href="{{ link.url }}"><i class="fa fa-linkedin"></i></a>
-                                    {% endif %}
-                                    {% endfor %}
+                                    <a class="visible-lg-*" href="{% url 'webtv' %}"><span style="font-weight: 600;"class="visible-lg-*">WebTv: <i class="fa fa-television"></i></span>
+                                    </a>
+
                                 </div>
 
                         </div>
@@ -157,11 +148,22 @@
 
                 <div class="pm-socials" style="  font-size: 16px; padding-left: 30px; margin-bottom: 30px; letter-spacing: 5px;">
                     <span class="visible-lg-*">Follow Us:</span><br>
-                    <a href="javascript:;"><i class="fa fa-facebook"></i></a>
-                    <a href="javascript:;"><i class="fa fa-twitter"></i></a>
-                    <a href="javascript:;"><i class="fa fa-google-plus"></i></a>
-                    <a href="javascript:;"><i class="fa fa-pinterest"></i></a>
-                    <a href="javascript:;"><i class="fa fa-linkedin"></i></a>
+                    <a class="visible-lg-*" href="{% url 'webtv' %}"><i class="fa fa-television"></i></a>
+                    {% for link in media_links %}
+                    {% if link.name == 'Facebook' %}
+                    <a href="{{ link.url }}"><i class="fa fa-facebook"></i></a>
+                    {% elif link.name == 'Twitter'%}
+                    <a href="{{ link.url }}"><i class="fa fa-twitter"></i></a>
+                    {% elif link.name == 'Youtube'%}
+                    <a href="{{ link.url }}"><i class="fa fa-youtube"></i></a>
+                    {% elif link.name == 'Instagram'%}
+                    <a href="{{ link.url }}"><i class="fa fa-instagram"></i></a>
+                    {% elif link.name == 'Linkedin'%}
+                    <a href="{{ link.url }}"><i class="fa fa-linkedin"></i></a>
+                    {% elif link.name == 'Twitch'%}
+                    <a href="{{ link.url }}"><i class="fa fa-twitch"></i></a>
+                    {% endif %}
+                    {% endfor %}
                 </div>
 
 
@@ -174,8 +176,11 @@
                               {% for subcategory in category.get_subcategories %}
                                 <li><a href="{% url 'subcategory_view' category=category.slug sub_category=subcategory.slug %}">{{ subcategory.name }}</a></li>
                               {% endfor %}
+                             
                             </ul>
+                           
                         {% endfor %}
+                        <li><a href="{% url 'webtv' %}">WebTv</a></li>
                         </nav>
 
                     </ul>
