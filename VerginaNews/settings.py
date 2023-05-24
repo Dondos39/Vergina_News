@@ -187,7 +187,6 @@ CKEDITOR_CONFIGS = {
         'allowedContent':  True,
         'extraAllowedContent': 'iframe[*]',
         'pasteFilter': None,
-        
         'embed_provider': '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}&api_key=299b17488935461abeeedb',
         'mediaEmbed': {'previewsInData': True},
         'extraPlugins': ','.join(['uploadimage',
