@@ -35,7 +35,7 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
     def get_articles(self):
-        return articles.models.Article.objects.all().filter(category__name=self.name).order_by('-updated_at')[:6][::1]
+        return articles.models.Article.objects.all().filter(category__name=self.name).filter(publish=True).order_by('-updated_at')[:6][::1]
 
     def get_featured(self):
         return articles.models.Article.objects.filter(featured=True)
