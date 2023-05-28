@@ -17,7 +17,7 @@ class CategoryView(DetailView):
     def get(self, request, *args, **kwargs):
         category_slug = self.kwargs.get('category')
         category = Category.objects.get(slug=category_slug)
-        articles = Article.objects.filter(category__slug=category_slug).order_by('-updated_at')
+        articles = Article.objects.filter(category__slug=category_slug).filter(publish=True).order_by('-updated_at')
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)
@@ -58,7 +58,7 @@ class SubCategoryView(DetailView):
     def get(self, request, *args, **kwargs):
         subcategory_slug = self.kwargs.get('sub_category')
         subcategory = SubCategory.objects.get(slug=subcategory_slug)
-        articles = Article.objects.filter(sub_category__slug = subcategory_slug).order_by('-updated_at')
+        articles = Article.objects.filter(sub_category__slug = subcategory_slug).filter(publish=True).order_by('-updated_at')
         paginator = Paginator(articles, 8)
         page = request.GET.get('page')
         page_articles = paginator.get_page(page)

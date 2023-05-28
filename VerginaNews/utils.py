@@ -64,7 +64,11 @@ def get_location(ip_address):
 
     result = response.content.decode()
     result = result.split("(")[1].strip(")")
-    result  = json.loads(result)
+    try:
+        result  = json.loads(result)
+    except:
+        return 37.98, 23.72
+        
     if result['latitude'] != 'Not found' and result['longitude'] != 'Not found':
         return result['latitude'], result['longitude']
     return 37.98, 23.72

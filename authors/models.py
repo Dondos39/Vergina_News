@@ -41,7 +41,7 @@ class Author(models.Model):
         return self.first_name
 
     def get_articles(self):
-        return articles.models.Article.objects.filter(author__first_name=self.first_name)
+        return articles.models.Article.objects.filter(author__first_name=self.first_name).filter(publish=True)
 
     def get_job_title(self):
         return dict(JOB_CHOICES)[self.job_title]
