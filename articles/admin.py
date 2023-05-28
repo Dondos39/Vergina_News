@@ -44,6 +44,21 @@ class ArticleAdmin(admin.ModelAdmin):
                 obj.__class__.objects.update_or_create(id=id, defaults={'no_homepage': None})
                 messages.warning(request, f"Article {id} was changed to not show on homepage")
 
+    def delete_model(self, request, obj):
+            if obj.article_pic:
+                obj.article_pic.storage.delete(str(obj.article_pic))
+            if obj.article_video:
+                obj.article_video.storage.delete(str(obj.article_video))
+            super().delete_model(request, obj)
+
+    def delete_queryset(self, request, queryset):
+        for item in queryset.iterator():
+            if item.article_pic:
+                item.article_pic.storage.delete(str(item.article_pic))
+            if item.article_video:
+                item.article_video.storage.delete(str(item.article_video))
+        super().delete_queryset(request, queryset)
+
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         obj.updated_by = str(request.user)
