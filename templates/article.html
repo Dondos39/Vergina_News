@@ -65,14 +65,13 @@
                     <div class="col-md-2 entry-details">
 
                         <div class="entry-date">{{ updated_at |date:"d.m.Y, H:i"}}</div>
-                        
+
                         <div class="entry-author">
                           {% for author in authors %}
                             by
                             <h5>
-                              
-                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a><br>
-                             
+                                <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a><br>
+
                             </h5>
                             {% endfor  %}
                         </div>
@@ -268,7 +267,7 @@
                             <div class="row">
                                 <p class="comment-form-author col-sm-6">
                                     <input class="pagdas" id="pagdas" name="author" type="text" value="" size="30" required="required" placeholder="Your Name *">
-                                   
+
                                 </p>
                                 <p class="comment-form-email col-sm-6">
                                     <input id="1" name="email" type="email" value="" size="30" required="required" placeholder="Your E-mail *">
@@ -292,7 +291,7 @@
                         </form>
                     </div>
 
-                  
+
 
                 </div>
              </div>
@@ -364,17 +363,17 @@
   var commentInput = document.getElementById('comment');
   var submitButton = document.getElementById('submit');
 
-  authorInput.addEventListener('input', checkForm); 
+  authorInput.addEventListener('input', checkForm);
   emailInput.addEventListener('input', checkForm);
   commentInput.addEventListener('input', checkForm);
-  
+
 
   function checkForm() {
       if(authorInput.value !== '' && isEmail(emailInput.value) && commentInput.value !== '') {
           submitButton.disabled = false;
       } else {
           submitButton.disabled = true;
-          
+
       }
       console.log(authorInput);
       console.log(emailInput);
@@ -389,4 +388,3 @@
 
 
 {% endblock %}
-

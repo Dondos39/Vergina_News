@@ -10,6 +10,7 @@ from VerginaNews.utils import get_img_path, get_video_path, image_size_validator
 from django.utils.text import slugify
 from django_resized import ResizedImageField
 from django.urls import reverse
+import datetime
 
 # Create your models here.
 IMPORTANT_N = [
@@ -55,8 +56,7 @@ class Article(models.Model):
     title = models.CharField(max_length=150, unique=True, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
     has_video = models.BooleanField(max_length=1, default=False)
-    date_added = models.DateField(("Date"), auto_now=True)
-    time_added = models.TimeField(("Time"), auto_now=True)
+    date_added = models.DateTimeField(("Date"), default=datetime.datetime.now())
     text = RichTextUploadingField()
 
     article_pic = models.ImageField(upload_to=get_img_path, blank=True, validators=[image_size_validator])
@@ -101,7 +101,7 @@ class Article(models.Model):
                              self.slug])
 
     def get_authors(self):
-        return self.author.all().values_list('first_name', flat=True)
+        return self.author.all()
 
     def get_comments(self):
         return self.comment_set.order_by('-updated_at')
@@ -113,8 +113,8 @@ class Article(models.Model):
         return self.comment_set.create(name=dict['author'], email=dict['email'], text=dict['text'])
 
     def save(self, *args, **kwargs):
-        greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
-        latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+        greek_alphabet = 'ΑΆαάΒβΓγΔδΕΈεέΖζΗΉηήΘθΙΊιίϊΐΚκΛλΜμΝνΞξΟΌοόΠπΡρΣσςΤτΥΎυύΦφΧχΨψΩΏωώ'
+        latin_alphabet = 'AAaaBbGgDdEEeeZzHHhh88IIiiiiKkLlMmNnXxOOooPpRrSssTtYYyyFfXxCcWWww'
         greek2latin = str.maketrans(greek_alphabet, latin_alphabet)
 
         latin = self.title.translate(greek2latin)
