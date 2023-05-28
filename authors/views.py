@@ -13,9 +13,9 @@ class AuthorView(DetailView):
         model = Author
 
         def get(self, request, *args, **kwargs):
-            id = self.kwargs.get('author_id')
+            slug = self.kwargs.get('author_id')
 
-            author = Author.objects.filter(first_name=id).first()
+            author = Author.objects.filter(slug=slug).first()
             related_authors = Author.objects.filter(job_title=author.job_title).exclude(id=author.id)
             articles = author.get_articles().order_by('-updated_at')
             category = categories.models.Category.objects.filter(name=author.job_title).first()
@@ -40,7 +40,7 @@ class AuthorView(DetailView):
                 ad.total_views = ad.total_views + 1
                 ad.save(update_fields=['total_views'])
                 return HttpResponseRedirect(ad.url)
-                
+
             keyword = request.POST.get('search')
             if keyword:
                 if keyword == "":

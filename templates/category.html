@@ -28,7 +28,7 @@
                                 {% if not articles %}
                                 <h1>Δεν βρέθηκαν αποτελέσματα</h1>
                                  <h2> Παρακαλούμε επαναλάβετε την αναζήτησή σας με διαφορετικά κριτήρια</h2>
-                  
+
                                 {% endif %}
                                  {% for article in articles %}
 							<div class="col-sm-6 masonry-item vogue">
@@ -51,7 +51,7 @@
                               sizes="100vw"
                             /></a>
                           {% endif %}
-                          
+
 											</a>
 											<div class="fs-entry-meta">
                                                 {% if article.sub_category %}
@@ -59,7 +59,7 @@
                                                 {% endif %}
 												<span><a>{{ article.updated_at |date:"d.m.Y, H:i"}} </a></span>
                                               {% for author in article.get_authors %}
-												<span><a href="{% url 'author_view' author_id=author %}">{{ author }}</a></span>
+												<span><a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a></span>
                                              {% endfor %}
 
 											</div>

@@ -8,25 +8,19 @@ class ArticleAdmin(admin.ModelAdmin):
 
     change_form_template = 'admin/article_change_form.html'
 
-    def response_change(self, request, obj):
-        if "_preview" in request.POST:
-            url = reverse('article-preview', kwargs={'pk': obj.pk})
-            return HttpResponseRedirect(url)
-        return super().response_change(request, obj)
-
-    list_display = ('title', 'date_added', 'time_added', 'no_important', 'no_homepage', 'featured')
+    list_display = ('title', 'date_added', 'no_important', 'no_homepage', 'featured')
     list_editable = ('no_important', 'no_homepage', 'featured')
-    list_filter = ('no_important', 'category__name', 'date_added')
+    list_filter = ('no_important', 'category__name', 'date_added', 'publish')
     search_fields = ['tags__name', 'author__first_name']
-    readonly_fields = ['slug', 'updated_at', 'updated_by', 'total_views', 'date_added', 'time_added']
+    readonly_fields = ['slug', 'updated_at', 'updated_by', 'total_views', 'date_added']
 
     fieldsets = (
         (None, {
-            'fields': ('author', 'title', 'has_video', 'text', 'featured', 'article_pic', 'article_video', 'url', 'no_homepage', 'no_important', 'category', 'sub_category', 'tags')
+            'fields': ('author', 'title', 'has_video', 'text', 'featured', 'article_pic', 'article_video', 'url', 'no_homepage', 'no_important', 'category', 'sub_category', 'tags', 'publish')
         }),
         ('Advanced options', {
             'classes': ('collapse',),
-            'fields': ('slug', 'updated_at', 'updated_by', 'total_views', 'date_added', 'time_added'),
+            'fields': ('slug', 'updated_at', 'updated_by', 'total_views', 'date_added'),
         }),
         )
 
@@ -45,11 +39,11 @@ class ArticleAdmin(admin.ModelAdmin):
                 messages.warning(request, f"Article {id} was changed to not show on homepage")
 
     def delete_model(self, request, obj):
-            if obj.article_pic:
-                obj.article_pic.storage.delete(str(obj.article_pic))
-            if obj.article_video:
-                obj.article_video.storage.delete(str(obj.article_video))
-            super().delete_model(request, obj)
+        if obj.article_pic:
+            obj.article_pic.storage.delete(str(obj.article_pic))
+        if obj.article_video:
+            obj.article_video.storage.delete(str(obj.article_video))
+        super().delete_model(request, obj)
 
     def delete_queryset(self, request, queryset):
         for item in queryset.iterator():
@@ -68,6 +62,12 @@ class ArticleAdmin(admin.ModelAdmin):
             self.check_no_homepage(obj, request)
         if obj.no_important != prev_no_important:
             self.check_no_important(obj, request)
+
+        if obj.publish==False:
+            if obj.no_homepage or obj.no_important or obj.featured:
+                messages.warning(request, "The articled must be published to be important/homepage/featured.")
+                messages.set_level(request, messages.WARNING)
+                return
 
         if obj.id:
             old_article_pic = Article.objects.get(id=obj.id).article_pic
@@ -115,7 +115,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
-        
+
 
 # Register your models here.
 admin.site.register(Article, ArticleAdmin)
