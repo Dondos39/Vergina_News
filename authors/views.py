@@ -3,6 +3,7 @@ from django.views.generic.detail import DetailView
 import ads.models
 import articles
 import categories.models
+import tags.models
 from .models import Author
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -13,12 +14,11 @@ class AuthorView(DetailView):
         model = Author
 
         def get(self, request, *args, **kwargs):
-            id = self.kwargs.get('author_id')
+            slug = self.kwargs.get('author_id')
+            author = Author.objects.filter(slug=slug).first()
 
-            author = Author.objects.filter(first_name=id).first()
-            related_authors = Author.objects.filter(job_title=author.job_title).exclude(id=author.id)
+            related_authors = Author.objects.order_by('id').exclude(id=author.id)
             articles = author.get_articles().order_by('-updated_at')
-            category = categories.models.Category.objects.filter(name=author.job_title).first()
             paginator = Paginator(articles, 12)
             page = request.GET.get('page')
             page_articles = paginator.get_page(page)
@@ -28,7 +28,7 @@ class AuthorView(DetailView):
                     "articles": page_articles,
                     "article_count": article_count,
                     "related_authors": related_authors,
-                    "tags": category.get_popular_tags(),
+                    "tags": tags.models.TagCloud.get_tags,
                     "ad_sidebar": ads.models.get_priority(9),
             }
             return render(request, 'author.html', context=context)
@@ -40,7 +40,7 @@ class AuthorView(DetailView):
                 ad.total_views = ad.total_views + 1
                 ad.save(update_fields=['total_views'])
                 return HttpResponseRedirect(ad.url)
-                
+
             keyword = request.POST.get('search')
             if keyword:
                 if keyword == "":

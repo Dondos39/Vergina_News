@@ -35,7 +35,7 @@ class ArticleView(DetailView):
             detail = Article.objects.get(slug=post_slug)
             detail.total_views = detail.total_views + 1
             detail.save(update_fields=['total_views'])
-            related_articles = Article.objects.filter(category=detail.category, sub_category=detail.sub_category).exclude(id=detail.id) if detail.sub_category else Article.objects.filter(category=detail.category).exclude(id=detail.id)
+            related_articles = Article.objects.filter(category=detail.category, sub_category=detail.sub_category).filter(publish=True).exclude(id=detail.id) if detail.sub_category else Article.objects.filter(category=detail.category).filter(publish=True).exclude(id=detail.id)
             context = {
                 "id": detail.id,
                 "title": detail.title,
@@ -113,16 +113,16 @@ class AllArticlesView(DetailView):
         def get(self, request, *args, **kwargs):
             tags = Tags.objects.all().values_list('name', flat=True).distinct()
             if kwargs['search'] == 'all':
-                articles = Article.objects.all().order_by('-updated_at')
+                articles = Article.objects.filter(publish=True).order_by('-updated_at')
             elif kwargs['search'] == 'popular':
-                articles = Article.objects.all().order_by('-total_views')
+                articles = Article.objects.filter(publish=True).order_by('-total_views')
             elif kwargs['search'] in tags:
                 tag = Tags.objects.get(name=kwargs['search'])
                 tag.total_views = tag.total_views + 1
                 tag.save(update_fields=['total_views'])
-                articles = Article.objects.filter(tags__name=kwargs['search']).order_by('-updated_at')
+                articles = Article.objects.filter(tags__name=kwargs['search']).filter(publish=True).order_by('-updated_at')
             else:
-                articles = Article.objects.filter(title__icontains=kwargs['search']).order_by('-updated_at')
+                articles = Article.objects.filter(title__icontains=kwargs['search']).filter(publish=True).order_by('-updated_at')
             context = {
                 'articles' : articles,
                 'search': kwargs['search'],
@@ -146,19 +146,19 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt  
+@csrf_exempt
 @require_http_methods(["POST"])
 def preview_article(request, pk=None):
     title = request.POST.get('title', '')
     text = request.POST.get('text', '')
-    authors = request.POST.getlist('author') 
+    authors = request.POST.getlist('author')
     updated_at = request.POST.get('updated_at')
-    tags = request.POST.getlist('tags')  
+    tags = request.POST.getlist('tags')
 
 
 
     preview_html = render_to_string('article_preview.html', {
-        'title': title, 
+        'title': title,
         'text': text,
         'authors': authors,
         'updated_at': updated_at,
@@ -167,7 +167,3 @@ def preview_article(request, pk=None):
     })
 
     return JsonResponse({'preview_html': preview_html})
-
-
-
-

@@ -3,8 +3,9 @@ from .models import Author
 
 # Register your models here.
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'job_title', 'email', 'no_featured')
+    list_display = ('name', 'email', 'no_featured', 'slug')
     list_editable = ('no_featured',)
+    readonly_fields = ['slug']
 
     def check_no_featured(self, obj, request):
         duplicate = obj.__class__.objects.filter(no_featured=obj.no_featured).values_list('id', flat=True)

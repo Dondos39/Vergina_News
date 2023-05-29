@@ -30,7 +30,7 @@
               class="swiper-lazy"
               alt="{{ important.title }}"
             />
-       
+
           </div>
           {% endif %}
           <div class="container mt6">
@@ -45,7 +45,7 @@
                   <a href="{% url 'article_view' category=important.category.slug sub_category=important.category.slug title=important.slug %}"><h3 class="fs-animate-text" data-swiper-parallax="-300">{{ important.title }}</h3></a>
                   {% endif %}
 
-               
+
                 </div>
               </div>
             </div>
@@ -66,10 +66,10 @@
             class="swiper-lazy"
             alt="{{ important.title }}"
           />
-     
+
           {% endif %}
         </div>
-        {% endfor %} 
+        {% endfor %}
       </div>
       class="swiper-button-next"class="swiper-button-next"
     </div>
@@ -94,10 +94,10 @@
     <h4 class="font28">{{ important.title }}</h4>
   </div>
   </a>
-  {% endfor %} 
+  {% endfor %}
   </div>
 
-  
+
 
 
 
@@ -229,7 +229,7 @@
 
                     <div class="border-line"></div>
                     </div>
-                   
+
                 {% endif %}
                 {% endfor %}
 
@@ -312,7 +312,7 @@
                         {% else %}
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         {% endif %}
-  
+
                     </div>
 
 
@@ -386,14 +386,14 @@
                         {% else %}
                         <h4 class="font18"><a href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.category.slug title=frontnew.slug %}">{{ frontnew.title }}</a></h4>
                         {% endif %}
-                      
+
                     </div>
 
                 </div>
                 {% endif%}
                 {% endfor %}
             </div>
-            
+
             <!-- /.col -->
             <div class="row">
               {% if ad_news_3 %}
@@ -424,7 +424,7 @@
                                     <div class="post hover-dark color-1">
                                       {% if frontnew.sub_category %}
                                         <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug title=frontnew.slug %}">
-                                          {% else %} 
+                                          {% else %}
                                           <a style="position: inherit; z-index: 800;" href="{% url 'article_view' category=frontnew.category.slug sub_category=frontnew.category.slug title=frontnew.slug %}">
                                           {% endif %}
                                           {% if frontnew.article_pic %}
@@ -442,7 +442,7 @@
                                           />
                                           {% if frontnew.sub_category %}
                                               <a style="z-index: 800;" href="{% url 'subcategory_view' category=frontnew.category.slug sub_category=frontnew.sub_category.slug %}" class="label">{{ frontnew.sub_category }}</a>
-                                              {% else %} 
+                                              {% else %}
                                               <a style="z-index: 800;" href="{% url 'category_view' category=frontnew.category.slug %}" class="label">{{ frontnew.category.name }}</a>
                                               {% endif %}
                                               {% if frontnew.has_video %}
@@ -548,7 +548,7 @@
                       <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.sub_category.slug title=latest.slug %}">
                         {% else %}
                         <a href="{% url 'article_view' category=latest.category.slug sub_category=latest.category.slug title=latest.slug %}">
-                          {% endif %}  
+                          {% endif %}
                         {% if latest.article_pic %}
                           <div class="image image-thumb"  loading="lazy" data-src="{{ latest.article_pic.url }}">
 
@@ -825,7 +825,7 @@
         <h2 class="block-title mt8" data-title="ΑΡΘΡΟΓΡΑΦΟΙ" >
           ΑΡΘΡΟΓΡΑΦΟΙ
         </h2>
-    
+
         <div class="boxed wide-space en-block">
 
 			<div class="row">
@@ -835,21 +835,19 @@
 					<div class="post quote color-1">
 
 						<div class="meta bullet-style">
-							<span class="author">{{ author.first_name}}</span>
-                            <span class="author">{{ author.last_name}}</span>
+							<span class="author">{{ author.name }}</span>
 						</div>
 						<blockquote>{{ author.short_bio }}</blockquote>
 						<div class="author clearfix">
-							<a href="{% url 'author_view' author_id=author %}">
+							<a href="{% url 'author_view' author_id=author.slug %}">
                 {% if author.prof_pic%}
 								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic.url}}" alt="Image">
                 {% endif %}
 							</a>
-							<a href="{% url 'category_view' category=author.job_title.slug %}" class="label">{{ author.job_title }}</a>
 						</div>
 						<!-- /.meta -->
 
-						<a href="{% url 'author_view' author_id=author %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right.png' %}" alt="Arrow"></a>
+						<a href="{% url 'author_view' author_id=author.slug %}" class="category-more">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ<img src="{% static 'images/arrow-right.png' %}" alt="Arrow"></a>
 
 					</div>
 
@@ -921,7 +919,7 @@
                     />
                     {% if category.sub_category %}
                         <a style=" z-index: 800;" href="{% url 'subcategory_view' category=articles.category.slug sub_category=articles.sub_category.slug %}" class="label bgred">{{ articles.sub_category.name }}</a>
-                        {% else %} 
+                        {% else %}
                         <a style=" z-index: 800;" href="{% url 'category_view' category=articles.category.slug %}" class="label bgred">{{ articles.category.name }}</a>
                         {% endif %}
                         {% if articles.has_video %}
@@ -931,7 +929,7 @@
                       {% endif %}
                       <div class="meta inline-meta small-meta">
                         {% for author in articles.get_authors %}
-                        <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                        <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                         {% endfor %}
                         <span class="date">{{ articles.updated_at |date:"d.m.Y, H:i"}}</span>
                       </div>
@@ -948,7 +946,7 @@
                             >{{ articles.title }}</a
                           >
                         </h4>
-                        {% else %} 
+                        {% else %}
                         <h4>
                           <a href="{% url 'article_view' category=articles.category.slug sub_category=articles.category.slug title=articles.slug %}"
                             >{{ articles.title }}</a
@@ -981,7 +979,7 @@
                         {% endif %}
                     {% if articles.article_pic %}
                     <div
-                      class="image" 
+                      class="image"
                       data-src="{{ articles.article_pic.url }}"
                     >
 
@@ -1010,7 +1008,7 @@
                   </a>
                     <div class="meta inline-meta small-meta">
                       {% for author in articles.get_authors %}
-                      <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                      <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                       {% endfor %}
                       <span class="date">{{ articles.updated_at |date:"d.m.Y, H:i"}}</span>
                     </div>

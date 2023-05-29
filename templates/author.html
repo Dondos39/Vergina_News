@@ -51,7 +51,7 @@
                           />
                         {% endif %}
                       <blockquote>
-                        <cite>{{ author.first_name }}</cite>
+                        <cite>{{ author.name }}</cite>
                         <p>
                           {{ author.short_bio }}.
                         </p>
@@ -101,15 +101,24 @@
                           <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">{{ article.title }}</a>
                           {% else %}
                           <a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">{{ article.title }}</a>
+
                           {% endif %}
                         </h4>
                         <p>
                           {{ article.text | safe |slice:":100"}}...
                         </p>
-                        <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}" class="category-more"
-                          >Διάβαστε το Αρθρο
-                          <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
-                        /></a>
+                        {% if article.sub_category %}
+                          <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}" class="category-more"
+                            >Διάβαστε το Αρθρο
+                            <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
+                          /></a>
+                        {% else %}
+                          <a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}" class="category-more"
+                            >Διάβαστε το Αρθρο
+                            <img src="{% static 'images/arrow-right.png' %}" alt="Arrow"
+                          /></a>
+                        {% endif %}
+
                       </div>
                     </div>
                     {% endfor %}
@@ -205,8 +214,7 @@
                               />
                             {% endif %}
                         </a>
-                        <h4><a href="#">{{ author.first_name }}</a></h4>
-                        <h4><a href="#">{{ author.last_name }}</a></h4>
+                        <h4><a href="#">{{ author.name }}</a></h4>
 
                         <div class="meta">
                           <span class="author"></span>
