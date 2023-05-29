@@ -3,7 +3,7 @@ from .models import Author
 
 # Register your models here.
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'job_title', 'email', 'no_featured', 'slug')
+    list_display = ('name', 'email', 'no_featured', 'slug')
     list_editable = ('no_featured',)
     readonly_fields = ['slug']
 

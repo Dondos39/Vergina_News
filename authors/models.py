@@ -27,7 +27,6 @@ class Author(models.Model):
     slug = models.SlugField(max_length=150, unique=True, db_index=True, blank=True)
     email = models.EmailField()
     short_bio = models.CharField(max_length=512)
-    job_title = models.ForeignKey(categories.models.Category, on_delete=models.CASCADE, null=True)
     no_featured =  models.CharField(choices=FEATURED_N, max_length=4, null=True, blank=True)
 
     tracker = FieldTracker()
@@ -42,9 +41,6 @@ class Author(models.Model):
 
     def get_articles(self):
         return articles.models.Article.objects.filter(author__name=self.name).filter(publish=True)
-
-    def get_job_title(self):
-        return dict(JOB_CHOICES)[self.job_title]
 
     def save(self, *args, **kwargs):
         greek_alphabet = 'ΑΆαάΒβΓγΔδΕΈεέΖζΗΉηήΘθΙΊιίϊΐΚκΛλΜμΝνΞξΟΌοόΠπΡρΣσςΤτΥΎυύΦφΧχΨψΩΏωώ'

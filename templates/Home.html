@@ -843,7 +843,6 @@
 								<img loading="lazy"  class="image image-thumb border-radius" src="{{ author.prof_pic.url}}" alt="Image">
                 {% endif %}
 							</a>
-							<a href="{% url 'category_view' category=author.job_title.slug %}" class="label">{{ author.job_title }}</a>
 						</div>
 						<!-- /.meta -->
 
@@ -929,7 +928,7 @@
                       {% endif %}
                       <div class="meta inline-meta small-meta">
                         {% for author in articles.get_authors %}
-                        <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                        <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                         {% endfor %}
                         <span class="date">{{ articles.updated_at |date:"d.m.Y, H:i"}}</span>
                       </div>
@@ -1008,7 +1007,7 @@
                   </a>
                     <div class="meta inline-meta small-meta">
                       {% for author in articles.get_authors %}
-                      <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                      <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                       {% endfor %}
                       <span class="date">{{ articles.updated_at |date:"d.m.Y, H:i"}}</span>
                     </div>
