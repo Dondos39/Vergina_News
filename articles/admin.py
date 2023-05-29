@@ -8,6 +8,9 @@ class ArticleAdmin(admin.ModelAdmin):
 
     change_form_template = 'admin/article_change_form.html'
 
+  
+    filter_horizontal = ("tags",)
+
     def response_change(self, request, obj):
         if "_preview" in request.POST:
             url = reverse('article-preview', kwargs={'pk': obj.pk})

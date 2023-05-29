@@ -97,7 +97,11 @@
                           </div>
                         </div>
                         <h4 class="font18">
+                          {% if article.sub_category %}
                           <a href="{% url 'article_view' category=article.category.slug sub_category=article.sub_category.slug title=article.slug %}">{{ article.title }}</a>
+                          {% else %}
+                          <a href="{% url 'article_view' category=article.category.slug sub_category=article.category.slug title=article.slug %}">{{ article.title }}</a>
+                          {% endif %}
                         </h4>
                         <p>
                           {{ article.text | safe |slice:":100"}}...
