@@ -4,8 +4,11 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-class ArticleAdmin(admin.ModelAdmin):
+@admin.action(description="Mark selected articles as published")
+def make_published(modeladmin, request, queryset):
+    queryset.update(publish=True)
 
+class ArticleAdmin(admin.ModelAdmin):
     change_form_template = 'admin/article_change_form.html'
 
     list_display = ('title', 'date_added', 'no_important', 'no_homepage', 'featured')
@@ -13,6 +16,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ('no_important', 'category__name', 'date_added', 'publish')
     search_fields = ['tags__name', 'author__first_name']
     readonly_fields = ['slug', 'updated_at', 'updated_by', 'total_views', 'date_added']
+    actions = [make_published]
 
     fieldsets = (
         (None, {
