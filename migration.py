@@ -11,6 +11,7 @@ import pandas as pd
 import warnings
 import numpy as np
 from bs4 import BeautifulSoup
+import re
 warnings.filterwarnings("ignore")
 django.setup()
 
@@ -19,6 +20,7 @@ from categories.models import Category, SubCategory
 from tags.models import Tags
 from authors.models import Author
 from tqdm import tqdm
+from scraper import scrape_article
 
 COLS = ['object_id', 'post_author', 'post_date', 'post_date_gmt', 'post_content', 'post_title', 'post_excerpt', 'post_status', 'comment_status', 'ping_status', 'post_password',
 'post_name', 'to_ping', 'pinged', 'post_modified', 'post_modified_gmt', 'post_content_filtered', 'post_parent', 'guid', 'menu_order', 'post_type', 'post_mime_type', 'comment_count']
@@ -27,6 +29,7 @@ main = pd.read_csv(r"C:\Users\Dondo\Desktop\donos.csv", skiprows=lambda x: x%2 =
 term_relationships = pd.read_csv(r"C:\Users\Dondo\Desktop\n895h5iea_term_relationships.csv")
 tax = pd.read_excel(r"C:\Users\Dondo\Desktop\n895h5iea_term_taxonomy.xlsx")
 terms = pd.read_csv(r"C:\Users\Dondo\Desktop\n895h5iea_terms.csv")
+images = pd.read_csv(r'C:\Users\Dondo\Desktop\n895h5iea_postmeta.csv', names=['meta_id', 'post_id', 'meta_key', 'meta_value'], on_bad_lines='skip')
 
 tax_terms = pd.merge(tax, terms, on='term_id', how='left')
 tax_terms.drop(['term_id', 'description', 'term_group', 'Unnamed: 6'],  axis=1, inplace=True)
@@ -50,11 +53,16 @@ final['tags'] = final['tags'].str.split(',')
 final['sub_category'] = np.nan
 final = final.reset_index(drop=True)
 
-final['post_content'] = final['post_content'].str.replace('[ad_1]', '')
-final['post_content'] = final['post_content'].str.replace('[ad_2]', '')
-
+images = images[images['meta_key']=='_wp_attached_file']
+images = images.rename(columns={'post_id': 'object_id'})
+images.drop(['meta_id', 'meta_key'], axis=1, inplace=True)
+images['object_id'] = images['object_id'].astype(np.int64)
+final = pd.merge(final, images, on='object_id', how='left')
 
 for i, row in enumerate(final.itertuples()):
+    if row.guid == np.nan and row.meta_value != np.nan:
+        row.guid = row.meta_value
+
     if str(row.category) == 'nan' and str(row.tags) != 'nan':
         for tag in row.tags:
             if tag == 'ΠΌΛΙΤΙΚΗ':
@@ -101,7 +109,7 @@ for i, row in enumerate(final.itertuples()):
                 final.at[i, 'category'] = 'ΟΙΚΟΝΟΜΙΑ'
                 break
 
-final = final.groupby('category').filter(lambda x : len(x)>10)
+final = final.groupby('category').filter(lambda x : len(x)>80)
 
 for row in tqdm(final.itertuples(), total=final.shape[0]):
     if str(row.category)!='nan':
@@ -128,30 +136,32 @@ for row in tqdm(final.itertuples(), total=final.shape[0]):
         date = None
 
     if row.guid:
-        print(row)
-        response = requests.get(row.guid).content
-        if row.guid.endswith('jpg'):
+        id = uuid.uuid4()
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        data = scrape_article(row.guid)
+        if data['Image URL']:
             try:
-                img = Image.open(BytesIO(response))
-                id = uuid.uuid4()
-                img.save(f"Article_pics/{id}.jpg")
+                response = requests.get(data['Image URL'], headers=headers)
+                img = Image.open(BytesIO(response.content))
+                img.save(f'media/Article_pics/{id}.jpg')
                 path = f'Article_pics/{id}.jpg'
             except:
                 path = None
         else:
+            path = None
 
-                soup = BeautifulSoup(response, 'html.parser')
-                image = soup.find('img', class_='entry-thumb')
-                img_url = image.get('src')
-                break
+        if data['Content']:
+            content = data['Content']
+            content = content.replace('[ad_1]', '')
+            content = content.replace('[ad_2]', '')
+        else:
+            content = row.post_content
 
-    else:
-        path = None
 
     article = Article(title=row.post_title,
-                      date_added = date,
-                      text = row.post_content,
+                      date_added=date,
                       article_pic=path,
+                      text = content,
                       category = category,
                       sub_category = sub_category)
 
@@ -160,6 +170,7 @@ for row in tqdm(final.itertuples(), total=final.shape[0]):
     except django.db.utils.IntegrityError:
         continue
     except:
+        print('Article save error')
         print(row)
 
     if str(row.tags)!='nan':
@@ -176,7 +187,6 @@ for row in tqdm(final.itertuples(), total=final.shape[0]):
         author = Author.objects.get(name=row.post_author)
         article.author.add(author)
     except Author.DoesNotExist:
-        print(row)
         author_ = Author(name=row.post_author)
         author_.save()
         article.author.add(author_)
