@@ -65,5 +65,4 @@ class HomepageViews(ListView):
         return redirect('articles_view', search=result)
 
 def web_tv(request):
-
     return render (request, 'webtv.html')

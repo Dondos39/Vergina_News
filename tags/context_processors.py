@@ -1,4 +1,4 @@
-from .models import Tags
+from .models import Tags, TagCloud
 import categories.models
 import articles.models
 
@@ -19,12 +19,13 @@ def tag_cloud(request, *args, **kwargs):
     except IndexError:
         category = None
 
+    tags = None
     if  categories.models.SubCategory.objects.filter(slug=sub_category).exists():
         tags = categories.models.SubCategory.objects.filter(slug=sub_category).first().get_popular_tags()
         name = None
     elif categories.models.Category.objects.filter(slug=category).exists():
         tags = categories.models.Category.objects.filter(slug=category).first().get_popular_tags()
         name = None
-    else:
-        tags = Tags.objects.get_popular()
+    if not tags:
+        tags = TagCloud.get_tags
     return dict(popular_tags=tags)
