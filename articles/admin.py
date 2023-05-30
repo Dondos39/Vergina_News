@@ -19,7 +19,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     list_editable = ('no_important', 'no_homepage', 'featured')
     list_filter = ('no_important', 'category__name', 'date_added', 'publish')
-    search_fields = ['tags__name', 'author__first_name']
+    search_fields = ['tags__name', 'author__name', 'title']
     readonly_fields = ['slug', 'updated_at', 'updated_by', 'total_views', 'date_added']
     actions = [make_published]
 

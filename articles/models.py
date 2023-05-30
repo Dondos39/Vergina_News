@@ -45,10 +45,10 @@ class ArticleManager(models.Manager):
         return self.filter(no_homepage__in=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']).filter(publish=True)
 
     def get_popular(self):
-        return self.filter(publish=True).order_by('-total_views')
+        return self.filter(publish=True).order_by('-total_views')[:10][::1]
 
     def get_featured(self):
-        return self.filter(featured=True)
+        return self.filter(featured=True).filter(publish=True)
 
 class Article(models.Model):
     ##  Attributes ##
