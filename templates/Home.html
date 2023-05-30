@@ -303,7 +303,7 @@
                         </a>
                         <div class="meta inline-meta small-meta">
                             {% for author in frontnew.get_authors %}
-                            <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                            <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                             {% endfor %}
                             <span class="date">{{ frontnew.updated_at |date:"d.m.Y, H:i"}}</span>
                         </div>
@@ -377,7 +377,7 @@
                         </a>
                         <div class="meta inline-meta small-meta">
                             {% for author in frontnew.get_authors %}
-                            <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                            <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                             {% endfor %}
                             <span class="date">{{ frontnew.updated_at |date:"d.m.Y, H:i"}}</span>
                         </div>
@@ -455,7 +455,7 @@
                                         </a>
                                         <div class="meta inline-meta small-meta">
                                             {% for author in frontnew.get_authors %}
-                                            <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                                            <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                                             {% endfor %}
                                             <span class="date">{{ frontnew.updated_at |date:"d.m.Y, H:i"}}</span>
                                         </div>
@@ -495,7 +495,7 @@
 											<p>{{ frontnew.text | safe | slice:":100" }}...</p>
 											<div class="meta">
                                                 {% for author in frontnew.get_authors %}
-                                                <a href="{% url 'author_view' author_id=author %}">{{ author }}</a>
+                                                <a href="{% url 'author_view' author_id=author.slug %}">{{ author }}</a>
                                                 {% endfor %}
 												<span class="date">{{ frontnew.updated_at |date:"d.m.Y, H:i"}}</span>
 											</div>
