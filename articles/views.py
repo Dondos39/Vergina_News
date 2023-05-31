@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 import ads.models
 import json
 import requests
@@ -123,8 +124,14 @@ class AllArticlesView(DetailView):
                 articles = Article.objects.filter(tags__name=kwargs['search']).filter(publish=True).order_by('-updated_at')
             else:
                 articles = Article.objects.filter(title__icontains=kwargs['search']).filter(publish=True).order_by('-updated_at')
+
+            paginator = Paginator(articles, 8)
+            page = request.GET.get('page')
+            page_articles = paginator.get_page(page)
+            article_count = articles.count()
             context = {
-                'articles' : articles,
+                "articles": page_articles ,
+                'article_count' : article_count,
                 'search': kwargs['search'],
             }
             return render(request, "allarticles.html", context=context)

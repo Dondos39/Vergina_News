@@ -68,10 +68,10 @@
                           {% else %}
                           <h4 style="display: flex;"><a href="{% url 'article_view' category=latest.category.slug sub_category=latest.category.slug title=latest.slug %}">{{ latest.title }}</a></h4>
                           {% endif %}
-                          <p></p>            
+                          <p></p>
                           <div class="meta">
 
-                              <span class="date">{{ latest.date_added }}</span>
+                              <span class="date">{{ latest.updated_at|date:"d.m.Y, H:i" }}</span>
                           </div>
                       </li>
                       {% endif %}
