@@ -82,27 +82,40 @@
                 <!-- //theiaStickySidebar -->
                 <nav class="mt-4" aria-label="Page navigation sample">
                     {% if articles.has_other_pages %}
-                  <ul class="pagination">
-                      {% if articles.has_previous %}
-                    <li class="page-item "><a class="page-link" href="?page={{articles.previous_page_number}}">Previous</a></li>
-                    {% else %}
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    {% endif %}
-                    {% for i in articles.paginator.page_range %}
-                        {% if articles.number == i %}
-                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                      <ul class="pagination">
+                        {% if articles.has_previous %}
+                          <li class="page-item "><a class="page-link" href="?page={{articles.previous_page_number}}">Previous</a></li>
                         {% else %}
-                        <li class="page-item "><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                          <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                         {% endif %}
-                    {% endfor %}
-                    {% if articles.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{articles.next_page_number}}">Next</a></li>
-                    {% else %}
-                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                  
+                        {% if articles.number > 3 %}
+                          <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                          <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        {% endif %}
+                  
+                        {% for i in articles.paginator.page_range %}
+                          {% if articles.number == i %}
+                            <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                          {% elif i > articles.number|add:"-3" and i < articles.number|add:"3" %}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                  
+                        {% if articles.number < articles.paginator.num_pages|add:"-2" %}
+                          <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                          <li class="page-item"><a class="page-link" href="?page={{articles.paginator.num_pages}}">{{articles.paginator.num_pages}}</a></li>
+                        {% endif %}
+                  
+                        {% if articles.has_next %}
+                          <li class="page-item"><a class="page-link" href="?page={{articles.next_page_number}}">Next</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                        {% endif %}
+                      </ul>
                     {% endif %}
-                  </ul>
-                  {% endif %}
-                </nav>
+                  </nav>
+                  
             </div>
             {% include 'includes/sidebar.html' %}
 

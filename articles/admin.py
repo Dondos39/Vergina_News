@@ -11,7 +11,12 @@ def make_published(modeladmin, request, queryset):
 class ArticleAdmin(admin.ModelAdmin):
     change_form_template = 'admin/article_change_form.html'
 
+  
+    filter_horizontal = ("tags",)
+
+
     list_display = ('title', 'date_added', 'no_important', 'no_homepage', 'featured')
+
     list_editable = ('no_important', 'no_homepage', 'featured')
     list_filter = ('no_important', 'category__name', 'date_added', 'publish')
     search_fields = ['tags__name', 'author__name', 'title']
